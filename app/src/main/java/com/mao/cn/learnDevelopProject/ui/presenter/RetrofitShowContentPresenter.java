@@ -1,24 +1,19 @@
 // +----------------------------------------------------------------------
-// | Project:   MvpProject
+// | Project:   LearnMyDevelopProject
 // +----------------------------------------------------------------------
-// | CreateTime: 06/09/2017 11:17 上午
+// | CreateTime: 08/08/2017 16:39 下午
 // +----------------------------------------------------------------------
 // | Author:     xab(xab@xabad.cn)
 // +----------------------------------------------------------------------
 // | Description:
 // +----------------------------------------------------------------------
-package com.mao.cn.learnDevelopProject.interactors;
-
-import javax.inject.Inject;
+package com.mao.cn.learnDevelopProject.ui.presenter;
 
 /**
- * DESC   :
- * AUTHOR : Xabad
- */
-public class MainInteractor {
+* DESC   :
+* AUTHOR : Xabad
+*/
+public interface RetrofitShowContentPresenter{
 
-    @Inject
-    public MainInteractor() {
-
-    }
+    void getMovieTop(int start,int count);
 }

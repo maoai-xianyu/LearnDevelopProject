@@ -37,40 +37,4 @@ public class MainPresenterImp extends BasePresenterImp implements MainPresenter 
         this.viewInterface = viewInterface;
         this.interactor = mainInteractor;
     }
-
-
-    @Override
-    public void getMovieTop(int start, int count) {
-        if (!NetworkUtils.isConnected(context)) {
-            viewInterface.onTip(context.getString(R.string.no_connect_net));
-            return;
-        }
-        viewInterface.showLoadingDialog("");
-        interactor.getMovieTop(start, count, new StringCallback() {
-            @Override
-            public void success(String response) {
-                viewInterface.hideLoadingDialog();
-                Logger.i(response);
-                Movie convert = null;
-                try {
-                    convert = GsonU.convert(response, Movie.class);
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                }
-                if (convert != null && StringU.isNotEmpty(convert.getTitle()) && ListU.notEmpty(convert.getSubjects())) {
-                    viewInterface.showTopMovie(convert.getSubjects(), convert.getTitle());
-                } else {
-                    viewInterface.showTopMovie(null, "");
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError var1) {
-                viewInterface.hideLoadingDialog();
-                viewInterface.interError(var1);
-                viewInterface.showTopMovie(null, "");
-            }
-        });
-
-    }
 }

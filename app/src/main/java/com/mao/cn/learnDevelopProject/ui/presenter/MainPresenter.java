@@ -17,5 +17,4 @@ import com.mao.cn.learnDevelopProject.ui.commons.BasePresenter;
 */
 public interface MainPresenter extends BasePresenter{
 
-    void getMovieTop(int start,int count);
 }

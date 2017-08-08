@@ -65,6 +65,7 @@ public class RxjavaShowContentActivity extends BaseActivity implements IRxjavaSh
 
     @Override
     public void initView() {
+        ibHeaderBack.setVisibility(View.VISIBLE);
         presenter.getMovieTop(0, 10);
     }
 
@@ -90,7 +91,7 @@ public class RxjavaShowContentActivity extends BaseActivity implements IRxjavaSh
     }
 
     @Override
-    public void showTopMovie(List<MovieDetail> movieDetails,String title) {
+    public void showTopMovie(List<MovieDetail> movieDetails, String title) {
         if (!checkActivityState()) return;
         tvHeaderTitle.setVisibility(View.VISIBLE);
         tvHeaderTitle.setText(title);

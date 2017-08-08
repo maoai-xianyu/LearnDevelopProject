@@ -15,7 +15,8 @@
         android:background="@color/transparent"
         android:paddingEnd="@dimen/d10"
         android:paddingStart="@dimen/d10"
-        android:src="@drawable/icon_btn_back_black" />
+        android:src="@drawable/icon_btn_back_black"
+        android:visibility="gone" />
 
 
     <TextView

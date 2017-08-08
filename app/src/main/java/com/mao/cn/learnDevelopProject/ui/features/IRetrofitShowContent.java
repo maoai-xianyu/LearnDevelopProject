@@ -1,7 +1,7 @@
 // +----------------------------------------------------------------------
-// | Project:   MvpProject
+// | Project:   LearnMyDevelopProject
 // +----------------------------------------------------------------------
-// | CreateTime: 06/09/2017 11:17 上午
+// | CreateTime: 08/08/2017 16:39 下午
 // +----------------------------------------------------------------------
 // | Author:     xab(xab@xabad.cn)
 // +----------------------------------------------------------------------
@@ -9,12 +9,15 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.features;
 
+import com.mao.cn.learnDevelopProject.model.MovieDetail;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseViewInferface;
+
+import java.util.List;
 
 /**
 * DESC   :
 * AUTHOR : Xabad
 */
-public interface IMain extends BaseViewInferface {
-
+public interface IRetrofitShowContent extends BaseViewInferface{
+    void showTopMovie(List<MovieDetail> subjects, String title);
 }

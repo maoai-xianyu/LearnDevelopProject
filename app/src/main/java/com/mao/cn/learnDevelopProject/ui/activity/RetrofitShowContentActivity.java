@@ -1,7 +1,7 @@
 // +----------------------------------------------------------------------
-// | Project:   MvpProject
+// | Project:   LearnMyDevelopProject
 // +----------------------------------------------------------------------
-// | CreateTime: 08/04/2017 16:53 下午
+// | CreateTime: 08/08/2017 16:39 下午
 // +----------------------------------------------------------------------
 // | Author:     xab(xab@xabad.cn)
 // +----------------------------------------------------------------------
@@ -19,14 +19,14 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerOkhttpShowContentComponent;
+import com.mao.cn.learnDevelopProject.component.DaggerRetrofitShowContentComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.model.MovieDetail;
-import com.mao.cn.learnDevelopProject.modules.OkhttpShowContentModule;
+import com.mao.cn.learnDevelopProject.modules.RetrofitShowContentModule;
 import com.mao.cn.learnDevelopProject.ui.adapter.MovieTopAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
-import com.mao.cn.learnDevelopProject.ui.features.IOkhttpShowContent;
-import com.mao.cn.learnDevelopProject.ui.presenter.OkhttpShowContentPresenter;
+import com.mao.cn.learnDevelopProject.ui.features.IRetrofitShowContent;
+import com.mao.cn.learnDevelopProject.ui.presenter.RetrofitShowContentPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
 import com.orhanobut.logger.Logger;
 
@@ -41,10 +41,10 @@ import butterknife.BindView;
  * DESC   :
  * AUTHOR : Xabad
  */
-public class OkhttpShowContentActivity extends BaseActivity implements IOkhttpShowContent {
+public class RetrofitShowContentActivity extends BaseActivity implements IRetrofitShowContent {
 
     @Inject
-    OkhttpShowContentPresenter presenter;
+    RetrofitShowContentPresenter presenter;
 
     @BindView(R.id.ib_header_back)
     ImageButton ibHeaderBack;
@@ -52,8 +52,6 @@ public class OkhttpShowContentActivity extends BaseActivity implements IOkhttpSh
     TextView tvHeaderTitle;
     @BindView(R.id.rvData)
     RecyclerView rvData;
-    private MovieTopAdapter movieTopAdapter;
-
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -62,14 +60,12 @@ public class OkhttpShowContentActivity extends BaseActivity implements IOkhttpSh
 
     @Override
     public int setView() {
-        return R.layout.aty_okhttp_show_content;
+        return R.layout.aty_retrofit_show_content;
     }
 
     @Override
     public void initView() {
         ibHeaderBack.setVisibility(View.VISIBLE);
-        movieTopAdapter = new MovieTopAdapter(this);
-//        presenter.getMovieTopMyOkHttp(0, 10);
         presenter.getMovieTop(0, 10);
 
     }
@@ -82,31 +78,29 @@ public class OkhttpShowContentActivity extends BaseActivity implements IOkhttpSh
         }, throwable -> {
             Logger.e(throwable.getMessage());
         });
-
     }
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
-        DaggerOkhttpShowContentComponent.builder()
+        DaggerRetrofitShowContentComponent.builder()
                 .appComponent(appComponent)
-                .okhttpShowContentModule(new OkhttpShowContentModule(this))
+                .retrofitShowContentModule(new RetrofitShowContentModule(this))
                 .build().inject(this);
     }
 
     @Override
     public void showTopMovie(List<MovieDetail> subjects, String title) {
         if (!checkActivityState()) return;
-        runOnUiThread(() -> {
-            tvHeaderTitle.setVisibility(View.VISIBLE);
-            tvHeaderTitle.setText(title);
-            if (ListU.notEmpty(subjects)) {
-                LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
-                linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
-                rvData.setLayoutManager(linearLayoutCourse);
-                movieTopAdapter.addMovieList(subjects);
-                rvData.setAdapter(movieTopAdapter);
-            }
-        });
+        tvHeaderTitle.setVisibility(View.VISIBLE);
+        tvHeaderTitle.setText(title);
+        if (ListU.notEmpty(subjects)) {
+            LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
+            linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
+            rvData.setLayoutManager(linearLayoutCourse);
 
+            MovieTopAdapter movieTopAdapter = new MovieTopAdapter(this);
+            movieTopAdapter.addMovieList(subjects);
+            rvData.setAdapter(movieTopAdapter);
+        }
     }
 }

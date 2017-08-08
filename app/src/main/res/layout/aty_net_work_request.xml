@@ -22,28 +22,28 @@
             android:paddingBottom="@dimen/d10">
 
             <Button
-                android:id="@+id/btn_desc_net"
+                android:id="@+id/btn_okhttp"
                 style="@style/home_main_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="网络请求" />
+                android:text="okhttp网路请求" />
 
             <Button
-                android:id="@+id/btn_desc_rxjava"
+                android:id="@+id/btn_rxjava"
                 style="@style/home_main_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_net"
-                android:text="rxjava学习" />
+                android:layout_below="@+id/btn_okhttp"
+                android:text="rxjava网络请求" />
 
 
             <Button
-                android:id="@+id/btn_desc_image"
+                android:id="@+id/btn_retrofit"
                 style="@style/home_main_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_rxjava"
-                android:text="image图片" />
+                android:layout_below="@+id/btn_rxjava"
+                android:text="retrofit网络请求" />
 
         </RelativeLayout>
     </ScrollView>
