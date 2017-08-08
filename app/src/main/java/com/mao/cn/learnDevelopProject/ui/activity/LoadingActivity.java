@@ -16,22 +16,20 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerLoadingComponent;
-import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.modules.LoadingModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.ILoading;
 import com.mao.cn.learnDevelopProject.ui.presenter.LoadingPresenter;
-import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import rx.Observable;
 
 /**
  * DESC   :
@@ -69,11 +67,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     @Override
     public void initView() {
 
-        Logger.e("  SS  "+tvShow);
-
-//        tvShow = (TextView) findViewById(R.id.tv_show);
-
-        Logger.e("  SS  "+tvShow);
+        Observable.interval(5,TimeUnit.SECONDS).compose(timer()).subscribe(aLong -> startActivity(MainActivity.class, true));
 
         //当应用是使用系统安装器安装并且运行的时候，category中是没有任何信息的，这个时候会导致按home键后，点击图标重启app。
         /*if (!isTaskRoot()) {
@@ -88,14 +82,6 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     }
     @Override
     public void setListener() {
-
-        // 个人设置
-        RxView.clicks(tvShow).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(MainActivity.class, true);
-                }, throwable -> {
-                    Logger.e(throwable.toString());
-                });
 
     }
 

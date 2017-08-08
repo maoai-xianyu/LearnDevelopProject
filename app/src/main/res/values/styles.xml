@@ -10,7 +10,7 @@
 
     <style name="loading_theme" parent="Theme.IOSchedd">
         <item name="android:windowFullscreen">true</item>
-        <!--<item name="android:windowBackground">@drawable/bg_loading</item>-->
+        <item name="android:windowBackground">@drawable/bg_loading</item>
     </style>
 
     <style name="AppTheme.Fullscreen">

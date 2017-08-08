@@ -22,6 +22,9 @@ import com.mao.cn.learnDevelopProject.wedget.dialog.SingleDialog;
 import com.orhanobut.logger.Logger;
 
 import retrofit2.adapter.rxjava.HttpException;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by zhangkun on 2017/6/9.
@@ -221,5 +224,10 @@ public abstract class BaseActivity extends CommActivity implements BaseViewInfer
         }
         LearnDevelopApplication.removeAty(activity);
         super.onDestroy();
+    }
+
+    protected <T> Observable.Transformer<T, T> timer() {
+        return observable -> observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
