@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_FFFFFF"
+    tools:context="com.mao.cn.learnDevelopProject.ui.activity.MainActivity">
+
+    <include
+        android:id="@+id/rl_header"
+        layout="@layout/include_header" />
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header"
+        android:paddingBottom="@dimen/d10"
+        android:paddingTop="@dimen/d10">
+
+        <Button
+            android:id="@+id/btn_desc_okhttp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d30"
+            android:background="@drawable/shape_corner_button"
+            android:text="okhttp"
+            android:textColor="@color/c_000000"
+            android:textSize="@dimen/text_size_20" />
+
+        <Button
+            android:id="@+id/btn_desc_rxjava"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/d30"
+            android:background="@drawable/shape_corner_button"
+            android:text="rxjava"
+            android:textColor="@color/c_000000"
+            android:textSize="@dimen/text_size_20" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d1"
+            android:layout_below="@+id/btn_desc_rxjava"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@color/c_595959" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/d10"
+        android:text="Retrofit return String"
+        android:textColor="@color/c_000000"
+        android:textSize="@dimen/text_size_20" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_desc" />
+
+
+</RelativeLayout>
