@@ -7,5 +7,6 @@
     <string name="confirm">确定</string>
     <string name="tips">提示</string>
     <string name="header">学习</string>
+    <string name="header_rxjava">学习RxJava</string>
     <string name="loading">加载中...</string>
 </resources>

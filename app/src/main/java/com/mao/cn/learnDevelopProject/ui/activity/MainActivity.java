@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements IMain {
 
         RxView.clicks(btnDescRxjava).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(RxjavaShowContentActivity.class);
+            startActivity(RxJavaLearnActivity.class);
         }, throwable -> {
             Logger.e(throwable.getMessage());
         });
