@@ -1,5 +1,5 @@
-# MvpProject
-android mvp模式项目
+# LearnDevelopProject
+mvp模式项目,用于学习，同时累积自己的只是和能力
 
-结构中有：Otto+Dagger2+Retrofit2+Rxjava 的一中mvp模式的项目
-同时项目中有很多工具类
+* 项目中用到  Otto   Dagger2  Retrofit2   Rxjava
+* 同时项目中有很多工具类
