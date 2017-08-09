@@ -12,13 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-// +----------------------------------------------------------------------
-// | CreateTime: 16/4/24
-// +----------------------------------------------------------------------
-// | Author:     xab(http://www.zhangkun.net.cn)
-// +----------------------------------------------------------------------
-// | CopyRight:  http://www.boxfish.cn
-// +----------------------------------------------------------------------
 public class ItemSlideHelper implements RecyclerView.OnItemTouchListener, GestureDetector.OnGestureListener {
 
 

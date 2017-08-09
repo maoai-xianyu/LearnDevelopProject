@@ -8,13 +8,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-// +----------------------------------------------------------------------
-// | CreateTime: 16/10/18
-// +----------------------------------------------------------------------
-// | Author:     zhangkun
-// +----------------------------------------------------------------------
-// | CopyRight:  http://www.boxfish.cn
-// +----------------------------------------------------------------------
 public class VerticalDividerItemDecoration extends FlexibleDividerDecoration {
 
     private MarginProvider mMarginProvider;

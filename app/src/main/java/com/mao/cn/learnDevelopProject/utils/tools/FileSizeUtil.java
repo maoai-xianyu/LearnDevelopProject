@@ -6,14 +6,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-// +----------------------------------------------------------------------
-// | CreateTime: 16/8/26
-// +----------------------------------------------------------------------
-// | Author:     zhangkun
-// +----------------------------------------------------------------------
-// | CopyRight:  http://www.boxfish.cn
-// +----------------------------------------------------------------------
-
 public class FileSizeUtil {
     public static final int SIZETYPE_B = 1;// 获取文件大小单位为B的double值
     public static final int SIZETYPE_KB = 2;// 获取文件大小单位为KB的double值

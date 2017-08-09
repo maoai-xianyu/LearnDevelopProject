@@ -35,4 +35,10 @@ public class ValueMaps {
     public static final class ClickTime{
         public static final int BREAK_TIME_MILLISECOND = 500;
     }
+
+    public static final class ImagePath{
+        public static final String IMAGE_RES = "res://com.mao.cn.learnDevelopProject/";
+    }
+
+
 }

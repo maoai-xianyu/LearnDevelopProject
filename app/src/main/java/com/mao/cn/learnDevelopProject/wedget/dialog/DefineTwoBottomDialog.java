@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.wedget.animation.animationeffects.BaseEffects;
 import com.mao.cn.learnDevelopProject.wedget.animation.animationeffects.Effectstype;
 
@@ -198,7 +199,7 @@ public class DefineTwoBottomDialog extends Dialog implements DialogInterface {
     }
 
     public DefineTwoBottomDialog withIcon(int drawableResId) {
-        mIcon.setImageURI(Uri.parse("res://com.boxfish.stu/" + drawableResId));
+        mIcon.setImageURI(Uri.parse(ValueMaps.ImagePath.IMAGE_RES + drawableResId));
         return this;
     }
 

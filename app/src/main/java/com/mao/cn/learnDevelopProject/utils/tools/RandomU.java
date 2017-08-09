@@ -2,13 +2,6 @@ package com.mao.cn.learnDevelopProject.utils.tools;
 
 import java.util.Random;
 
-// +----------------------------------------------------------------------
-// | CreateTime: 15/6/18 
-// +----------------------------------------------------------------------
-// | Author:     xab(http://www.xueyong.net.cn)
-// +----------------------------------------------------------------------
-// | CopyRight:  http://www.boxfish.cn
-// +----------------------------------------------------------------------
 public class RandomU {
     static Random r = new Random();
     static String wordStr = "0123456789ABCDEF";

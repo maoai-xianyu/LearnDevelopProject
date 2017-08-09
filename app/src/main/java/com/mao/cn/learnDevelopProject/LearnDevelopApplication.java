@@ -13,6 +13,7 @@ import com.mao.cn.learnDevelopProject.model.ServerInfo;
 import com.mao.cn.learnDevelopProject.modules.AppModule;
 import com.mao.cn.learnDevelopProject.utils.config.Config;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
+import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mcxiaoke.packer.helper.PackerNg;
@@ -60,6 +61,7 @@ public class LearnDevelopApplication extends CommApplication {
         OttoManager.register(this);
         analyticsManager.registerAppEnter();
         initServerInfo();
+        PathU.getInstance().initDirs();
 
     }
 
