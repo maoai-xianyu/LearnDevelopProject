@@ -54,8 +54,14 @@
             android:name="com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 

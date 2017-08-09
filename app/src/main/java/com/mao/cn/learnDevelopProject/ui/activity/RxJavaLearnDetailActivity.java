@@ -1,7 +1,7 @@
 // +----------------------------------------------------------------------
 // | Project:   LearnMyDevelopProject
 // +----------------------------------------------------------------------
-// | CreateTime: 08/08/2017 18:35 下午
+// | CreateTime: 08/09/2017 19:56 下午
 // +----------------------------------------------------------------------
 // | Author:     xab(xab@xabad.cn)
 // +----------------------------------------------------------------------
@@ -10,8 +10,6 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,17 +17,14 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerRxJavaLearnComponent;
+import com.mao.cn.learnDevelopProject.component.DaggerRxjavaLearnDetailComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
-import com.mao.cn.learnDevelopProject.modules.RxJavaLearnModule;
-import com.mao.cn.learnDevelopProject.ui.adapter.RxJavaLearnAdapter;
+import com.mao.cn.learnDevelopProject.modules.RxjavaLearnDetailModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
-import com.mao.cn.learnDevelopProject.ui.features.IRxJavaLearn;
-import com.mao.cn.learnDevelopProject.ui.presenter.RxJavaLearnPresenter;
+import com.mao.cn.learnDevelopProject.ui.features.IRxjavaLearnDetail;
+import com.mao.cn.learnDevelopProject.ui.presenter.RxjavaLearnDetailPresenter;
 import com.orhanobut.logger.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -40,20 +35,16 @@ import butterknife.BindView;
  * DESC   :
  * AUTHOR : Xabad
  */
-public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
+public class RxJavaLearnDetailActivity extends BaseActivity implements IRxjavaLearnDetail {
 
     @Inject
-    RxJavaLearnPresenter presenter;
-
+    RxjavaLearnDetailPresenter presenter;
     @BindView(R.id.ib_header_back)
     ImageButton ibHeaderBack;
     @BindView(R.id.tv_header_title)
     TextView tvHeaderTitle;
-    @BindView(R.id.rvData)
-    RecyclerView rvData;
-
-    private RxJavaLearnAdapter adapter;
-    private List<String> strings;
+    @BindView(R.id.ib_header_right)
+    ImageButton ibHeaderRight;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -62,31 +53,18 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
 
     @Override
     public int setView() {
-        return R.layout.aty_rx_java_learn;
+        return R.layout.aty_rxjava_learn_detail;
     }
 
     @Override
     public void initView() {
         ibHeaderBack.setVisibility(View.VISIBLE);
-        tvHeaderTitle.setVisibility(View.VISIBLE);
-        tvHeaderTitle.setText(getString(R.string.header_rxjava));
 
-        strings = new ArrayList<>();
-
-        strings.add("rxjava_Observer");
-        strings.add("rxjava_Observer");
-        strings.add("rxjava_Observer");
-
-        LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
-        linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
-        rvData.setLayoutManager(linearLayoutCourse);
-        adapter = new RxJavaLearnAdapter(this);
-        adapter.addStringList(strings);
-        rvData.setAdapter(adapter);
     }
 
     @Override
     public void setListener() {
+
         RxView.clicks(ibHeaderBack).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
@@ -94,21 +72,13 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
             Logger.e(throwable.getMessage());
         });
 
-        adapter.addListener(str -> {
-            switch (str) {
-                case "rxjava_Observer":
-                    break;
-                default:
-                    break;
-            }
-        });
     }
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
-        DaggerRxJavaLearnComponent.builder()
+        DaggerRxjavaLearnDetailComponent.builder()
                 .appComponent(appComponent)
-                .rxJavaLearnModule(new RxJavaLearnModule(this))
+                .rxjavaLearnDetailModule(new RxjavaLearnDetailModule(this))
                 .build().inject(this);
     }
 }
