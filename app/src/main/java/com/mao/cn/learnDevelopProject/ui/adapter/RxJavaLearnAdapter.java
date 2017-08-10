@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
@@ -48,9 +48,9 @@ public class RxJavaLearnAdapter extends RecyclerView.Adapter<RxJavaLearnAdapter.
 
         String str = strings.get(position);
 
-        holder.btnShow.setText(str);
+        holder.tvShow.setText(str);
 
-        RxView.clicks(holder.btnShow).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+        RxView.clicks(holder.tvShow).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             listener.showResult(str);
         }, throwable -> {
@@ -72,10 +72,10 @@ public class RxJavaLearnAdapter extends RecyclerView.Adapter<RxJavaLearnAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.btn_show)
-        Button btnShow;
+        @BindView(R.id.tv_show)
+        TextView tvShow;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

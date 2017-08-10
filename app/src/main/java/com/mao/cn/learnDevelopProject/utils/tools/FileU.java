@@ -264,7 +264,7 @@ public class FileU extends FileUtils {
      * @param filename
      * @return
      */
-    public static boolean hasSdStaticResFile(String filename) {
+    public static boolean hasSdfilesFile(String filename) {
         File file;
         try {
             file = new File(PathU.getInstance().getFilesPath() + filename);
