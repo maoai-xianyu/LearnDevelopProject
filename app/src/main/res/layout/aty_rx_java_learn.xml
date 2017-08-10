@@ -43,6 +43,12 @@
                 app:placeholderImage="@drawable/image_default_bg"
                 app:placeholderImageScaleType="centerCrop" />
 
+            <ImageView
+                android:layout_toEndOf="@+id/sv_image"
+                android:id="@+id/iv_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
 
         </RelativeLayout>
 

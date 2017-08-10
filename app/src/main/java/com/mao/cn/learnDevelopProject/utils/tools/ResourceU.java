@@ -30,7 +30,7 @@ public class ResourceU {
         }
     }
 
-    public static Bitmap getShareImageBitmap(String imageName) {
+    public static Bitmap getImageBitmap(String imageName) {
         AssetManager assetManager = LearnDevelopApplication.context().getAssets();
         String filename = "files/image_icons/" + imageName;
         try {
@@ -45,6 +45,26 @@ public class ResourceU {
         return null;
     }
 
+    public static Bitmap getBitmap(String imageName) {
+        AssetManager assetManager = LearnDevelopApplication.context().getAssets();
+        InputStream is = null;
+        Bitmap bitmap = null;
+        try {
+            is = assetManager.open(imageName);
+            bitmap = BitmapFactory.decodeStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bitmap;
+    }
 
     /**
      * 用于获取一些读取静态资源信息的方法
@@ -105,7 +125,9 @@ public class ResourceU {
 
 
     /**
+     * 获取内部的 asset
      * fileName 为空 返回  不为空返回
+     *
      * @param fileName
      * @return
      */
@@ -123,4 +145,32 @@ public class ResourceU {
 
         return list;
     }
+
+    /**
+     * 获取内部的 asset
+     * fileName 为空 返回  不为空返回
+     *
+     * @param fileName
+     * @return
+     */
+    public static String[] getAssetsFileNamesOut(String fileName) {
+
+        AssetManager manager = LearnDevelopApplication.context().getAssets();
+        fileName = "files" + File.separator + fileName;
+        String[] list;
+        try {
+            if (hasSdFilesFile(fileName)) {
+                File file = new File(PathU.getInstance().getFilesPath() + fileName);
+                list = file.list();
+            } else {
+                list = manager.list(fileName);
+            }
+        } catch (IOException e) {
+            list = null;
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
 }
