@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
@@ -26,7 +27,8 @@ import com.mao.cn.learnDevelopProject.ui.adapter.RxJavaLearnAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IRxJavaLearn;
 import com.mao.cn.learnDevelopProject.ui.presenter.RxJavaLearnPresenter;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.ResourceU;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,10 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
     TextView tvHeaderTitle;
     @BindView(R.id.rvData)
     RecyclerView rvData;
+    @BindView(R.id.tv_show)
+    TextView tvShow;
+    @BindView(R.id.sv_image)
+    SimpleDraweeView svImage;
 
     private RxJavaLearnAdapter adapter;
     private List<String> strings;
@@ -73,9 +79,9 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
 
         strings = new ArrayList<>();
 
-        strings.add("rxjava_Observer");
-        strings.add("rxjava_Observer");
-        strings.add("rxjava_Observer");
+        strings.add("rxjava_start");
+        /*strings.add("rxjava_Observer");
+        strings.add("rxjava_Observer");*/
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -91,17 +97,30 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
         adapter.addListener(str -> {
             switch (str) {
-                case "rxjava_Observer":
+                case "rxjava_start":
+                    rxjava_startFun();
                     break;
                 default:
                     break;
             }
         });
+    }
+
+    private void rxjava_startFun() {
+
+        String[] list = ResourceU.getAssetsFileNames("images_cover");
+
+        if (list != null) {
+            for (String aList : list) {
+                LogU.i("测试名：  " + aList);
+            }
+        }
+
     }
 
     @Override

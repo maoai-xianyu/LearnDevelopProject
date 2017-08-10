@@ -8,7 +8,7 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 
 /**
@@ -32,8 +32,8 @@ public class NetWorkU {
             NetworkInfo networkInfo;
             for (Network mNetwork : networks) {
                 networkInfo = connectivityManager.getNetworkInfo(mNetwork);
-                Logger.i("===状态===" + networkInfo.getState());
-                Logger.i("===类型===" + networkInfo.getTypeName());
+                LogU.i("===状态===" + networkInfo.getState());
+                LogU.i("===类型===" + networkInfo.getTypeName());
                 if (networkInfo.getState().equals(NetworkInfo.State.CONNECTED)) {
                     return true;
                 }
@@ -45,7 +45,7 @@ public class NetWorkU {
                 if (info != null) {
                     for (NetworkInfo anInfo : info) {
                         if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
-                            Logger.i("NETWORKNAME: " + anInfo.getTypeName());
+                            LogU.i("NETWORKNAME: " + anInfo.getTypeName());
                             return true;
                         }
                     }
@@ -64,7 +64,7 @@ public class NetWorkU {
     public static boolean isNetworkAvailableOld() {
         ConnectivityManager connectivity = (ConnectivityManager) LearnDevelopApplication.context().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity == null) {
-            Logger.e("无法获得ConnectivityManager");
+            LogU.e("无法获得ConnectivityManager");
         } else {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null) {
@@ -106,7 +106,7 @@ public class NetWorkU {
     public static boolean isNetworkRoaming() {
         ConnectivityManager connectivity = (ConnectivityManager) LearnDevelopApplication.context().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity == null) {
-            Logger.e("无法获得ConnectivityManager");
+            LogU.e("无法获得ConnectivityManager");
         } else {
             NetworkInfo info = connectivity.getActiveNetworkInfo();
             if (info != null && info.getType() == ConnectivityManager.TYPE_MOBILE) {

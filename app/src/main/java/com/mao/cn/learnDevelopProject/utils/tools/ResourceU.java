@@ -22,7 +22,7 @@ import java.io.InputStream;
 public class ResourceU {
 
     public static String getDefaultCover() {
-        String prex = "files" + File.separator + "default.jpg";
+        String prex = "files" + File.separator + "image_default_bg.jpg";
         if (hasSdFilesFile(File.separator + prex)) {
             return KeyMaps.ImagesFresco.FRESCO_FILE + PathU.getInstance().getFilesPath() + File.separator + prex;
         } else {
@@ -101,5 +101,26 @@ public class ResourceU {
             e.printStackTrace();
         }
         return data;
+    }
+
+
+    /**
+     * fileName 为空 返回  不为空返回
+     * @param fileName
+     * @return
+     */
+    public static String[] getAssetsFileNames(String fileName) {
+
+        AssetManager manager = LearnDevelopApplication.context().getAssets();
+
+        String[] list;
+        try {
+            list = manager.list(fileName);
+        } catch (IOException e) {
+            list = null;
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }

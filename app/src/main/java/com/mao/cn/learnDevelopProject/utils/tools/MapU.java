@@ -12,9 +12,9 @@ import java.util.Map.Entry;
  */
 public class MapU {
 
-    /** default separator between key and value **/
+    /** image_default_bg separator between key and value **/
     public static final String DEFAULT_KEY_AND_VALUE_SEPARATOR      = ":";
-    /** default separator between key-value pairs **/
+    /** image_default_bg separator between key-value pairs **/
     public static final String DEFAULT_KEY_AND_VALUE_PAIR_SEPARATOR = ",";
     
     private MapU() {

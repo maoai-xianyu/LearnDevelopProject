@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,14 +21,30 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/tv_show"
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:textColor="@color/c_000000"
-            tools:text="显示" />
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/tv_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/c_000000"
+                tools:text="显示" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_below="@+id/tv_show"
+                android:id="@+id/sv_image"
+                android:layout_width="@dimen/d50"
+                android:layout_height="@dimen/d80"
+                app:placeholderImage="@drawable/image_default_bg"
+                app:placeholderImageScaleType="centerCrop" />
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

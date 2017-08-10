@@ -21,8 +21,8 @@ import com.mao.cn.learnDevelopProject.ui.presenter.RetrofitShowContentPresenter;
 import com.mao.cn.learnDevelopProject.utils.network.NetworkUtils;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
-import com.orhanobut.logger.Logger;
 
 /**
 * DESC   :
@@ -49,7 +49,7 @@ public class RetrofitShowContentPresenterImp extends BasePresenterImp implements
             @Override
             public void success(String response) {
                 viewInterface.hideLoadingDialog();
-                Logger.i(response);
+                LogU.i(response);
                 Movie convert = null;
                 try {
                     convert = GsonU.convert(response, Movie.class);

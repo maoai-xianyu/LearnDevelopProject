@@ -1,5 +1,5 @@
 # Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
+# By image_default_bg, the flags in this file are appended to flags specified
 # in /Users/zhangkun/Library/Android/sdk/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
 # directive in build.gradle.
@@ -61,7 +61,7 @@
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
-# removes such information by default, so configure it to keep all of it.
+# removes such information by image_default_bg, so configure it to keep all of it.
 -keep class com.google.gson.** { *; }
 -dontwarn com.google.gson.**
 # For using GSON @Expose annotati

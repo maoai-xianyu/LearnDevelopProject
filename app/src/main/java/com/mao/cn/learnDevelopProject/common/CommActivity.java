@@ -7,8 +7,6 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -34,7 +32,6 @@ public abstract class CommActivity extends RxAppCompatActivity {
         this.activity = this;
         this.context = this;
         OttoManager.register(this);
-        Logger.addLogAdapter(new AndroidLogAdapter());
         this.setting();
         this.initView();
         this.setListener();

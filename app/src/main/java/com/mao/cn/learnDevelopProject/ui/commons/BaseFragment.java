@@ -10,9 +10,9 @@ import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
 import com.mao.cn.learnDevelopProject.utils.tools.JsonU;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mao.cn.learnDevelopProject.wedget.dialog.LoadingDialog;
-import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Field;
 
@@ -28,7 +28,7 @@ public abstract class BaseFragment extends CommFragment implements BaseViewInfer
 
     @Override
     public void setting() {
-        Logger.d("当前的fragment", getClass().getName());
+        LogU.d("当前的fragment " + getClass().getName());
         setupComponent(LearnDevelopApplication.getComponent());
     }
 

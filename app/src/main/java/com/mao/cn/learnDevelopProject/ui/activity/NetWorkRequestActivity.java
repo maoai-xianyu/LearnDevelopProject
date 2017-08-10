@@ -11,7 +11,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
 
@@ -62,14 +62,14 @@ public class NetWorkRequestActivity extends BaseActivity {
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(btnDescOkhttp).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(OkhttpShowContentActivity.class);
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(btnDescRxjava).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
@@ -77,14 +77,14 @@ public class NetWorkRequestActivity extends BaseActivity {
             startActivity(RxjavaShowContentActivity.class);
 
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(btnDescRetrofit).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(RetrofitShowContentActivity.class);
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
     }

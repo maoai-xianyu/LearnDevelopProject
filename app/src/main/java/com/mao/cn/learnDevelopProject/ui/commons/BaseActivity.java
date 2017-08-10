@@ -14,12 +14,12 @@ import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
 import com.mao.cn.learnDevelopProject.utils.tools.JsonU;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mao.cn.learnDevelopProject.wedget.animation.animationeffects.Effectstype;
 import com.mao.cn.learnDevelopProject.wedget.dialog.DefineTwoBottomDialog;
 import com.mao.cn.learnDevelopProject.wedget.dialog.LoadingDialog;
 import com.mao.cn.learnDevelopProject.wedget.dialog.SingleDialog;
-import com.orhanobut.logger.Logger;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
@@ -54,7 +54,7 @@ public abstract class BaseActivity extends CommActivity implements BaseViewInfer
 
     @Override
     public void setting() {
-        Logger.i(" activity " + getClass().getName());
+        LogU.i(" activity " + getClass().getName());
         LearnDevelopApplication.addAty(activity);
         setupComponent(LearnDevelopApplication.getComponent());
 

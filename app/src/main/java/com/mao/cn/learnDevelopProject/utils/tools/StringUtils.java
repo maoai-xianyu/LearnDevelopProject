@@ -2396,4 +2396,22 @@ public class StringUtils {
     public static String wrap(String str, String wrapWith) {
         return !isEmpty(str) && !isEmpty(wrapWith) ? wrapWith.concat(str).concat(wrapWith) : str;
     }
+
+    public static boolean startsWithAny(CharSequence string, CharSequence... searchStrings) {
+        if(!isEmpty(string) && isEmpty(searchStrings)) {
+            CharSequence[] var2 = searchStrings;
+            int var3 = searchStrings.length;
+
+            for(int var4 = 0; var4 < var3; ++var4) {
+                CharSequence searchString = var2[var4];
+                if(startsWith(string, searchString)) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            return false;
+        }
+    }
 }

@@ -11,7 +11,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class RxJavaLearnAdapter extends RecyclerView.Adapter<RxJavaLearnAdapter.
                 .MILLISECONDS).subscribe(aVoid -> {
             listener.showResult(str);
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
     }

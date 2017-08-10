@@ -28,7 +28,7 @@ import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IRetrofitShowContent;
 import com.mao.cn.learnDevelopProject.ui.presenter.RetrofitShowContentPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -76,7 +76,7 @@ public class RetrofitShowContentActivity extends BaseActivity implements IRetrof
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
     }
 

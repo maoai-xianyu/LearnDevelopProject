@@ -23,7 +23,7 @@ import com.mao.cn.learnDevelopProject.modules.RxjavaLearnDetailModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IRxjavaLearnDetail;
 import com.mao.cn.learnDevelopProject.ui.presenter.RxjavaLearnDetailPresenter;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
 
@@ -69,7 +69,7 @@ public class RxJavaLearnDetailActivity extends BaseActivity implements IRxjavaLe
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
     }

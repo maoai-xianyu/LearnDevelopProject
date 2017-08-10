@@ -9,6 +9,7 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,9 @@ import com.mao.cn.learnDevelopProject.modules.MainModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;
-import com.orhanobut.logger.Logger;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.StringU;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -64,6 +67,7 @@ public class MainActivity extends BaseActivity implements IMain {
     public void initView() {
         tvHeaderTitle.setText(getString(R.string.header));
         tvHeaderTitle.setVisibility(View.VISIBLE);
+        requestPermission();
     }
 
     @Override
@@ -73,7 +77,7 @@ public class MainActivity extends BaseActivity implements IMain {
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(NetWorkRequestActivity.class);
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
 
@@ -81,14 +85,14 @@ public class MainActivity extends BaseActivity implements IMain {
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(RxJavaLearnActivity.class);
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(btnDescImage).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(RetrofitShowContentActivity.class);
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            LogU.e(throwable.getMessage());
         });
     }
 
@@ -99,5 +103,26 @@ public class MainActivity extends BaseActivity implements IMain {
                 .appComponent(appComponent)
                 .mainModule(new MainModule(this))
                 .build().inject(this);
+    }
+
+    /**
+     * 获取需要操作日历的权限
+     */
+    private void requestPermission() {
+
+        new RxPermissions(MainActivity.this)
+                .requestEach(Manifest.permission.WRITE_CALENDAR,
+                        Manifest.permission.READ_CALENDAR,
+                        Manifest.permission.RECORD_AUDIO)
+                .subscribe(permission -> {
+                    if (permission.granted) {
+
+                    } else {
+                        if (StringU.equals(permission.name, Manifest.permission.RECORD_AUDIO)) {
+                            onTip("未授予录音权限,将会影响语音朗读");
+                        }
+                    }
+
+                }, throwable -> LogU.e("异常"));
     }
 }
