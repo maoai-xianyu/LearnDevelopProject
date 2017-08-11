@@ -101,6 +101,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_flatmap");
         strings.add("rxjava_lift");
         strings.add("rxjava_thread");
+        strings.add("rxjava_threadM");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -142,31 +143,41 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_thread":
                     rxjava_threadFun();
                     break;
+                case "rxjava_threadM":
+                    rxjava_threadMFun();
+                    break;
                 default:
                     break;
             }
         });
     }
 
+    private void rxjava_threadMFun() {
+        tvShow.setText(String.valueOf("rxjava 主线程 doOnSubscribe"));
+        RxJavaMethodFunc.changeThreadMain(svImage);
+    }
+
     private void rxjava_threadFun() {
+        svImage.setVisibility(View.VISIBLE);
         tvShow.setText(String.valueOf("rxjava 多次切换 线程"));
         RxJavaMethodFunc.changeThreadMore();
     }
 
     private void rxjava_liftFun() {
-
+        svImage.setVisibility(View.VISIBLE);
         tvShow.setText(String.valueOf("as 查看 lift log"));
         RxJavaMethodFunc.rxjava_lift();
-
 
     }
 
     private void rxjava_flatmapFun() {
+        svImage.setVisibility(View.VISIBLE);
         tvShow.setText(String.valueOf("as 查看 flatmap log"));
         RxJavaMethodFunc.rxjava_flatmap();
     }
 
     private void rxjava_mapFun() {
+        svImage.setVisibility(View.VISIBLE);
         RxJavaMethodFunc.rxjava_map(ivShow);
     }
 

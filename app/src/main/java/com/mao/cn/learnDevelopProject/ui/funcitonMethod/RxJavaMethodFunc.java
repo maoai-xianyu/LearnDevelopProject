@@ -1,7 +1,9 @@
 package com.mao.cn.learnDevelopProject.ui.funcitonMethod;
 
+import android.view.View;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.mao.cn.learnDevelopProject.model.Student;
 import com.mao.cn.learnDevelopProject.model.StudentCourse;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -63,6 +65,25 @@ public class RxJavaMethodFunc {
                 .map(integer -> integer + "数字 new线程")
                 .observeOn(Schedulers.io())
                 .map(s -> StringU.replace(s, "数字 new线程", "io 线程"))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> LogU.i(" num " + s));
+    }
+
+
+    /**
+     * doOnSubscribe()
+     * 而与 Subscriber.onStart() 相对应的，有一个方法 Observable.doOnSubscribe() 。
+     * 它和 Subscriber.onStart() 同样是在 subscribe() 调用后而且在事件发送前执行，但区别在于它可以指定线程。
+     * 默认情况下， doOnSubscribe() 执行在 subscribe() 发生的线程；
+     * 而如果在 doOnSubscribe() 之后有 subscribeOn() 的话，它将执行在离它最近的 subscribeOn() 所指定的线程。
+     */
+    public static void changeThreadMain(SimpleDraweeView svImage) {
+        Observable.just(1, 2, 3, 4)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(() -> {
+                    svImage.setVisibility(View.GONE);
+                })    // 主线程
+                .subscribeOn(AndroidSchedulers.mainThread())                // 指定主线程
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> LogU.i(" num " + s));
     }

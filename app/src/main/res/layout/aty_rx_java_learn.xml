@@ -31,23 +31,27 @@
                 android:id="@+id/tv_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/c_000000"
                 tools:text="显示" />
 
+
             <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_below="@+id/tv_show"
                 android:id="@+id/sv_image"
                 android:layout_width="@dimen/d50"
                 android:layout_height="@dimen/d80"
+                android:layout_below="@+id/tv_show"
+                android:layout_centerHorizontal="true"
                 app:placeholderImage="@drawable/image_default_bg"
                 app:placeholderImageScaleType="centerCrop" />
 
             <ImageView
-                android:layout_toEndOf="@+id/sv_image"
                 android:id="@+id/iv_show"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_toEndOf="@+id/sv_image" />
 
 
         </RelativeLayout>
