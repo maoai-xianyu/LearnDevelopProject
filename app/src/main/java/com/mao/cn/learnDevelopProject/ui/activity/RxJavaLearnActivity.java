@@ -9,7 +9,6 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,10 +23,14 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerRxJavaLearnComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.model.Student;
+import com.mao.cn.learnDevelopProject.model.StudentCourse;
 import com.mao.cn.learnDevelopProject.modules.RxJavaLearnModule;
 import com.mao.cn.learnDevelopProject.ui.adapter.RxJavaLearnAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IRxJavaLearn;
+import com.mao.cn.learnDevelopProject.ui.funcitonMethod.InitDataMethodFunc;
+import com.mao.cn.learnDevelopProject.ui.funcitonMethod.RxJavaMethodFunc;
 import com.mao.cn.learnDevelopProject.ui.presenter.RxJavaLearnPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.ResourceU;
@@ -43,9 +46,10 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
+import static com.mao.cn.learnDevelopProject.R.id.tv_show;
 
 /**
  * DESC   :
@@ -62,7 +66,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
     TextView tvHeaderTitle;
     @BindView(R.id.rvData)
     RecyclerView rvData;
-    @BindView(R.id.tv_show)
+    @BindView(tv_show)
     TextView tvShow;
     @BindView(R.id.sv_image)
     SimpleDraweeView svImage;
@@ -71,6 +75,8 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
 
     private RxJavaLearnAdapter adapter;
     private List<String> strings;
+
+    private List<Student> students;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -91,8 +97,10 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings = new ArrayList<>();
 
         strings.add("rxjava_start");
-        /*strings.add("rxjava_Observer");
-        strings.add("rxjava_Observer");*/
+        strings.add("rxjava_map");
+        strings.add("rxjava_flatmap");
+        strings.add("rxjava_lift");
+        strings.add("rxjava_thread");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -100,7 +108,13 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         adapter = new RxJavaLearnAdapter(this);
         adapter.addStringList(strings);
         rvData.setAdapter(adapter);
+        initDataStudent();
     }
+
+    private void initDataStudent() {
+        students = InitDataMethodFunc.initStudentData();
+    }
+
 
     @Override
     public void setListener() {
@@ -116,14 +130,47 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_start":
                     rxjava_startFun();
                     break;
+                case "rxjava_map":
+                    rxjava_mapFun();
+                    break;
+                case "rxjava_flatmap":
+                    rxjava_flatmapFun();
+                    break;
+                case "rxjava_lift":
+                    rxjava_liftFun();
+                    break;
+                case "rxjava_thread":
+                    rxjava_threadFun();
+                    break;
                 default:
                     break;
             }
         });
     }
 
-    private void rxjava_startFun() {
+    private void rxjava_threadFun() {
+        tvShow.setText(String.valueOf("rxjava 多次切换 线程"));
+        RxJavaMethodFunc.changeThreadMore();
+    }
 
+    private void rxjava_liftFun() {
+
+        tvShow.setText(String.valueOf("as 查看 lift log"));
+        RxJavaMethodFunc.rxjava_lift();
+
+
+    }
+
+    private void rxjava_flatmapFun() {
+        tvShow.setText(String.valueOf("as 查看 flatmap log"));
+        RxJavaMethodFunc.rxjava_flatmap();
+    }
+
+    private void rxjava_mapFun() {
+        RxJavaMethodFunc.rxjava_map(ivShow);
+    }
+
+    private void rxjava_startFun() {
         String[] list = ResourceU.getAssetsFileNames("images_cover");
         List<File> files = new ArrayList<>();
         if (list != null) {
@@ -151,33 +198,26 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
             }
         }.start();*/
 
-        Observable.from(files).filter(new Func1<File, Boolean>() {
-            @Override
-            public Boolean call(File file) {
-                return StringU.endsWith(file.getName(), ".jpg");
-            }
-        }).map(new Func1<File, Bitmap>() {
-            @Override
-            public Bitmap call(File file) {
+        Observable.from(files).filter(file -> StringU.endsWith(file.getName(), ".jpg"))
+                .map(file -> ResourceU.getBitmap("images_cover/" + file.getName()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(bitmap -> ivShow.setImageBitmap(bitmap));
 
-                return ResourceU.getBitmap("images_cover/" + file.getName());
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Bitmap>() {
-            @Override
-            public void call(Bitmap bitmap) {
-                ivShow.setImageBitmap(bitmap);
-            }
-        });
+        RxJavaMethodFunc.rxjavaSchedule();
 
 
+        //
+        Observable.from(students)
+                .flatMap(new Func1<Student, Observable<StudentCourse>>() {
+                    @Override
+                    public Observable<StudentCourse> call(Student student) {
+                        return Observable.from(student.getStudentCourses());
+                    }
+                }).filter(studentCourse -> studentCourse.getCourse_price() > 3000)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.toString()));
 
-        /*String[] assetsFileNamesOut = ResourceU.getAssetsFileNamesOut("");
-        if (assetsFileNamesOut != null) {
-            for (String aList : assetsFileNamesOut) {
-                LogU.i("测试名 out ：  " + aList);
-            }
-        }*/
+
     }
 
     @Override
