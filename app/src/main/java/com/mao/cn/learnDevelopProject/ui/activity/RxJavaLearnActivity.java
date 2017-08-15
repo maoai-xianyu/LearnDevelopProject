@@ -217,7 +217,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         RxJavaMethodFunc.rxjavaSchedule();
 
 
-        //
+        // 过滤
         Observable.from(students)
                 .flatMap(new Func1<Student, Observable<StudentCourse>>() {
                     @Override
@@ -228,6 +228,14 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 .compose(RxJavaMethodFunc.newThreadSchedulers())
                 .subscribe(studentCourse -> LogU.i(studentCourse.toString()));
 
+
+        Observable.just("test")
+                .asObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(Throwable::printStackTrace)
+                .onErrorResumeNext(throwable -> Observable.empty())
+                .subscribe(LogU::i);
 
     }
 
