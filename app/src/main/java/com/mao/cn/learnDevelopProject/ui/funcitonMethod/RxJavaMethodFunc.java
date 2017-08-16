@@ -18,6 +18,7 @@ import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
 
 /**
@@ -177,6 +178,12 @@ public class RxJavaMethodFunc {
 
     /**
      * flatmap 处理一对多，数据准换
+     * <p>
+     * 1、将传入的事件对象装换成一个Observable对象；
+     * 2、这是不会直接发送这个Observable, 而是将这个Observable激活让它自己开始发送事件；
+     * 3、每一个创建出来的Observable发送的事件，都被汇入同一个Observable，这个Observable负责将这些事件统一交给Subscriber的回调方法。
+     * <p>
+     * 数据可能会交叉
      */
     public static void rxjava_flatmap() {
         Observable.from(InitDataMethodFunc.initStudentData())
@@ -189,6 +196,88 @@ public class RxJavaMethodFunc {
                 .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
     }
 
+    /**
+     * concatMap()解决了flatMap()的交叉问题，它能够把发射的值连续在一起
+     */
+    public static void rxjava_concatMap() {
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .concatMap(new Func1<Student, Observable<StudentCourse>>() {
+                    @Override
+                    public Observable<StudentCourse> call(Student student) {
+                        return Observable.from(student.getStudentCourses());
+                    }
+                }).compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
+    }
+
+    /**
+     * flatMapIterable()它转化的多个Observable是使用Iterable作为源数据的。
+     */
+    public static void rxjava_FlatMapIterableMap() {
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .flatMapIterable(new Func1<Student, Iterable<StudentCourse>>() {
+                    @Override
+                    public Iterable<StudentCourse> call(Student student) {
+                        return student.getStudentCourses();
+                    }
+                }).compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
+    }
+
+    /**
+     * 每当源Observable发射一个新的数据项（Observable）时，它将取消订阅并停止监视之前那个数据项产生的Observable，并开始监视当前发射的这一个
+     * <p>
+     * 在同一线程产生数据，依次打出
+     */
+    public static void rxjava_switchMap() {
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .switchMap(new Func1<Student, Observable<StudentCourse>>() {
+                    @Override
+                    public Observable<StudentCourse> call(Student student) {
+                        return Observable.from(student.getStudentCourses());
+                    }
+                }).compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
+    }
+
+    /**
+     * 每当源Observable发射一个新的数据项（Observable）时，它将取消订阅并停止监视之前那个数据项产生的Observable，并开始监视当前发射的这一个
+     * <p>
+     * 在同一线程产生数据，依次打出
+     */
+    public static void rxjava_switchMapNew() {
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .switchMap(new Func1<Student, Observable<StudentCourse>>() {
+                    @Override
+                    public Observable<StudentCourse> call(Student student) {
+                        return Observable.from(student.getStudentCourses()).subscribeOn(Schedulers.newThread());
+                    }
+                }).compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
+    }
+
+
+    /**
+     * scan()对一个序列的数据应用一个函数，并将这个函数的结果发射出去作为下个数据应用合格函数时的第一个参数使用。
+     */
+    public static void rxjava_scan() {
+        Observable.just(1, 2, 3, 4, 5)
+                .scan((integer, integer2) -> integer + integer2)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(integer -> LogU.i(" scan " + integer));
+    }
+
+    /**
+     * GroupBy()将原始Observable发射的数据按照key来拆分成一些小的Observable，然后这些小Observable分别发射其所包含的的数据，和SQL中的groupBy类似。
+     */
+    public static void rxjava_GroupBy() {
+
+        // GroupedObservable是一个特殊的Observable，它基于一个分组的key，在这个例子中的key就是 StudentCourse  名字
+        Observable<GroupedObservable<String, StudentCourse>> groupedObservableObservable = Observable.from(InitDataMethodFunc.initStudentCourseData()).groupBy(studentCourse -> studentCourse.getCourse_name());
+
+        Observable.concat(groupedObservableObservable).subscribe(studentCourse -> LogU.i(" StudentCourse 名字 " + studentCourse.getCourse_name() + "  班级描述： " + studentCourse.getCourse_desc()));
+
+    }
 
     /**
      * lift 这些变换虽然功能各有不同，但实质上都是针对事件序列的处理和再发送。

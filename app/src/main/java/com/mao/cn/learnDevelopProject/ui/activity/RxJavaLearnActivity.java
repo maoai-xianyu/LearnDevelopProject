@@ -46,6 +46,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -99,6 +101,12 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_start");
         strings.add("rxjava_map");
         strings.add("rxjava_flatmap");
+        strings.add("rxjava_concatMap");
+        strings.add("rxjava_FlatMapIterable");
+        strings.add("rxjava_SwitchMap_one");
+        strings.add("rxjava_SwitchMap_new");
+        strings.add("rxjava_Scan");
+        strings.add("rxjava_GroupBy");
         strings.add("rxjava_lift");
         strings.add("rxjava_thread");
         strings.add("rxjava_threadM");
@@ -137,6 +145,24 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_flatmap":
                     rxjava_flatmapFun();
                     break;
+                case "rxjava_concatMap":
+                    rxjava_concatMapFun();
+                    break;
+                case "rxjava_FlatMapIterable":
+                    rxjava_FlatMapIterableFun();
+                    break;
+                case "rxjava_SwitchMap_one":
+                    rxjava_SwitchMapFun();
+                    break;
+                case "rxjava_SwitchMap_new":
+                    rxjava_SwitchMapFunNew();
+                    break;
+                case "rxjava_Scan":
+                    rxjava_ScanFun();
+                    break;
+                case "rxjava_GroupBy":
+                    rxjava_GroupByFun();
+                    break;
                 case "rxjava_lift":
                     rxjava_liftFun();
                     break;
@@ -168,6 +194,42 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         tvShow.setText(String.valueOf("as 查看 lift log"));
         RxJavaMethodFunc.rxjava_lift();
 
+    }
+
+    private void rxjava_GroupByFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 GroupBy log"));
+        RxJavaMethodFunc.rxjava_GroupBy();
+    }
+
+    private void rxjava_ScanFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 Scan log"));
+        RxJavaMethodFunc.rxjava_scan();
+    }
+
+    private void rxjava_SwitchMapFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 SwitchMap 同一个数据链 log"));
+        RxJavaMethodFunc.rxjava_switchMap();
+    }
+
+    private void rxjava_SwitchMapFunNew() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 concatMap new Thread log"));
+        RxJavaMethodFunc.rxjava_switchMapNew();
+    }
+
+    private void rxjava_FlatMapIterableFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 FlatMapIterable  log"));
+        RxJavaMethodFunc.rxjava_FlatMapIterableMap();
+    }
+
+    private void rxjava_concatMapFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 concatMap 依次 log"));
+        RxJavaMethodFunc.rxjava_concatMap();
     }
 
     private void rxjava_flatmapFun() {
@@ -236,6 +298,21 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 .doOnError(Throwable::printStackTrace)
                 .onErrorResumeNext(throwable -> Observable.empty())
                 .subscribe(LogU::i);
+
+
+        Observable<String> observable = Observable.just("test", "world");
+
+        //处理onNext()中的内容
+        Action1<String> onNextAction = LogU::i;
+
+        //处理onError()中的内容
+        Action1<Throwable> onErrorAction = throwable -> LogU.e(throwable.getMessage());
+
+        //处理onCompleted()中的内容
+        Action0 onCompletedAction = () -> LogU.i("complete");
+
+
+        observable.subscribe(onNextAction, onErrorAction, onCompletedAction);
 
     }
 
