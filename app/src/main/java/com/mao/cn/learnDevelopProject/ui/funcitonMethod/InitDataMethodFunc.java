@@ -46,4 +46,41 @@ public class InitDataMethodFunc {
         studentCourses.add(new StudentCourse("测试三班", "测试三班是个什么鬼", 5000));
         return studentCourses;
     }
+
+
+    public static List<String> initStringData(){
+        List<String> strings = new ArrayList<>();
+
+        strings.add("asadaasd");
+        strings.add("sdfsdf");
+        strings.add("dfglkj");
+        strings.add("kjsdf");
+        strings.add("jsdjf");
+        strings.add("sdf");
+        strings.add("lkjlsdf");
+        strings.add("dsfjn");
+        strings.add("sdfk");
+        strings.add("dsfa");
+        strings.add("dsfalkj");
+        strings.add("lkhkjn");
+        strings.add("ouoriu");
+        strings.add("kkjf");
+        strings.add("ksdf");
+        strings.add("nksngn");
+        strings.add("sdfkn");
+        strings.add("lkajsdlfk");
+        strings.add("lsdlf");
+        strings.add("iodsfio");
+        strings.add("lnnfgkn");
+        strings.add("oiiojdf");
+        strings.add("lkksdf");
+        strings.add("bjbfda");
+        strings.add("asdnfjk");
+        strings.add("bkjksjdf");
+        strings.add("oikjladf");
+        strings.add("oknn");
+        return strings;
+    }
+
+
 }

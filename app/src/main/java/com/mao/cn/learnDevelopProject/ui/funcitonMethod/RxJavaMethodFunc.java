@@ -1,22 +1,30 @@
 package com.mao.cn.learnDevelopProject.ui.funcitonMethod;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.model.Student;
 import com.mao.cn.learnDevelopProject.model.StudentCourse;
+import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnDetailActivity;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.ResourceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
@@ -174,6 +182,25 @@ public class RxJavaMethodFunc {
                 .map(ResourceU::getBitmap)
                 .compose(RxJavaMethodFunc.applyIoSchedulers())
                 .subscribe(imageView::setImageBitmap);
+
+
+        Observable.from(new String[]{"This", "is", "RxJava"})
+                .map(s -> {
+                    LogU.i("Transform Data toUpperCase: " + s);
+                    return s.toUpperCase();
+                })
+                //转成List
+                .toList()
+                .map(strings -> {
+                    LogU.i("Transform Data Reverse List: " + strings.toString());
+                    Collections.reverse(strings);
+                    return strings;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> LogU.i("Consume Data " + s.toString()));
+
+
     }
 
     /**
@@ -193,6 +220,17 @@ public class RxJavaMethodFunc {
                         return Observable.from(student.getStudentCourses());
                     }
                 }).compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
+    }
+
+    public static void rxjava_flatmapNew() {
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .flatMap(new Func1<Student, Observable<StudentCourse>>() {
+                    @Override
+                    public Observable<StudentCourse> call(Student student) {
+                        return Observable.from(student.getStudentCourses()).subscribeOn(Schedulers.io());
+                    }
+                }).compose(RxJavaMethodFunc.applyIoSchedulers())
                 .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
     }
 
@@ -301,5 +339,123 @@ public class RxJavaMethodFunc {
             }
         }).compose(RxJavaMethodFunc.newThreadSchedulers()).subscribe(s -> LogU.i(" lift " + s));
     }
+
+
+    /**
+     * filter(Func1)用来过滤观测序列中我们不想要的值，只返回满足条件的值
+     */
+    public static void rxjava_filter() {
+        // 过滤
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .flatMap(new Func1<Student, Observable<StudentCourse>>() {
+                    @Override
+                    public Observable<StudentCourse> call(Student student) {
+                        return Observable.from(student.getStudentCourses());
+                    }
+                }).filter(studentCourse -> studentCourse.getCourse_price() > 3000)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(studentCourse -> LogU.i(studentCourse.toString()));
+    }
+
+
+    /**
+     * take(int)用一个整数n作为一个参数，从原始的序列中发射前n个元素.
+     * takeLast(int)同样用一个整数n作为参数，只不过它发射的是观测序列中后n个元素。
+     * takeUntil(Observable)订阅并开始发射原始Observable，同时监视我们提供的第二个Observable。
+     * 如果第二个Observable发射了一项数据或者发射了一个终止通知，takeUntil()返回的Observable会停止发射原始Observable并终止
+     * takeUntil(Func1)通过Func1中的call方法来判断是否需要终止发射数据。
+     */
+    public static void rxjava_take() {
+        // take
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .take(2)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(student -> LogU.i("  take " + student.getStu_name()));
+
+        // takeLast
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .takeLast(1)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(student -> LogU.i("  take " + student.getStu_name()));
+
+        // takeUntil
+        Observable<Long> observableA = Observable.interval(300, TimeUnit.MILLISECONDS);
+        Observable<Long> observableB = Observable.interval(800, TimeUnit.MILLISECONDS);
+
+        observableA.takeUntil(observableB).subscribe(new Subscriber<Long>() {
+            @Override
+            public void onCompleted() {
+                LogU.i(" onCompleted  ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onNext(Long aLong) {
+
+                LogU.i(" takeUntil  " + aLong);
+
+            }
+        });
+
+        Observable.just(1, 2, 3, 4, 5, 6, 7)
+                .takeUntil(integer -> integer > 5)
+                .subscribe(integer -> LogU.i(" takeUntil( func )  " + integer));
+
+    }
+
+
+    /**
+     * skip(int)让我们可以忽略Observable发射的前n项数据。
+     * skipLast(int)忽略Observable发射的后n项数据。
+     */
+    public static void rxjava_skip() {
+        // skip
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .skip(2)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(student -> LogU.i("  skip " + student.getStu_name()));
+
+        // skipLast
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .skipLast(1)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(student -> LogU.i("  skipLast " + student.getStu_name()));
+    }
+
+
+    /**
+     * elementAt(int)用来获取元素Observable发射的事件序列中的第n项数据，并当做唯一的数据发射出去。
+     */
+    public static void rxjava_elemnet() {
+        Observable.from(InitDataMethodFunc.initStudentData())
+                .elementAt(2)
+                .compose(RxJavaMethodFunc.newThreadSchedulers())
+                .subscribe(student -> LogU.i("  elementAt " + student.getStu_name()));
+
+    }
+
+    /**
+     * debounce(long, TimeUnit)过滤掉了由Observable发射的速率过快的数据；
+     * 如果在一个指定的时间间隔过去了仍旧没有发射一个，那么它将发射最后的那个。
+     *
+     * 需要结合实际场景进行操作，比如防止edit
+     */
+    public static void rxjava_Debounce(Activity activity, Button btnView) {
+        RxView.clicks(btnView).debounce(1000,TimeUnit.MILLISECONDS,AndroidSchedulers.mainThread())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        Intent intent = new Intent(activity,RxJavaLearnDetailActivity.class);
+                        activity.startActivity(intent);
+                    }
+                });
+    }
+
 
 }

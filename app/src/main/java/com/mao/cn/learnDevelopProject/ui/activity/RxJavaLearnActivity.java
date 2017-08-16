@@ -102,6 +102,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("------------------");
         strings.add("rxjava_map");
         strings.add("rxjava_flatmap");
+        strings.add("rxjava_flatmapNew");
         strings.add("rxjava_concatMap");
         strings.add("rxjava_FlatMapIterable");
         strings.add("rxjava_SwitchMap_one");
@@ -113,6 +114,11 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_thread");
         strings.add("rxjava_threadM");
         strings.add("------------------");
+        strings.add("rxjava_rxBinding");
+        strings.add("------------------");
+        strings.add("rxjava_filter");
+        strings.add("rxjava_take");
+        strings.add("rxjava_skip");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -133,9 +139,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         RxView.clicks(ibHeaderBack).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
+        }, throwable -> LogU.e(throwable.getMessage()));
 
         adapter.addListener(str -> {
             switch (str) {
@@ -147,6 +151,9 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                     break;
                 case "rxjava_flatmap":
                     rxjava_flatmapFun();
+                    break;
+                case "rxjava_flatmapNew":
+                    rxjava_flatmapFunNew();
                     break;
                 case "rxjava_concatMap":
                     rxjava_concatMapFun();
@@ -175,10 +182,44 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_threadM":
                     rxjava_threadMFun();
                     break;
+                case "rxjava_rxBinding":
+                    rxjava_rxBindingFun();
+                    break;
+                case "rxjava_filter":
+                    rxjava_filterFun();
+                    break;
+                case "rxjava_take":
+                    rxjava_takeFun();
+                    break;
+                case "rxjava_skip":
+                    rxjava_skipFun();
+                    break;
                 default:
                     break;
             }
         });
+    }
+
+    private void rxjava_rxBindingFun() {
+        startActivity(RxjavaLearnRxBingdingActivity.class);
+    }
+
+    private void rxjava_skipFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 skip log"));
+        RxJavaMethodFunc.rxjava_skip();
+    }
+
+    private void rxjava_takeFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 take log"));
+        RxJavaMethodFunc.rxjava_take();
+    }
+
+    private void rxjava_filterFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 filter log"));
+        RxJavaMethodFunc.rxjava_filter();
     }
 
     private void rxjava_threadMFun() {
@@ -239,6 +280,12 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         svImage.setVisibility(View.VISIBLE);
         tvShow.setText(String.valueOf("as 查看 flatmap log"));
         RxJavaMethodFunc.rxjava_flatmap();
+    }
+
+    private void rxjava_flatmapFunNew() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 flatmap 数据交叉 log"));
+        RxJavaMethodFunc.rxjava_flatmapNew();
     }
 
     private void rxjava_mapFun() {

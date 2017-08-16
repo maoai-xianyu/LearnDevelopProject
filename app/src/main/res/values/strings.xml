@@ -8,5 +8,6 @@
     <string name="tips">提示</string>
     <string name="header">学习</string>
     <string name="header_rxjava">学习RxJava</string>
+    <string name="header_rxjava_binding">学习RxJavaBinding</string>
     <string name="loading">加载中...</string>
 </resources>
