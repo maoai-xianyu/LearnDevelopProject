@@ -12,6 +12,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,15 @@ public class RxJavaLearnAdapter extends RecyclerView.Adapter<RxJavaLearnAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         String str = strings.get(position);
+        if (StringU.equals(str, "------------------")) {
+            holder.tvShow.setVisibility(View.GONE);
+            holder.vline.setVisibility(View.VISIBLE);
+        } else {
+            holder.vline.setVisibility(View.GONE);
+            holder.tvShow.setVisibility(View.VISIBLE);
+            holder.tvShow.setText(str);
+        }
 
-        holder.tvShow.setText(str);
 
         RxView.clicks(holder.tvShow).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
@@ -74,6 +82,8 @@ public class RxJavaLearnAdapter extends RecyclerView.Adapter<RxJavaLearnAdapter.
 
         @BindView(R.id.tv_show)
         TextView tvShow;
+        @BindView(R.id.v_line)
+        View vline;
 
         ViewHolder(View itemView) {
             super(itemView);

@@ -23,4 +23,11 @@
         android:textSize="@dimen/text_size_16"
         tools:text="显示" />
 
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d2"
+        android:layout_below="@+id/tv_show"
+        android:background="@color/c_a9a9a9" />
+
 </RelativeLayout>

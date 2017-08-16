@@ -275,6 +275,7 @@ public class RxJavaMethodFunc {
         // GroupedObservable是一个特殊的Observable，它基于一个分组的key，在这个例子中的key就是 StudentCourse  名字
         Observable<GroupedObservable<String, StudentCourse>> groupedObservableObservable = Observable.from(InitDataMethodFunc.initStudentCourseData()).groupBy(studentCourse -> studentCourse.getCourse_name());
 
+        //concat操作符肯定也是有序的，而concat操作符是接收若干个Observables，发射数据是有序的，不会交叉。
         Observable.concat(groupedObservableObservable).subscribe(studentCourse -> LogU.i(" StudentCourse 名字 " + studentCourse.getCourse_name() + "  班级描述： " + studentCourse.getCourse_desc()));
 
     }

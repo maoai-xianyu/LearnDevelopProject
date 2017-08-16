@@ -99,6 +99,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings = new ArrayList<>();
 
         strings.add("rxjava_start");
+        strings.add("------------------");
         strings.add("rxjava_map");
         strings.add("rxjava_flatmap");
         strings.add("rxjava_concatMap");
@@ -107,9 +108,11 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_SwitchMap_new");
         strings.add("rxjava_Scan");
         strings.add("rxjava_GroupBy");
+        strings.add("------------------");
         strings.add("rxjava_lift");
         strings.add("rxjava_thread");
         strings.add("rxjava_threadM");
+        strings.add("------------------");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
