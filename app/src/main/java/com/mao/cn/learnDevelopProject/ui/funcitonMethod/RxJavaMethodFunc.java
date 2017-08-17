@@ -10,6 +10,7 @@ import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.ResourceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -164,6 +165,8 @@ public class RxJavaMethodFunc {
                 .compose(newThreadSchedulers())
                 .subscribe(LogU::i);
     }
+
+    //--------------------------------------------------------------------------------------转换
 
     /**
      * map 是一对一的输出
@@ -337,6 +340,8 @@ public class RxJavaMethodFunc {
     }
 
 
+    //--------------------------------------------------------------------------------------过滤
+
     /**
      * filter(Func1)用来过滤观测序列中我们不想要的值，只返回满足条件的值
      */
@@ -356,8 +361,11 @@ public class RxJavaMethodFunc {
 
     /**
      * take(int)用一个整数n作为一个参数，从原始的序列中发射前n个元素.
+     * <p>
      * takeLast(int)同样用一个整数n作为参数，只不过它发射的是观测序列中后n个元素。
+     * <p>
      * takeUntil(Observable)订阅并开始发射原始Observable，同时监视我们提供的第二个Observable。
+     * <p>
      * 如果第二个Observable发射了一项数据或者发射了一个终止通知，takeUntil()返回的Observable会停止发射原始Observable并终止
      * takeUntil(Func1)通过Func1中的call方法来判断是否需要终止发射数据。
      */
@@ -566,6 +574,61 @@ public class RxJavaMethodFunc {
                 .subscribe(studentCourse -> {
                     LogU.i("  studentCourse last(fun) name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
                 });
+
+    }
+
+
+    //--------------------------------------------------------------------------------------组合
+
+    /**
+     * merge(Observable, Observable)将两个Observable发射的事件序列组合并成一个事件序列，就像是一个Observable发射的一样。
+     * 你可以简单的将它理解为两个Obsrvable合并成了一个Observable，合并后的数据是无序的。
+     */
+    public static void rxjava_merge() {
+
+        String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        Observable<String> letterSequence = Observable.interval(300, TimeUnit.MILLISECONDS)
+                .map(position -> letters[position.intValue()]).take(letters.length);
+
+        Observable<Long> numberSequence = Observable.interval(500, TimeUnit.MILLISECONDS).take(5);
+
+        Observable.merge(letterSequence, numberSequence)
+                .subscribe(new Observer<Serializable>() {
+                    @Override
+                    public void onCompleted() {
+                        LogU.i(" onCompleted  ");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        LogU.e(" onError  " + e.getMessage());
+
+                    }
+
+                    @Override
+                    public void onNext(Serializable serializable) {
+                        LogU.i(" onNext  " + serializable.toString());
+/*
+                        if (serializable instanceof String) {
+                            LogU.i("字符串  " + serializable);
+                        } else if (serializable instanceof Long) {
+                            LogU.i("数字  " + serializable);
+                        }*/
+                    }
+                });
+
+    }
+
+
+    /**
+     * 比较
+     * timer()
+     * interval()
+     * delay()
+     */
+    public static void rxjava_time() {
+
 
     }
 

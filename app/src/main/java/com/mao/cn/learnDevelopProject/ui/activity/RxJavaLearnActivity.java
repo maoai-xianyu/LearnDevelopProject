@@ -127,6 +127,7 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_first");
         strings.add("rxjava_last");
         strings.add("------------------");
+        strings.add("rxjava_merge");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -223,10 +224,19 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_last":
                     rxjava_lastFun();
                     break;
+                case "rxjava_merge":
+                    rxjava_mergeFun();
+                    break;
                 default:
                     break;
             }
         });
+    }
+
+    private void rxjava_mergeFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_merge log"));
+        RxJavaMethodFunc.rxjava_merge();
     }
 
     private void rxjava_lastFun() {
