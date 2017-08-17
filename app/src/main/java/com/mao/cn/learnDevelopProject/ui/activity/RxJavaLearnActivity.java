@@ -119,6 +119,14 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_filter");
         strings.add("rxjava_take");
         strings.add("rxjava_skip");
+        strings.add("rxjava_elementAt");
+        strings.add("rxjava_Debounce");
+        strings.add("rxjava_throttleWithTimeout");
+        strings.add("rxjava_distinct");
+        strings.add("rxjava_distinctUntilChanged");
+        strings.add("rxjava_first");
+        strings.add("rxjava_last");
+        strings.add("------------------");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -194,10 +202,75 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_skip":
                     rxjava_skipFun();
                     break;
+                case "rxjava_elementAt":
+                    rxjava_elemnetFun();
+                    break;
+                case "rxjava_Debounce":
+                    rxjava_DebounceFun();
+                    break;
+                case "rxjava_throttleWithTimeout":
+                    rxjava_throttleWithTimeoutFun();
+                    break;
+                case "rxjava_distinct":
+                    rxjava_distinctFun();
+                    break;
+                case "rxjava_distinctUntilChanged":
+                    rxjava_distinctUntilChangedFun();
+                    break;
+                case "rxjava_first":
+                    rxjava_firstFun();
+                    break;
+                case "rxjava_last":
+                    rxjava_lastFun();
+                    break;
                 default:
                     break;
             }
         });
+    }
+
+    private void rxjava_lastFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_last log"));
+        RxJavaMethodFunc.rxjava_last();
+    }
+
+    private void rxjava_firstFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_first log"));
+        RxJavaMethodFunc.rxjava_first();
+    }
+
+    private void rxjava_distinctUntilChangedFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_distinctUntilChanged log"));
+        RxJavaMethodFunc.rxjava_distinctUntilChanged();
+
+    }
+
+    private void rxjava_distinctFun() {
+
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_distinct log"));
+        RxJavaMethodFunc.rxjava_distinct();
+    }
+
+    private void rxjava_throttleWithTimeoutFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 throttleWithTimeout log"));
+        RxJavaMethodFunc.rxjava_throttleWithTimeout();
+    }
+
+    private void rxjava_DebounceFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 Debounce log"));
+        RxJavaMethodFunc.rxjava_Debounce();
+    }
+
+    private void rxjava_elemnetFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 lementAt log"));
+        RxJavaMethodFunc.rxjava_elemnet();
     }
 
     private void rxjava_rxBindingFun() {

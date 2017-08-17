@@ -48,7 +48,21 @@ public class InitDataMethodFunc {
     }
 
 
-    public static List<String> initStringData(){
+    public static List<StudentCourse> initStudentCourseDataSame() {
+        List<StudentCourse> studentCourses = new ArrayList<>();
+        studentCourses.add(new StudentCourse("测试一班", "测试一班好班", 5000));
+        studentCourses.add(new StudentCourse("测试二班", "测试二班好班第二，品质不错", 5000));
+        studentCourses.add(new StudentCourse("测试一班", "测试一班好班", 5000));
+        studentCourses.add(new StudentCourse("测试二班", "测试二班好班第二，品质不错", 5000));
+        studentCourses.add(new StudentCourse("测试一班", "测试一班好班，我们更为努力,需要加油", 5000));
+        studentCourses.add(new StudentCourse("测试一班", "测试一班好班，我们更为努力,需要加油", 5000));
+        studentCourses.add(new StudentCourse("测试三班", "测试三班是个什么鬼", 5000));
+        studentCourses.add(new StudentCourse("测试三班", "测试三班是个什么鬼", 5000));
+        return studentCourses;
+    }
+
+
+    public static List<String> initStringData() {
         List<String> strings = new ArrayList<>();
 
         strings.add("asadaasd");

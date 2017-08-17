@@ -1,16 +1,11 @@
 package com.mao.cn.learnDevelopProject.ui.funcitonMethod;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.model.Student;
 import com.mao.cn.learnDevelopProject.model.StudentCourse;
-import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnDetailActivity;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.ResourceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
@@ -24,7 +19,6 @@ import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
@@ -200,7 +194,6 @@ public class RxJavaMethodFunc {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> LogU.i("Consume Data " + s.toString()));
 
-
     }
 
     /**
@@ -223,6 +216,9 @@ public class RxJavaMethodFunc {
                 .subscribe(studentCourse -> LogU.i(studentCourse.getCourse_name()));
     }
 
+    /**
+     * 网络请求中，如果数据有顺序问题，那么就不能使用flatMap
+     */
     public static void rxjava_flatmapNew() {
         Observable.from(InitDataMethodFunc.initStudentData())
                 .flatMap(new Func1<Student, Observable<StudentCourse>>() {
@@ -281,7 +277,7 @@ public class RxJavaMethodFunc {
     /**
      * 每当源Observable发射一个新的数据项（Observable）时，它将取消订阅并停止监视之前那个数据项产生的Observable，并开始监视当前发射的这一个
      * <p>
-     * 在同一线程产生数据，依次打出
+     * 不同的线程，结果就是最后的数据
      */
     public static void rxjava_switchMapNew() {
         Observable.from(InitDataMethodFunc.initStudentData())
@@ -311,7 +307,7 @@ public class RxJavaMethodFunc {
     public static void rxjava_GroupBy() {
 
         // GroupedObservable是一个特殊的Observable，它基于一个分组的key，在这个例子中的key就是 StudentCourse  名字
-        Observable<GroupedObservable<String, StudentCourse>> groupedObservableObservable = Observable.from(InitDataMethodFunc.initStudentCourseData()).groupBy(studentCourse -> studentCourse.getCourse_name());
+        Observable<GroupedObservable<String, StudentCourse>> groupedObservableObservable = Observable.from(InitDataMethodFunc.initStudentCourseData()).groupBy(StudentCourse::getCourse_name);
 
         //concat操作符肯定也是有序的，而concat操作符是接收若干个Observables，发射数据是有序的，不会交叉。
         Observable.concat(groupedObservableObservable).subscribe(studentCourse -> LogU.i(" StudentCourse 名字 " + studentCourse.getCourse_name() + "  班级描述： " + studentCourse.getCourse_desc()));
@@ -441,21 +437,136 @@ public class RxJavaMethodFunc {
     /**
      * debounce(long, TimeUnit)过滤掉了由Observable发射的速率过快的数据；
      * 如果在一个指定的时间间隔过去了仍旧没有发射一个，那么它将发射最后的那个。
-     *
-     * 需要结合实际场景进行操作，比如防止edit
+     * <p>
+     * 需要结合实际场景进行操作，比如防止edit  binding的例子有
      */
-    public static void rxjava_Debounce(Activity activity, Button btnView) {
-        RxView.clicks(btnView).debounce(1000,TimeUnit.MILLISECONDS,AndroidSchedulers.mainThread())
-                .subscribeOn(AndroidSchedulers.mainThread())
+    public static void rxjava_Debounce() {
+
+        Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9).debounce(integer -> Observable.create((Observable.OnSubscribe<Integer>) subscriber -> {
+            //如果%2==0，则发射数据并调用了onCompleted结束，则不会被丢弃
+            if (integer % 2 == 0 && !subscriber.isUnsubscribed()) {
+                subscriber.onNext(integer);
+                subscriber.onCompleted();
+            }
+        })).observeOn(AndroidSchedulers.mainThread()).subscribe(integer -> LogU.i("  integer " + integer));
+
+
+    }
+
+    /**
+     * throttleWithTimeout 通过时间来限流，源Observable每次发射出来一个数据后就会进行计时
+     * 如果在设定好的时间结束前源Observable有新的数据发射出来，这个数据就会被丢弃，同时重新开始计时。
+     * 如果每次都是在计时结束前发射数据，那么这个限流就会走向极端：只会发射最后一个数据;
+     * 默认在computation调度器上执行
+     */
+    public static void rxjava_throttleWithTimeout() {
+
+        Observable.create((Observable.OnSubscribe<Integer>) subscriber -> {
+            for (int i = 0; i < 10; i++) {
+                if (!subscriber.isUnsubscribed()) {
+                    subscriber.onNext(i);
+                }
+
+                int sleep = 100;
+
+                if (i % 3 == 0) {
+                    sleep = 300;
+                }
+
+                try {
+                    Thread.sleep(sleep);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            subscriber.onCompleted();
+        }).subscribeOn(Schedulers.computation())
+                .throttleWithTimeout(200, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        Intent intent = new Intent(activity,RxJavaLearnDetailActivity.class);
-                        activity.startActivity(intent);
-                    }
+                .subscribe(integer -> LogU.i(" integer  " + integer));
+    }
+
+
+    /**
+     * distinct()的过滤规则是只允许还没有发射过的数据通过，所有重复的数据项都只会发射一次。
+     */
+    public static void rxjava_distinct() {
+        Observable.just(2, 1, 2, 2, 3, 4, 3, 4, 5, 5)
+                .distinct()
+                .subscribe(i -> LogU.i(i + " 数据 distinct()"));
+
+        // 没有什么卵用
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .distinct()
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse distinct() name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
+
+                });
+
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .distinct(StudentCourse::getCourse_name)
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse distinct(fun) name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
                 });
     }
 
+
+    /**
+     * distinctUntilChanged() 只不过它判定的是Observable发射的当前数据项和前一个数据项是否相同。
+     */
+    public static void rxjava_distinctUntilChanged() {
+        Observable.just(2, 1, 2, 2, 3, 4, 3, 4, 5, 5)
+                .distinctUntilChanged()
+                .subscribe(i -> LogU.i(i + " 数据  distinctUntilChanged() "));
+
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .distinctUntilChanged(StudentCourse::getCourse_name)
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse distinctUntilChanged(func) name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
+                });
+
+
+    }
+
+    /**
+     * first() Observable只发送观测序列中的第一个数据项。
+     */
+    public static void rxjava_first() {
+
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .first()
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse  first() name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
+                });
+
+
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .first(studentCourse -> StringU.equals("测试一班", studentCourse.getCourse_name()))
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse first(fun) name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
+                });
+
+    }
+
+
+    /**
+     * last()只发射观测序列中的最后一个数据项。
+     */
+    public static void rxjava_last() {
+
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .last()
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse last()  name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
+                });
+
+
+        Observable.from(InitDataMethodFunc.initStudentCourseDataSame())
+                .last(studentCourse -> StringU.equals("测试一班", studentCourse.getCourse_name()))
+                .subscribe(studentCourse -> {
+                    LogU.i("  studentCourse last(fun) name " + studentCourse.getCourse_name() + " desc " + studentCourse.getCourse_desc());
+                });
+
+    }
 
 }

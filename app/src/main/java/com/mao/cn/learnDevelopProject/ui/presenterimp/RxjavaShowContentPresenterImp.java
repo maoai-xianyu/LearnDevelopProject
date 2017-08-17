@@ -19,6 +19,7 @@ import com.mao.cn.learnDevelopProject.ui.presenter.RxjavaShowContentPresenter;
 import com.mao.cn.learnDevelopProject.utils.network.NetworkUtils;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 
 import rx.Observable;
@@ -50,7 +51,7 @@ public class RxjavaShowContentPresenterImp extends BasePresenterImp implements R
             return;
         }
         viewInterface.showLoadingDialog("");
-        Subscription subscribe = interactor.getMovieTop(start, count).flatMap(new Func1<String, Observable<String>>() {
+        Subscription subscribe = interactor.getMovieTop(start, count).onTerminateDetach().flatMap(new Func1<String, Observable<String>>() {
             @Override
             public Observable<String> call(String s) {
                 return Observable.just(s);
@@ -70,6 +71,7 @@ public class RxjavaShowContentPresenterImp extends BasePresenterImp implements R
 
             @Override
             public void onNext(String s) {
+                LogU.i("  数据  "+s);
                 Movie convert = null;
                 try {
                     convert = GsonU.convert(s, Movie.class);
