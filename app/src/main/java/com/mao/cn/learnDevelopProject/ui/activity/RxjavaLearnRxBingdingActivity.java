@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -46,7 +47,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 /**
@@ -61,6 +64,13 @@ public class RxjavaLearnRxBingdingActivity extends BaseActivity implements IRxja
     ImageButton ibHeaderBack;
     @BindView(R.id.tv_header_title)
     TextView tvHeaderTitle;
+    @BindView(R.id.e_mail)
+    EditText etEmail;
+    @BindView(R.id.et_pwd)
+    EditText etPwd;
+    @BindView(R.id.btn_confirm)
+    Button btnConfirm;
+
     @BindView(R.id.et_list_view)
     EditText etListView;
     @BindView(R.id.ls_data)
@@ -203,6 +213,38 @@ public class RxjavaLearnRxBingdingActivity extends BaseActivity implements IRxja
                     rcStringAdapter.addStringList(strings1);
                 });
 
+
+        Observable<String> mapEtMail = RxTextView.textChanges(etEmail).map(CharSequence::toString);
+        Observable<String> observablePassword = RxTextView.textChanges(etPwd).map(CharSequence::toString);
+
+
+        Observable.combineLatest(mapEtMail, observablePassword, new Func2<String, String, Boolean>() {
+            @Override
+            public Boolean call(String email, String password) {
+                return isEmailValid(email) && isPasswordValid(password);
+            }
+        }).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                if (aBoolean){
+                    btnConfirm.setVisibility(View.VISIBLE);
+                }else {
+                    btnConfirm.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+    }
+
+
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
     }
 
     @Override
