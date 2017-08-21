@@ -44,7 +44,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -121,6 +123,14 @@ public class RxjavaLearnRxBingdingActivity extends BaseActivity implements IRxja
                     //get the keyword
                     String key = charSequence.toString();
                     return key;
+                })
+
+                //
+                .switchMap(new Func1<String, Observable<String>>() {
+                    @Override
+                    public Observable<String> call(String s) {
+                        return Observable.just(s);
+                    }
                 })
                 .observeOn(Schedulers.io())
                 .map(keyWord -> {
