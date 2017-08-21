@@ -1,5 +1,6 @@
 package com.mao.cn.learnDevelopProject.ui.funcitonMethod;
 
+import com.mao.cn.learnDevelopProject.model.Locations;
 import com.mao.cn.learnDevelopProject.model.Student;
 import com.mao.cn.learnDevelopProject.model.StudentCourse;
 
@@ -93,6 +94,30 @@ public class InitDataMethodFunc {
         strings.add("bkjksjdf");
         strings.add("oikjladf");
         strings.add("oknn");
+        return strings;
+    }
+
+    public static List<String> initClassName() {
+        List<String> strings = new ArrayList<>();
+        strings.add("中海一班");
+        strings.add("中海二班");
+        strings.add("中南三班");
+        strings.add("中南三班");
+        strings.add("华北四班");
+        strings.add("华南四班");
+        strings.add("华东五班");
+        return strings;
+    }
+
+    public static List<Locations> initLocations(){
+        List<Locations> strings = new ArrayList<>();
+        strings.add(new Locations("21.827","23.323"));
+        strings.add(new Locations("21.827","23.323"));
+        strings.add(new Locations("11.923","16.309"));
+        strings.add(new Locations("11.923","16.309"));
+        strings.add(new Locations("22.273","53.623"));
+        strings.add(new Locations("22.273","53.623"));
+        strings.add(new Locations("22.273","53.623"));
         return strings;
     }
 

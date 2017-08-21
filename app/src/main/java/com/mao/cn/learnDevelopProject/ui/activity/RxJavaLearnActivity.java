@@ -128,6 +128,11 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
         strings.add("rxjava_last");
         strings.add("------------------");
         strings.add("rxjava_merge");
+        strings.add("rxjava_startwith");
+        strings.add("rxjava_concat");
+        strings.add("rxjava_zip");
+        strings.add("rxjava_combineLatest");
+        strings.add("rxjava_join");
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -227,10 +232,56 @@ public class RxJavaLearnActivity extends BaseActivity implements IRxJavaLearn {
                 case "rxjava_merge":
                     rxjava_mergeFun();
                     break;
+                case "rxjava_startwith":
+                    rxjava_startwithFun();
+                    break;
+                case "rxjava_concat":
+                    rxjava_concatFun();
+                    break;
+                case "rxjava_zip":
+                    rxjava_zipFun();
+                    break;
+                case "rxjava_combineLatest":
+                    rxjava_combineLatestFun();
+                    break;
+                case "rxjava_join":
+                    rxjava_joinFun();
+                    break;
                 default:
                     break;
             }
         });
+    }
+
+    private void rxjava_joinFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_joinFun log"));
+        RxJavaMethodFunc.rxjava_join();
+    }
+
+    private void rxjava_combineLatestFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_combineLatest log"));
+        RxJavaMethodFunc.rxjava_combineLatest();
+    }
+
+    private void rxjava_zipFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_zip log"));
+        RxJavaMethodFunc.rxjava_zip();
+    }
+
+    private void rxjava_concatFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_concat log"));
+        RxJavaMethodFunc.rxjava_concat();
+
+    }
+
+    private void rxjava_startwithFun() {
+        svImage.setVisibility(View.VISIBLE);
+        tvShow.setText(String.valueOf("as 查看 rxjava_merge log"));
+        RxJavaMethodFunc.rxjava_startwith();
     }
 
     private void rxjava_mergeFun() {

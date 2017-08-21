@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.mao.cn.learnDevelopProject.model.Locations;
 import com.mao.cn.learnDevelopProject.model.Student;
 import com.mao.cn.learnDevelopProject.model.StudentCourse;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -617,6 +618,172 @@ public class RxJavaMethodFunc {
                         }*/
                     }
                 });
+
+    }
+
+
+    /**
+     * startWith(T)用于在源Observable发射的数据前插入数据。使用startWith(Iterable<T>)我们还可以在源Observable发射的数据前插入Iterable。
+     * 数据需要相同的类型
+     */
+    public static void rxjava_startwith() {
+
+        String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        Observable<String> letterSequence = Observable.interval(300, TimeUnit.MILLISECONDS)
+                .map(position -> letters[position.intValue()]).take(letters.length);
+
+        Observable<String> numberSequence = Observable.interval(500, TimeUnit.MILLISECONDS)
+                .map(aLong -> aLong + "").take(5);
+
+        numberSequence.startWith(letterSequence).subscribe(new Observer<Serializable>() {
+            @Override
+            public void onCompleted() {
+                LogU.i(" onCompleted  ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                LogU.e(" onError  " + e.getMessage());
+
+            }
+
+            @Override
+            public void onNext(Serializable serializable) {
+                LogU.i(" onNext  " + serializable.toString());
+                System.out.println(" sys  onNext  " + serializable.toString());
+
+            }
+        });
+
+    }
+
+
+    /**
+     * concat(Observable<? extends T>, Observable<? extends T>) concat(Observable<？ extends Observable<T>>)用于将多个obserbavle发射的的数据进行合并发射，
+     * concat严格按照顺序发射数据，前一个Observable没发射玩是不会发射后一个Observable的数据的。它和merge、startWitch和相似，不同之处在于
+     * 1、merge:合并后发射的数据是无序的；
+     * 2、startWitch:只能在源Observable发射的数据前插入数据
+     */
+    public static void rxjava_concat() {
+
+        String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        Observable<String> letterSequence = Observable.interval(300, TimeUnit.MILLISECONDS)
+                .map(position -> letters[position.intValue()]).take(letters.length);
+
+        Observable<String> numberSequence = Observable.interval(500, TimeUnit.MILLISECONDS)
+                .map(aLong -> aLong + "").take(5);
+
+        Observable.concat(letterSequence, numberSequence)
+                .subscribe(s -> {
+                    LogU.i(" s   == " + s);
+                    System.out.println(" sys  onNext  " + s);
+                });
+
+
+    }
+
+
+    /**
+     * zip(Observable, Observable, Func2)用来合并两个Observable发射的数据项，根据Func2函数生成一个新的值并发射出去。
+     * 当其中一个Observable发送数据结束或者出现异常后，另一个Observable也将停在发射数据。
+     * <p>
+     * 如果是集合或者是数组，则需要数据一一对应，否则将缺失数据；一般用于封装成为同一个对一下的属性
+     */
+    public static void rxjava_zip() {
+
+        String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        Observable<String> letterSequence = Observable.interval(300, TimeUnit.MILLISECONDS)
+                .map(position -> letters[position.intValue()]).take(letters.length);
+
+        Observable<String> numberSequence = Observable.interval(500, TimeUnit.MILLISECONDS)
+                .map(aLong -> aLong + "").take(5);
+
+        Observable.zip(letterSequence, numberSequence, (s, s2) -> s + s2).subscribe(new Observer<Serializable>() {
+            @Override
+            public void onCompleted() {
+                LogU.i(" onCompleted  ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                LogU.e(" onError  " + e.getMessage());
+
+            }
+
+            @Override
+            public void onNext(Serializable serializable) {
+                LogU.i(" onNext  " + serializable.toString());
+                System.out.println(" sys  onNext  " + serializable.toString());
+
+            }
+        });
+    }
+
+
+    /**
+     * combineLatest(Observable, Observable, Func2)用于将两个Observale最近发射的数据已经Func2函数的规则进展组合
+     * <p>
+     * 应用场景：表单验证
+     */
+    public static void rxjava_combineLatest() {
+
+        List<String> className = InitDataMethodFunc.initClassName();
+        List<Locations> locationses = InitDataMethodFunc.initLocations();
+
+        Observable<String> classNameObservable = Observable.interval(1, TimeUnit.SECONDS)
+                .map(aLong -> className.get(aLong.intValue())).take(className.size());
+
+        Observable<Locations> locationsObservable = Observable.interval(1, TimeUnit.SECONDS)
+                .map(aLong -> locationses.get(aLong.intValue())).take(locationses.size());
+
+        Observable.combineLatest(classNameObservable, locationsObservable, (s, locations) -> "班级名： " + s + " 经纬度 " + locations.toString()).subscribe(s -> LogU.i("  S  " + s));
+
+    }
+
+    /**
+     * Join
+     * join(Observable, Func1, Func1, Func2)我们先介绍下join操作符的4个参数：
+     * Observable：源Observable需要组合的Observable,这里我们姑且称之为目标Observable；
+     * Func1：接收从源Observable发射来的数据，并返回一个Observable，这个Observable的声明周期决定了源Obsrvable发射出来的数据的有效期；
+     * Func1：接收目标Observable发射来的数据，并返回一个Observable，这个Observable的声明周期决定了目标Obsrvable发射出来的数据的有效期；
+     * Func2：接收从源Observable和目标Observable发射出来的数据，并将这两个数据组合后返回。
+     */
+    public static void rxjava_join() {
+
+        List<Locations> locationses = InitDataMethodFunc.initLocations();
+        //模拟的房源数据，用于测试
+
+        //用来每秒从houses总取出一套房源并发射出去
+        Observable<Locations> houseSequence =
+                Observable.interval(1, TimeUnit.SECONDS)
+                        .map(position -> locationses.get(position.intValue())).take(locationses.size());
+        //这里的take是为了防止houses.get(position.intValue())数组越界
+
+        //用来实现每秒发送一个新的Long型数据
+        Observable<Long> tictoc = Observable.interval(1, TimeUnit.SECONDS);
+
+        houseSequence.join(tictoc,
+                house -> Observable.timer(2, TimeUnit.SECONDS),
+                aLong -> Observable.timer(0, TimeUnit.SECONDS),
+                (house, aLong) -> aLong + "-->" + house.getLatitude()
+        ).subscribe(new Observer<String>() {
+            @Override
+            public void onCompleted() {
+                LogU.i("onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogU.i("Error:" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(String s) {
+                LogU.i(" s == "+s);
+            }
+        });
 
     }
 
