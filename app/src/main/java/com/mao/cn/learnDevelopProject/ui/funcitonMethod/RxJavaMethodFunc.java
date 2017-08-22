@@ -789,6 +789,18 @@ public class RxJavaMethodFunc {
 
 
     /**
+     * onErrorResumeNext()  服务器返回特定的错误码之后，重新创建请求时。。。。。比如 taken 过期，重新请求taken
+     *
+     * retryWhen()  重试机制
+     *
+     * switchIfEmpty()  当本地不存在，请求网络的数据
+     *
+     *
+     * onTerminateDetach  操作符要和subscription.unsubscribe() 结合使用，因为不执行subscription.unsubscribe()的话，onTerminateDetach就不会被触发。
+     */
+
+
+    /**
      * 比较
      * timer()
      * interval()
