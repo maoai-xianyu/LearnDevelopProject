@@ -82,7 +82,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
             }
         });
 
-        //compositeSubscription.add(subscribe);
+        compositeSubscription.add(subscribe);
 
 
         // timer  定时
@@ -124,9 +124,9 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (subscribe != null && !subscribe.isUnsubscribed()) {
+        /*if (subscribe != null && !subscribe.isUnsubscribed()) {
             subscribe.unsubscribe();
-        }
+        }*/
         if (compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
             compositeSubscription.clear();
