@@ -33,6 +33,7 @@ import butterknife.BindView;
 import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action1;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * DESC   :
@@ -48,6 +49,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     @BindView(R.id.tv_show)
     TextView tvShow;
     private Subscription subscribe;
+    private CompositeSubscription compositeSubscription;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -70,7 +72,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
 
     @Override
     public void initView() {
-
+        compositeSubscription = new CompositeSubscription();
         subscribe = Observable.interval(5, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
@@ -79,6 +81,8 @@ public class LoadingActivity extends BaseActivity implements ILoading {
                 startActivity(MainActivity.class, true);
             }
         });
+
+        //compositeSubscription.add(subscribe);
 
 
         // timer  定时
@@ -123,6 +127,9 @@ public class LoadingActivity extends BaseActivity implements ILoading {
         if (subscribe != null && !subscribe.isUnsubscribed()) {
             subscribe.unsubscribe();
         }
-
+        if (compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+            compositeSubscription.clear();
+        }
     }
 }
