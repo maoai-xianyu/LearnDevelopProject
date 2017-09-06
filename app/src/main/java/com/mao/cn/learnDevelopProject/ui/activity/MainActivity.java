@@ -51,6 +51,8 @@ public class MainActivity extends BaseActivity implements IMain {
     Button btnDescRxjava;
     @BindView(R.id.btn_desc_image)
     Button btnDescImage;
+    @BindView(R.id.btn_animator)
+    Button btnAnimator;
 
 
     @Override
@@ -94,6 +96,13 @@ public class MainActivity extends BaseActivity implements IMain {
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
+
+        RxView.clicks(btnAnimator).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(AnimatorActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
     }
 
 
@@ -113,7 +122,8 @@ public class MainActivity extends BaseActivity implements IMain {
         new RxPermissions(MainActivity.this)
                 .requestEach(Manifest.permission.WRITE_CALENDAR,
                         Manifest.permission.READ_CALENDAR,
-                        Manifest.permission.RECORD_AUDIO)
+                        Manifest.permission.RECORD_AUDIO,
+                        Manifest.permission.CALL_PHONE)
                 .subscribe(permission -> {
                     if (permission.granted) {
 

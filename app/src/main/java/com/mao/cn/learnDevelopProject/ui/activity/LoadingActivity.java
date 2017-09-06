@@ -73,7 +73,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     @Override
     public void initView() {
         compositeSubscription = new CompositeSubscription();
-        subscribe = Observable.interval(5, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
+        subscribe = Observable.interval(2, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
 
