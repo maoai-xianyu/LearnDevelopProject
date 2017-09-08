@@ -53,6 +53,15 @@
                 android:layout_below="@+id/btn_desc_image"
                 android:text="动画" />
 
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_animator"
+                android:text="Login" />
+
         </RelativeLayout>
     </ScrollView>
 

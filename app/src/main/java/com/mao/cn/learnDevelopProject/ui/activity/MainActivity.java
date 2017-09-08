@@ -53,6 +53,8 @@ public class MainActivity extends BaseActivity implements IMain {
     Button btnDescImage;
     @BindView(R.id.btn_animator)
     Button btnAnimator;
+    @BindView(R.id.btn_login)
+    Button btnLogin;
 
 
     @Override
@@ -100,6 +102,12 @@ public class MainActivity extends BaseActivity implements IMain {
         RxView.clicks(btnAnimator).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(AnimatorActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+        RxView.clicks(btnLogin).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(FancyCoverFlowActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
