@@ -10,28 +10,33 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.ui.adapter.CommonPagerTabAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;
+import com.mao.cn.learnDevelopProject.ui.fragment.FrameFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.OthersFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.TweenFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.ValueFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -46,15 +51,11 @@ public class AnimatorActivity extends BaseActivity implements IMain {
     ImageButton ibHeaderBack;
     @BindView(R.id.tv_header_title)
     TextView tvHeaderTitle;
-    @BindView(R.id.iv_coin)
-    ImageView ivCoin;
-    @BindView(R.id.tv_price)
-    TextView tvPrice;
-    @BindView(R.id.btn_play)
-    Button btnPlay;
+    @BindView(R.id.tab)
+    TabLayout tab;
+    @BindView(R.id.vp_animator)
+    ViewPager vpAnimator;
 
-    private String[] perms = {Manifest.permission.CALL_PHONE};
-    private final int PERMS_REQUEST_CODE = 200;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -68,8 +69,10 @@ public class AnimatorActivity extends BaseActivity implements IMain {
 
     @Override
     public void initView() {
+        ibHeaderBack.setVisibility(View.VISIBLE);
         tvHeaderTitle.setText("动画");
         tvHeaderTitle.setVisibility(View.VISIBLE);
+        initData();
     }
 
     @Override
@@ -77,14 +80,6 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         RxView.clicks(ibHeaderBack).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
-
-        RxView.clicks(btnPlay).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            //play();
-            callPhone();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -102,77 +97,31 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         }
     }
 
-
     @Override
     protected void setupComponent(AppComponent appComponent) {
 
     }
 
-    private void play() {
 
-        AnimatorSet animatorSetStart = new AnimatorSet();
-        AnimatorSet animatorSetBack = new AnimatorSet();
+    private void initData() {
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(FrameFragment.getInstance());
+        fragmentList.add(TweenFragment.getInstance());
+        fragmentList.add(ValueFragment.getInstance());
+        fragmentList.add(OthersFragment.getInstance());
 
-        ObjectAnimator animPriceStart = ObjectAnimator.ofFloat(tvPrice, "translationX", 0, 20f);
-        ObjectAnimator animCoinStart = ObjectAnimator.ofFloat(ivCoin, "translationX", 0, -20f);
+        List<String> titles = new ArrayList<>();
+        titles.add("逐帧动画");
+        titles.add("Tween动画");
+        titles.add("value动画");
+        titles.add("others动画");
 
-        ObjectAnimator animPriceBack = ObjectAnimator.ofFloat(tvPrice, "translationX", 20f, 0);
-        ObjectAnimator animCoinBack = ObjectAnimator.ofFloat(ivCoin, "translationX", -20f, 0);
-
-        ObjectAnimator tvPriceAlphaBack = ObjectAnimator.ofFloat(tvPrice, "alpha", 1, 0);
-        ObjectAnimator ivCoinAlphaBack = ObjectAnimator.ofFloat(ivCoin, "alpha", 1, 0);
-
-        animatorSetBack.setDuration(5000);
-        animatorSetBack.playTogether(animPriceBack, animCoinBack, tvPriceAlphaBack, ivCoinAlphaBack);
-
-        animatorSetStart.setDuration(5000);
-        animatorSetStart.playTogether(animPriceStart, animCoinStart);
-        animatorSetStart.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                animatorSetBack.start();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-        animatorSetStart.start();
-
-
-        animatorSetBack.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-
-                LogU.i("animatorSetBack  结束");
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
+        CommonPagerTabAdapter tabAdapter = new CommonPagerTabAdapter(getSupportFragmentManager());
+        tabAdapter.reloadData(fragmentList, titles);
+        vpAnimator.setAdapter(tabAdapter);
+        vpAnimator.setOffscreenPageLimit(fragmentList.size());
+        tab.setTabMode(TabLayout.MODE_FIXED);
+        tab.setupWithViewPager(vpAnimator);
 
     }
 

@@ -114,4 +114,5 @@ dependencies {
     compile 'com.beetstra.jutf7:jutf7:1.0.0'
     compile project(':assets')
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
+    compile 'com.android.support:design:26.0.0-alpha1'
 }
