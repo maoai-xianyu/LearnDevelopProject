@@ -54,7 +54,7 @@ public class OthersFragment extends BaseFragment implements IMainGuide {
 
     @Override
     protected int setView() {
-        return R.layout.frg_frame;
+        return R.layout.frg_others;
     }
 
     @Override

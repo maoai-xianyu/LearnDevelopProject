@@ -10,9 +10,28 @@
         style="@style/home_main_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_header"
         android:text="play" />
 
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_play"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/d20"
+        android:text="指示动画动画的过程"
+        android:textColor="@color/c_000000"
+        android:textSize="@dimen/text_size_16" />
+
+    <ImageView
+        android:id="@+id/iv_icon_buy"
+        android:layout_width="@dimen/d200"
+        android:layout_height="@dimen/d180"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/d20"
+        android:background="@drawable/coin_buy_animation"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/tv_price"
-            android:src="@drawable/coin_black" />
+            android:src="@drawable/icon_coin_black" />
 
         <TextView
             android:id="@+id/tv_price"
@@ -41,5 +60,6 @@
             android:textColor="@color/c_000000" />
 
     </RelativeLayout>
+
 
 </RelativeLayout>

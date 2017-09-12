@@ -34,7 +34,7 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
 
     @Override
     protected int setView() {
-        return R.layout.frg_frame;
+        return R.layout.frg_value;
     }
 
     @Override

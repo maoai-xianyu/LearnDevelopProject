@@ -51,6 +51,8 @@ public class AnimatorActivity extends BaseActivity implements IMain {
     ImageButton ibHeaderBack;
     @BindView(R.id.tv_header_title)
     TextView tvHeaderTitle;
+    @BindView(R.id.ib_call_phone)
+    ImageButton ibCallPhone;
     @BindView(R.id.tab)
     TabLayout tab;
     @BindView(R.id.vp_animator)
@@ -70,6 +72,7 @@ public class AnimatorActivity extends BaseActivity implements IMain {
     @Override
     public void initView() {
         ibHeaderBack.setVisibility(View.VISIBLE);
+        ibCallPhone.setVisibility(View.VISIBLE);
         tvHeaderTitle.setText("动画");
         tvHeaderTitle.setVisibility(View.VISIBLE);
         initData();
@@ -80,6 +83,12 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         RxView.clicks(ibHeaderBack).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             finish();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+        RxView.clicks(ibCallPhone).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            callPhone();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -120,7 +129,8 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         tabAdapter.reloadData(fragmentList, titles);
         vpAnimator.setAdapter(tabAdapter);
         vpAnimator.setOffscreenPageLimit(fragmentList.size());
-        tab.setTabMode(TabLayout.MODE_FIXED);
+        // 充满
+//        tab.setTabMode(TabLayout.MODE_FIXED);
         tab.setupWithViewPager(vpAnimator);
 
     }
