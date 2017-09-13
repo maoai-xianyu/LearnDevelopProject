@@ -9,7 +9,11 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
+import android.animation.Animator;
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,8 +24,8 @@ import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.ValueAnimator;
+import com.mao.cn.learnDevelopProject.wedget.interploator.DefineEvalutor;
+import com.mao.cn.learnDevelopProject.wedget.interploator.DefineSelfInterpolator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,13 +42,21 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
     TextView tvPlayInt;
     @BindView(R.id.tv_play_of)
     TextView tvPlayOf;
-
     @BindView(R.id.tv_play)
     TextView tvPlay;
     @BindView(R.id.tv_cancel)
     TextView tvCancel;
+    @BindView(R.id.tv_inter)
+    TextView tvInter;
+    @BindView(R.id.tv_evalutor)
+    TextView tvEvalutor;
+    @BindView(R.id.tv_argb)
+    TextView tvArgb;
     @BindView(R.id.iv)
     ImageView iv;
+    @BindView(R.id.tv_show)
+    TextView tvShow;
+
     private ValueAnimator animator;
 
     public static ValueFragment getInstance() {
@@ -102,10 +114,33 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
             LogU.e(throwable.getMessage());
         });
 
-
         RxView.clicks(iv).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             onTip("点击我了！");
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvInter).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = interAnimatorPlay();
+            animator.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvEvalutor).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = evaluatorAnimatorPlay();
+            animator.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvArgb).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = argevaluatorAnimatorPlay();
+            animator.start();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -185,6 +220,66 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
         //animator.setStartDelay(2000); 设置延迟时间
         //ValueAnimator clone = animator.clone();  复制一个动画，和原有的动画一模一样
         animator.start();
+        return animator;
+    }
+
+    // 插值器
+
+    /**
+     * TimeInterpolator  float getInterpolation(float input);
+     * input参数是一个float类型，它取值范围是0到1，表示当前动画的进度，取0时表示动画刚开始，取1时表示动画结束，取0.5时表示动画中间的位置，其它类推。
+     * <p>
+     * <p>
+     * input参数与任何我们设定的值没关系，只与时间有关，随着时间的增长，
+     * 动画的进度也自然的增加，input参数就代表了当前动画的进度。
+     * int curValue = (int) animation.getAnimatedValue();而返回值则表示动画的当前数值进度
+     *
+     * @return
+     */
+    private ValueAnimator interAnimatorPlay() {
+        ValueAnimator animator = ValueAnimator.ofInt(0, 400);
+        animator.addUpdateListener(animation -> {
+            int curValue = (int) animation.getAnimatedValue();
+            iv.layout(iv.getLeft(), curValue, iv.getRight(), curValue + iv.getHeight());
+        });
+        animator.setDuration(2000);
+        // 弹跳BounceInterpolator()
+        // 线性
+        animator.setInterpolator(new DefineSelfInterpolator());
+        return animator;
+    }
+
+    /**
+     * Evaluator其实就是一个转换器，他能把小数进度转换成对应的数值位置
+     * 对于Evaluator而言，ofInt()的默认Evaluator当然是IntEvaluator;而FloatEvalutar默认的则是FloatEvalutor;
+     */
+    private ValueAnimator evaluatorAnimatorPlay() {
+        ValueAnimator animator = ValueAnimator.ofInt(0, 400);
+        animator.addUpdateListener(animation -> {
+            int curValue = (int) animation.getAnimatedValue();
+            iv.layout(iv.getLeft(), curValue, iv.getRight(), curValue + iv.getHeight());
+        });
+        animator.setDuration(2000);
+        animator.setEvaluator(new DefineEvalutor());
+        animator.setInterpolator(new BounceInterpolator());
+        return animator;
+    }
+
+
+    /**
+     * ArgbEvaluator 用于颜色渐变
+     *
+     * @return
+     */
+    private ValueAnimator argevaluatorAnimatorPlay() {
+        ValueAnimator animator = ValueAnimator.ofInt(0xffffff00, 0xff0000ff);
+        animator.addUpdateListener(animation -> {
+            int curValue = (int) animation.getAnimatedValue();
+            tvShow.setBackgroundColor(curValue);
+        });
+        animator.setDuration(5000);
+        animator.setEvaluator(new ArgbEvaluator());
+        animator.setInterpolator(new BounceInterpolator());
         return animator;
     }
 
