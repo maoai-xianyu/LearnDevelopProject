@@ -70,14 +70,22 @@
     </style>
 
 
-    <style name="home_main_text_style">
+    <style name="home_main_text_style" parent="text_style">
+        <item name="android:layout_marginTop">@dimen/d10</item>
         <item name="android:paddingEnd">@dimen/d10</item>
         <item name="android:paddingStart">@dimen/d10</item>
         <item name="android:background">@drawable/shape_corner_button</item>
         <item name="android:textSize">@dimen/text_size_20</item>
         <item name="android:textColor">@color/c_000000</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">@dimen/d10</item>
+    </style>
+
+    <style name="text_style">
+        <item name="android:padding">@dimen/d10</item>
+        <item name="android:background">@drawable/shape_corner_button</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/c_000000</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 
     <style name="BaseWidget.Design.TabLayout" parent="android:Widget">
