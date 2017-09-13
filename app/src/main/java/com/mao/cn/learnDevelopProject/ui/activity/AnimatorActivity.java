@@ -32,6 +32,7 @@ import com.mao.cn.learnDevelopProject.ui.features.IMain;
 import com.mao.cn.learnDevelopProject.ui.fragment.FrameFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.OthersFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.Rotate3DFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.TweenCodeFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.TweenFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.ValueFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -117,6 +118,7 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(FrameFragment.getInstance());
         fragmentList.add(TweenFragment.getInstance());
+        fragmentList.add(TweenCodeFragment.getInstance());
         fragmentList.add(ValueFragment.getInstance());
         fragmentList.add(Rotate3DFragment.getInstance());
         fragmentList.add(OthersFragment.getInstance());
@@ -124,6 +126,7 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         List<String> titles = new ArrayList<>();
         titles.add("逐帧动画");
         titles.add("Tween动画");
+        titles.add("TweenCode动画");
         titles.add("value动画");
         titles.add("3d旋转动画");
         titles.add("others动画");
