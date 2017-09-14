@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_play_int"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="property" />
+
+        <TextView
+            android:id="@+id/tv_play_z"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="propertyObject" />
+
+        <TextView
+            android:id="@+id/tv_play_x"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameCall" />
+
+        <TextView
+            android:id="@+id/tv_play_y"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameNoInter" />
+
+        <TextView
+            android:id="@+id/tv_trans_x"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameInter" />
+
+        <TextView
+            android:id="@+id/tv_trans_y"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameZero" />
+
+        <TextView
+            android:id="@+id/tv_scale_x"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameLast" />
+
+        <TextView
+            android:id="@+id/tv_scale_y"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameBetween" />
+
+        <TextView
+            android:id="@+id/tv_object"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="FrameObject" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="cancel" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="@dimen/d80"
+        android:layout_height="@dimen/d100"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/image_datong_logo" />
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="@dimen/d80"
+        android:layout_height="@dimen/d100"
+        android:layout_below="@+id/iv"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon_down" />
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_arrow"
+        android:layout_centerHorizontal="true"
+        android:background="@color/c_000000"
+        android:padding="@dimen/d10"
+        android:text="显示"
+        android:textColor="@color/c_f4c41f"
+        android:textSize="@dimen/text_size_16" />
+
+    <TextView
+        android:id="@+id/tv_show_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_show"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/d10"
+        android:textColor="@color/c_f4c41f"
+        android:textSize="@dimen/text_size_36" />
+
+    <com.mao.cn.learnDevelopProject.wedget.difineview.DefineTextView
+        android:id="@+id/tv_define"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_show_num"
+        android:layout_centerHorizontal="true"
+        android:text="显示"
+        android:textColor="@color/c_000000" />
+
+    <ImageView
+        android:id="@+id/iv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_define"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/image_phone" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/d5"
+        android:gravity="right"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_pva"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pva圆" />
+
+        <TextView
+            android:id="@+id/tv_inter"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="插值器" />
+
+        <TextView
+            android:id="@+id/tv_argb"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="arg arg" />
+
+        <TextView
+            android:id="@+id/tv_arg"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="arg Int" />
+
+        <TextView
+            android:id="@+id/tv_num"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="num" />
+
+        <TextView
+            android:id="@+id/tv_arrow"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="arrow" />
+
+    </LinearLayout>
+
+</RelativeLayout>

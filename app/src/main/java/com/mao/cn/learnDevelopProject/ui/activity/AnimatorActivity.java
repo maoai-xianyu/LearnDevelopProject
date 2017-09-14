@@ -32,6 +32,7 @@ import com.mao.cn.learnDevelopProject.ui.features.IMain;
 import com.mao.cn.learnDevelopProject.ui.fragment.FrameFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.ObjectAnimFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.OthersFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.PropertyValuesKeyFrameAnimFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.Rotate3DFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.TweenCodeFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.TweenFragment;
@@ -122,6 +123,7 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         fragmentList.add(TweenCodeFragment.getInstance());
         fragmentList.add(ValueFragment.getInstance());
         fragmentList.add(ObjectAnimFragment.getInstance());
+        fragmentList.add(PropertyValuesKeyFrameAnimFragment.getInstance());
         fragmentList.add(Rotate3DFragment.getInstance());
         fragmentList.add(OthersFragment.getInstance());
 
@@ -129,8 +131,9 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         titles.add("逐帧动画");
         titles.add("Tween动画");
         titles.add("TweenCode动画");
-        titles.add("value动画");
-        titles.add("object动画");
+        titles.add("Value动画");
+        titles.add("Object动画");
+        titles.add("PropertyKeyframe动画");
         titles.add("3d旋转动画");
         titles.add("others动画");
 
