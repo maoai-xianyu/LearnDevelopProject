@@ -51,6 +51,14 @@
         android:layout_below="@+id/ll_header"
         android:src="@drawable/image_datong_logo" />
 
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_toEndOf="@+id/iv"
+        android:layout_width="@dimen/d80"
+        android:layout_height="@dimen/d100"
+        android:layout_below="@+id/ll_header"
+        android:src="@drawable/icon_down" />
+
     <TextView
         android:id="@+id/tv_show"
         android:layout_width="wrap_content"
@@ -110,6 +118,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/d5"
             android:text="objectClass" />
+
+        <TextView
+            android:id="@+id/tv_arrow"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:text="arrow" />
 
     </LinearLayout>
 

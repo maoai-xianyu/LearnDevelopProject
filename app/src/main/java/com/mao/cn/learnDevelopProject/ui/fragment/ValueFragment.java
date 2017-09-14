@@ -57,6 +57,9 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
     TextView tvArgb;
     @BindView(R.id.iv)
     ImageView iv;
+    @BindView(R.id.iv_arrow)
+    ImageView ivArrow;
+
     @BindView(R.id.tv_show)
     TextView tvShow;
     @BindView(R.id.tv_show_num)
@@ -71,8 +74,12 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
     PointView pv;
     @BindView(R.id.tv_class)
     TextView tvClass;
+    @BindView(R.id.tv_arrow)
+    TextView tvArrow;
 
     private ValueAnimator animator;
+
+    private boolean rotate;
 
     public static ValueFragment getInstance() {
         return new ValueFragment();
@@ -179,6 +186,14 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(tvClass).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             pv.doPointAnim();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvArrow).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = ivArrowAnimatorPlay();
+            animator.start();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -361,6 +376,36 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
         animator.setInterpolator(new AccelerateInterpolator());
         animator.setDuration(5000);
         return animator;
+    }
+
+
+    /**
+     * 练习
+     */
+    private ValueAnimator ivArrowAnimatorPlay() {
+        ValueAnimator animator;
+        if (rotate){
+            animator = ValueAnimator.ofFloat(180f,360f);
+            animator.addUpdateListener(animation -> {
+                Float animatedValue = (Float)animation.getAnimatedValue();
+                int curValue = animatedValue.intValue();
+                ivArrow.setRotation(curValue);
+            });
+            animator.setDuration(1000);
+            rotate = false;
+        }else {
+            animator = ValueAnimator.ofFloat(0,180f);
+            animator.addUpdateListener(animation -> {
+                Float animatedValue = (Float)animation.getAnimatedValue();
+                int curValue = animatedValue.intValue();
+                ivArrow.setRotation(curValue);
+            });
+            animator.setDuration(1000);
+            rotate = true;
+        }
+
+        return animator;
+
     }
 
 }
