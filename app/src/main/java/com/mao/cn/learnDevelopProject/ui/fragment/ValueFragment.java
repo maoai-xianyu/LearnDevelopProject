@@ -13,6 +13,7 @@ import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.wedget.difineview.PointView;
+import com.mao.cn.learnDevelopProject.wedget.interploator.CharEvalutor;
 import com.mao.cn.learnDevelopProject.wedget.interploator.DefineEvalutor;
 import com.mao.cn.learnDevelopProject.wedget.interploator.DefineSelfInterpolator;
 
@@ -56,6 +59,18 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
     ImageView iv;
     @BindView(R.id.tv_show)
     TextView tvShow;
+    @BindView(R.id.tv_show_num)
+    TextView tvShowNum;
+    @BindView(R.id.tv_num)
+    TextView tvNum;
+    @BindView(R.id.tv_show_char)
+    TextView tvShowChar;
+    @BindView(R.id.tv_object)
+    TextView tvObject;
+    @BindView(R.id.pv)
+    PointView pv;
+    @BindView(R.id.tv_class)
+    TextView tvClass;
 
     private ValueAnimator animator;
 
@@ -141,6 +156,29 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
                 .MILLISECONDS).subscribe(aVoid -> {
             animator = argevaluatorAnimatorPlay();
             animator.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvNum).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = numluatorAnimatorPlay();
+            animator.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvObject).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = objectAnimatorPlay();
+            animator.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvClass).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            pv.doPointAnim();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -280,6 +318,48 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
         animator.setDuration(5000);
         animator.setEvaluator(new ArgbEvaluator());
         animator.setInterpolator(new BounceInterpolator());
+        return animator;
+    }
+
+
+    /**
+     * 练习动画
+     *
+     * @return
+     */
+    private ValueAnimator numluatorAnimatorPlay() {
+        tvShowNum.setText("203");
+//        ValueAnimator animator = ValueAnimator.ofFloat(5f, 1.5f, 4f, 1.5f, 3f, 1.5f);
+        ValueAnimator animator = ValueAnimator.ofFloat(5f, 1.5f);
+        animator.addUpdateListener(animation -> {
+            Float curValue = (Float) animation.getAnimatedValue();
+            if (tvShowNum != null) {
+                tvShowNum.setScaleX(curValue);
+                tvShowNum.setScaleY(curValue);
+            }
+        });
+        animator.setInterpolator(new BounceInterpolator());
+        animator.setDuration(5000);
+        return animator;
+    }
+
+
+    /**
+     * ofObject
+     * 第一个是自定义的Evaluator，第二个是可变长参数，Object类型的；
+     *
+     * @return
+     */
+    private ValueAnimator objectAnimatorPlay() {
+        ValueAnimator animator = ValueAnimator.ofObject(new CharEvalutor(), 'A', 'Z');
+        animator.addUpdateListener(animation -> {
+            char curValue = (char) animation.getAnimatedValue();
+            if (tvShowChar != null) {
+                tvShowChar.setText(String.valueOf(curValue));
+            }
+        });
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.setDuration(5000);
         return animator;
     }
 

@@ -54,13 +54,67 @@
     <TextView
         android:id="@+id/tv_show"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:background="@color/c_4F99F0"
         android:padding="@dimen/d10"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="显示" />
 
+    <TextView
+        android:id="@+id/tv_show_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/d10"
+        android:textColor="@color/c_f4c41f"
+        android:textSize="@dimen/text_size_36" />
+
+    <com.mao.cn.learnDevelopProject.wedget.difineview.PointView
+        android:id="@+id/pv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_show_num"
+        android:layout_centerInParent="true" />
+
+
+    <TextView
+        android:id="@+id/tv_show_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@color/c_000000"
+        android:padding="@dimen/d10"
+        android:text="显示"
+        android:textColor="@color/c_f4c41f"
+        android:textSize="@dimen/text_size_16" />
+
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_bottom">
+
+        <TextView
+            android:id="@+id/tv_object"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:text="objectPlay" />
+
+        <TextView
+            android:id="@+id/tv_class"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:text="objectClass" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -89,6 +143,14 @@
             android:layout_marginStart="@dimen/d5"
             android:text="argbevalutor" />
 
+        <TextView
+            android:id="@+id/tv_num"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:text="num"
+            android:textSize="@dimen/text_size_6" />
     </LinearLayout>
 
 </RelativeLayout>
