@@ -133,7 +133,7 @@ public class AnimatorActivity extends BaseActivity implements IMain {
         titles.add("TweenCode动画");
         titles.add("Value动画");
         titles.add("Object动画");
-        titles.add("PropertyKeyframe动画");
+        titles.add("PropertyKeyframeAndAnimatorSet动画");
         titles.add("3d旋转动画");
         titles.add("others动画");
 

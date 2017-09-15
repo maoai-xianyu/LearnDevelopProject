@@ -10,11 +10,12 @@
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
 import android.animation.Animator;
-import android.animation.ArgbEvaluator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.os.Build;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
@@ -89,8 +90,18 @@ public class PropertyValuesKeyFrameAnimFragment extends BaseFragment implements 
     TextView tvNum;
     @BindView(R.id.tv_arrow)
     TextView tvArrow;
+    @BindView(R.id.tv_cancel_set)
+    TextView tvCancelSet;
+    @BindView(R.id.tv_value_an)
+    TextView tvValueAn;
+    @BindView(R.id.tv_object_an)
+    TextView tvObjectAn;
+    @BindView(R.id.tv_set_an)
+    TextView tvSetAn;
 
     private ObjectAnimator animator;
+
+    private AnimatorSet animatorSet;
 
     private boolean rotate;
 
@@ -201,6 +212,15 @@ public class PropertyValuesKeyFrameAnimFragment extends BaseFragment implements 
             LogU.e(throwable.getMessage());
         });
 
+        RxView.clicks(tvArrow).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animator = ivArrowAnimatorPlay();
+            animator.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+
         RxView.clicks(iv).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             onTip("点击我了！");
@@ -209,38 +229,70 @@ public class PropertyValuesKeyFrameAnimFragment extends BaseFragment implements 
         });
 
 
+        RxView.clicks(tvPva).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            animatorSet = playSquentiallyAnim();
+            animatorSet.start();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
         RxView.clicks(tvInter).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            animator.start();
+            animatorSet = playTogetherAnim();
+            animatorSet.start();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(tvArgb).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            animator.start();
+            animatorSet = playBuilderAnim();
+            animatorSet.start();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(tvArg).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            animator.start();
+            animatorSet = playBuilderAnimLintener();
+            animatorSet.start();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
 
         RxView.clicks(tvNum).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            animator.start();
+            animatorSet = playBuilderAnimSetProperty();
+            animatorSet.start();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
 
-        RxView.clicks(tvArrow).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+        RxView.clicks(tvCancelSet).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            animator = ivArrowAnimatorPlay();
-            animator.start();
+            animatorSet.cancel();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvValueAn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            valueAnimatorPlayxml();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvObjectAn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            objectAnimatorPlayxml();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvSetAn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            setAnimatorPlayxml();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -469,4 +521,185 @@ public class PropertyValuesKeyFrameAnimFragment extends BaseFragment implements 
         animator.setDuration(1000);
         return animator;
     }
+
+    /**
+     * playSequentially的效果，即逐个播放动画，一个动画结束后，播放下一个动画
+     * <p>
+     * 通过上面两个例子，总结的时候到了：
+     * 第一：playTogether和playSequentially在激活动画后，控件的动画情况与它们无关，他们只负责定时激活控件动画。
+     * 第二：playSequentially只有上一个控件做完动画以后，才会激活下一个控件的动画，如果上一控件的动画是无限循环，那下一个控件就别再指望能做动画了。
+     *
+     * @return
+     */
+    private AnimatorSet playSquentiallyAnim() {
+        ObjectAnimator animatoR = ObjectAnimator.ofFloat(iv, "rotation", 0, 20f, -20f, 20f, -20f, 0);
+        ObjectAnimator animatorSX = ObjectAnimator.ofFloat(iv, "scaleX", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorSY = ObjectAnimator.ofFloat(iv, "scaleY", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorAlpha = ObjectAnimator.ofInt(tvShow, "BackgroundColor", 0xffffffff, 0xffff00ff, 0xffffff00, 0xffffffff);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playSequentially(animatoR, animatorSX, animatorSY, animatorAlpha);
+        animatorSet.setDuration(5000);
+        return animatorSet;
+    }
+
+
+    /**
+     * playTogether的效果，同时播放动画
+     *
+     * @return
+     */
+    private AnimatorSet playTogetherAnim() {
+        ObjectAnimator animatoR = ObjectAnimator.ofFloat(ivPhone, "rotation", 0, 20f, -20f, 20f, -20f, 20f, -20f, 0);
+        ObjectAnimator animatorSX = ObjectAnimator.ofFloat(ivPhone, "scaleX", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorSY = ObjectAnimator.ofFloat(ivPhone, "scaleY", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorAlpha = ObjectAnimator.ofInt(tvShow, "BackgroundColor", 0xffffffff, 0xffff00ff, 0xffffff00, 0xffffffff);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(animatoR, animatorSX, animatorSY, animatorAlpha);
+        animatorSet.setDuration(2000);
+        return animatorSet;
+    }
+
+    /**
+     * AnimatorSet.Builder;
+     *
+     * @return
+     */
+    private AnimatorSet playBuilderAnim() {
+        ObjectAnimator animatoR = ObjectAnimator.ofFloat(ivPhone, "rotation", 0, 20f, -20f, 20f, -20f, 20f, -20f, 0);
+        ObjectAnimator animatorSX = ObjectAnimator.ofFloat(ivPhone, "scaleX", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorSY = ObjectAnimator.ofFloat(ivPhone, "scaleY", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorAlpha = ObjectAnimator.ofInt(tvShow, "BackgroundColor", 0xffffffff, 0xffff00ff, 0xffffff00, 0xffffffff);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(animatoR).with(animatorSX).with(animatorSY).before(animatorAlpha);
+        animatorSet.setDuration(2000);
+        return animatorSet;
+    }
+
+
+    /**
+     * 监听
+     * <p>
+     * 所以我们来总结一下AnimatorSet的监听：
+     * 1、AnimatorSet的监听函数也只是用来监听AnimatorSet的状态的，与其中的动画无关；
+     * 2、AnimatorSet中没有设置循环的函数，所以AnimatorSet监听器中永远无法运行到onAnimationRepeat()中！
+     *
+     * @return
+     */
+    private AnimatorSet playBuilderAnimLintener() {
+        ObjectAnimator animatoR = ObjectAnimator.ofFloat(ivPhone, "rotation", 0, 20f, -20f, 20f, -20f, 20f, -20f, 0);
+        ObjectAnimator animatorSX = ObjectAnimator.ofFloat(ivPhone, "scaleX", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorSY = ObjectAnimator.ofFloat(ivPhone, "scaleY", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorAlpha = ObjectAnimator.ofInt(tvShow, "BackgroundColor", 0xffffffff, 0xffff00ff, 0xffffff00, 0xffffffff);
+        animatorAlpha.setRepeatCount(ValueAnimator.INFINITE);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(animatoR).with(animatorSX).with(animatorSY).before(animatorAlpha);
+        animatorSet.setDuration(2000);
+        animatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+                onTip(" onAnimationStart  开始");
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                onTip(" onAnimationStart  结束");
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                onTip(" onAnimationCancel  取消");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                onTip(" onAnimationRepeat  重复");
+            }
+        });
+        return animatorSet;
+    }
+
+
+    /**
+     * AnimatorSet 属性
+     * AnimatorSet 设置了对应的属性，都以其为主
+     * 唯一例外 setStartDelay
+     * AnimatorSet真正激活延时 = AnimatorSet.startDelay+第一个动画.startDelay
+     *
+     * @return
+     */
+    private AnimatorSet playBuilderAnimSetProperty() {
+        ObjectAnimator animatoR = ObjectAnimator.ofFloat(ivPhone, "rotation", 0, 20f, -20f, 20f, -20f, 20f, -20f, 0);
+        animatoR.setStartDelay(2000);
+        animatoR.setDuration(50000);
+        animatoR.setInterpolator(new BounceInterpolator());
+        ObjectAnimator animatorSX = ObjectAnimator.ofFloat(ivPhone, "scaleX", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorSY = ObjectAnimator.ofFloat(ivPhone, "scaleY", 1, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1);
+        ObjectAnimator animatorAlpha = ObjectAnimator.ofInt(tvShow, "BackgroundColor", 0xffffffff, 0xffff00ff, 0xffffff00, 0xffffffff);
+        animatorAlpha.setInterpolator(new AccelerateInterpolator());
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(animatoR).with(animatorSX).with(animatorSY).before(animatorAlpha);
+        animatorSet.setDuration(2000);
+
+        return animatorSet;
+    }
+
+
+    /**
+     *  valueAnimator xml 动画 对应的是 animator   AnimatorInflater 读取
+     */
+    /**
+     * android:duration:每次动画播放的时长
+     * android:valueFrom:初始动化值；取值范围为float,int和color，如果取值为float对应的值样式应该为89.0，取值为Int时，对应的值样式为：89;当取值为color时，对应的值样式为 #333333;
+     * android:valueTo：动画结束值；取值范围同样是float,int和color这三种类型的值；
+     * android:startOffset：动画激活延时；对应代码中的startDelay(long delay)函数；
+     * android:repeatCount：动画重复次数
+     * android:repeatMode：动画重复模式，取值为repeat和reverse；repeat表示正序重播，reverse表示倒序重播
+     * android:valueType：表示参数值类型，取值为intType和floatType；与android:valueFrom、android:valueTo相对应。如果这里的取值为intType，那么android:valueFrom、android:valueTo的值也就要对应的是int类型的数值。
+     * 如果这里的数值是floatType，那么android:valueFrom、android:valueTo的值也要对应的设置为float类型的值。
+     * 非常注意的是，如果android:valueFrom、android:valueTo的值设置为color类型的值，那么不需要设置这个参数；
+     * android:interpolator:设置加速器；
+     */
+    private void valueAnimatorPlayxml() {
+        ValueAnimator valueAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(activity, R.animator.value_animator);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int animatedValue = (int) animation.getAnimatedValue();
+                tvShow.layout(animatedValue, animatedValue, tvShow.getWidth() + animatedValue, tvShow.getHeight() + animatedValue);
+            }
+        });
+        valueAnimator.start();
+    }
+
+
+    /**
+     * objectAnimator  动画 xml
+     * - android:propertyName：对应属性名，即ObjectAnimator所需要操作的属性名。
+     * 其它字段的意义与animator的意义与取值是一样的，下面再重新列举一下。
+     * - android:duration:每次动画播放的时长
+     * - android:valueFrom:初始动化值；取值范围为float,int和color；
+     * - android:valueTo：动画结束值；取值范围同样是float,int和color这三种类型的值；
+     * - android:startOffset：动画激活延时；对应代码中的startDelay(long delay)函数；
+     * - android:repeatCount：动画重复次数
+     * - android:repeatMode：动画重复模式，取值为repeat和reverse；repeat表示正序重播，reverse表示倒序重播
+     * - android:valueType：表示参数值类型，取值为intType和floatType；与android:valueFrom、android:valueTo相对应。如果这里的取值为intType，那么android:valueFrom、android:valueTo的值也就要对应的是int类型的数值。如果这里的数值是floatType，那么android:valueFrom、android:valueTo的值也要对应的设置为float类型的值。非常注意的是，如果android:valueFrom、android:valueTo的值设置为color类型的值，那么不需要设置这个参数；
+     * - android:interpolator:设置加速器；
+     */
+    private void objectAnimatorPlayxml() {
+        ValueAnimator valueAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(activity, R.animator.object_animator);
+        valueAnimator.setTarget(iv);
+        valueAnimator.start();
+    }
+
+
+    private void setAnimatorPlayxml() {
+        AnimatorSet valueAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(activity, R.animator.set_animator);
+        valueAnimator.setTarget(ivPhone);
+        valueAnimator.setDuration(2000);
+        valueAnimator.start();
+    }
+
 }
