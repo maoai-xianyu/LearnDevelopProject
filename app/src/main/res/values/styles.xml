@@ -110,4 +110,19 @@
     </style>
 
 
+    <style name="MenuStyle">
+        <item name="android:layout_width">@dimen/d30</item>
+        <item name="android:layout_height">@dimen/d30</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="MenuItemStyle">
+        <item name="android:layout_width">@dimen/d25</item>
+        <item name="android:layout_height">@dimen/d25</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+
 </resources>

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
 import android.support.animation.SpringForce;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,6 +59,20 @@ public class OthersFragment extends BaseFragment implements IMainGuide {
     TextView tvSpring;
     @BindView(R.id.iv)
     ImageView iv;
+    @BindView(R.id.menu)
+    Button btnMenu;
+    @BindView(R.id.item1)
+    Button btnItem1;
+    @BindView(R.id.item2)
+    Button btnItem2;
+    @BindView(R.id.item3)
+    Button btnItem3;
+    @BindView(R.id.item4)
+    Button btnItem4;
+    @BindView(R.id.item5)
+    Button btnItem5;
+
+    private boolean isMenuOpen;
 
     public static OthersFragment getInstance() {
         return new OthersFragment();
@@ -115,6 +130,90 @@ public class OthersFragment extends BaseFragment implements IMainGuide {
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
+
+        RxView.clicks(btnMenu).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            playStartMenu();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+    }
+
+    private void playStartMenu() {
+        if (isMenuOpen) {
+            doAnimateClose(btnItem1, 0, 5, 300);
+            doAnimateClose(btnItem2, 1, 5, 300);
+            doAnimateClose(btnItem3, 2, 5, 300);
+            doAnimateClose(btnItem4, 3, 5, 300);
+            doAnimateClose(btnItem5, 4, 5, 300);
+            isMenuOpen = false;
+        } else {
+            doAnimateOpen(btnItem1, 0, 5, 300);
+            doAnimateOpen(btnItem2, 1, 5, 300);
+            doAnimateOpen(btnItem3, 2, 5, 300);
+            doAnimateOpen(btnItem4, 3, 5, 300);
+            doAnimateOpen(btnItem5, 4, 5, 300);
+            isMenuOpen = true;
+        }
+    }
+
+    /**
+     * 打开菜单的动画
+     * @param view 执行动画的view
+     * @param index view在动画序列中的顺序,从0开始
+     * @param total 动画序列的个数
+     * @param radius 动画半径
+     *
+     *  Math.sin(x):x -- 为number类型的弧度，角度乘以0.017(2π/360)可以转变为弧度
+     */
+    private void doAnimateOpen(View view, int index, int total, int radius) {
+        if (view.getVisibility() != View.VISIBLE) {
+            view.setVisibility(View.VISIBLE);
+        }
+        double degree = Math.toRadians(90) / (total - 1) * index;
+        int translationX = -(int) (radius * Math.sin(degree));
+        int translationY = -(int) (radius * Math.cos(degree));
+
+        AnimatorSet set = new AnimatorSet();
+        //包含平移、缩放和透明度动画
+        set.playTogether(
+                ObjectAnimator.ofFloat(view, "translationX", 0, translationX),
+                ObjectAnimator.ofFloat(view, "translationY", 0, translationY),
+                ObjectAnimator.ofFloat(view, "scaleX", 0f, 1f),
+                ObjectAnimator.ofFloat(view, "scaleY", 0f, 1f),
+                ObjectAnimator.ofFloat(view, "alpha", 0f, 1));
+        //动画周期为500ms
+        set.setDuration(500).start();
+
+    }
+
+    /**
+     * 关闭菜单的动画
+     * @param view 执行动画的view
+     * @param index view在动画序列中的顺序
+     * @param total 动画序列的个数
+     * @param radius 动画半径
+     */
+    private void doAnimateClose(View view, int index, int total, int radius) {
+
+        if (view.getVisibility() != View.VISIBLE) {
+            view.setVisibility(View.VISIBLE);
+        }
+        double degree = Math.PI * index / ((total - 1) * 2);
+        int translationX = -(int) (radius * Math.sin(degree));
+        int translationY = -(int) (radius * Math.cos(degree));
+        AnimatorSet set = new AnimatorSet();
+        //包含平移、缩放和透明度动画
+        set.playTogether(
+                ObjectAnimator.ofFloat(view, "translationX", translationX, 0),
+                ObjectAnimator.ofFloat(view, "translationY", translationY, 0),
+                ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.1f),
+                ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.1f),
+                ObjectAnimator.ofFloat(view, "alpha", 1f, 0f));
+
+        set.setDuration(500).start();
+
 
     }
 
