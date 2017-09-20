@@ -2,14 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/c_FFFFFF"
-    android:orientation="vertical">
+    android:background="@color/c_FFFFFF">
+
+    <TextView
+        android:id="@+id/tv_inter"
+        style="@style/text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d5"
+        android:text="弹性动画-interpolator" />
+
+    <TextView
+        android:id="@+id/tv_rebound"
+        style="@style/text_style"
+        android:layout_below="@+id/tv_inter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d5"
+        android:text="弹性动画-rebound" />
+
+    <TextView
+        android:id="@+id/tv_spring"
+        style="@style/text_style"
+        android:layout_below="@+id/tv_rebound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d5"
+        android:text="弹性动画-springAnimatrion" />
+
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/image_phone" />
+
 
     <Button
         android:id="@+id/btn_play"
         style="@style/home_main_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/rl_header"
         android:text="play" />
 
