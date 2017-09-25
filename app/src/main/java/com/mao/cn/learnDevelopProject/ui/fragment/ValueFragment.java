@@ -352,6 +352,7 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
                 tvShowNum.setScaleX(curValue);
                 tvShowNum.setScaleY(curValue);
             }
+
         });
         animator.setInterpolator(new BounceInterpolator());
         animator.setDuration(5000);
