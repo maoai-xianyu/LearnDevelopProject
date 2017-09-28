@@ -55,6 +55,8 @@ public class MainActivity extends BaseActivity implements IMain {
     Button btnAnimator;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    @BindView(R.id.btn_define_view)
+    Button btnDefineView;
 
 
     @Override
@@ -84,7 +86,6 @@ public class MainActivity extends BaseActivity implements IMain {
             LogU.e(throwable.getMessage());
         });
 
-
         RxView.clicks(btnDescRxjava).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(RxJavaLearnActivity.class);
@@ -105,9 +106,17 @@ public class MainActivity extends BaseActivity implements IMain {
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
+
         RxView.clicks(btnLogin).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(FancyCoverFlowActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnDefineView).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(DefineViewActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
