@@ -70,6 +70,14 @@
                 android:layout_below="@+id/btn_login"
                 android:text="自定义View" />
 
+            <Button
+                android:id="@+id/btn_sp_string"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_define_view"
+                android:text="spannableString" />
+
         </RelativeLayout>
     </ScrollView>
 

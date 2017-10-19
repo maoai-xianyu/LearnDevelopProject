@@ -57,6 +57,8 @@ public class MainActivity extends BaseActivity implements IMain {
     Button btnLogin;
     @BindView(R.id.btn_define_view)
     Button btnDefineView;
+    @BindView(R.id.btn_sp_string)
+    Button btnSpString;
 
 
     @Override
@@ -117,6 +119,13 @@ public class MainActivity extends BaseActivity implements IMain {
         RxView.clicks(btnDefineView).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(DefineViewActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnSpString).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(StringSpannerClickActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
