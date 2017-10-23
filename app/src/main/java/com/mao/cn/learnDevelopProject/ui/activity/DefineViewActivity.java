@@ -27,6 +27,8 @@ import com.mao.cn.learnDevelopProject.ui.adapter.CommonPagerTabAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IDefineView;
 import com.mao.cn.learnDevelopProject.ui.fragment.DefineView1Fragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.DefineView2Fragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.DefineView3Fragment;
 import com.mao.cn.learnDevelopProject.ui.presenter.DefineViewPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -93,9 +95,13 @@ public class DefineViewActivity extends BaseActivity implements IDefineView {
     private void initData() {
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(DefineView1Fragment.getInstance());
+        fragmentList.add(DefineView2Fragment.getInstance());
+        fragmentList.add(DefineView3Fragment.getInstance());
 
         List<String> titles = new ArrayList<>();
         titles.add("View1");
+        titles.add("View2");
+        titles.add("View3");
 
         CommonPagerTabAdapter tabAdapter = new CommonPagerTabAdapter(getSupportFragmentManager());
         tabAdapter.reloadData(fragmentList, titles);

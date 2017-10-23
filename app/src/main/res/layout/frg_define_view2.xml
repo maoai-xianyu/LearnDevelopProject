@@ -7,10 +7,15 @@
 
     <com.mao.cn.learnDevelopProject.wedget.difineview.study.MeasureView1Start
         android:id="@+id/define_s"
-        android:layout_centerInParent="true"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/c_ff4D30"/>
+
+    <TextView
+        android:background="@color/c_4F99F0"
+        android:layout_marginTop="@dimen/d200"
+        android:layout_width="@dimen/d200"
+        android:layout_height="@dimen/d200" />
 
 
 

@@ -7,13 +7,9 @@
 
     <com.mao.cn.learnDevelopProject.wedget.difineview.study.MeasureView1Start
         android:id="@+id/define_s"
-        android:layout_centerInParent="true"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/d300"
+        android:layout_height="@dimen/d300"
         android:background="@color/c_ff4D30"/>
-
-
-
 
     <!--<com.mao.cn.learnDevelopProject.wedget.difineview.study.MeasureView1CanvasAndPaint
         android:layout_width="200dp"

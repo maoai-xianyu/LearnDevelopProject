@@ -15,24 +15,17 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
-import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.mao.cn.learnDevelopProject.wedget.difineview.study.MeasureView1Start;
-
-import butterknife.BindView;
 
 /**
  * DecorView将内容显示在PhoneWindow上，
  * 并通过WindowManagerService来进行接收，并通过Activity对象来回调对应的onClickListener。
  * 显示时，将屏幕分成两个部分，TitleView和ContentView。
  */
-public class DefineView1Fragment extends BaseFragment implements IMainGuide {
+public class DefineView3Fragment extends BaseFragment implements IMainGuide {
 
 
-    @BindView(R.id.define_s)
-    MeasureView1Start measureView1Start;
-
-    public static DefineView1Fragment getInstance() {
-        return new DefineView1Fragment();
+    public static DefineView3Fragment getInstance() {
+        return new DefineView3Fragment();
     }
 
     @Override
@@ -42,25 +35,11 @@ public class DefineView1Fragment extends BaseFragment implements IMainGuide {
 
     @Override
     protected int setView() {
-        return R.layout.frg_define_view1;
+        return R.layout.frg_define_view3;
     }
 
     @Override
     public void initView() {
-
-        measureView1Start.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                LogU.i(" left "+measureView1Start.getLeft());
-                LogU.i(" top "+measureView1Start.getTop());
-                LogU.i(" getRight "+measureView1Start.getRight());
-                LogU.i(" getBottom "+measureView1Start.getBottom());
-                LogU.i(" X "+measureView1Start.getX());
-                LogU.i(" Y "+measureView1Start.getY());
-                LogU.i(" getTranslationX "+measureView1Start.getTranslationX());
-                LogU.i(" getTranslationY "+measureView1Start.getTranslationY());
-            }
-        },1);
 
     }
 
