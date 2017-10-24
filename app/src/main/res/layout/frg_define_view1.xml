@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/c_FFFFFF"
     android:orientation="vertical">
 
@@ -12,6 +13,23 @@
         android:layout_height="200dp"
         android:background="@color/c_ff4D30"/>
 
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_below="@+id/define_s"
+        android:id="@+id/iv_advertisement_detail"
+        android:layout_width="@dimen/d200"
+        android:layout_height="@dimen/d200"
+        app:placeholderImage="@drawable/image_datong_logo"
+        app:placeholderImageScaleType="centerCrop"/>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_below="@+id/define_s"
+        android:layout_toEndOf="@+id/iv_advertisement_detail"
+        android:id="@+id/sv_default"
+        android:layout_width="@dimen/d200"
+        android:layout_height="@dimen/d200"
+        app:placeholderImage="@drawable/image_datong_logo"
+        app:placeholderImageScaleType="centerCrop"/>
 
 
 

@@ -9,13 +9,19 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.JsonSyntaxException;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
+import com.mao.cn.learnDevelopProject.model.AdvertisementConfig;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
+import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.ResourceU;
 import com.mao.cn.learnDevelopProject.wedget.difineview.study.MeasureView1Start;
 
 import butterknife.BindView;
@@ -30,6 +36,10 @@ public class DefineView1Fragment extends BaseFragment implements IMainGuide {
 
     @BindView(R.id.define_s)
     MeasureView1Start measureView1Start;
+    @BindView(R.id.iv_advertisement_detail)
+    SimpleDraweeView ivAdver;
+    @BindView(R.id.sv_default)
+    SimpleDraweeView svDefault;
 
     public static DefineView1Fragment getInstance() {
         return new DefineView1Fragment();
@@ -61,6 +71,27 @@ public class DefineView1Fragment extends BaseFragment implements IMainGuide {
                 LogU.i(" getTranslationY "+measureView1Start.getTranslationY());
             }
         },1);
+
+        String imageUrl = ResourceU.getCoverByPathToFresco("images/image_name_sign.png");
+        ivAdver.setImageURI(Uri.parse(imageUrl));
+
+        String imageDefault = ResourceU.getDefaultCoverPathToFresco();
+        svDefault.setImageURI(Uri.parse(imageDefault));
+
+        String jsonFile = ResourceU.getCommonDataFromJsonFile("ad/advertisement_config.json");
+
+        AdvertisementConfig config;
+        try {
+            config = GsonU.convert(jsonFile, AdvertisementConfig.class);
+        } catch (JsonSyntaxException e) {
+            config = null;
+            e.printStackTrace();
+        }
+        LogU.i("config  "+config);
+        if (config != null) {
+            String url = config.getUrl();
+            LogU.i(" url "+url);
+        }
 
     }
 

@@ -21,15 +21,48 @@ import java.io.InputStream;
 
 public class ResourceU {
 
-    public static String getDefaultCover() {
-        String prex = "files" + File.separator + "image_default_bg.jpg";
+
+    public static String getCoverByPathToPicasso(String path) {
+        String prex = "files" + File.separator + path;
         if (hasSdFilesFile(File.separator + prex)) {
-            return KeyMaps.ImagesFresco.FRESCO_FILE + PathU.getInstance().getFilesPath() + File.separator + prex;
+            return KeyMaps.ImagesAssetPath.PICASSO_FILE + PathU.getInstance().getFilesPath() + File.separator + prex;
         } else {
-            return KeyMaps.ImagesFresco.FRESCO_ASSET + prex;
+            return KeyMaps.ImagesAssetPath.PICASSO_ASSETS + prex;
         }
     }
 
+    public static String getDefaultCoverPathToPicasso() {
+        String prex = "files" + File.separator + "images/image_name_sign.png";
+        if (hasSdFilesFile(File.separator + prex)) {
+            return KeyMaps.ImagesAssetPath.PICASSO_FILE + PathU.getInstance().getFilesPath() + File.separator + prex;
+        } else {
+            return KeyMaps.ImagesAssetPath.PICASSO_ASSETS + prex;
+        }
+    }
+
+    public static String getCoverByPathToFresco(String path) {
+        String prex = "files" + File.separator + path;
+        if (hasSdFilesFile(File.separator + prex)) {
+            return KeyMaps.ImagesAssetPath.FRESCO_FILE + PathU.getInstance().getFilesPath() + File.separator + prex;
+        } else {
+            return KeyMaps.ImagesAssetPath.FRESCO_ASSET + prex;
+        }
+    }
+
+    public static String getDefaultCoverPathToFresco() {
+        String prex = "files" + File.separator + "images/image_name_sign.png";
+        if (hasSdFilesFile(File.separator + prex)) {
+            return KeyMaps.ImagesAssetPath.FRESCO_FILE + PathU.getInstance().getFilesPath() + File.separator + prex;
+        } else {
+            return KeyMaps.ImagesAssetPath.FRESCO_ASSET + prex;
+        }
+    }
+
+    /**
+     * 获取sd上的图片，如果没有就用内部的
+     * @param imageName
+     * @return
+     */
     public static Bitmap getImageBitmap(String imageName) {
         AssetManager assetManager = LearnDevelopApplication.context().getAssets();
         String filename = "files/image_icons/" + imageName;
@@ -45,6 +78,12 @@ public class ResourceU {
         return null;
     }
 
+
+    /**
+     * 获取内部assets下的文件
+     * @param imageName
+     * @return
+     */
     public static Bitmap getBitmap(String imageName) {
         AssetManager assetManager = LearnDevelopApplication.context().getAssets();
         InputStream is = null;
@@ -67,7 +106,7 @@ public class ResourceU {
     }
 
     /**
-     * 用于获取一些读取静态资源信息的方法
+     * 用于获取一些读取静态资源信息的方法，先读sd的后读内部的
      *
      * @param fileName
      * @return
@@ -92,7 +131,12 @@ public class ResourceU {
         return dataStr;
     }
 
-    public static boolean hasSdFilesFile(String filename) {
+    /**
+     * 检测sd上是否有对应的文件
+     * @param filename
+     * @return
+     */
+    private static boolean hasSdFilesFile(String filename) {
         File file;
         try {
             file = new File(PathU.getInstance().getFilesPath() + filename);
@@ -171,6 +215,4 @@ public class ResourceU {
         }
         return list;
     }
-
-
 }
