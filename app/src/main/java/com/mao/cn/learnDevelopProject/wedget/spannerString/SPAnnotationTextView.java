@@ -60,9 +60,9 @@ public class SPAnnotationTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setAnnotationText(String text, SparseArray<String> annotations) {
+    public void setAnnotationText(String text, SparseArray<String> annotations,ClickWordListener listener) {
         if (StringU.isNotEmpty(text)) {
-            setAnnotationTextSSB(text, annotations);
+            setAnnotationTextSSB(text, annotations,listener);
         }
     }
 
@@ -72,7 +72,7 @@ public class SPAnnotationTextView extends TextView {
      * @param str
      * @param annotations
      */
-    public void setAnnotationTextSSB(String str, SparseArray<String> annotations) {
+    public void setAnnotationTextSSB(String str, SparseArray<String> annotations,ClickWordListener listener) {
         String keyword;
         int start, end;
         int startNum = 0;
@@ -133,7 +133,7 @@ public class SPAnnotationTextView extends TextView {
                 }
             }
         }
-        builder = setKeyWordClickable(builder, topicPattern);
+        builder = setKeyWordClickable(builder, topicPattern,listener);
         setMovementMethod(LinkMovementMethod.getInstance());
         setText(builder);
     }
@@ -158,7 +158,7 @@ public class SPAnnotationTextView extends TextView {
      * @param pattern
      * @return
      */
-    public static SpannableStringBuilder setKeyWordClickable(SpannableStringBuilder ssBuilder, Pattern pattern) {
+    public static SpannableStringBuilder setKeyWordClickable(SpannableStringBuilder ssBuilder, Pattern pattern,ClickWordListener listener) {
         String tempSSBuilder = ssBuilder.toString();
         LogU.i("  ss.toString()) " + tempSSBuilder);
         Matcher matcher = pattern.matcher(tempSSBuilder);
@@ -181,7 +181,7 @@ public class SPAnnotationTextView extends TextView {
                 tempEnd = end + tempEnd;
             }
         }
-        return setClickTextView(ssBuilder, list);
+        return setClickTextView(ssBuilder, list,listener);
     }
 
     /**
@@ -191,9 +191,9 @@ public class SPAnnotationTextView extends TextView {
      * @param list
      * @return
      */
-    private static SpannableStringBuilder setClickTextView(SpannableStringBuilder ss, final List<Map<String, Integer>> list) {
+    private static SpannableStringBuilder setClickTextView(SpannableStringBuilder ss, final List<Map<String, Integer>> list,ClickWordListener listener) {
         for (int i = 0; i < list.size(); i++) {
-            ClickableSpan wcs = clickWordToDictionary();
+            ClickableSpan wcs = clickWordToDictionary(listener);
             ss.setSpan(wcs, list.get(i).get("start"), list.get(i).get("end"), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         }
         return ss;
@@ -204,14 +204,14 @@ public class SPAnnotationTextView extends TextView {
      *
      * @return
      */
-    private static ClickableSpan clickWordToDictionary() {
+    private static ClickableSpan clickWordToDictionary(ClickWordListener listener) {
         return new ClickableSpan() {
             @Override
             public void onClick(View widget) {
                 TextView tv = (TextView) widget;
                 String word = tv.getText().subSequence(tv.getSelectionStart(), tv.getSelectionEnd()).toString();
                 LogU.i("点击的值是 " + word);
-                WordTranslateU.queryWordFromOlineDictory(word, LearnDevelopApplication.context());
+                listener.showClickContent(word);
             }
 
             @Override
@@ -220,5 +220,9 @@ public class SPAnnotationTextView extends TextView {
                 ds.setUnderlineText(false);
             }
         };
+    }
+
+    public interface ClickWordListener{
+        void showClickContent(String word);
     }
 }

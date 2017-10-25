@@ -25,12 +25,17 @@ import com.mao.cn.learnDevelopProject.modules.StringSpannerClickModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IStringSpannerClick;
 import com.mao.cn.learnDevelopProject.ui.presenter.StringSpannerClickPresenter;
+import com.mao.cn.learnDevelopProject.utils.tools.FileU;
+import com.mao.cn.learnDevelopProject.utils.tools.FileUtils;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.AnnotationTextView;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.ClickableColorSpan;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.KeyWordClickable;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.WordResuorceU;
+import com.mao.cn.learnDevelopProject.wedget.spannerString.WordTranslateU;
+import com.youdao.sdk.ydtranslate.EnWordTranslator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -59,6 +64,8 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
     SPAnnotationTextView spAtvContent;
     @BindView(R.id.sp_atv_content_point)
     SPAnnotationTextView spAtvContentPoint;
+    @BindView(R.id.sp_atv_content_point_native)
+    SPAnnotationTextView spAtvContentPointNative;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -84,9 +91,52 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
 
         atvContent.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll));
 
-        spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll));
+        spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
+            @Override
+            public void showClickContent(String word) {
+                WordTranslateU.queryWordFromOnlineDictory(word, StringSpannerClickActivity.this);
 
-        spAtvContentPoint.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll));
+            }
+        });
+
+        spAtvContentPoint.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
+            @Override
+            public void showClickContent(String word) {
+                WordTranslateU.queryWordFromOnlineDictory(word, StringSpannerClickActivity.this);
+            }
+        });
+
+        spAtvContentPointNative.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
+            @Override
+            public void showClickContent(String word) {
+                WordTranslateU.queryWordFromOfflineDictory(word, StringSpannerClickActivity.this);
+            }
+        });
+
+        String sdPath = PathU.getInstance().getAssetsFile() + "/youdao/localdict/localdict.datx";
+        String pathU = "/Android/data/" + context.getPackageName() + "/files/files/youdao/localdict";
+        if (FileU.isExist(sdPath)) {
+            EnWordTranslator.initDictPath(pathU+"/");
+            if (!EnWordTranslator.isInited()) {
+                EnWordTranslator.init();
+            }
+        } else {
+            FileUtils.getInstance(this).copyAssetsToSD("youdao/localdict", pathU).setFileOperateCallback(new FileUtils.FileOperateCallback() {
+                @Override
+                public void onSuccess() {
+                    LogU.i(" 文件复制成功时，主线程回调 ");
+                    EnWordTranslator.initDictPath(pathU+"/");
+                    if (!EnWordTranslator.isInited()) {
+                        EnWordTranslator.init();
+                    }
+                }
+
+                @Override
+                public void onFailed(String error) {
+                    LogU.e(" 文件复制失败时，主线程回调 ");
+                }
+            });
+        }
 
         //getData();
         //tvShowContent.setText(getClickableSpan());

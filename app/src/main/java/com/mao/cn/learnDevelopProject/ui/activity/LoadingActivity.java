@@ -25,7 +25,9 @@ import com.mao.cn.learnDevelopProject.modules.LoadingModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.ILoading;
 import com.mao.cn.learnDevelopProject.ui.presenter.LoadingPresenter;
+import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 
 import java.util.concurrent.TimeUnit;
@@ -128,8 +130,10 @@ public class LoadingActivity extends BaseActivity implements ILoading {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_WIDTH, dm.widthPixels);
         PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_HEIGHT, dm.heightPixels);
+        FileU.ifNotExistCreateDir(PathU.getInstance().getAssetsFile() + "/youdao/localdict");
+        /*String pathFile = PathU.getInstance().getAssetsFile() + "/youdao/localdict/localdict.datx";
+        FileU.createFile(new File(pathFile));*/
     }
-
 
     @Override
     protected void onDestroy() {

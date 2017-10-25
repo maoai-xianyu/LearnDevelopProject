@@ -48,4 +48,14 @@
         android:textColor="@color/c_000000"
         android:textSize="@dimen/text_size_25" />
 
+    <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
+        android:layout_marginTop="@dimen/d20"
+        android:id="@+id/sp_atv_content_point_native"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sp_atv_content_point"
+        android:text="测试"
+        android:textColor="@color/c_000000"
+        android:textSize="@dimen/text_size_25" />
+
 </RelativeLayout>
