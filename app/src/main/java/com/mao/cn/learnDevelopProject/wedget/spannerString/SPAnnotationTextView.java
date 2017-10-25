@@ -10,7 +10,6 @@ package com.mao.cn.learnDevelopProject.wedget.spannerString;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -67,13 +66,18 @@ public class SPAnnotationTextView extends TextView {
         }
     }
 
+    /**
+     * 检测文本中的注释
+     *
+     * @param str
+     * @param annotations
+     */
     public void setAnnotationTextSSB(String str, SparseArray<String> annotations) {
         String keyword;
         int start, end;
         int startNum = 0;
 
-        SpannableStringBuilder builder = new SpannableStringBuilder();
-        SpannableString spannableString = new SpannableString(str);
+        SpannableStringBuilder builder = new SpannableStringBuilder(str);
         List<Integer> annotationNumList = WordResuorceU.getAnnotationNum(str);
         if (ListU.notEmpty(annotationNumList)) { // 内容中存在注释
             startNum = annotationNumList.get(0); // 找到第一个注释的编号
@@ -83,7 +87,7 @@ public class SPAnnotationTextView extends TextView {
                 if (start != -1) {
                     end = start + keyword.length();
                     if (start >= 0 && end <= str.length()) {
-                        spannableString.setSpan(new ImageSpan(LearnDevelopApplication.context(), R.drawable.icon_annotation),
+                        builder.setSpan(new ImageSpan(LearnDevelopApplication.context(), R.drawable.icon_annotation),
                                 start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
                         String annotation;
                         if (annotations != null && annotations.size() > 0 && i - startNum < annotations.size()) {
@@ -91,8 +95,7 @@ public class SPAnnotationTextView extends TextView {
                         } else {
                             annotation = LearnDevelopApplication.context().getResources().getString(R.string.no_annotation);
                         }
-                        int annotationNumber = i;
-                        spannableString.setSpan(new ClickableSpan() {
+                        builder.setSpan(new ClickableSpan() {
                             @Override
                             public void onClick(View widget) {
                                 View contentView = LayoutInflater.from(LearnDevelopApplication.context()).inflate(R.layout.pop_annotation, null);
@@ -126,14 +129,11 @@ public class SPAnnotationTextView extends TextView {
                                 }
                             }
                         }, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-                        builder.append(spannableString);
                     }
                 }
             }
-        } else {
-            SpannableString string = setKeyworldClickable(str, topicPattern);
-            builder.append(string);
         }
+        builder = setKeyWordClickable(builder, topicPattern);
         setMovementMethod(LinkMovementMethod.getInstance());
         setText(builder);
     }
@@ -151,22 +151,29 @@ public class SPAnnotationTextView extends TextView {
         return super.onTouchEvent(event);
     }
 
-
-    public static SpannableString setKeyworldClickable(String ss, Pattern pattern) {
-        Matcher matcher = pattern.matcher(ss);
+    /**
+     * 用正则表达式匹配对应的单词
+     *
+     * @param ssBuilder
+     * @param pattern
+     * @return
+     */
+    public static SpannableStringBuilder setKeyWordClickable(SpannableStringBuilder ssBuilder, Pattern pattern) {
+        String tempSSBuilder = ssBuilder.toString();
+        LogU.i("  ss.toString()) " + tempSSBuilder);
+        Matcher matcher = pattern.matcher(tempSSBuilder);
         Map<String, Integer> temp;
         List<Map<String, Integer>> list = new ArrayList<>();
         int tempEnd = 0;
-        String tempSS = ss;
         while (matcher.find()) {
             String key = matcher.group();
             LogU.i(" key " + key);
             if (!"".equals(key)) {
-                int start = tempSS.indexOf(key);
+                int start = tempSSBuilder.indexOf(key);
                 int end = start + key.length();
                 LogU.i(" start " + start + " end " + end + " tempEnd " + tempEnd);
-                tempSS = tempSS.substring(end);
-                LogU.i(" tempSS " + tempSS);
+                tempSSBuilder = tempSSBuilder.substring(end);
+                LogU.i(" tempSS " + tempSSBuilder);
                 temp = new HashMap<>();
                 temp.put("start", start + tempEnd);
                 temp.put("end", end + tempEnd);
@@ -174,12 +181,17 @@ public class SPAnnotationTextView extends TextView {
                 tempEnd = end + tempEnd;
             }
         }
-        SpannableString spannableString = new SpannableString(ss);
-        return setClickTextView(spannableString, list);
+        return setClickTextView(ssBuilder, list);
     }
 
-    //跳转到原文界面
-    private static SpannableString setClickTextView(SpannableString ss, final List<Map<String, Integer>> list) {
+    /**
+     * 给对应的单词进行设置点击事件
+     *
+     * @param ss
+     * @param list
+     * @return
+     */
+    private static SpannableStringBuilder setClickTextView(SpannableStringBuilder ss, final List<Map<String, Integer>> list) {
         for (int i = 0; i < list.size(); i++) {
             ClickableSpan wcs = clickWordToDictionary();
             ss.setSpan(wcs, list.get(i).get("start"), list.get(i).get("end"), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -187,6 +199,11 @@ public class SPAnnotationTextView extends TextView {
         return ss;
     }
 
+    /**
+     * 点击之后去查字典
+     *
+     * @return
+     */
     private static ClickableSpan clickWordToDictionary() {
         return new ClickableSpan() {
             @Override
@@ -194,9 +211,8 @@ public class SPAnnotationTextView extends TextView {
                 TextView tv = (TextView) widget;
                 String s = tv.getText().subSequence(tv.getSelectionStart(),
                         tv.getSelectionEnd()).toString();
-                LogU.i("点击的值是 "+s);
+                LogU.i("点击的值是 " + s);
             }
-
 
             @Override
             public void updateDrawState(TextPaint ds) {

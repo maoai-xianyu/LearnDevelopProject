@@ -46,6 +46,8 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
     AnnotationTextView atvContent;
     @BindView(R.id.sp_atv_content)
     SPAnnotationTextView spAtvContent;
+    @BindView(R.id.sp_atv_content_point)
+    SPAnnotationTextView spAtvContentPoint;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -62,13 +64,15 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
 
         String str = "Hey, look! Shooting stars[^1].";
         String strNoAnn = "Hey, look! Shooting stars.";
+        String strNoAnns = "Hey, look! Shooting stars[^1]. Oh, oh. Quick, quick.Make a wish. Make a wish.You gotta[^2] make a wish.";
 
         String strAll = "Hey, look! Shooting stars[^1].\nOh, oh. Quick, quick. Make a wish. Make a wish. You gotta[^2] make a wish. \nWow, my wish came true. \nI'm okay.\nMine too.\n[^1]流星雨\n[^2]必须（gotta等于got to, 是口语化表达）";
 
-        atvContent.setAnnotationText(str, WordResuorceU.getAnnotation(strAll));
-
+        atvContent.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll));
 
         spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll));
+
+        spAtvContentPoint.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll));
 
         //getData();
         //tvShowContent.setText(getClickableSpan());
@@ -95,7 +99,6 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spanableInfo.setSpan(clickableColorSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spanableInfo;
     }
-
 
     private void getData() {
         String ss = "asd#asdas#中国#商店就分#测试#hello#word#asdasdasd#中asd国#商店as";
