@@ -15,7 +15,7 @@ import java.util.Locale;
 /**
  * @author yodao
  */
-public class TimeUtil {
+public class TimeU {
 
     public static String getLeftTime(int interval) {
         int hour = interval / 3600000;
@@ -37,9 +37,9 @@ public class TimeUtil {
         String timeText = "";
         Date d = new Date(time);
         Date today = new Date();
-        if (TimeUtil.isTheDay(d, today)) {
+        if (TimeU.isTheDay(d, today)) {
             return "今天 " + getDayTimeMinute(time);
-        } else if (TimeUtil.isTheDay(time + 86400000, today)) {
+        } else if (TimeU.isTheDay(time + 86400000, today)) {
             timeText = "昨天 " + getDayTimeMinute(time);
         } else {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd",
