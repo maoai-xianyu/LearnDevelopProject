@@ -11,6 +11,7 @@ package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -19,11 +20,13 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerLoadingComponent;
+import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.modules.LoadingModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.ILoading;
 import com.mao.cn.learnDevelopProject.ui.presenter.LoadingPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 
 import java.util.concurrent.TimeUnit;
 
@@ -104,7 +107,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
                 return;
             }
         }*/
-
+        initApp();
     }
 
     @Override
@@ -118,6 +121,13 @@ public class LoadingActivity extends BaseActivity implements ILoading {
                 .appComponent(appComponent)
                 .loadingModule(new LoadingModule(this))
                 .build().inject(this);
+    }
+
+    public void initApp() {
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_WIDTH, dm.widthPixels);
+        PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_HEIGHT, dm.heightPixels);
     }
 
 

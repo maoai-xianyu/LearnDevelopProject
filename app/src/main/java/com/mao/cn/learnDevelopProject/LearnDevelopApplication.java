@@ -35,6 +35,8 @@ public class LearnDevelopApplication extends CommApplication {
     private LinkedHashMap<String, Activity> activityMap = new LinkedHashMap<>();
     private static AppComponent component;
     public static String appChannel = ValueMaps.AppChannel.UNKNOWN;
+    private static int screenWidth = 0;
+    private static int screenHeight = 0;
     @Inject
     AnalyticsManager analyticsManager;
 
@@ -148,4 +150,19 @@ public class LearnDevelopApplication extends CommApplication {
             }
         }
     }
+
+    public static int getScreenWidth() {
+        if (screenWidth == 0) {
+            screenWidth = PreferenceU.getInstance(context()).getInt(KeyMaps.Screen.SCREEN_WIDTH);
+        }
+        return screenWidth;
+    }
+
+    public static int getScreenHeight() {
+        if (screenHeight == 0) {
+            screenHeight = PreferenceU.getInstance(context()).getInt(KeyMaps.Screen.SCREEN_HEIGHT);
+        }
+        return screenHeight;
+    }
+
 }

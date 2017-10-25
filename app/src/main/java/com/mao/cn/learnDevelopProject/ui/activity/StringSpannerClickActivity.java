@@ -21,8 +21,11 @@ import com.mao.cn.learnDevelopProject.modules.StringSpannerClickModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IStringSpannerClick;
 import com.mao.cn.learnDevelopProject.ui.presenter.StringSpannerClickPresenter;
+import com.mao.cn.learnDevelopProject.wedget.spannerString.AnnotationTextView;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.ClickableColorSpan;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.KeyWordClickable;
+import com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView;
+import com.mao.cn.learnDevelopProject.wedget.spannerString.WordResuorceU;
 
 import javax.inject.Inject;
 
@@ -39,6 +42,10 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
 
     @BindView(R.id.tv_show_content)
     TextView tvShowContent;
+    @BindView(R.id.atv_content)
+    AnnotationTextView atvContent;
+    @BindView(R.id.sp_atv_content)
+    SPAnnotationTextView spAtvContent;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -53,9 +60,19 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
     @Override
     public void initView() {
 
-        getData();
-        /*tvShowContent.setText(getClickableSpan());
-        tvShowContent.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效*/
+        String str = "Hey, look! Shooting stars[^1].";
+        String strNoAnn = "Hey, look! Shooting stars.";
+
+        String strAll = "Hey, look! Shooting stars[^1].\nOh, oh. Quick, quick. Make a wish. Make a wish. You gotta[^2] make a wish. \nWow, my wish came true. \nI'm okay.\nMine too.\n[^1]流星雨\n[^2]必须（gotta等于got to, 是口语化表达）";
+
+        atvContent.setAnnotationText(str, WordResuorceU.getAnnotation(strAll));
+
+
+        spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll));
+
+        //getData();
+        //tvShowContent.setText(getClickableSpan());
+        //tvShowContent.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
     }
 
     @Override

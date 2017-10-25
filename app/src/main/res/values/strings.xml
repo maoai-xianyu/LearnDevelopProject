@@ -10,4 +10,5 @@
     <string name="header_rxjava">学习RxJava</string>
     <string name="header_rxjava_binding">学习RxJavaBinding</string>
     <string name="loading">加载中...</string>
+    <string name="no_annotation">未找到注释</string>
 </resources>
