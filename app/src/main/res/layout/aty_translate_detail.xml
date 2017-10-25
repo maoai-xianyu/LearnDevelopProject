@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_FFFFFF"
+    android:clipToPadding="true">
+
+    <include
+        android:id="@+id/rl_header"
+        layout="@layout/include_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_header">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f1f1f1"
+            android:clipToPadding="true">
+
+            <LinearLayout
+                android:id="@+id/contentContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/input"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/translation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/spell"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ukSpell"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/usSpell"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/means"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/webmeans"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text=""
+                    android:textColor="#303030"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/moreBtn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|top"
+                    android:text="查看更多释义"
+                    android:textColor="#3399ff"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

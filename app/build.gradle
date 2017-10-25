@@ -26,6 +26,9 @@ android {
         versionCode VERSION_CODE as Integer
         versionName VERSION_NAME as String
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi"
+        }
     }
     buildTypes {
         release {
@@ -68,6 +71,11 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 
@@ -117,4 +125,9 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-dynamic-animation:25.3.1'
     compile 'com.facebook.rebound:rebound:0.3.8'
+    compile files('libs/YoudaoBase.jar')
+    compile files('libs/YoudaoCnDictOffline.jar')
+    compile files('libs/YoudaoLineOffline.jar')
+    compile files('libs/YoudaoTranslateOnline.jar')
+    compile files('libs/YoudaoWordOffline.jar')
 }

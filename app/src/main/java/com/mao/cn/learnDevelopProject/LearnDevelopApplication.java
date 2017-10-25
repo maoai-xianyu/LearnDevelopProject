@@ -17,6 +17,7 @@ import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mcxiaoke.packer.helper.PackerNg;
+import com.youdao.sdk.app.YouDaoApplication;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -64,7 +65,7 @@ public class LearnDevelopApplication extends CommApplication {
         analyticsManager.registerAppEnter();
         initServerInfo();
         PathU.getInstance().initDirs();
-
+        YouDaoApplication.init(this,"2c6d92cf38c95d92");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
     }
 
     public static ServerInfo serverInfo() {

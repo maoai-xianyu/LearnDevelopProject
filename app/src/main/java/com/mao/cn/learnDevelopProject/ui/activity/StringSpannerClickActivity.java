@@ -12,20 +12,27 @@ package com.mao.cn.learnDevelopProject.ui.activity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerStringSpannerClickComponent;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.modules.StringSpannerClickModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IStringSpannerClick;
 import com.mao.cn.learnDevelopProject.ui.presenter.StringSpannerClickPresenter;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.AnnotationTextView;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.ClickableColorSpan;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.KeyWordClickable;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.WordResuorceU;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -40,6 +47,10 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
     @Inject
     StringSpannerClickPresenter presenter;
 
+    @BindView(R.id.ib_header_back)
+    ImageButton ibHeaderBack;
+    @BindView(R.id.tv_header_title)
+    TextView tvHeaderTitle;
     @BindView(R.id.tv_show_content)
     TextView tvShowContent;
     @BindView(R.id.atv_content)
@@ -61,6 +72,9 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
 
     @Override
     public void initView() {
+        ibHeaderBack.setVisibility(View.VISIBLE);
+        tvHeaderTitle.setText("查单词");
+        tvHeaderTitle.setVisibility(View.VISIBLE);
 
         String str = "Hey, look! Shooting stars[^1].";
         String strNoAnn = "Hey, look! Shooting stars.";
@@ -81,6 +95,13 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
 
     @Override
     public void setListener() {
+
+        RxView.clicks(ibHeaderBack).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            finish();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
     }
 
     @Override

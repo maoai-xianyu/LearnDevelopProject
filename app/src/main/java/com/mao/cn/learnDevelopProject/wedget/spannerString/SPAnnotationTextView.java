@@ -209,9 +209,9 @@ public class SPAnnotationTextView extends TextView {
             @Override
             public void onClick(View widget) {
                 TextView tv = (TextView) widget;
-                String s = tv.getText().subSequence(tv.getSelectionStart(),
-                        tv.getSelectionEnd()).toString();
-                LogU.i("点击的值是 " + s);
+                String word = tv.getText().subSequence(tv.getSelectionStart(), tv.getSelectionEnd()).toString();
+                LogU.i("点击的值是 " + word);
+                WordTranslateU.queryWordFromOlineDictory(word, LearnDevelopApplication.context());
             }
 
             @Override

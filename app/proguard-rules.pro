@@ -108,3 +108,16 @@
 #myokhttp
 -dontwarn com.tsy.sdk.myokhttp.**
 -keep class com.tsy.sdk.myokhttp.**{*;}
+
+#有道
+-ignorewarnings
+-libraryjars libs/YoudaoBase.jar
+-libraryjars libs/YoudaoCnDictOffline.jar
+-libraryjars libs/YoudaoTranslateOnline.jar
+-libraryjars libs/YoudaoWordOffline.jar
+-libraryjars libs/YoudaoLineOffline.jar
+
+-keep class com.youdao.sdk.ydtranslate.** { *;}
+-keep class com.youdao.sdk.chdict.** { *;}
+-keep class com.youdao.localtransengine.** { *;}
+-keep class com.youdao.sdk.ydonlinetranslate.** { *;}
