@@ -30,7 +30,7 @@ import butterknife.BindView;
 /**
  * @author lukun
  */
-public class TranslateDetailActivity extends BaseActivity {
+public class TranslateWordDetailActivity extends BaseActivity {
 
 
     @BindView(R.id.ib_header_back)
@@ -67,7 +67,7 @@ public class TranslateDetailActivity extends BaseActivity {
 
     @Override
     public int setView() {
-        return R.layout.aty_translate_detail;
+        return R.layout.aty_translate_word_detail;
     }
 
     @Override
@@ -114,13 +114,13 @@ public class TranslateDetailActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View v) {
-                    translate.openMore(TranslateDetailActivity.this);
+                    translate.openMore(TranslateWordDetailActivity.this);
 //                //注意，若用户没安装有道词典，开发者可自己实现deeplink的跳转
-//                if(!trs.openDict(TranslateDetailActivity.this)){
+//                if(!trs.openDict(TranslateWordDetailActivity.this)){
 //                	 //获取deeplink链接
 //                    String deeplinkUrl = trs.getDictWebUrl();
 //                    //处理deeplink链接，可通过自定义浏览器打开
-//                TranslateForwardHelper.toBrowser(TranslateDetailActivity.this, deeplinkUrl);
+//                TranslateForwardHelper.toBrowser(TranslateWordDetailActivity.this, deeplinkUrl);
 //                }
                 }
             });

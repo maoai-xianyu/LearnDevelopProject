@@ -101,7 +101,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.TranslateDetailActivity"
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.TranslateWordDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.mao.cn.learnDevelopProject.model.TranslateData;
-import com.mao.cn.learnDevelopProject.ui.activity.TranslateDetailActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.TranslateWordDetailActivity;
 import com.mao.cn.learnDevelopProject.utils.tools.ToastUtils;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
@@ -39,7 +39,7 @@ public class WordTranslateU {
             public void onResult(Translate result, String input) {
                 TranslateData td = new TranslateData();
                 td.setTranslate(result);
-                Intent intent = new Intent(context, TranslateDetailActivity.class);
+                Intent intent = new Intent(context, TranslateWordDetailActivity.class);
                 intent.putExtra("news", td);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
