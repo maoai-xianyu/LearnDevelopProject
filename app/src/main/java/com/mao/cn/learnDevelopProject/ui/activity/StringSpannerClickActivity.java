@@ -93,6 +93,13 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
 
         String strAll = "Hey, look! Shooting stars[^1].\nOh, oh. Quick, quick. Make a wish. Make a wish. You gotta[^2] make a wish. \nWow, my wish came true. \nI'm okay.\nMine too.\n[^1]流星雨\n[^2]必须（gotta等于got to, 是口语化表达）";
 
+        String strLong = "Switzerland's plan for dealing with a potential invasion from anybody was called \"The National Redoubt\" and it was essentially intended to make any possible enemy look at Switzerland and think to themselves: No thanks, I'll take over something a little easier instead.\n" +
+                "\n" +
+                "The first reason why is Switzerland continues to have mandatory male conscription, meaning that all men have to serve in the military for 170 days and receive basic training, and it has the ability to mobilize over 200,000 soldiers within 72 hours of an emergency being declared.\n" +
+                "\n" +
+                "In addition, every road, bridge, tunnel and railroad in the country has been designed in a way that they can be remotely blown up to deny a possible invader from ever using them, including entire mountain sides that can be detonated to cause a landslide to block off entire roads.\n" +
+                "\n" +
+                "High in the mountains, the Swiss have built over 26,000 bunkers and fortified positions ranging from anti-tank guns anti-air guns or machine gun nests, which means that the entire country is basically one big booby trap — an impregnable castle in the center of Europe.";
         atvContent.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll));
 
         spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
@@ -113,6 +120,7 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContentPointNative.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
+                // 离线的是否需要除东西
                 WordTranslateU.queryWordFromOfflineDictory(word.toLowerCase(), StringSpannerClickActivity.this);
             }
         });
