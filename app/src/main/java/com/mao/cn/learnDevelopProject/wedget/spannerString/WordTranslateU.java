@@ -18,7 +18,7 @@ import com.youdao.sdk.ydtranslate.Translate;
 
 public class WordTranslateU {
 
-    public static void queryWordFromOnlineDictionary(String word, Activity activity, WordScanTranslateListener listener) {
+    public static void queryWordFromOnlineDictionary(String word, WordScanTranslateListener listener) {
         // 源语言或者目标语言其中之一必须为中文,目前只支持中文与其他几个语种的互译
 
         Language langFrom = LanguageUtils.getLangByName("中文");
