@@ -9,6 +9,7 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -22,6 +23,7 @@ import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerStringSpannerClickComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.model.TransLateBaiDuDetail;
+import com.mao.cn.learnDevelopProject.model.TranslateData;
 import com.mao.cn.learnDevelopProject.modules.StringSpannerClickModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IStringSpannerClick;
@@ -36,7 +38,9 @@ import com.mao.cn.learnDevelopProject.wedget.spannerString.KeyWordClickable;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.WordResuorceU;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.WordTranslateU;
+import com.youdao.sdk.ydonlinetranslate.TranslateErrorCode;
 import com.youdao.sdk.ydtranslate.EnWordTranslator;
+import com.youdao.sdk.ydtranslate.Translate;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -105,7 +109,17 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
-                WordTranslateU.queryWordFromOnlineDictory(word, StringSpannerClickActivity.this);
+                WordTranslateU.queryWordFromOnlineDictionary(word, StringSpannerClickActivity.this, new WordTranslateU.WordScanTranslateListener() {
+                    @Override
+                    public void wordTranslateSuccess(Translate result) {
+                        scanWordSuccess(result);
+                    }
+
+                    @Override
+                    public void wordTranslateFail(TranslateErrorCode error, String msg) {
+
+                    }
+                });
 
             }
         });
@@ -113,7 +127,17 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContentPoint.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
-                WordTranslateU.queryWordFromOnlineDictory(word, StringSpannerClickActivity.this);
+                WordTranslateU.queryWordFromOnlineDictionary(word, StringSpannerClickActivity.this, new WordTranslateU.WordScanTranslateListener() {
+                    @Override
+                    public void wordTranslateSuccess(Translate result) {
+                        scanWordSuccess(result);
+                    }
+
+                    @Override
+                    public void wordTranslateFail(TranslateErrorCode error, String msg) {
+
+                    }
+                });
             }
         });
 
@@ -121,7 +145,17 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
             @Override
             public void showClickContent(String word) {
                 // 离线的是否需要除东西
-                WordTranslateU.queryWordFromOfflineDictory(word.toLowerCase(), StringSpannerClickActivity.this);
+                WordTranslateU.queryWordFromOfflineDictionary(word.toLowerCase(), StringSpannerClickActivity.this, new WordTranslateU.WordScanTranslateListener() {
+                    @Override
+                    public void wordTranslateSuccess(Translate result) {
+                        scanWordSuccess(result);
+                    }
+
+                    @Override
+                    public void wordTranslateFail(TranslateErrorCode error, String msg) {
+
+                    }
+                });
             }
         });
 
@@ -161,6 +195,14 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         //getData();
         //tvShowContent.setText(getClickableSpan());
         //tvShowContent.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
+    }
+
+    private void scanWordSuccess(Translate result) {
+        TranslateData td = new TranslateData();
+        td.setTranslate(result);
+        Intent intent = new Intent(activity, TranslateWordDetailActivity.class);
+        intent.putExtra("news", td);
+        activity.startActivity(intent);
     }
 
     @Override
