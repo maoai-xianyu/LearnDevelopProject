@@ -60,9 +60,9 @@ public class SPAnnotationTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setAnnotationText(String text, SparseArray<String> annotations,ClickWordListener listener) {
+    public void setAnnotationText(String text, SparseArray<String> annotations, ClickWordListener listener) {
         if (StringU.isNotEmpty(text)) {
-            setAnnotationTextSSB(text, annotations,listener);
+            setAnnotationTextSSB(text, annotations, listener);
         }
     }
 
@@ -72,7 +72,7 @@ public class SPAnnotationTextView extends TextView {
      * @param str
      * @param annotations
      */
-    public void setAnnotationTextSSB(String str, SparseArray<String> annotations,ClickWordListener listener) {
+    public void setAnnotationTextSSB(String str, SparseArray<String> annotations, ClickWordListener listener) {
         String keyword;
         int start, end;
         int startNum = 0;
@@ -133,7 +133,7 @@ public class SPAnnotationTextView extends TextView {
                 }
             }
         }
-        builder = setKeyWordClickable(builder, topicPattern,listener);
+        builder = setKeyWordClickable(builder, topicPattern, listener);
         setMovementMethod(LinkMovementMethod.getInstance());
         setText(builder);
     }
@@ -158,7 +158,7 @@ public class SPAnnotationTextView extends TextView {
      * @param pattern
      * @return
      */
-    public static SpannableStringBuilder setKeyWordClickable(SpannableStringBuilder ssBuilder, Pattern pattern,ClickWordListener listener) {
+    public static SpannableStringBuilder setKeyWordClickable(SpannableStringBuilder ssBuilder, Pattern pattern, ClickWordListener listener) {
         String tempSSBuilder = ssBuilder.toString();
         LogU.i("  ss.toString()) " + tempSSBuilder);
         Matcher matcher = pattern.matcher(tempSSBuilder);
@@ -181,7 +181,7 @@ public class SPAnnotationTextView extends TextView {
                 tempEnd = end + tempEnd;
             }
         }
-        return setClickTextView(ssBuilder, list,listener);
+        return setClickTextView(ssBuilder, list, listener);
     }
 
     /**
@@ -191,7 +191,7 @@ public class SPAnnotationTextView extends TextView {
      * @param list
      * @return
      */
-    private static SpannableStringBuilder setClickTextView(SpannableStringBuilder ss, final List<Map<String, Integer>> list,ClickWordListener listener) {
+    private static SpannableStringBuilder setClickTextView(SpannableStringBuilder ss, final List<Map<String, Integer>> list, ClickWordListener listener) {
         for (int i = 0; i < list.size(); i++) {
             ClickableSpan wcs = clickWordToDictionary(listener);
             ss.setSpan(wcs, list.get(i).get("start"), list.get(i).get("end"), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -222,7 +222,7 @@ public class SPAnnotationTextView extends TextView {
         };
     }
 
-    public interface ClickWordListener{
+    public interface ClickWordListener {
         void showClickContent(String word);
     }
 }

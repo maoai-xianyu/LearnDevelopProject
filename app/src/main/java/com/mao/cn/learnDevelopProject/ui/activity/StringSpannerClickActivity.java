@@ -21,6 +21,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerStringSpannerClickComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.model.TransLateBaiDuDetail;
 import com.mao.cn.learnDevelopProject.modules.StringSpannerClickModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IStringSpannerClick;
@@ -37,6 +38,7 @@ import com.mao.cn.learnDevelopProject.wedget.spannerString.WordResuorceU;
 import com.mao.cn.learnDevelopProject.wedget.spannerString.WordTranslateU;
 import com.youdao.sdk.ydtranslate.EnWordTranslator;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -66,6 +68,8 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
     SPAnnotationTextView spAtvContentPoint;
     @BindView(R.id.sp_atv_content_point_native)
     SPAnnotationTextView spAtvContentPointNative;
+    @BindView(R.id.sp_atv_content_point_baidu)
+    SPAnnotationTextView spAtvContentPointBaidu;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -109,14 +113,22 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContentPointNative.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
-                WordTranslateU.queryWordFromOfflineDictory(word, StringSpannerClickActivity.this);
+                WordTranslateU.queryWordFromOfflineDictory(word.toLowerCase(), StringSpannerClickActivity.this);
             }
         });
+
+        spAtvContentPointBaidu.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
+            @Override
+            public void showClickContent(String word) {
+                presenter.getWordTranslate(word, "auto", "auto");
+            }
+        });
+
 
         String sdPath = PathU.getInstance().getAssetsFile() + "/youdao/localdict/localdict.datx";
         String pathU = "/Android/data/" + context.getPackageName() + "/files/files/youdao/localdict";
         if (FileU.isExist(sdPath)) {
-            EnWordTranslator.initDictPath(pathU+"/");
+            EnWordTranslator.initDictPath(pathU + "/");
             if (!EnWordTranslator.isInited()) {
                 EnWordTranslator.init();
             }
@@ -125,7 +137,7 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
                 @Override
                 public void onSuccess() {
                     LogU.i(" 文件复制成功时，主线程回调 ");
-                    EnWordTranslator.initDictPath(pathU+"/");
+                    EnWordTranslator.initDictPath(pathU + "/");
                     if (!EnWordTranslator.isInited()) {
                         EnWordTranslator.init();
                     }
@@ -178,4 +190,18 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         KeyWordClickable.setKeyworldClickable(tvShowContent, ss, KeyWordClickable.topicPattern, this);
     }
 
+    @Override
+    public void showWordTransLate(List<TransLateBaiDuDetail> trans_result) {
+        if (!checkActivityState()) return;
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < trans_result.size(); i++) {
+            if (i == 0) {
+                builder.append(trans_result.get(i));
+            } else {
+                builder.append(", ").append(trans_result.get(i));
+            }
+        }
+        onTip("翻译为：" + builder.toString());
+
+    }
 }

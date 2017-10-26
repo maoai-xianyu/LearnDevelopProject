@@ -171,4 +171,22 @@ public interface HttpApi {
     Observable<String> getTodayMovie(@Query("start") int start, @Query("count") int count, @Query("access_token") String access_token);
 
 
+    /**
+     * 百度翻译
+     * @param query  请求翻译query
+     * @param from   翻译源语言
+     * @param to     译文语言
+     * @param appid  APP ID
+     * @param salt   随机数
+     * @param sign   签名
+     * @return
+     */
+    @GET("api/trans/vip/translate")
+    Call<String> getWordTranslateFromBaidu(@Query("q") String query,
+                                           @Query("from") String from,
+                                           @Query("to") String to,
+                                           @Query("appid") String appid,
+                                           @Query("salt") String salt,
+                                           @Query("sign") String sign);
+
 }

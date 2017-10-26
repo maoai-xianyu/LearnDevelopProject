@@ -14,4 +14,6 @@ package com.mao.cn.learnDevelopProject.ui.presenter;
 * AUTHOR : Xabad
 */
 public interface StringSpannerClickPresenter{
+
+    void getWordTranslate(String query,String from,String to);
 }

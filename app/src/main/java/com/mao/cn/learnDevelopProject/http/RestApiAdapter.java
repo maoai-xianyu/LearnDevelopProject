@@ -122,6 +122,28 @@ public class RestApiAdapter {
     }
 
 
+    public static Retrofit getBaiduDictionary() {
+        if (client == null) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(interceptor)
+                    .build();
+        }
+
+        if (sharedStringInstance == null) {
+            sharedStringInstance = new Builder()
+                    .baseUrl("http://fanyi-api.baidu.com/")
+                    .client(client)
+                    .addConverterFactory(new StringConverterFactory())
+                    .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+        }
+        return sharedStringInstance;
+    }
+
+
     public static void clean() {
         sharedStringInstance = null;
         rxHttpsStringInstance = null;

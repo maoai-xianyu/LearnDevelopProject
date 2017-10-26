@@ -9,53 +9,125 @@
         android:id="@+id/rl_header"
         layout="@layout/include_header" />
 
-    <TextView
-        android:id="@+id/tv_show_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_header"
-        android:textColor="@color/c_4F99F0"
-        android:textSize="@dimen/text_size_16"
-        tools:text="this is a boy" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_header">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <com.mao.cn.learnDevelopProject.wedget.spannerString.AnnotationTextView
-        android:id="@+id/atv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_show_content"
-        android:text="测试"
-        android:textColor="@color/c_000000"
-        android:textSize="@dimen/text_size_25" />
+            <TextView
+                android:id="@+id/tv_show_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_4F99F0"
+                android:textSize="@dimen/text_size_16"
+                tools:text="this is a boy" />
 
-    <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
-        android:id="@+id/sp_atv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/atv_content"
-        android:text="测试"
-        android:textColor="@color/c_000000"
-        android:textSize="@dimen/text_size_25" />
+            <TextView
+                android:id="@+id/tv_show_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_content"
+                android:layout_marginTop="@dimen/d20"
+                android:background="@color/c_000000"
+                android:gravity="center"
+                android:text="只有一个注释的文本下,单词不可点"
+                android:textColor="@color/c_ff4532" />
 
+            <com.mao.cn.learnDevelopProject.wedget.spannerString.AnnotationTextView
+                android:id="@+id/atv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_1"
+                android:text="测试"
+                android:textColor="@color/c_000000"
+                android:textSize="@dimen/text_size_25" />
 
-    <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
-        android:layout_marginTop="@dimen/d20"
-        android:id="@+id/sp_atv_content_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sp_atv_content"
-        android:text="测试"
-        android:textColor="@color/c_000000"
-        android:textSize="@dimen/text_size_25" />
+            <TextView
+                android:id="@+id/tv_show_2"
+                android:layout_width="match_parent"
 
-    <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
-        android:layout_marginTop="@dimen/d20"
-        android:id="@+id/sp_atv_content_point_native"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sp_atv_content_point"
-        android:text="测试"
-        android:textColor="@color/c_000000"
-        android:textSize="@dimen/text_size_25" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/atv_content"
+                android:layout_marginTop="@dimen/d20"
+                android:background="@color/c_000000"
+                android:gravity="center"
+                android:text="没有注释的文本下单词可点在线查词-有道"
+                android:textColor="@color/c_ff4532" />
 
+            <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
+                android:id="@+id/sp_atv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_2"
+                android:text="测试"
+                android:textColor="@color/c_000000"
+                android:textSize="@dimen/text_size_25" />
+
+            <TextView
+                android:id="@+id/tv_show_3"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_atv_content"
+                android:layout_marginTop="@dimen/d20"
+                android:background="@color/c_000000"
+                android:gravity="center"
+                android:text="多个注释的文本下在线查词-有道"
+                android:textColor="@color/c_ff4532" />
+
+            <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
+                android:id="@+id/sp_atv_content_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_3"
+                android:text="测试"
+                android:textColor="@color/c_000000"
+                android:textSize="@dimen/text_size_25" />
+
+            <TextView
+                android:id="@+id/tv_show_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_atv_content_point"
+                android:layout_marginTop="@dimen/d20"
+                android:background="@color/c_000000"
+                android:gravity="center"
+                android:text="多个注释的文本下离线查词-有道"
+                android:textColor="@color/c_ff4532" />
+
+            <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
+                android:id="@+id/sp_atv_content_point_native"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_4"
+                android:text="测试"
+                android:textColor="@color/c_000000"
+                android:textSize="@dimen/text_size_25" />
+
+            <TextView
+                android:id="@+id/tv_show_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_atv_content_point_native"
+                android:layout_marginTop="@dimen/d20"
+                android:background="@color/c_000000"
+                android:gravity="center"
+                android:text="多个注释的文本下百度查词"
+                android:textColor="@color/c_ff4532" />
+
+            <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
+                android:id="@+id/sp_atv_content_point_baidu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_5"
+                android:text="测试"
+                android:textColor="@color/c_000000"
+                android:textSize="@dimen/text_size_25" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
