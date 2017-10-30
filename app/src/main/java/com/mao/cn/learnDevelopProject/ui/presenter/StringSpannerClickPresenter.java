@@ -15,5 +15,7 @@ package com.mao.cn.learnDevelopProject.ui.presenter;
 */
 public interface StringSpannerClickPresenter{
 
-    void getWordTranslate(String query,String from,String to);
+    void getWordTranslateByBaiDu(String query, String from, String to);
+
+    void getWordTranslateByJinShan(String query);
 }

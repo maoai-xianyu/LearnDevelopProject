@@ -143,6 +143,27 @@ public class RestApiAdapter {
         return sharedStringInstance;
     }
 
+    public static Retrofit getJinShanDictionary() {
+        if (client == null) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(interceptor)
+                    .build();
+        }
+
+        if (sharedStringInstance == null) {
+            sharedStringInstance = new Builder()
+                    .baseUrl("http://dict-co.iciba.com/")
+                    .client(client)
+                    .addConverterFactory(new StringConverterFactory())
+                    .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+        }
+        return sharedStringInstance;
+    }
+
 
     public static void clean() {
         sharedStringInstance = null;

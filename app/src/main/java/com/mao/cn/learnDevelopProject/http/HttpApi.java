@@ -188,5 +188,16 @@ public interface HttpApi {
                                            @Query("appid") String appid,
                                            @Query("salt") String salt,
                                            @Query("sign") String sign);
+    /**
+     * 金山翻译
+     * @param w  请求翻译query
+     * @param type   返回值格式
+     * @param key   申请的key
+     * @return
+     */
+    @GET("api/dictionary.php")
+    Call<String> getWordTranslateFromJinShan(@Query("w") String w,
+                                           @Query("type") String type,
+                                           @Query("key") String key);
 
 }

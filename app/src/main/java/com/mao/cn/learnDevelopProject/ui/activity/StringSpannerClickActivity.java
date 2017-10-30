@@ -22,6 +22,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerStringSpannerClickComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.model.JinShanTranslate;
 import com.mao.cn.learnDevelopProject.model.TransLateBaiDuDetail;
 import com.mao.cn.learnDevelopProject.model.TranslateData;
 import com.mao.cn.learnDevelopProject.modules.StringSpannerClickModule;
@@ -74,6 +75,8 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
     SPAnnotationTextView spAtvContentPointNative;
     @BindView(R.id.sp_atv_content_point_baidu)
     SPAnnotationTextView spAtvContentPointBaidu;
+    @BindView(R.id.sp_atv_content_point_jinshan)
+    SPAnnotationTextView spAtvContentPointJinShan;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -109,7 +112,7 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContent.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
-                WordTranslateU.queryWordFromOnlineDictionary(word, StringSpannerClickActivity.this, new WordTranslateU.WordScanTranslateListener() {
+                WordTranslateU.queryWordFromOnlineDictionary(word, new WordTranslateU.WordScanTranslateListener() {
                     @Override
                     public void wordTranslateSuccess(Translate result) {
                         scanWordSuccess(result);
@@ -127,7 +130,7 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContentPoint.setAnnotationText(strNoAnns, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
-                WordTranslateU.queryWordFromOnlineDictionary(word, StringSpannerClickActivity.this, new WordTranslateU.WordScanTranslateListener() {
+                WordTranslateU.queryWordFromOnlineDictionary(word, new WordTranslateU.WordScanTranslateListener() {
                     @Override
                     public void wordTranslateSuccess(Translate result) {
                         scanWordSuccess(result);
@@ -162,7 +165,14 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         spAtvContentPointBaidu.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
             @Override
             public void showClickContent(String word) {
-                presenter.getWordTranslate(word, "auto", "auto");
+                presenter.getWordTranslateByBaiDu(word, "auto", "auto");
+            }
+        });
+
+        spAtvContentPointJinShan.setAnnotationText(strNoAnn, WordResuorceU.getAnnotation(strAll), new SPAnnotationTextView.ClickWordListener() {
+            @Override
+            public void showClickContent(String word) {
+                presenter.getWordTranslateByJinShan(word);
             }
         });
 
@@ -253,5 +263,11 @@ public class StringSpannerClickActivity extends BaseActivity implements IStringS
         }
         onTip("翻译为：" + builder.toString());
 
+    }
+
+    @Override
+    public void showWordTransLateJinShan(JinShanTranslate trans_result) {
+        if (!checkActivityState()) return;
+        onTip("翻译为：" + trans_result.toString());
     }
 }

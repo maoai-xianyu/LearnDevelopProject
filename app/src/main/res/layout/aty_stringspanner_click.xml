@@ -128,6 +128,26 @@
                 android:textColor="@color/c_000000"
                 android:textSize="@dimen/text_size_25" />
 
+            <TextView
+                android:id="@+id/tv_show_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_atv_content_point_baidu"
+                android:layout_marginTop="@dimen/d20"
+                android:background="@color/c_000000"
+                android:gravity="center"
+                android:text="多个注释的文本下百度查词"
+                android:textColor="@color/c_ff4532" />
+
+            <com.mao.cn.learnDevelopProject.wedget.spannerString.SPAnnotationTextView
+                android:id="@+id/sp_atv_content_point_jinshan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_show_6"
+                android:text="测试"
+                android:textColor="@color/c_000000"
+                android:textSize="@dimen/text_size_25" />
+
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

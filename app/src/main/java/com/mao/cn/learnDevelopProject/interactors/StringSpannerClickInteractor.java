@@ -40,4 +40,12 @@ public class StringSpannerClickInteractor {
         Call<String> call = httpApi.getWordTranslateFromBaidu(query, from, to, appid, salt, sign);
         call.enqueue(callback);
     }
+
+    public void getWordTranslateByJinShan(String query,StringCallback callback) {
+        String resultJson = "json";
+        String key = "D3E267E18D1A852A112C828E0D5BA4D4";
+        HttpApi httpApi = RestApiAdapter.getJinShanDictionary().create(HttpApi.class);
+        Call<String> call = httpApi.getWordTranslateFromJinShan(query, resultJson, key);
+        call.enqueue(callback);
+    }
 }

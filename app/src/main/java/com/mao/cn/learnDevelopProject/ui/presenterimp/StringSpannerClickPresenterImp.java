@@ -13,6 +13,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.callBack.StringCallback;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
 import com.mao.cn.learnDevelopProject.interactors.StringSpannerClickInteractor;
+import com.mao.cn.learnDevelopProject.model.JinShanTranslate;
 import com.mao.cn.learnDevelopProject.model.TransLateBaiDu;
 import com.mao.cn.learnDevelopProject.ui.commons.BasePresenterImp;
 import com.mao.cn.learnDevelopProject.ui.features.IStringSpannerClick;
@@ -37,7 +38,7 @@ public class StringSpannerClickPresenterImp extends BasePresenterImp implements 
     }
 
     @Override
-    public void getWordTranslate(String query, String from, String to) {
+    public void getWordTranslateByBaiDu(String query, String from, String to) {
         if (!NetworkUtils.isConnected(context)) {
             viewInterface.onTip(context.getString(R.string.no_connect_net));
             return;
@@ -49,6 +50,33 @@ public class StringSpannerClickPresenterImp extends BasePresenterImp implements 
                 TransLateBaiDu result = GsonU.convert(var1, TransLateBaiDu.class);
                 if (result != null && ListU.notEmpty(result.getTrans_result())) {
                     viewInterface.showWordTransLate(result.getTrans_result());
+                } else {
+                    viewInterface.onTip("无对应的词义");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError var1) {
+                LogU.e("翻译失败");
+                viewInterface.interError(var1);
+                viewInterface.onTip("翻译失败");
+            }
+        });
+    }
+
+    @Override
+    public void getWordTranslateByJinShan(String query) {
+        if (!NetworkUtils.isConnected(context)) {
+            viewInterface.onTip(context.getString(R.string.no_connect_net));
+            return;
+        }
+        interactor.getWordTranslateByJinShan(query, new StringCallback() {
+            @Override
+            public void success(String var1) {
+                LogU.i(" 翻译 结果 " + var1);
+                JinShanTranslate result = GsonU.convert(var1, JinShanTranslate.class);
+                if (result != null) {
+                    viewInterface.showWordTransLateJinShan(result);
                 } else {
                     viewInterface.onTip("无对应的词义");
                 }
