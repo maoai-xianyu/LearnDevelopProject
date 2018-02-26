@@ -65,7 +65,7 @@ public class LearnDevelopApplication extends CommApplication {
         analyticsManager.registerAppEnter();
         initServerInfo();
         PathU.getInstance().initDirs();
-        YouDaoApplication.init(this,"2c6d92cf38c95d92");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
+        YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
     }
 
     public static ServerInfo serverInfo() {

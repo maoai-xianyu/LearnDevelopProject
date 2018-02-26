@@ -10,11 +10,16 @@
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
+import com.mao.cn.learnDevelopProject.wedget.difineview.study.MeasureView1Start;
+import com.skyfishjy.library.RippleBackground;
+
+import butterknife.BindView;
 
 /**
  * DecorView将内容显示在PhoneWindow上，
@@ -23,6 +28,13 @@ import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
  */
 public class DefineView3Fragment extends BaseFragment implements IMainGuide {
 
+
+    @BindView(R.id.define_s)
+    MeasureView1Start defineS;
+    @BindView(R.id.centerImage)
+    ImageView centerImage;
+    @BindView(R.id.content)
+    RippleBackground content;
 
     public static DefineView3Fragment getInstance() {
         return new DefineView3Fragment();
@@ -41,6 +53,7 @@ public class DefineView3Fragment extends BaseFragment implements IMainGuide {
     @Override
     public void initView() {
 
+        content.startRippleAnimation();
     }
 
     @Override

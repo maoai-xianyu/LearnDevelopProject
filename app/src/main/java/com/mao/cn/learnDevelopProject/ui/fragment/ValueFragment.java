@@ -57,6 +57,8 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
     TextView tvArgb;
     @BindView(R.id.iv)
     ImageView iv;
+    @BindView(R.id.iva)
+    ImageView iva;
     @BindView(R.id.iv_arrow)
     ImageView ivArrow;
 
@@ -110,7 +112,8 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
     public void setListener() {
         RxView.clicks(tvPlayInt).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            ofIntAnimator();
+//            ofIntAnimator();
+            ofIntAnimatorA();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -211,6 +214,46 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
             LogU.d("curValue:  " + curValue);
             iv.layout(curValue, curValue, curValue + iv.getWidth(), curValue + iv.getHeight());
         });
+        animator.start();
+    }
+
+    /**
+     * ValueAnimator对指定值区间做动画运算，
+     * 我们通过对运算过程做监听来自己操作控件。
+     */
+    private void ofIntAnimatorA() {
+        ValueAnimator animator = ValueAnimator.ofInt(0, 400);
+        animator.setDuration(5000);
+        animator.addUpdateListener(animation -> {
+            int curValue = (int) animation.getAnimatedValue();
+            LogU.d("curValue:  " + curValue);
+            iva.layout(iva.getLeft(), curValue, iva.getRight(), curValue + iva.getHeight());
+        });
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                LogU.i(" onAnimationStart ");
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                LogU.i(" onAnimationEnd ");
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                LogU.i(" onAnimationCancel ");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                LogU.i(" onAnimationRepeat ");
+
+            }
+        });
+        animator.setDuration(2000);
+        animator.setRepeatMode(ValueAnimator.REVERSE);
+        animator.setInterpolator(new BounceInterpolator());
         animator.start();
     }
 
@@ -385,19 +428,19 @@ public class ValueFragment extends BaseFragment implements IMainGuide {
      */
     private ValueAnimator ivArrowAnimatorPlay() {
         ValueAnimator animator;
-        if (rotate){
-            animator = ValueAnimator.ofFloat(180f,360f);
+        if (rotate) {
+            animator = ValueAnimator.ofFloat(180f, 360f);
             animator.addUpdateListener(animation -> {
-                Float animatedValue = (Float)animation.getAnimatedValue();
+                Float animatedValue = (Float) animation.getAnimatedValue();
                 int curValue = animatedValue.intValue();
                 ivArrow.setRotation(curValue);
             });
             animator.setDuration(1000);
             rotate = false;
-        }else {
-            animator = ValueAnimator.ofFloat(0,180f);
+        } else {
+            animator = ValueAnimator.ofFloat(0, 180f);
             animator.addUpdateListener(animation -> {
-                Float animatedValue = (Float)animation.getAnimatedValue();
+                Float animatedValue = (Float) animation.getAnimatedValue();
                 int curValue = animatedValue.intValue();
                 ivArrow.setRotation(curValue);
             });

@@ -130,4 +130,5 @@ dependencies {
     compile files('libs/YoudaoLineOffline.jar')
     compile files('libs/YoudaoTranslateOnline.jar')
     compile files('libs/YoudaoWordOffline.jar')
+    compile 'com.skyfishjy.ripplebackground:library:1.0.1'
 }

@@ -52,6 +52,13 @@
         android:src="@drawable/image_datong_logo" />
 
     <ImageView
+        android:id="@+id/iva"
+        android:layout_width="@dimen/d80"
+        android:layout_height="@dimen/d100"
+        android:layout_centerInParent="true"
+        android:src="@drawable/image_datong_logo" />
+
+    <ImageView
         android:id="@+id/iv_arrow"
         android:layout_toEndOf="@+id/iv"
         android:layout_width="@dimen/d80"
