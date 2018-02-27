@@ -100,7 +100,7 @@ public class DefineViewActivity extends BaseActivity implements IDefineView {
 
         List<String> titles = new ArrayList<>();
         titles.add("View1");
-        titles.add("View2");
+        titles.add("View2Canvas");
         titles.add("View3");
 
         CommonPagerTabAdapter tabAdapter = new CommonPagerTabAdapter(getSupportFragmentManager());
