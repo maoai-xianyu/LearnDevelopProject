@@ -129,4 +129,5 @@ dependencies {
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     // https://mvnrepository.com/artifact/com.nineoldandroids/library
     implementation files('libs/library-2.4.0.jar')
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
 }
