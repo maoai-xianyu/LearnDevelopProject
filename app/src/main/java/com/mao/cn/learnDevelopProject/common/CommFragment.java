@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hwangjr.rxbus.RxBus;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
@@ -28,7 +29,7 @@ public abstract class CommFragment extends RxFragment implements CommViewInterfa
         this.unbinder = ButterKnife.bind(this, this.rootView);
         this.activity = this.getActivity();
         this.context = this.activity.getApplicationContext();
-        OttoManager.register(this);
+        RxBus.get().register(this);
         this.setting();
         this.initView();
         this.setListener();
@@ -62,11 +63,11 @@ public abstract class CommFragment extends RxFragment implements CommViewInterfa
     }
 
     public void onDestroyView() {
-        super.onDestroy();
+        super.onDestroyView();
         if(this.unbinder != null) {
             this.unbinder.unbind();
         }
 
-        OttoManager.unregister(this);
+        RxBus.get().unregister(this);
     }
 }

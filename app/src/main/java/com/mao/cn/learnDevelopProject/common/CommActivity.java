@@ -7,6 +7,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.hwangjr.rxbus.RxBus;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -31,7 +32,7 @@ public abstract class CommActivity extends RxAppCompatActivity {
         ButterKnife.bind(this);
         this.activity = this;
         this.context = this;
-        OttoManager.register(this);
+        RxBus.get().register(this);
         this.setting();
         this.initView();
         this.setListener();
@@ -62,7 +63,7 @@ public abstract class CommActivity extends RxAppCompatActivity {
     protected void onDestroy() {
         System.gc();
         super.onDestroy();
-        OttoManager.unregister(this);
+        RxBus.get().unregister(this);
     }
 
     protected void startActivity(Class cls) {

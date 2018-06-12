@@ -19,9 +19,13 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.ShapeBadgeItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerMainComponent;
+import com.mao.cn.learnDevelopProject.event.BusAction;
+import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
 import com.mao.cn.learnDevelopProject.modules.MainModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
@@ -80,6 +84,7 @@ public class MainActivity extends BaseActivity implements IMain {
         requestPermission();
         initBottomView();
         initFragment();
+
     }
 
     private void initBottomView() {
@@ -153,9 +158,6 @@ public class MainActivity extends BaseActivity implements IMain {
                     case 3:
                         numberBadgeItemMovies.setText("0");
                         numberBadgeItemMovies.setHideOnSelect(false);
-                    case 4:
-                        shapeBadgeItem.setHideOnSelect(false);
-                        break;
                     default:
                         break;
                 }
@@ -174,9 +176,6 @@ public class MainActivity extends BaseActivity implements IMain {
                     case 1:
                         numberBadgeItem.setText("0");
                         numberBadgeItem.hide();
-                        break;
-                    case 4:
-                        shapeBadgeItem.setHideOnSelect(false);
                         break;
                     default:
                         break;
@@ -234,4 +233,30 @@ public class MainActivity extends BaseActivity implements IMain {
 
                 }, throwable -> LogU.e("异常"));
     }
+
+    @Subscribe
+    public void refreshRedPointer(RefreshMsgEvent event) {
+        if (!checkActivityState()) return;
+        numberBadgeItem.setText(event.getNumMsg());
+        numberBadgeItem.show();
+    }
+
+    @Subscribe(
+            tags = {
+                    @Tag(BusAction.BUS_ACTION_CHANGE)
+            }
+    )
+    public void refreshGamesMsgPointer(String event) {
+        if (!checkActivityState()) return;
+        numberBadgeItemMovies.setText(event);
+        numberBadgeItemMovies.show();
+    }
+
+
+    @Subscribe
+    public void refreshClickGamesMsg(String event) {
+        if (!checkActivityState()) return;
+        shapeBadgeItem.hide();
+    }
+
 }

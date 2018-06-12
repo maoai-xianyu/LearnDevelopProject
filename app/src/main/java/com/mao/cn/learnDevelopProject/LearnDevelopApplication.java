@@ -2,8 +2,8 @@ package com.mao.cn.learnDevelopProject;
 
 import android.app.Activity;
 
+import com.hwangjr.rxbus.RxBus;
 import com.mao.cn.learnDevelopProject.common.CommApplication;
-import com.mao.cn.learnDevelopProject.common.OttoManager;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerAppComponent;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
@@ -61,7 +61,7 @@ public class LearnDevelopApplication extends CommApplication {
                 .appModule(new AppModule(this))
                 .build();
         getComponent().inject(this);
-        OttoManager.register(this);
+        RxBus.get().register(this);
         analyticsManager.registerAppEnter();
         initServerInfo();
         PathU.getInstance().initDirs();

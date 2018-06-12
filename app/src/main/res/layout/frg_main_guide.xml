@@ -75,6 +75,25 @@
                 android:layout_below="@+id/btn_define_view"
                 android:text="spannableString" />
 
+
+            <Button
+                android:id="@+id/btn_refresh_books"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_sp_string"
+                android:text="刷新底部标签数据RxBus" />
+
+
+
+            <Button
+                android:id="@+id/btn_refresh_games"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_refresh_books"
+                android:text="刷新底部标签点RxBus" />
+
         </RelativeLayout>
     </ScrollView>
 

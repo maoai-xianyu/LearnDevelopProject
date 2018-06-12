@@ -14,11 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerMainGuideComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.event.BusAction;
+import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
 import com.mao.cn.learnDevelopProject.modules.MainGuideModule;
 import com.mao.cn.learnDevelopProject.ui.activity.AnimatorActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity;
@@ -62,6 +65,10 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnDefineView;
     @BindView(R.id.btn_sp_string)
     Button btnSpString;
+    @BindView(R.id.btn_refresh_books)
+    Button btnRefreshBooks;
+    @BindView(R.id.btn_refresh_games)
+    Button btnRefreshGames;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -146,5 +153,20 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
             LogU.e(throwable.getMessage());
         });
 
+        RxView.clicks(btnRefreshBooks).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            RefreshMsgEvent event = new RefreshMsgEvent();
+            event.setNumMsg("10");
+            RxBus.get().post(event);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnRefreshGames).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            RxBus.get().post(BusAction.BUS_ACTION_CHANGE, "40");
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
     }
 }
