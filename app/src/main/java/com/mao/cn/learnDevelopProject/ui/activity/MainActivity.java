@@ -10,29 +10,40 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.Manifest;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.support.v4.app.FragmentTransaction;
+import android.view.Gravity;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.ashokvarma.bottomnavigation.ShapeBadgeItem;
+import com.ashokvarma.bottomnavigation.TextBadgeItem;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerMainComponent;
-import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.modules.MainModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;
+import com.mao.cn.learnDevelopProject.ui.fragment.BooksFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.GamesFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.MainGuideFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.MoviesFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.MusicFragment;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+
+import static com.ashokvarma.bottomnavigation.ShapeBadgeItem.SHAPE_OVAL;
 
 /**
  * DESC   :
@@ -43,22 +54,15 @@ public class MainActivity extends BaseActivity implements IMain {
     @Inject
     MainPresenter presenter;
 
-    @BindView(R.id.tv_header_title)
-    TextView tvHeaderTitle;
-    @BindView(R.id.btn_desc_net)
-    Button btnDescNet;
-    @BindView(R.id.btn_desc_rxjava)
-    Button btnDescRxjava;
-    @BindView(R.id.btn_desc_image)
-    Button btnDescImage;
-    @BindView(R.id.btn_animator)
-    Button btnAnimator;
-    @BindView(R.id.btn_login)
-    Button btnLogin;
-    @BindView(R.id.btn_define_view)
-    Button btnDefineView;
-    @BindView(R.id.btn_sp_string)
-    Button btnSpString;
+    @BindView(R.id.main_navigation_bar)
+    BottomNavigationBar bottomNavigationBar;
+
+    private TextBadgeItem numberBadgeItem;
+    private TextBadgeItem numberBadgeItemMovies;
+    private ShapeBadgeItem shapeBadgeItem;
+    private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
+    private List<BaseFragment> mFragmentList;
+    private int currentIndex;
 
 
     @Override
@@ -73,62 +77,114 @@ public class MainActivity extends BaseActivity implements IMain {
 
     @Override
     public void initView() {
-        tvHeaderTitle.setText(getString(R.string.header));
-        tvHeaderTitle.setVisibility(View.VISIBLE);
         requestPermission();
+        initBottomView();
+        initFragment();
     }
+
+    private void initBottomView() {
+        numberBadgeItem = new TextBadgeItem();
+        shapeBadgeItem = new ShapeBadgeItem();
+        numberBadgeItemMovies = new TextBadgeItem();
+
+        numberBadgeItem.setText("90") //显示的文本
+                .setBorderWidth(1) //border宽度px
+                .setBackgroundColorResource(R.color.defDialogColor) //背景色，资源文件获取
+                .setBorderColorResource(R.color.defDialogColor) //border颜色，资源文件获取
+                .setTextColorResource(R.color.c_FFFFFF) //文本颜色，资源文件获取
+                .setAnimationDuration(30) //隐藏和展示的动画速度，单位毫秒,和setHideOnSelect一起使用
+                .setGravity(Gravity.END | Gravity.TOP)
+                .show(); //位置，默认右上角
+
+        numberBadgeItemMovies.setText("20") //显示的文本
+                .setBorderWidth(1) //border宽度px
+                .setBackgroundColorResource(R.color.defDialogColor) //背景色，资源文件获取
+                .setBorderColorResource(R.color.defDialogColor) //border颜色，资源文件获取
+                .setTextColorResource(R.color.c_FFFFFF) //文本颜色，资源文件获取
+                .setAnimationDuration(30) //隐藏和展示的动画速度，单位毫秒,和setHideOnSelect一起使用
+                .setGravity(Gravity.END | Gravity.TOP)//位置，默认右上角
+                .setHideOnSelect(true); //true：当选中状态时消失，非选中状态显示,moren false
+
+        shapeBadgeItem.setShape(SHAPE_OVAL) //形状
+                .setShapeColor(Color.BLUE) //颜色
+                .setShapeColorResource(R.color.defDialogColor) //颜色，资源文件获取
+                .setEdgeMarginInDp(this, 0) //距离Item的margin，dp
+                .setEdgeMarginInPixels(20) //距离Item的margin，px
+                .setSizeInDp(this, 10, 10) //宽高，dp
+                .setSizeInPixels(5, 5) //宽高，px
+                .setAnimationDuration(200) //隐藏和展示的动画速度，单位毫秒,和setHideOnSelect一起使用
+                .setGravity(Gravity.END) //位置，默认右上角
+                .setHideOnSelect(true); //true：当选中状态时消失，非选中状态显示,moren false
+
+
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, mTitles[0]))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, mTitles[1]).setBadgeItem(numberBadgeItem))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, mTitles[2]))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, mTitles[3]).setBadgeItem(numberBadgeItemMovies))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
+                .setFirstSelectedPosition(0)
+                .initialise();
+        //所有的设置需在调用该方法前完成``
+    }
+
+    private void initFragment() {
+
+        //tab 和 fragment 联动
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(MainGuideFragment.newInstance());
+        mFragmentList.add(BooksFragment.newInstance());
+        mFragmentList.add(MusicFragment.newInstance());
+        mFragmentList.add(MoviesFragment.newInstance());
+        mFragmentList.add(GamesFragment.newInstance());
+        showFragment(0);
+    }
+
 
     @Override
     public void setListener() {
 
-        RxView.clicks(btnDescNet).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(NetWorkRequestActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
+        bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(int position) {
+                if (!checkActivityState()) return;
+                //未选中->选中
+                showFragment(position);
+                switch (position) {
+                    case 3:
+                        numberBadgeItemMovies.setText("0");
+                        numberBadgeItemMovies.setHideOnSelect(false);
+                    case 4:
+                        shapeBadgeItem.setHideOnSelect(false);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(int position) {
+                //选中->未选中
+            }
+
+            @Override
+            public void onTabReselected(int position) {
+                if (!checkActivityState()) return;
+                //选中->选中
+                switch (position) {
+                    case 1:
+                        numberBadgeItem.setText("0");
+                        numberBadgeItem.hide();
+                        break;
+                    case 4:
+                        shapeBadgeItem.setHideOnSelect(false);
+                        break;
+                    default:
+                        break;
+                }
+            }
         });
 
-        RxView.clicks(btnDescRxjava).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(RxJavaLearnActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
 
-        RxView.clicks(btnDescImage).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(RetrofitShowContentActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
-
-        RxView.clicks(btnAnimator).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(AnimatorActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
-
-        RxView.clicks(btnLogin).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(FancyCoverFlowActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
-
-        RxView.clicks(btnDefineView).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(DefineViewActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
-
-        RxView.clicks(btnSpString).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(StringSpannerClickActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
     }
 
 
@@ -138,6 +194,23 @@ public class MainActivity extends BaseActivity implements IMain {
                 .appComponent(appComponent)
                 .mainModule(new MainModule(this))
                 .build().inject(this);
+    }
+
+
+    private void showFragment(int position) {
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        BaseFragment fragment;
+        fragment = mFragmentList.get(position);
+        if (!fragment.isAdded()) {
+            ft.add(R.id.fl_content, fragment);
+        }
+        ft.show(fragment);
+        if (currentIndex != position) {
+            ft.hide(mFragmentList.get(currentIndex));
+            currentIndex = position;
+        }
+        ft.commitAllowingStateLoss();
     }
 
     /**

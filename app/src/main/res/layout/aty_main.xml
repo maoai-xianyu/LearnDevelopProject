@@ -1,84 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/c_FFFFFF"
     tools:context="com.mao.cn.learnDevelopProject.ui.activity.MainActivity">
 
-    <include
-        android:id="@+id/rl_header"
-        layout="@layout/include_header" />
 
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/rl_header">
+        android:layout_height="match_parent" />
 
-        <RelativeLayout
-            android:id="@+id/rl_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/d10">
-
-            <Button
-                android:id="@+id/btn_desc_net"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="网络请求" />
-
-            <Button
-                android:id="@+id/btn_desc_rxjava"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_net"
-                android:text="rxjava学习" />
-
-
-            <Button
-                android:id="@+id/btn_desc_image"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_rxjava"
-                android:text="image图片" />
-
-            <Button
-                android:id="@+id/btn_animator"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_image"
-                android:text="动画" />
-
-
-            <Button
-                android:id="@+id/btn_login"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_animator"
-                android:text="Login" />
-
-            <Button
-                android:id="@+id/btn_define_view"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_login"
-                android:text="自定义View" />
-
-            <Button
-                android:id="@+id/btn_sp_string"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_define_view"
-                android:text="spannableString" />
-
-        </RelativeLayout>
-    </ScrollView>
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/main_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:bnbActiveColor="@color/c_ffc400"
+        app:bnbElevation="@dimen/d2"
+        app:bnbAnimationDuration="@integer/default_circle_indicator_orientation"
+        app:bnbBackgroundColor="@color/c_ECECEC"
+        app:bnbBackgroundStyle="background_style_static"
+        app:bnbInactiveColor="@color/black100"
+        app:bnbMode="mode_fixed" />
 
 </RelativeLayout>

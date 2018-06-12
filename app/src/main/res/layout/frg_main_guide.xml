@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <include
+        android:id="@+id/rl_header"
+        layout="@layout/include_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_header">
+
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d10">
+
+            <Button
+                android:id="@+id/btn_desc_net"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网络请求" />
+
+            <Button
+                android:id="@+id/btn_desc_rxjava"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_desc_net"
+                android:text="rxjava学习" />
+
+
+            <Button
+                android:id="@+id/btn_desc_image"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_desc_rxjava"
+                android:text="image图片" />
+
+            <Button
+                android:id="@+id/btn_animator"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_desc_image"
+                android:text="动画" />
+
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_animator"
+                android:text="Login" />
+
+            <Button
+                android:id="@+id/btn_define_view"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_login"
+                android:text="自定义View" />
+
+            <Button
+                android:id="@+id/btn_sp_string"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_define_view"
+                android:text="spannableString" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

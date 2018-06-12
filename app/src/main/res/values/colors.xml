@@ -53,6 +53,7 @@
     <color name="defDialogColor">#FFE74C3C</color>
     <color name="dialog_bg">#FFFFFFFF</color>
     <color name="c_f5b100">#f5b100</color>
+    <color name="c_ECECEC">#ECECEC</color>
 
 
     <!--黑色的透明度-->
