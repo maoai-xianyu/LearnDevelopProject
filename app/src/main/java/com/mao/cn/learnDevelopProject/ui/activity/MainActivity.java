@@ -237,6 +237,17 @@ public class MainActivity extends BaseActivity implements IMain {
     @Subscribe
     public void refreshRedPointer(RefreshMsgEvent event) {
         if (!checkActivityState()) return;
+        mTitles[0] = "测试";
+
+        bottomNavigationBar.clearAll();
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, mTitles[0]))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, mTitles[1]).setBadgeItem(numberBadgeItem))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, mTitles[2]))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, mTitles[3]).setBadgeItem(numberBadgeItemMovies))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
+                .setFirstSelectedPosition(0)
+                .initialise();
+
         numberBadgeItem.setText(event.getNumMsg());
         numberBadgeItem.show();
     }
