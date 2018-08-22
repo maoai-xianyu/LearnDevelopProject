@@ -157,6 +157,7 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
                 .MILLISECONDS).subscribe(aVoid -> {
             RefreshMsgEvent event = new RefreshMsgEvent();
             event.setNumMsg("10");
+            event.setShow(true);
             RxBus.get().post(event);
         }, throwable -> {
             LogU.e(throwable.getMessage());
@@ -164,6 +165,10 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
 
         RxView.clicks(btnRefreshGames).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
+            RefreshMsgEvent event = new RefreshMsgEvent();
+            event.setShow(false);
+            RxBus.get().post(event);
+
             RxBus.get().post(BusAction.BUS_ACTION_CHANGE, "40");
         }, throwable -> {
             LogU.e(throwable.getMessage());

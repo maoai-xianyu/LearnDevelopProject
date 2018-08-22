@@ -38,7 +38,7 @@ import com.mao.cn.learnDevelopProject.ui.fragment.MusicFragment;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,8 @@ public class MainActivity extends BaseActivity implements IMain {
     private TextBadgeItem numberBadgeItem;
     private TextBadgeItem numberBadgeItemMovies;
     private ShapeBadgeItem shapeBadgeItem;
-    private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
+    //private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
+    private String[] mTitles = new String[]{"首页", "图书", "音乐", "电影和电视", "游戏"};
     private List<BaseFragment> mFragmentList;
     private int currentIndex;
 
@@ -99,7 +100,7 @@ public class MainActivity extends BaseActivity implements IMain {
                 .setTextColorResource(R.color.c_FFFFFF) //文本颜色，资源文件获取
                 .setAnimationDuration(30) //隐藏和展示的动画速度，单位毫秒,和setHideOnSelect一起使用
                 .setGravity(Gravity.END | Gravity.TOP)
-                .show(); //位置，默认右上角
+                .hide();
 
         numberBadgeItemMovies.setText("20") //显示的文本
                 .setBorderWidth(1) //border宽度px
@@ -239,17 +240,24 @@ public class MainActivity extends BaseActivity implements IMain {
         if (!checkActivityState()) return;
         mTitles[0] = "测试";
 
-        bottomNavigationBar.clearAll();
+        /*bottomNavigationBar.clearAll();
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, mTitles[0]))
                 .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, mTitles[1]).setBadgeItem(numberBadgeItem))
                 .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, mTitles[2]))
                 .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, mTitles[3]).setBadgeItem(numberBadgeItemMovies))
                 .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
                 .setFirstSelectedPosition(0)
-                .initialise();
+                .initialise();*/
 
-        numberBadgeItem.setText(event.getNumMsg());
-        numberBadgeItem.show();
+        if (event.isShow()){
+            numberBadgeItem.setText(event.getNumMsg());
+            numberBadgeItem.show();
+        }else {
+            numberBadgeItem.hide();
+        }
+
+
+
     }
 
     @Subscribe(

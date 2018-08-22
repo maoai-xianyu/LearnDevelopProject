@@ -6,6 +6,7 @@ package com.mao.cn.learnDevelopProject.event;
  */
 public class RefreshMsgEvent {
     private String numMsg;
+    private boolean show;
 
     public String getNumMsg() {
         return numMsg;
@@ -13,5 +14,13 @@ public class RefreshMsgEvent {
 
     public void setNumMsg(String numMsg) {
         this.numMsg = numMsg;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 }
