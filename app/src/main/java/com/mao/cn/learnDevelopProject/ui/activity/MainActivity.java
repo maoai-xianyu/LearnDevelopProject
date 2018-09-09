@@ -64,8 +64,7 @@ public class MainActivity extends BaseActivity implements IMain {
     private TextBadgeItem numberBadgeItem;
     private TextBadgeItem numberBadgeItemMovies;
     private ShapeBadgeItem shapeBadgeItem;
-    //private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
-    private String[] mTitles = new String[]{"首页", "图书", "音乐", "电影和电视", "游戏"};
+    private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
     private List<BaseFragment> mFragmentList;
     private int currentIndex;
 
@@ -93,14 +92,14 @@ public class MainActivity extends BaseActivity implements IMain {
         shapeBadgeItem = new ShapeBadgeItem();
         numberBadgeItemMovies = new TextBadgeItem();
 
-        numberBadgeItem.setText("90") //显示的文本
+        numberBadgeItem.setText("1") //显示的文本
                 .setBorderWidth(1) //border宽度px
                 .setBackgroundColorResource(R.color.defDialogColor) //背景色，资源文件获取
                 .setBorderColorResource(R.color.defDialogColor) //border颜色，资源文件获取
                 .setTextColorResource(R.color.c_FFFFFF) //文本颜色，资源文件获取
                 .setAnimationDuration(30) //隐藏和展示的动画速度，单位毫秒,和setHideOnSelect一起使用
                 .setGravity(Gravity.END | Gravity.TOP)
-                .hide();
+                .show();
 
         numberBadgeItemMovies.setText("20") //显示的文本
                 .setBorderWidth(1) //border宽度px
@@ -127,7 +126,7 @@ public class MainActivity extends BaseActivity implements IMain {
                 .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, mTitles[1]).setBadgeItem(numberBadgeItem))
                 .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, mTitles[2]))
                 .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, mTitles[3]).setBadgeItem(numberBadgeItemMovies))
-                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
+                //.addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
                 .setFirstSelectedPosition(0)
                 .initialise();
         //所有的设置需在调用该方法前完成``
