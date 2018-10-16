@@ -9,14 +9,19 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerLoadingComponent;
@@ -29,6 +34,9 @@ import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -50,7 +58,7 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     @Inject
     LoadingPresenter presenter;
     @BindView(R.id.iv_loading_background)
-    SimpleDraweeView ivLoadingBackground;
+    ImageView ivLoadingBackground;
     @BindView(R.id.tv_show)
     TextView tvShow;
     private Subscription subscribe;
@@ -59,19 +67,15 @@ public class LoadingActivity extends BaseActivity implements ILoading {
     @Override
     public void getArgs(Bundle bundle) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
 
     }
 
     @Override
     public int setView() {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setBackgroundDrawable(null);
+        //initStatus();
         return R.layout.aty_loading;
     }
 
@@ -88,7 +92,6 @@ public class LoadingActivity extends BaseActivity implements ILoading {
         });
 
         compositeSubscription.add(subscribe);
-
 
         // timer  定时
         /*Observable.timer(5, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
@@ -109,8 +112,82 @@ public class LoadingActivity extends BaseActivity implements ILoading {
                 return;
             }
         }*/
+
+        Glide.with(this).load(R.drawable.bg_loading).animate(animator).into(ivLoadingBackground);
+        startAnimat();
+
         initApp();
     }
+
+    private void initStatus() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decoderView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decoderView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else {
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
+    }
+
+    ViewPropertyAnimation.Animator animator = new ViewPropertyAnimation.Animator() {
+
+        @Override
+        public void animate(View view) {
+            view.setAlpha(0f);
+            ObjectAnimator objAnimator = ObjectAnimator.ofFloat(view, "alpha", 1f, 1f);
+            objAnimator.setDuration(2000);
+            objAnimator.start();
+        }
+    };
+
+    private void startAnimat() {
+
+        int imgHeight = ivLoadingBackground.getHeight() / 5;
+        int height = getWindowManager().getDefaultDisplay().getHeight();
+        int curY = height / 2 + imgHeight / 2;
+        int dy = (height - imgHeight) / 2;
+        AnimatorSet set = new AnimatorSet();
+        ObjectAnimator animatorTranslate = ObjectAnimator.ofFloat(ivLoadingBackground, "translationY", 0, dy);
+        ObjectAnimator animatorScaleX = ObjectAnimator.ofFloat(ivLoadingBackground, "ScaleX", 1f, 0.2f);
+        ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(ivLoadingBackground, "ScaleY", 1f, 0.2f);
+        ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(ivLoadingBackground, "alpha", 1f, 0.5f);
+        set.play(animatorTranslate)
+                .with(animatorScaleX).with(animatorScaleY).with(animatorAlpha);
+        set.setDuration(1200);
+        set.setInterpolator(new AccelerateInterpolator());
+        set.start();
+        set.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+               /* ivLoadingBackground.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(LoadingActivity.this, MainActivity.class));
+                        LoadingActivity.this.finish();
+                    }
+                }, 3000);*/
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+    }
+
 
     @Override
     public void setListener() {

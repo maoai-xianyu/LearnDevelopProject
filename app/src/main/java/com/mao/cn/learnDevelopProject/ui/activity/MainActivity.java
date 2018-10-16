@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity implements IMain {
                 .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, mTitles[1]).setBadgeItem(numberBadgeItem))
                 .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, mTitles[2]))
                 .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, mTitles[3]).setBadgeItem(numberBadgeItemMovies))
-                //.addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, mTitles[4]).setBadgeItem(shapeBadgeItem))
                 .setFirstSelectedPosition(0)
                 .initialise();
         //所有的设置需在调用该方法前完成``
@@ -254,8 +254,6 @@ public class MainActivity extends BaseActivity implements IMain {
         }else {
             numberBadgeItem.hide();
         }
-
-
 
     }
 

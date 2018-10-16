@@ -7,14 +7,11 @@
     android:background="@color/c_FFFFFF"
     tools:context="com.mao.cn.learnDevelopProject.ui.activity.MainActivity">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/iv_loading_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:placeholderImage="@drawable/bg_loading"
-        app:placeholderImageScaleType="fitXY"
-        app:viewAspectRatio="0.6" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/tv_show"
