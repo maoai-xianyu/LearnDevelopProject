@@ -4,6 +4,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.mao.cn.learnDevelopProject.model.Casts;
+import com.mao.cn.learnDevelopProject.model.CastsAndAvators;
+import com.mao.cn.learnDevelopProject.model.CastsAvators;
 import com.mao.cn.learnDevelopProject.model.Locations;
 import com.mao.cn.learnDevelopProject.model.Student;
 import com.mao.cn.learnDevelopProject.model.StudentCourse;
@@ -22,6 +25,7 @@ import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.functions.Func2;
 import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
 
@@ -692,7 +696,7 @@ public class RxJavaMethodFunc {
      */
     public static void rxjava_zip() {
 
-        String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        /*String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
         Observable<String> letterSequence = Observable.interval(300, TimeUnit.MILLISECONDS)
                 .map(position -> letters[position.intValue()]).take(letters.length);
 
@@ -718,7 +722,49 @@ public class RxJavaMethodFunc {
                 System.out.println(" sys  onNext  " + serializable.toString());
 
             }
+        });*/
+
+        Observable<Casts> todayTaskObservable = Observable.empty();
+        CastsAvators castsAvators = new CastsAvators();
+        castsAvators.setLarge("large");
+        Observable<CastsAvators> castsAvatorsObservable = Observable.just(castsAvators).onErrorResumeNext(throwable -> Observable.just(new CastsAvators()));
+
+
+        Observable.zip(todayTaskObservable, castsAvatorsObservable, new Func2<Casts, CastsAvators, CastsAndAvators>() {
+            @Override
+            public CastsAndAvators call(Casts casts, CastsAvators castsAvators) {
+                CastsAndAvators castsAndAvators = new CastsAndAvators();
+                castsAndAvators.setCasts(casts);
+                castsAndAvators.setCastsAvators(castsAvators);
+                return castsAndAvators;
+            }
+        }).compose(applyIoSchedulers()).subscribe(new Observer<CastsAndAvators>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(CastsAndAvators castsAndAvators) {
+                Casts casts = castsAndAvators.getCasts();
+                if (casts != null){
+                    LogU.i(" onNext  casts " + casts.getName());
+                }
+
+                CastsAvators castsAvators1 = castsAndAvators.getCastsAvators();
+                if (castsAvators1 != null){
+                    LogU.i(" onNext   castsAvators1" + castsAvators1.getLarge());
+                }
+
+
+            }
         });
+
     }
 
 

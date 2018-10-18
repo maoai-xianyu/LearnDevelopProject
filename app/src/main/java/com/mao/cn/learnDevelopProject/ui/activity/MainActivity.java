@@ -25,6 +25,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerMainComponent;
 import com.mao.cn.learnDevelopProject.event.BusAction;
+import com.mao.cn.learnDevelopProject.event.RefreshMainEvent;
 import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
 import com.mao.cn.learnDevelopProject.modules.MainModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
@@ -67,6 +68,7 @@ public class MainActivity extends BaseActivity implements IMain {
     private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
     private List<BaseFragment> mFragmentList;
     private int currentIndex;
+    private MoviesFragment moviesFragment;
 
 
     @Override
@@ -83,7 +85,7 @@ public class MainActivity extends BaseActivity implements IMain {
     public void initView() {
         requestPermission();
         initBottomView();
-        initFragment();
+        initFragment(0);
 
     }
 
@@ -132,16 +134,19 @@ public class MainActivity extends BaseActivity implements IMain {
         //所有的设置需在调用该方法前完成``
     }
 
-    private void initFragment() {
+    private void initFragment(int position) {
 
         //tab 和 fragment 联动
         mFragmentList = new ArrayList<>();
         mFragmentList.add(MainGuideFragment.newInstance());
         mFragmentList.add(BooksFragment.newInstance());
         mFragmentList.add(MusicFragment.newInstance());
-        mFragmentList.add(MoviesFragment.newInstance());
+        if (moviesFragment ==null){
+            moviesFragment = MoviesFragment.newInstance();
+        }
+        mFragmentList.add(moviesFragment);
         mFragmentList.add(GamesFragment.newInstance());
-        showFragment(0);
+        showFragment(position);
     }
 
 
@@ -273,6 +278,14 @@ public class MainActivity extends BaseActivity implements IMain {
     public void refreshClickGamesMsg(String event) {
         if (!checkActivityState()) return;
         shapeBadgeItem.hide();
+    }
+
+    @Subscribe
+    public void refreshMain(RefreshMainEvent event) {
+        if (!checkActivityState()) return;
+        bottomNavigationBar.clearAll();
+        initBottomView();
+        initFragment(3);
     }
 
 }

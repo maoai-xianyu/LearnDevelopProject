@@ -5,4 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MoviesFragment">
 
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d50"
+        android:background="@color/c_FFFFFF">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="替换fragment"
+            android:textColor="@color/c_000000"
+            android:textSize="@dimen/text_size_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d0.5"
+            android:layout_alignParentBottom="true"
+            android:background="@color/c_595959" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_header"
+        android:orientation="horizontal" />
+
 </RelativeLayout>
