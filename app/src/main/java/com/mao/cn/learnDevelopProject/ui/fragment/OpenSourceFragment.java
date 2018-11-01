@@ -13,6 +13,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -80,7 +81,7 @@ public class OpenSourceFragment extends BaseFragment {
         RxView.clicks(tvEasyRy).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
 
-
+                    startActivity(EasyRecycleViewShowContentActivity.class);
 
                 }, throwable -> LogU.e(throwable.getMessage()));
 

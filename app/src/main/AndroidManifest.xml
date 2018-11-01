@@ -35,6 +35,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/loading_theme">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -102,6 +103,11 @@
 
         <activity
             android:name="com.mao.cn.learnDevelopProject.ui.activity.TranslateWordDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
