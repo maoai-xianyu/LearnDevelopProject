@@ -3,14 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/rl_header"
-        layout="@layout/include_header" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/rl_header">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/rl_content"
@@ -83,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_sp_string"
                 android:text="刷新底部标签数据RxBus" />
-
 
 
             <Button

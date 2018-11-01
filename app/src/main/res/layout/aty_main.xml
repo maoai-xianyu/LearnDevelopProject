@@ -8,7 +8,12 @@
     tools:context="com.mao.cn.learnDevelopProject.ui.activity.MainActivity">
 
 
+    <include
+        android:id="@+id/rl_header"
+        layout="@layout/include_header" />
+
     <FrameLayout
+        android:layout_below="@+id/rl_header"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

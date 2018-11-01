@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -59,6 +61,8 @@ public class MainActivity extends BaseActivity implements IMain {
     @Inject
     MainPresenter presenter;
 
+    @BindView(R.id.tv_header_title)
+    TextView tvHeaderTitle;
     @BindView(R.id.main_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
 
@@ -84,6 +88,8 @@ public class MainActivity extends BaseActivity implements IMain {
     @Override
     public void initView() {
         requestPermission();
+        tvHeaderTitle.setText(getString(R.string.header));
+        tvHeaderTitle.setVisibility(View.VISIBLE);
         initBottomView();
         initFragment(0);
 

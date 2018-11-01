@@ -10,9 +10,7 @@
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
 import com.jakewharton.rxbinding.view.RxView;
@@ -49,8 +47,6 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
 
     @Inject
     MainGuidePresenter presenter;
-    @BindView(R.id.tv_header_title)
-    TextView tvHeaderTitle;
     @BindView(R.id.btn_desc_net)
     Button btnDescNet;
     @BindView(R.id.btn_desc_rxjava)
@@ -87,8 +83,6 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
 
     @Override
     public void initView() {
-        tvHeaderTitle.setText(getString(R.string.header));
-        tvHeaderTitle.setVisibility(View.VISIBLE);
 
     }
 
