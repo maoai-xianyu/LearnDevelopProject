@@ -12,31 +12,20 @@ package com.mao.cn.learnDevelopProject.ui.activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerLoadingComponent;
-import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.modules.LoadingModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.ILoading;
 import com.mao.cn.learnDevelopProject.ui.presenter.LoadingPresenter;
-import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.mao.cn.learnDevelopProject.utils.tools.PathU;
-import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorSet;
-import com.nineoldandroids.animation.ObjectAnimator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -72,15 +61,16 @@ public class LoadingActivity extends BaseActivity implements ILoading {
 
     @Override
     public int setView() {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        /*this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setBackgroundDrawable(null);
-        //initStatus();
+        getWindow().setBackgroundDrawable(null);*/
+        initStatus();
         return R.layout.aty_loading;
     }
 
     @Override
     public void initView() {
+        Glide.with(this).load(R.drawable.bg_loading).into(ivLoadingBackground);
         compositeSubscription = new CompositeSubscription();
         subscribe = Observable.interval(2, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
             @Override
@@ -113,10 +103,8 @@ public class LoadingActivity extends BaseActivity implements ILoading {
             }
         }*/
 
-        Glide.with(this).load(R.drawable.bg_loading).animate(animator).into(ivLoadingBackground);
-        startAnimat();
 
-        initApp();
+
     }
 
     private void initStatus() {
@@ -131,64 +119,6 @@ public class LoadingActivity extends BaseActivity implements ILoading {
         }
     }
 
-    ViewPropertyAnimation.Animator animator = new ViewPropertyAnimation.Animator() {
-
-        @Override
-        public void animate(View view) {
-            view.setAlpha(0f);
-            ObjectAnimator objAnimator = ObjectAnimator.ofFloat(view, "alpha", 1f, 1f);
-            objAnimator.setDuration(2000);
-            objAnimator.start();
-        }
-    };
-
-    private void startAnimat() {
-
-        int imgHeight = ivLoadingBackground.getHeight() / 5;
-        int height = getWindowManager().getDefaultDisplay().getHeight();
-        int curY = height / 2 + imgHeight / 2;
-        int dy = (height - imgHeight) / 2;
-        AnimatorSet set = new AnimatorSet();
-        ObjectAnimator animatorTranslate = ObjectAnimator.ofFloat(ivLoadingBackground, "translationY", 0, dy);
-        ObjectAnimator animatorScaleX = ObjectAnimator.ofFloat(ivLoadingBackground, "ScaleX", 1f, 0.2f);
-        ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(ivLoadingBackground, "ScaleY", 1f, 0.2f);
-        ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(ivLoadingBackground, "alpha", 1f, 0.5f);
-        set.play(animatorTranslate)
-                .with(animatorScaleX).with(animatorScaleY).with(animatorAlpha);
-        set.setDuration(1200);
-        set.setInterpolator(new AccelerateInterpolator());
-        set.start();
-        set.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-
-               /* ivLoadingBackground.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(LoadingActivity.this, MainActivity.class));
-                        LoadingActivity.this.finish();
-                    }
-                }, 3000);*/
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-    }
-
-
     @Override
     public void setListener() {
 
@@ -200,16 +130,6 @@ public class LoadingActivity extends BaseActivity implements ILoading {
                 .appComponent(appComponent)
                 .loadingModule(new LoadingModule(this))
                 .build().inject(this);
-    }
-
-    public void initApp() {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_WIDTH, dm.widthPixels);
-        PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_HEIGHT, dm.heightPixels);
-        FileU.ifNotExistCreateDir(PathU.getInstance().getAssetsFile() + "/youdao/localdict");
-        /*String pathFile = PathU.getInstance().getAssetsFile() + "/youdao/localdict/localdict.datx";
-        FileU.createFile(new File(pathFile));*/
     }
 
     @Override

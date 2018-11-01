@@ -13,6 +13,7 @@ import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.hwangjr.rxbus.annotation.Tag;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.component.DaggerMainComponent;
+import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.event.BusAction;
 import com.mao.cn.learnDevelopProject.event.RefreshMainEvent;
 import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
@@ -39,7 +41,10 @@ import com.mao.cn.learnDevelopProject.ui.fragment.MainGuideFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.MoviesFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.MusicFragment;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;
+import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.PathU;
+import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -93,7 +98,20 @@ public class MainActivity extends BaseActivity implements IMain {
         initBottomView();
         initFragment(0);
 
+        initApp();
+
     }
+
+    public void initApp() {
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_WIDTH, dm.widthPixels);
+        PreferenceU.getInstance(this).saveInt(KeyMaps.Screen.SCREEN_HEIGHT, dm.heightPixels);
+        FileU.ifNotExistCreateDir(PathU.getInstance().getAssetsFile() + "/youdao/localdict");
+        /*String pathFile = PathU.getInstance().getAssetsFile() + "/youdao/localdict/localdict.datx";
+        FileU.createFile(new File(pathFile));*/
+    }
+
 
     private void initBottomView() {
         numberBadgeItem = new TextBadgeItem();
