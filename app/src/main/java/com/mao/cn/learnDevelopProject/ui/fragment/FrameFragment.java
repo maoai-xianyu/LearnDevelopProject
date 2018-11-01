@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;

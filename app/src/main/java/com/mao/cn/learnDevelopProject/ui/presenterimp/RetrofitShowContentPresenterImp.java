@@ -13,7 +13,7 @@ import com.google.gson.JsonSyntaxException;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.callBack.StringCallback;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
-import com.mao.cn.learnDevelopProject.interactors.RetrofitShowContentInteractor;
+import com.mao.cn.learnDevelopProject.di.interactors.RetrofitShowContentInteractor;
 import com.mao.cn.learnDevelopProject.model.Movie;
 import com.mao.cn.learnDevelopProject.ui.commons.BasePresenterImp;
 import com.mao.cn.learnDevelopProject.ui.features.IRetrofitShowContent;

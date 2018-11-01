@@ -19,9 +19,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerLoadingComponent;
-import com.mao.cn.learnDevelopProject.modules.LoadingModule;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.DaggerLoadingComponent;
+import com.mao.cn.learnDevelopProject.di.modules.LoadingModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.ILoading;
 import com.mao.cn.learnDevelopProject.ui.presenter.LoadingPresenter;

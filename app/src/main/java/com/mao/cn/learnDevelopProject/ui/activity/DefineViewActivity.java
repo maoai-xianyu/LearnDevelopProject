@@ -19,10 +19,10 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerDefineViewComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.DaggerDefineViewComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
-import com.mao.cn.learnDevelopProject.modules.DefineViewModule;
+import com.mao.cn.learnDevelopProject.di.modules.DefineViewModule;
 import com.mao.cn.learnDevelopProject.ui.adapter.CommonPagerTabAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IDefineView;

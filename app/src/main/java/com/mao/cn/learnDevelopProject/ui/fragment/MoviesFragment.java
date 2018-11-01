@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.hwangjr.rxbus.RxBus;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.event.RefreshMainEvent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;

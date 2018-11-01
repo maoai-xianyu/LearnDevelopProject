@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.common.CommActivity;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
 import com.mao.cn.learnDevelopProject.utils.tools.JsonU;

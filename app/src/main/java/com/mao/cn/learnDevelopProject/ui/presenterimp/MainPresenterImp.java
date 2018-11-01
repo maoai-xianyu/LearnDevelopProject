@@ -9,7 +9,7 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.presenterimp;
 
-import com.mao.cn.learnDevelopProject.interactors.MainInteractor;
+import com.mao.cn.learnDevelopProject.di.interactors.MainInteractor;
 import com.mao.cn.learnDevelopProject.ui.commons.BasePresenterImp;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;

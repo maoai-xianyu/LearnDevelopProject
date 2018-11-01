@@ -12,7 +12,7 @@ package com.mao.cn.learnDevelopProject.ui.presenterimp;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.callBack.StringCallback;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
-import com.mao.cn.learnDevelopProject.interactors.StringSpannerClickInteractor;
+import com.mao.cn.learnDevelopProject.di.interactors.StringSpannerClickInteractor;
 import com.mao.cn.learnDevelopProject.model.JinShanTranslate;
 import com.mao.cn.learnDevelopProject.model.TransLateBaiDu;
 import com.mao.cn.learnDevelopProject.ui.commons.BasePresenterImp;

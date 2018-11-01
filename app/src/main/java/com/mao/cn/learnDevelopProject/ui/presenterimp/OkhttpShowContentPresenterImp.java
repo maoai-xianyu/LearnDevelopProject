@@ -12,7 +12,7 @@ package com.mao.cn.learnDevelopProject.ui.presenterimp;
 import com.google.gson.JsonSyntaxException;
 import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.interactors.OkhttpShowContentInteractor;
+import com.mao.cn.learnDevelopProject.di.interactors.OkhttpShowContentInteractor;
 import com.mao.cn.learnDevelopProject.model.Movie;
 import com.mao.cn.learnDevelopProject.ui.commons.BasePresenterImp;
 import com.mao.cn.learnDevelopProject.ui.features.IOkhttpShowContent;

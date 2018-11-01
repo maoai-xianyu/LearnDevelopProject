@@ -15,7 +15,7 @@ import android.os.Bundle;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.JsonSyntaxException;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.model.AdvertisementConfig;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;

@@ -4,13 +4,13 @@ import android.app.Activity;
 
 import com.hwangjr.rxbus.RxBus;
 import com.mao.cn.learnDevelopProject.common.CommApplication;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerAppComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.DaggerAppComponent;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.domain.AnalyticsManager;
 import com.mao.cn.learnDevelopProject.model.ServerInfo;
-import com.mao.cn.learnDevelopProject.modules.AppModule;
+import com.mao.cn.learnDevelopProject.di.modules.AppModule;
 import com.mao.cn.learnDevelopProject.utils.config.Config;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;

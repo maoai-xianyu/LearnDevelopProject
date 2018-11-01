@@ -15,12 +15,12 @@ import android.widget.Button;
 import com.hwangjr.rxbus.RxBus;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerMainGuideComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.DaggerMainGuideComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.event.BusAction;
 import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
-import com.mao.cn.learnDevelopProject.modules.MainGuideModule;
+import com.mao.cn.learnDevelopProject.di.modules.MainGuideModule;
 import com.mao.cn.learnDevelopProject.ui.activity.AnimatorActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity;
@@ -46,6 +46,7 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
 
     @Inject
     MainGuidePresenter presenter;
+
     @BindView(R.id.btn_desc_net)
     Button btnDescNet;
     @BindView(R.id.btn_desc_rxjava)

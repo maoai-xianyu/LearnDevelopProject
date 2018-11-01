@@ -131,5 +131,10 @@ dependencies {
     implementation files('libs/library-2.4.0.jar')
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
     implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
+    // 高斯模糊
+    implementation 'com.dasu.image:blur:0.0.4'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 }

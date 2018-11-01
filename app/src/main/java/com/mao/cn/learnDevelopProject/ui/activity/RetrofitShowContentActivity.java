@@ -18,11 +18,11 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.component.AppComponent;
-import com.mao.cn.learnDevelopProject.component.DaggerRetrofitShowContentComponent;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.DaggerRetrofitShowContentComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.model.MovieDetail;
-import com.mao.cn.learnDevelopProject.modules.RetrofitShowContentModule;
+import com.mao.cn.learnDevelopProject.di.modules.RetrofitShowContentModule;
 import com.mao.cn.learnDevelopProject.ui.adapter.MovieTopAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IRetrofitShowContent;

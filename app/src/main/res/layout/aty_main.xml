@@ -16,6 +16,7 @@
         android:layout_below="@+id/rl_header"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
+        android:layout_above="@+id/main_navigation_bar"
         android:layout_height="match_parent" />
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar

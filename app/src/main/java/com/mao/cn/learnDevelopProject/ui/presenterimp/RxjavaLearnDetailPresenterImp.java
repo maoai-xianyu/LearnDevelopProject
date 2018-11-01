@@ -9,7 +9,7 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.presenterimp;
 
-import com.mao.cn.learnDevelopProject.interactors.RxjavaLearnDetailInteractor;
+import com.mao.cn.learnDevelopProject.di.interactors.RxjavaLearnDetailInteractor;
 import com.mao.cn.learnDevelopProject.ui.commons.BasePresenterImp;
 import com.mao.cn.learnDevelopProject.ui.features.IRxjavaLearnDetail;
 import com.mao.cn.learnDevelopProject.ui.presenter.RxjavaLearnDetailPresenter;
