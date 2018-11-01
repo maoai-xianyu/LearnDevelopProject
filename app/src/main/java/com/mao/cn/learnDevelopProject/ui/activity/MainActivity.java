@@ -35,11 +35,11 @@ import com.mao.cn.learnDevelopProject.modules.MainModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;
-import com.mao.cn.learnDevelopProject.ui.fragment.BooksFragment;
-import com.mao.cn.learnDevelopProject.ui.fragment.GamesFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.NewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.MainGuideFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.MoviesFragment;
-import com.mao.cn.learnDevelopProject.ui.fragment.MusicFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.OpenSourceFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.OthersHomeFragment;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements IMain {
     private TextBadgeItem numberBadgeItem;
     private TextBadgeItem numberBadgeItemMovies;
     private ShapeBadgeItem shapeBadgeItem;
-    private String[] mTitles = new String[]{"Home", "Books", "Music", "Movies & TV", "Games"};
+    private String[] mTitles = new String[]{"Home", "New", "Open Source", "Movie", "Others"};
     private List<BaseFragment> mFragmentList;
     private int currentIndex;
     private MoviesFragment moviesFragment;
@@ -163,13 +163,13 @@ public class MainActivity extends BaseActivity implements IMain {
         //tab 和 fragment 联动
         mFragmentList = new ArrayList<>();
         mFragmentList.add(MainGuideFragment.newInstance());
-        mFragmentList.add(BooksFragment.newInstance());
-        mFragmentList.add(MusicFragment.newInstance());
+        mFragmentList.add(NewFragment.newInstance());
+        mFragmentList.add(OpenSourceFragment.newInstance());
         if (moviesFragment ==null){
             moviesFragment = MoviesFragment.newInstance();
         }
         mFragmentList.add(moviesFragment);
-        mFragmentList.add(GamesFragment.newInstance());
+        mFragmentList.add(OthersHomeFragment.newInstance());
         showFragment(position);
     }
 

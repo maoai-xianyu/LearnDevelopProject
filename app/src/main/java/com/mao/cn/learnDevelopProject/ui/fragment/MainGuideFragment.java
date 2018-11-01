@@ -23,7 +23,6 @@ import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
 import com.mao.cn.learnDevelopProject.modules.MainGuideModule;
 import com.mao.cn.learnDevelopProject.ui.activity.AnimatorActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity;
-import com.mao.cn.learnDevelopProject.ui.activity.FancyCoverFlowActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RetrofitShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity;
@@ -55,8 +54,7 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnDescImage;
     @BindView(R.id.btn_animator)
     Button btnAnimator;
-    @BindView(R.id.btn_login)
-    Button btnLogin;
+
     @BindView(R.id.btn_define_view)
     Button btnDefineView;
     @BindView(R.id.btn_sp_string)
@@ -126,12 +124,7 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
             LogU.e(throwable.getMessage());
         });
 
-        RxView.clicks(btnLogin).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
-                .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(FancyCoverFlowActivity.class);
-        }, throwable -> {
-            LogU.e(throwable.getMessage());
-        });
+
 
         RxView.clicks(btnDefineView).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {

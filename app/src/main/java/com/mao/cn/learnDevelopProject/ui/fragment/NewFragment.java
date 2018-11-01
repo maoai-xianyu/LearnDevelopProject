@@ -17,14 +17,14 @@ import rx.subscriptions.CompositeSubscription;
 
 import static com.mao.cn.learnDevelopProject.ui.funcitonMethod.RxJavaMethodFunc.applyIoSchedulers;
 
-public class BooksFragment extends BaseFragment {
+public class NewFragment extends BaseFragment {
 
 
     private CompositeSubscription compositeSubscriptionVip;
     private long[] timesStampArray = new long[1];
 
-    public static BooksFragment newInstance() {
-        BooksFragment fragment = new BooksFragment();
+    public static NewFragment newInstance() {
+        NewFragment fragment = new NewFragment();
         return fragment;
     }
 
@@ -36,7 +36,7 @@ public class BooksFragment extends BaseFragment {
 
     @Override
     protected int setView() {
-        return R.layout.frg_books;
+        return R.layout.frg_new;
     }
 
     @Override

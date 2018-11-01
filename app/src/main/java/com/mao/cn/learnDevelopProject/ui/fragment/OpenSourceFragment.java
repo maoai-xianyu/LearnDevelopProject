@@ -6,11 +6,11 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 
-public class GamesFragment extends BaseFragment {
+public class OpenSourceFragment extends BaseFragment {
 
 
-    public static GamesFragment newInstance() {
-        GamesFragment fragment = new GamesFragment();
+    public static OpenSourceFragment newInstance() {
+        OpenSourceFragment fragment = new OpenSourceFragment();
         return fragment;
     }
 
@@ -22,7 +22,7 @@ public class GamesFragment extends BaseFragment {
 
     @Override
     protected int setView() {
-        return R.layout.frg_games;
+        return R.layout.frg_open_source;
     }
 
     @Override
