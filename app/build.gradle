@@ -4,7 +4,7 @@ apply plugin: 'packer'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '28.0.3'
 
     // jks打包签名用的
     signingConfigs {
