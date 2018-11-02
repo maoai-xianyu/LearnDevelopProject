@@ -192,6 +192,9 @@ public class EasyRecycleViewShowContentActivity extends BaseActivity implements 
     public void showTopMovie(List<MovieDetail> subjects, String title) {
         if (!checkActivityState()) return;
         if (ListU.notEmpty(subjects)) {
+            if (page == 1){
+                adapter.clear();
+            }
             adapter.addAll(subjects);
         } else {
             rvData.showEmpty();
@@ -211,7 +214,7 @@ public class EasyRecycleViewShowContentActivity extends BaseActivity implements 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter.clear();
+                //adapter.clear();
                 //刷新
                 if (!hasNetWork) {
                     adapter.pauseMore();
