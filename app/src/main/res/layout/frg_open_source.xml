@@ -51,6 +51,18 @@
                 android:textSize="15sp" />
 
 
+            <TextView
+                android:id="@+id/tv_easyRyGlide"
+                android:layout_toEndOf="@+id/tv_easyRy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d20"
+                android:textColor="@color/c_000000"
+                android:background="@drawable/shape_corner_tv_ffeo5d"
+                android:text="easyRyGlide"
+                android:textSize="15sp" />
+
+
         </RelativeLayout>
 
 

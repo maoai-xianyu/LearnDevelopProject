@@ -114,3 +114,14 @@
 -keep class com.youdao.sdk.chdict.** { *;}
 -keep class com.youdao.localtransengine.** { *;}
 -keep class com.youdao.sdk.ydonlinetranslate.** { *;}
+
+# glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# for DexGuard only
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule

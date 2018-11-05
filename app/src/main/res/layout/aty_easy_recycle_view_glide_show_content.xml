@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_FFFFFF">
+
+    <include
+        android:id="@+id/rl_header"
+        layout="@layout/include_header" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ll_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/AImageBtn"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="AImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.127" />
+
+        <Button
+            android:id="@+id/BImageBtn"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="28dp"
+            android:text="BImage"
+            app:layout_constraintBaseline_toBaselineOf="@+id/AImageBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/AImageBtn" />
+
+        <Button
+            android:id="@+id/CImageBtn"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="CImage"
+            app:layout_constraintBaseline_toBaselineOf="@+id/BImageBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toEndOf="@+id/BImageBtn" />
+
+        <Button
+            android:id="@+id/DImageBtn"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="Button"
+            app:layout_constraintBaseline_toBaselineOf="@+id/CImageBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CImageBtn" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="212dp"
+            android:layout_height="193dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BImageBtn"
+            app:srcCompat="@drawable/demo" />
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/rvData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_body"
+        app:layout_empty="@layout/item_view_empty"
+        app:layout_error="@layout/item_view_error"
+        app:layout_progress="@layout/item_view_progress"
+        app:recyclerClipToPadding="true"
+        app:recyclerPadding="8dp"
+        app:recyclerPaddingBottom="8dp"
+        app:recyclerPaddingLeft="8dp"
+        app:recyclerPaddingRight="8dp"
+        app:recyclerPaddingTop="8dp"
+        app:scrollbarStyle="insideOverlay" />
+
+</RelativeLayout>

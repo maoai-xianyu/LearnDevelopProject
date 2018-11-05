@@ -11,8 +11,9 @@ import com.dasu.blur.DBlur;
 import com.dasu.blur.OnBlurListener;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -32,6 +33,8 @@ public class OpenSourceFragment extends BaseFragment {
     ImageView ivGlide;
     @BindView(R.id.tv_easyRy)
     TextView tvEasyRy;
+    @BindView(R.id.tv_easyRyGlide)
+    TextView tvEasyRyGlide;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -84,6 +87,13 @@ public class OpenSourceFragment extends BaseFragment {
                     startActivity(EasyRecycleViewShowContentActivity.class);
 
                 }, throwable -> LogU.e(throwable.getMessage()));
+
+        RxView.clicks(tvEasyRyGlide).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+
+            startActivity(EasyRecycleViewGlideShowContentActivity.class);
+
+        }, throwable -> LogU.e(throwable.getMessage()));
 
     }
 
