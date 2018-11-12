@@ -38,7 +38,15 @@ public class ValueMaps {
 
     public static final class ImagePath{
         public static final String IMAGE_RES = "res://com.mao.cn.learnDevelopProject/";
+
+        // assets 资源文件目录
+        public static final String IMAGE_RES_ASSETS = "file:///android_asset/";
+        public static final String IMAGE_RES_SD = "file:///";
+        public static final String IMAGE_RES_SD_PATCH = "file://";
+
     }
+
+
 
 
 }

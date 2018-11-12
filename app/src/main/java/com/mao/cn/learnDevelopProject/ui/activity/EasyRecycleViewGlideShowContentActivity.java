@@ -72,6 +72,8 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     Button cimageBtn;
     @BindView(R.id.DImageBtn)
     Button dimageBtn;
+    @BindView(R.id.EImageBtn)
+    Button eImageBtn;
     @BindView(R.id.imageView)
     ImageView imageView;
     @BindView(R.id.rvData)
@@ -175,6 +177,13 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
         RxView.clicks(dimageBtn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             glideAppGif();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(eImageBtn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            glideAppAssets();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
@@ -302,6 +311,16 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
         GlideApp.with(this)
                 .asGIF()
                 .load("http://www.guolin.tech/test.gif")
+                .placeholder(R.drawable.demo)
+                .error(R.drawable.check)
+                .override(Target.SIZE_ORIGINAL)
+                .circleCrop()
+                .into(imageView);
+    }
+
+    private void glideAppAssets() {
+        GlideApp.with(this)
+                .load(ValueMaps.ImagePath.IMAGE_RES_ASSETS+"files/images/image_art.png")
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
                 .override(Target.SIZE_ORIGINAL)
