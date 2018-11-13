@@ -20,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +36,19 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.ImagePathU;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
-import com.mao.cn.learnDevelopProject.model.MovieDetail;
+import com.mao.cn.learnDevelopProject.di.component.DaggerEasyRecycleViewGlideShowContentComponent;
+import com.mao.cn.learnDevelopProject.di.modules.EasyRecycleViewGlideShowContentModule;
 import com.mao.cn.learnDevelopProject.ui.adapter.EasyRecycleViewGlideAdapter;
 import com.mao.cn.learnDevelopProject.ui.adapter.EasyRecycleViewGlideHolder.Type;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.GlideApp;
-import com.mao.cn.learnDevelopProject.ui.features.IEasyRecycleViewShowContent;
+import com.mao.cn.learnDevelopProject.ui.features.IEasyRecycleViewGlideShowContent;
+import com.mao.cn.learnDevelopProject.ui.presenter.EasyRecycleViewGlideShowContentPresenter;
+import com.mao.cn.learnDevelopProject.utils.download.DLTask;
+import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.Util;
 
@@ -51,14 +57,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
 /**
  * DESC   :
  * AUTHOR : Xabad
  */
-public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implements IEasyRecycleViewShowContent {
+public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implements IEasyRecycleViewGlideShowContent {
 
+
+    @Inject
+    EasyRecycleViewGlideShowContentPresenter presenter;
 
     @BindView(R.id.ib_header_back)
     ImageButton ibHeaderBack;
@@ -74,8 +85,16 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     Button dimageBtn;
     @BindView(R.id.EImageBtn)
     Button eImageBtn;
+    @BindView(R.id.GImageBtn)
+    Button gImageBtn;
+    @BindView(R.id.FImageBtn)
+    Button fImageBtn;
+    @BindView(R.id.HImageBtn)
+    Button hImageBtn;
     @BindView(R.id.imageView)
     ImageView imageView;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
     @BindView(R.id.rvData)
     EasyRecyclerView rvData;
 
@@ -188,6 +207,26 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
             LogU.e(throwable.getMessage());
         });
 
+        RxView.clicks(fImageBtn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            downloadImageToSd();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(gImageBtn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            glideAppSD();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(hImageBtn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
 
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
@@ -209,26 +248,21 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
+        DaggerEasyRecycleViewGlideShowContentComponent.builder()
+                .appComponent(appComponent)
+                .easyRecycleViewGlideShowContentModule(new EasyRecycleViewGlideShowContentModule(this))
+                .build()
+                .inject(this);
+
 
     }
-
-    @Override
-    public void showTopMovie(List<MovieDetail> subjects, String title) {
-        if (!checkActivityState()) return;
-    }
-
-    @Override
-    public void showErrorMovie() {
-        if (!checkActivityState()) return;
-        rvData.showError();
-    }
-
 
     /**
      * 当调用了submit()方法后会立即返回一个FutureTarget对象，然后Glide会在后台开始下载图片文件
      * FutureTarget的get()方法就可以去获取下载好的图片文件了，如果此时图片还没有下载完，那么get()方法就会阻塞住，一直等到图片下载完成才会有值返回。
      */
     public void downloadImage() {
+        // 缓存的路径
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -306,7 +340,6 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     }
 
 
-
     private void glideAppGif() {
         GlideApp.with(this)
                 .asGIF()
@@ -320,11 +353,75 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
 
     private void glideAppAssets() {
         GlideApp.with(this)
-                .load(ValueMaps.ImagePath.IMAGE_RES_ASSETS+"files/images/image_art.png")
+                .load(ImagePathU.showImages("image_art"))
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
                 .override(Target.SIZE_ORIGINAL)
                 .circleCrop()
                 .into(imageView);
+    }
+
+    private void downloadImageToSd() {
+        String book = ImagePathU.downloadImagePath("book");
+        if (FileU.isExist(book)) {
+            LogU.d(" 文件存在，无需下载");
+            GlideApp.with(this)
+                    .load(book)
+                    .placeholder(R.drawable.demo)
+                    .error(R.drawable.check)
+                    .circleCrop()
+                    .into(imageView);
+        } else {
+            File file = new File(book);
+            FileU.createFile(file);
+            LogU.d(" 文件存在，不存在，需要下载");
+            DLTask task = new DLTask();
+            task.setUrl("http://www.guolin.tech/book.png");
+            task.setSaveDir(book);
+            presenter.downloadImage(task);
+        }
+
+    }
+
+    private void glideAppSD() {
+        GlideApp.with(this)
+                .load(ImagePathU.showImages("book"))
+                .placeholder(R.drawable.demo)
+                .error(R.drawable.check)
+                .override(Target.SIZE_ORIGINAL)
+                .circleCrop()
+                .into(imageView);
+    }
+
+    @Override
+    public void setLoadingProgress(long l, long totalsize) {
+        if (!checkActivityState()) return;
+        progressBar.setMax((int) totalsize);
+        progressBar.setProgress((int) l);
+
+    }
+
+    @Override
+    public void downloadVideoSuccess(String downSavePath) {
+        if (!checkActivityState()) return;
+        LogU.e("downSavePath " + downSavePath);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                GlideApp.with(activity)
+                        .load(downSavePath)
+                        .placeholder(R.drawable.demo)
+                        .error(R.drawable.check)
+                        .circleCrop()
+                        .into(imageView);
+            }
+        });
+
+    }
+
+    @Override
+    public void downloadVideofailure() {
+        if (!checkActivityState()) return;
+        onTip("下载是吧请重试");
     }
 }
