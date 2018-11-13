@@ -9,11 +9,7 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +18,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.di.component.DaggerLoadingComponent;
 import com.mao.cn.learnDevelopProject.di.modules.LoadingModule;
-import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.ui.commons.UIActivity;
 import com.mao.cn.learnDevelopProject.ui.features.ILoading;
 import com.mao.cn.learnDevelopProject.ui.presenter.LoadingPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -41,7 +37,7 @@ import rx.subscriptions.CompositeSubscription;
  * DESC   :
  * AUTHOR : Xabad
  */
-public class LoadingActivity extends BaseActivity implements ILoading {
+public class LoadingActivity extends UIActivity implements ILoading {
 
 
     @Inject
@@ -61,10 +57,6 @@ public class LoadingActivity extends BaseActivity implements ILoading {
 
     @Override
     public int setView() {
-        /*this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setBackgroundDrawable(null);*/
-        initStatus();
         return R.layout.aty_loading;
     }
 
@@ -83,6 +75,12 @@ public class LoadingActivity extends BaseActivity implements ILoading {
 
         compositeSubscription.add(subscribe);
 
+        /*getStatusBarConfig()
+                .fullScreen(true)//有导航栏的情况下，activity全屏显示，也就是activity最下面被导航栏覆盖，不写默认非全屏
+                .hideBar(BarHide.FLAG_HIDE_STATUS_BAR)//隐藏状态栏
+                .transparentNavigationBar()//透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为true)
+                .init();
+*/
         // timer  定时
         /*Observable.timer(5, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
             @Override
@@ -107,17 +105,6 @@ public class LoadingActivity extends BaseActivity implements ILoading {
 
     }
 
-    private void initStatus() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            View decoderView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decoderView.setSystemUiVisibility(option);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        } else {
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
-    }
 
     @Override
     public void setListener() {

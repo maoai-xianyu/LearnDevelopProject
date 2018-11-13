@@ -1,18 +1,17 @@
 package com.mao.cn.learnDevelopProject.ui.commons;
 
-import android.os.Build;
-import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.hwangjr.rxbus.RxBus;
 import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.common.CommActivity;
-import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.utils.tools.JsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
@@ -21,6 +20,7 @@ import com.mao.cn.learnDevelopProject.wedget.dialog.DefineTwoBottomDialog;
 import com.mao.cn.learnDevelopProject.wedget.dialog.LoadingDialog;
 import com.mao.cn.learnDevelopProject.wedget.dialog.SingleDialog;
 
+import butterknife.ButterKnife;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -30,26 +30,19 @@ import rx.schedulers.Schedulers;
  * Created by zhangkun on 2017/6/9.
  */
 
-public abstract class BaseActivity extends CommActivity implements BaseViewInferface {
+public abstract class BaseActivity extends CommActivity implements BaseViewInferface, ViewTreeObserver.OnGlobalLayoutListener {
 
 
     protected DefineTwoBottomDialog twoBottomDialog;
     protected SingleDialog singleDialog;
     protected LoadingDialog loadingDialog;
 
-    @Override
-    public void getArgs(Bundle var1) {
 
-    }
-
-    @Override
-    public int setView() {
-        return 0;
-    }
-
-    @Override
-    public void initView() {
-
+    public void init() {
+        ButterKnife.setDebug(true);
+        ButterKnife.bind(this);
+        RxBus.get().register(this);
+        super.init();
     }
 
     @Override
@@ -59,24 +52,6 @@ public abstract class BaseActivity extends CommActivity implements BaseViewInfer
         setupComponent(LearnDevelopApplication.getComponent());
 
     }
-
-
-    protected void setStyle(boolean status, boolean navigation) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            if (status)
-                window.setFlags(
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // Translucent navigation bar
-            if (navigation)
-                window.setFlags(
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
-    }
-
 
     public void setScreenBackground(float alphaParams) {
         WindowManager.LayoutParams params = this.getWindow().getAttributes();
@@ -188,6 +163,11 @@ public abstract class BaseActivity extends CommActivity implements BaseViewInfer
             if (!activity.isFinishing())
                 singleDialog.show();
         }
+    }
+
+    @Override
+    public void onGlobalLayout() {
+
     }
 
     class TokenErrorListener implements View.OnClickListener {

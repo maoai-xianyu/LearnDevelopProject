@@ -3,14 +3,10 @@ package com.mao.cn.learnDevelopProject.common;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.view.Window;
 
 import com.hwangjr.rxbus.RxBus;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by zhangkun on 2017/6/9.
@@ -28,11 +24,12 @@ public abstract class CommActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getArgs(this.getIntent().getExtras());
         this.setContentView(this.setView());
-        ButterKnife.setDebug(true);
-        ButterKnife.bind(this);
+        init();
+    }
+
+    public void init() {
         this.activity = this;
         this.context = this;
-        RxBus.get().register(this);
         this.setting();
         this.initView();
         this.setListener();
@@ -67,11 +64,11 @@ public abstract class CommActivity extends RxAppCompatActivity {
     }
 
     protected void startActivity(Class cls) {
-        this.startActivity(cls, (Bundle)null, false);
+        this.startActivity(cls, (Bundle) null, false);
     }
 
     protected void startActivity(Class cls, boolean isfinish) {
-        this.startActivity(cls, (Bundle)null, isfinish);
+        this.startActivity(cls, (Bundle) null, isfinish);
     }
 
     protected void startActivity(Class cls, Bundle bundle) {
@@ -79,32 +76,18 @@ public abstract class CommActivity extends RxAppCompatActivity {
     }
 
     protected void startActivity(Class cls, Bundle bundle, boolean isfinish) {
-        if(cls != null && this.activity != null && !this.activity.isFinishing()) {
+        if (cls != null && this.activity != null && !this.activity.isFinishing()) {
             Intent intent = new Intent();
-            if(bundle != null) {
+            if (bundle != null) {
                 intent.putExtras(bundle);
             }
 
             intent.setClass(this.activity, cls);
             this.startActivity(intent);
-            if(isfinish) {
+            if (isfinish) {
                 this.finish();
             }
 
         }
-    }
-
-    protected void setStyle(boolean status, boolean navigation) {
-        if(VERSION.SDK_INT >= 19) {
-            Window window = this.getWindow();
-            if(status) {
-                window.setFlags(67108864, 67108864);
-            }
-
-            if(navigation) {
-                window.setFlags(134217728, 134217728);
-            }
-        }
-
     }
 }

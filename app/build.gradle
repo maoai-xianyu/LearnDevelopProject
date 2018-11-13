@@ -139,4 +139,6 @@ dependencies {
     // If you want to use the GPU Filters
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     implementation 'com.jude:easyrecyclerview:4.4.2'
+    // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
 }
