@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gyf.barlibrary.BarHide;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.di.component.DaggerLoadingComponent;
@@ -75,12 +76,11 @@ public class LoadingActivity extends UIActivity implements ILoading {
 
         compositeSubscription.add(subscribe);
 
-        /*getStatusBarConfig()
+        getStatusBarConfig()
                 .fullScreen(true)//有导航栏的情况下，activity全屏显示，也就是activity最下面被导航栏覆盖，不写默认非全屏
                 .hideBar(BarHide.FLAG_HIDE_STATUS_BAR)//隐藏状态栏
                 .transparentNavigationBar()//透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为true)
                 .init();
-*/
         // timer  定时
         /*Observable.timer(5, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
             @Override
