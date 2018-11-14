@@ -63,6 +63,18 @@
                 android:textSize="15sp" />
 
 
+            <TextView
+                android:id="@+id/tv_expend"
+                android:layout_toEndOf="@+id/tv_easyRyGlide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d20"
+                android:textColor="@color/c_000000"
+                android:background="@drawable/shape_corner_tv_ffeo5d"
+                android:text="tvExpend"
+                android:textSize="15sp" />
+
+
         </RelativeLayout>
 
 

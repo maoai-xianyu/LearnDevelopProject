@@ -15,6 +15,7 @@ import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -35,6 +36,8 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvEasyRy;
     @BindView(R.id.tv_easyRyGlide)
     TextView tvEasyRyGlide;
+    @BindView(R.id.tv_expend)
+    TextView tvExpend;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -92,6 +95,13 @@ public class OpenSourceFragment extends BaseFragment {
                 .MILLISECONDS).subscribe(aVoid -> {
 
             startActivity(EasyRecycleViewGlideShowContentActivity.class);
+
+        }, throwable -> LogU.e(throwable.getMessage()));
+
+        RxView.clicks(tvExpend).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+
+            startActivity(ExpendTextViewContentActivity.class);
 
         }, throwable -> LogU.e(throwable.getMessage()));
 

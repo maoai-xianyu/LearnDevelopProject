@@ -124,6 +124,10 @@
             android:name="com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
 
     </application>
 
