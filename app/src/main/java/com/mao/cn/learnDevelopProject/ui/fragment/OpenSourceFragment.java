@@ -13,6 +13,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.ui.activity.DataBindingActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
@@ -38,6 +39,8 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvEasyRyGlide;
     @BindView(R.id.tv_expend)
     TextView tvExpend;
+    @BindView(R.id.tv_databinding)
+    TextView tvDatabinding;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -102,6 +105,13 @@ public class OpenSourceFragment extends BaseFragment {
                 .MILLISECONDS).subscribe(aVoid -> {
 
             startActivity(ExpendTextViewContentActivity.class);
+
+        }, throwable -> LogU.e(throwable.getMessage()));
+
+        RxView.clicks(tvDatabinding).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+
+            startActivity(DataBindingActivity.class);
 
         }, throwable -> LogU.e(throwable.getMessage()));
 

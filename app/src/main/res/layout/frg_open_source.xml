@@ -44,34 +44,46 @@
                 android:id="@+id/tv_easyRy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/d20"
-                android:textColor="@color/c_000000"
                 android:background="@drawable/shape_corner_tv_ffeo5d"
+                android:padding="@dimen/d20"
                 android:text="easyRecycler"
+                android:textColor="@color/c_000000"
                 android:textSize="15sp" />
 
 
             <TextView
                 android:id="@+id/tv_easyRyGlide"
-                android:layout_toEndOf="@+id/tv_easyRy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/d20"
-                android:textColor="@color/c_000000"
+                android:layout_toEndOf="@+id/tv_easyRy"
                 android:background="@drawable/shape_corner_tv_ffeo5d"
+                android:padding="@dimen/d20"
                 android:text="easyRyGlide"
+                android:textColor="@color/c_000000"
                 android:textSize="15sp" />
 
 
             <TextView
                 android:id="@+id/tv_expend"
-                android:layout_toEndOf="@+id/tv_easyRyGlide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/d20"
-                android:textColor="@color/c_000000"
+                android:layout_toEndOf="@+id/tv_easyRyGlide"
                 android:background="@drawable/shape_corner_tv_ffeo5d"
+                android:padding="@dimen/d20"
                 android:text="tvExpend"
+                android:textColor="@color/c_000000"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/tv_databinding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_easyRy"
+                android:background="@drawable/shape_corner_tv_ffeo5d"
+                android:padding="@dimen/d20"
+                android:text="data binding"
+                android:textColor="@color/c_000000"
                 android:textSize="15sp" />
 
 
