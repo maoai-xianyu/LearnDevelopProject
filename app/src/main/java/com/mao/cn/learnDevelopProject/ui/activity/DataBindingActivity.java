@@ -13,12 +13,17 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewStub;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.databinding.AtyDataBindingBinding;
+import com.mao.cn.learnDevelopProject.databinding.ViewstubBinding;
 import com.mao.cn.learnDevelopProject.model.Employee;
+import com.mao.cn.learnDevelopProject.model.EmployeeUser;
 import com.mao.cn.learnDevelopProject.utils.tools.ToastUtils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
+import java.util.Objects;
 
 /**
  * DESC   :
@@ -36,6 +41,16 @@ public class DataBindingActivity extends RxAppCompatActivity {
         binding.setEmployee(mEmployee);
         binding.setPresenter(new Presenter());
         //binding.setVariable(BR.employee, mEmployee);
+        binding.viewStub.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub viewStub, View view) {
+                EmployeeUser mEmployee = new EmployeeUser("Tom", "Jack");
+                ViewstubBinding bind = DataBindingUtil.bind(view);
+                assert bind != null;
+                bind.setEmployeeUser(mEmployee);
+            }
+        });
+        Objects.requireNonNull(binding.viewStub.getViewStub()).inflate();
     }
 
 

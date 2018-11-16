@@ -6,19 +6,19 @@ import java.io.Serializable;
  * author:  zhangkun .
  * date:    on 2018/11/15.
  */
-public class Employee implements Serializable {
+public class EmployeeUser implements Serializable {
 
     private String firstName;
     private String lastName;
     private boolean isGoodGuy;
 
-    public Employee(String firstName, String lastName) {
+    public EmployeeUser(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isGoodGuy = true;
     }
 
-    public Employee() {
+    public EmployeeUser() {
     }
 
     public String getFirstName() {

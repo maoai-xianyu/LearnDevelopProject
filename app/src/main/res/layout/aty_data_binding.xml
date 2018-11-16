@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="employee"
             type="com.mao.cn.learnDevelopProject.model.Employee" />
@@ -96,6 +98,12 @@
             android:layout_below="@+id/rl_header"
             android:orientation="vertical">
 
+            <ViewStub
+                android:id="@+id/view_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/viewstub" />
+
             <EditText
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
@@ -111,15 +119,36 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{presenter.onClick}"
+                android:onClick="@{presenter::onClick}"
                 android:text="@{employee.firstName}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="@{()->presenter.onClickListenerBinding(employee)}"
-                android:text="@{employee.lastName}" />
+                android:text="@{employee.lastName}"
+                android:visibility="@{employee.goodGuy? View.VISIBLE:View.GONE}" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(view)->presenter.onClickListenerBinding(employee)}"
+                android:text="@{String.valueOf(1+2)}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{"hello "+"world"}' />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{employee.goodGuy? "显示":"隐藏"}' />
+
+            <include
+                layout="@layout/include_data_binding"
+                app:employee="@{employee}" />
 
         </LinearLayout>
     </RelativeLayout>
