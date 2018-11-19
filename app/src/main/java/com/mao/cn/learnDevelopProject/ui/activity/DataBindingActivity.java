@@ -44,7 +44,7 @@ public class DataBindingActivity extends RxAppCompatActivity {
         binding.viewStub.setOnInflateListener(new ViewStub.OnInflateListener() {
             @Override
             public void onInflate(ViewStub viewStub, View view) {
-                EmployeeUser mEmployee = new EmployeeUser("Tom", "Jack");
+                EmployeeUser mEmployee = new EmployeeUser("Mao", "XianYu");
                 ViewstubBinding bind = DataBindingUtil.bind(view);
                 assert bind != null;
                 bind.setEmployeeUser(mEmployee);
