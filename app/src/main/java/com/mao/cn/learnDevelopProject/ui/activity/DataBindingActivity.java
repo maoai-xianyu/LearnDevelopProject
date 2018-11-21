@@ -58,7 +58,7 @@ public class DataBindingActivity extends RxAppCompatActivity {
 
         public void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
             mEmployee.setFirstName(text.toString());
-            binding.setEmployee(mEmployee);
+            //binding.setEmployee(mEmployee);
         }
 
         public void onClick(View view){
