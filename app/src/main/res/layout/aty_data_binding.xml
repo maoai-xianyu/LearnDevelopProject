@@ -133,9 +133,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="@{employee.isFired?View.VISIBLE:View.GONE}"
                 android:onClick="@{(view)->presenter.onClickListenerBinding(employee)}"
-                android:text="@{String.valueOf(1+2)}" />
+                android:text="@{String.valueOf(1+2)}"
+                android:visibility="@{employee.isFired?View.VISIBLE:View.GONE}" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,6 +146,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text='@{employee.goodGuy? "显示":"隐藏"}' />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d1"
+                android:background="@color/c_a9a9a9" />
+
 
             <include
                 layout="@layout/include_data_binding"

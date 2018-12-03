@@ -12,7 +12,7 @@ import java.io.Serializable;
  * author:  zhangkun .
  * date:    on 2018/11/15.
  */
-public class Employee  extends BaseObservable implements Serializable {
+public class Employee extends BaseObservable implements Serializable {
 
     private String firstName;
     private String lastName;
@@ -55,6 +55,7 @@ public class Employee  extends BaseObservable implements Serializable {
 
     public void setGoodGuy(boolean goodGuy) {
         this.isGoodGuy = goodGuy;
+        //notifyChange();  刷新全部
 
     }
 
