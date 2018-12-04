@@ -98,12 +98,6 @@
             android:layout_below="@+id/rl_header"
             android:orientation="vertical">
 
-            <ViewStub
-                android:id="@+id/view_stub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/viewstub" />
-
             <EditText
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
@@ -146,6 +140,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text='@{employee.goodGuy? "显示":"隐藏"}' />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d1"
+                android:background="@color/c_a9a9a9" />
+
+            <ViewStub
+                android:id="@+id/view_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/viewstub" />
 
 
             <View

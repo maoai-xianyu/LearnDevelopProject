@@ -23,6 +23,7 @@ public class Employee extends BaseObservable implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isGoodGuy = true;
+        this.isFired = new ObservableBoolean();
         isFired.set(false);
     }
 
