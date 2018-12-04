@@ -2,7 +2,9 @@ package com.mao.cn.learnDevelopProject.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.ObservableArrayMap;
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 
 import com.mao.cn.learnDevelopProject.BR;
 
@@ -17,14 +19,19 @@ public class Employee extends BaseObservable implements Serializable {
     private String firstName;
     private String lastName;
     private boolean isGoodGuy;
-    public ObservableBoolean isFired;
+    public ObservableBoolean isFired = new ObservableBoolean();
+    public ObservableArrayMap<String, String> user = new ObservableArrayMap<>();
+    public ObservableField<String> name = new ObservableField<>();
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isGoodGuy = true;
-        this.isFired = new ObservableBoolean();
         isFired.set(false);
+        user.put("hello", "world");
+        user.put("blog", "blog");
+        user.put("Jack", "Jack World");
+        name.set("Employee");
     }
 
     public Employee() {
@@ -63,6 +70,7 @@ public class Employee extends BaseObservable implements Serializable {
     public void setFired(boolean fired) {
         isFired.set(fired);
     }
+
 
     @Override
     public String toString() {

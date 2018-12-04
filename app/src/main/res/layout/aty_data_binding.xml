@@ -141,6 +141,30 @@
                 android:layout_height="wrap_content"
                 android:text='@{employee.goodGuy? "显示":"隐藏"}' />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{employee.user["hello"]}'
+                android:textColor="@color/c_9b6249" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{employee.user["blog"]}'
+                android:textColor="@color/c_ff4532" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{employee.user["Jack"]}'
+                android:textColor="@color/c_69C614" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{employee.name}"
+                android:textColor="@color/c_69C614" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d1"
