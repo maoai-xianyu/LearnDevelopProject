@@ -26,6 +26,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RetrofitShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
@@ -129,7 +130,7 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
 
         RxView.clicks(btnDefineView).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(DefineViewActivity.class);
+            startActivity(SelfDefineViewActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

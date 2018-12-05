@@ -102,11 +102,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
@@ -135,6 +130,23 @@
 
         <activity
             android:name="com.mao.cn.learnDevelopProject.ui.activity.DataBindingListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+
+        <!--自定义-->
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineYoukuViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
