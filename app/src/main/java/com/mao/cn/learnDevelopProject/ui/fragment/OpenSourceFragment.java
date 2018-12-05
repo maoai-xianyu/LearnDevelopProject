@@ -14,6 +14,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.activity.DataBindingActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.DataBindingListActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
@@ -41,6 +42,8 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvExpend;
     @BindView(R.id.tv_databinding)
     TextView tvDatabinding;
+    @BindView(R.id.tv_databinding_list)
+    TextView tvDatabindinglist;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -112,6 +115,13 @@ public class OpenSourceFragment extends BaseFragment {
                 .MILLISECONDS).subscribe(aVoid -> {
 
             startActivity(DataBindingActivity.class);
+
+        }, throwable -> LogU.e(throwable.getMessage()));
+
+        RxView.clicks(tvDatabindinglist).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+
+            startActivity(DataBindingListActivity.class);
 
         }, throwable -> LogU.e(throwable.getMessage()));
 
