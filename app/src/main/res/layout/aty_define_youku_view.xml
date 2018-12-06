@@ -15,27 +15,115 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_header">
 
-        <ImageView
-            android:layout_width="350dp"
-            android:layout_height="175dp"
+        <RelativeLayout
+            android:id="@+id/rl_three"
+            android:layout_width="@dimen/d350"
+            android:layout_height="@dimen/d175"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/icon_youku_three">
 
-            android:src="@drawable/icon_youku_three" />
+            <ImageView
+                android:id="@+id/iv_youku_5"
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/d8"
+                android:layout_marginBottom="@dimen/d8"
+                android:src="@drawable/icon_youku_5" />
 
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="125dp"
+            <ImageView
+                android:id="@+id/iv_youku_9"
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_above="@+id/iv_youku_5"
+                android:layout_marginStart="@dimen/d45"
+                android:layout_marginBottom="@dimen/d40"
+                android:src="@drawable/icon_youku_9" />
+
+
+            <ImageView
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/d6"
+                android:src="@drawable/icon_youku_6" />
+
+
+            <ImageView
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_above="@+id/iv_youku_8"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/d45"
+                android:layout_marginBottom="@dimen/d40"
+                android:src="@drawable/icon_youku_9" />
+
+            <ImageView
+                android:id="@+id/iv_youku_8"
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/d8"
+                android:layout_marginBottom="@dimen/d8"
+                android:src="@drawable/icon_youku_8" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_second"
+            android:layout_width="@dimen/d250"
+            android:layout_height="@dimen/d125"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/icon_youku_second" />
+            android:background="@drawable/icon_youku_second">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="75dp"
+            <ImageView
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/d8"
+                android:layout_marginBottom="@dimen/d8"
+                android:src="@drawable/icon_youku_2" />
+
+            <ImageView
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/d6"
+                android:src="@drawable/icon_youku_3" />
+
+            <ImageView
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/d8"
+                android:layout_marginBottom="@dimen/d8"
+                android:src="@drawable/icon_youku_4" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_first"
+            android:layout_width="@dimen/d150"
+            android:layout_height="@dimen/d75"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/icon_youku_first" />
+            android:background="@drawable/icon_youku_first">
+
+            <ImageView
+                android:id="@+id/iv_home"
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_youku_1" />
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
