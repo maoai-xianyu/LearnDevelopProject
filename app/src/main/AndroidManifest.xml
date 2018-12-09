@@ -150,6 +150,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineGuangGaoViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
