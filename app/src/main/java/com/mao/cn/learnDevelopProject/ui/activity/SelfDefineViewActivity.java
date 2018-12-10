@@ -56,6 +56,8 @@ public class SelfDefineViewActivity extends BaseActivity {
     TextView tvDefineYouKu;
     @BindView(R.id.tv_define_guang_gao)
     TextView tvDefineGuangGao;
+    @BindView(R.id.tv_define_down_list)
+    TextView tvDefineDownList;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -101,6 +103,13 @@ public class SelfDefineViewActivity extends BaseActivity {
         RxView.clicks(tvDefineGuangGao).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(DefineGuangGaoViewActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvDefineDownList).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(DefineDownListViewActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
