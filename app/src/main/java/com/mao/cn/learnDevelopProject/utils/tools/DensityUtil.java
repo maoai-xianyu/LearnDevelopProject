@@ -2,9 +2,9 @@ package com.mao.cn.learnDevelopProject.utils.tools;
 
 import android.content.Context;
 
-public class Util {
+public class DensityUtil {
     /**
-     * dpתpx
+     * dpתpx 根据手机的分辨率从dip的单位转成为 px
      */
     public static int dip2px(Context ctx, float dpValue) {
         final float scale = ctx.getResources().getDisplayMetrics().density;
@@ -13,7 +13,7 @@ public class Util {
 
 
     /**
-     * pxתdp
+     * pxתdp 根据手机的分辨率从px 的单位转成为dp
      */
     public static int px2dip(Context ctx, float pxValue) {
         final float scale = ctx.getResources().getDisplayMetrics().density;

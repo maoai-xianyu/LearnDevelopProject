@@ -19,7 +19,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.utils.tools.Util;
+import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.ColorFilterTransformation;
@@ -103,8 +103,8 @@ public class EasyRecycleViewGlideHolder extends BaseViewHolder<EasyRecycleViewGl
 
         switch (data) {
             case Mask: {
-                int width = Util.dip2px(context, 266.66f);
-                int height = Util.dip2px(context, 252.66f);
+                int width = DensityUtil.dip2px(context, 266.66f);
+                int height = DensityUtil.dip2px(context, 252.66f);
                 Glide.with(context)
                         .load(R.drawable.check)
                         .apply(overrideOf(width, height))
@@ -114,8 +114,8 @@ public class EasyRecycleViewGlideHolder extends BaseViewHolder<EasyRecycleViewGl
                 break;
             }
             case NinePatchMask: {
-                int width = Util.dip2px(context, 300.0f);
-                int height = Util.dip2px(context, 200.0f);
+                int width = DensityUtil.dip2px(context, 300.0f);
+                int height = DensityUtil.dip2px(context, 200.0f);
                 Glide.with(context)
                         .load(R.drawable.check)
                         .apply(overrideOf(width, height))
@@ -128,7 +128,7 @@ public class EasyRecycleViewGlideHolder extends BaseViewHolder<EasyRecycleViewGl
                 Glide.with(context)
                         .load(R.drawable.demo)
                         .apply(bitmapTransform(
-                                new CropTransformation(Util.dip2px(context, 300), Util.dip2px(context, 100),
+                                new CropTransformation(DensityUtil.dip2px(context, 300), DensityUtil.dip2px(context, 100),
                                         CropTransformation.CropType.TOP)))
                         .into(imageView);
                 break;
@@ -136,14 +136,14 @@ public class EasyRecycleViewGlideHolder extends BaseViewHolder<EasyRecycleViewGl
                 Glide.with(context)
                         .load(R.drawable.demo)
                         .apply(bitmapTransform(
-                                new CropTransformation(Util.dip2px(context, 300), Util.dip2px(context, 100), CropTransformation.CropType.CENTER)))
+                                new CropTransformation(DensityUtil.dip2px(context, 300), DensityUtil.dip2px(context, 100), CropTransformation.CropType.CENTER)))
                         .into(imageView);
                 break;
             case CropBottom:
                 Glide.with(context)
                         .load(R.drawable.demo)
                         .apply(bitmapTransform(
-                                new CropTransformation(Util.dip2px(context, 300), Util.dip2px(context, 100),
+                                new CropTransformation(DensityUtil.dip2px(context, 300), DensityUtil.dip2px(context, 100),
                                         CropTransformation.CropType.BOTTOM)))
                         .into(imageView);
 

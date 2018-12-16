@@ -50,7 +50,7 @@ import com.mao.cn.learnDevelopProject.ui.presenter.EasyRecycleViewGlideShowConte
 import com.mao.cn.learnDevelopProject.utils.download.DLTask;
 import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.mao.cn.learnDevelopProject.utils.tools.Util;
+import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -119,7 +119,7 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
         rvData.setLayoutManager(linearLayoutCourse);
 
-        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, Util.dip2px(this, 1f), Util.dip2px(this, 0), 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, DensityUtil.dip2px(this, 1f), DensityUtil.dip2px(this, 0), 0);
         itemDecoration.setDrawLastItem(false);
         rvData.addItemDecoration(itemDecoration);
         adapter = new EasyRecycleViewGlideAdapter(this);

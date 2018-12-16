@@ -34,7 +34,7 @@ import com.mao.cn.learnDevelopProject.ui.features.IEasyRecycleViewShowContent;
 import com.mao.cn.learnDevelopProject.ui.presenter.EasyRecycleViewShowContentPresenter;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.mao.cn.learnDevelopProject.utils.tools.Util;
+import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -85,7 +85,7 @@ public class EasyRecycleViewShowContentActivity extends BaseActivity implements 
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
         rvData.setLayoutManager(linearLayoutCourse);
 
-        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, Util.dip2px(this, 1f), Util.dip2px(this, 160), 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, DensityUtil.dip2px(this, 1f), DensityUtil.dip2px(this, 160), 0);
         itemDecoration.setDrawLastItem(false);
         rvData.addItemDecoration(itemDecoration);
         adapter = new EasyRecycleViewTopAdapter(this);
