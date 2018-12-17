@@ -38,6 +38,13 @@
             android:layout_toEndOf="@+id/tv_define_guang_gao"
             android:text="下拉框" />
 
+        <TextView
+            android:id="@+id/tv_define_on_off"
+            style="@style/textViewStyle"
+            android:layout_toEndOf="@+id/tv_define_down_list"
+            android:text="开关" />
+
+
 
     </RelativeLayout>
 
