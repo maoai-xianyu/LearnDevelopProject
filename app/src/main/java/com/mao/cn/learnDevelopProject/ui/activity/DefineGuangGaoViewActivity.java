@@ -28,7 +28,9 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.utils.tools.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -110,11 +112,15 @@ public class DefineGuangGaoViewActivity extends BaseActivity {
             // 添加指示点
             ImageView point = new ImageView(this);
             point.setBackgroundResource(R.drawable.point_selector);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(8, 8);
+            // 在代码中设置的都是像素--- 问题，在所有的手机上都是8个像素。
+            // 8px ----》dp dip
+            int width = DensityUtil.dip2px(this, 8);
+            ToastUtils.show("width" + width);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, width);
             if (i == 0) {
                 point.setEnabled(true);
             } else {
-                params.leftMargin = 8;
+                params.leftMargin = width;
                 point.setEnabled(false);
             }
             point.setLayoutParams(params);
@@ -189,7 +195,7 @@ public class DefineGuangGaoViewActivity extends BaseActivity {
                     LogU.d("SCROLL_STATE_IDLE 空闲 --------------------");
                     isDragging = false;
                     handler.removeCallbacksAndMessages(null);
-                    handler.sendEmptyMessageDelayed(0,4000);
+                    handler.sendEmptyMessageDelayed(0, 4000);
                 }
             }
         });
@@ -263,9 +269,9 @@ public class DefineGuangGaoViewActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     LogU.d("点击事件");
-                    int position = (int) v.getTag()%imageViews.size();
+                    int position = (int) v.getTag() % imageViews.size();
                     String name = imageNames[position];
-                    onTip("name = "+name);
+                    onTip("name = " + name);
                 }
             });
             return imageView;
