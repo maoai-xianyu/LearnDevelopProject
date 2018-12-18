@@ -110,4 +110,12 @@ public class RandomU {
     public static Double getRandomDouble(double min, double max) {
         return min + Math.random() * (max - min);
     }
+
+    /**
+     * 得到一个随机数
+     */
+    public static int getRandom(int num) {
+        Random random = new Random(System.currentTimeMillis());
+        return random.nextInt(num);
+    }
 }
