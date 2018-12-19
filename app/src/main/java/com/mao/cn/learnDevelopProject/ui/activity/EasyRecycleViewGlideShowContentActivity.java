@@ -349,6 +349,17 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
                 .override(Target.SIZE_ORIGINAL)
                 .circleCrop()
                 .into(imageView);
+
+
+        /*Glide.with(this)
+                .load("http://guolin.tech/book.png")
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                        imageView.setImageDrawable(resource);
+                    }
+                });*/
+
     }
 
     private void glideAppAssets() {

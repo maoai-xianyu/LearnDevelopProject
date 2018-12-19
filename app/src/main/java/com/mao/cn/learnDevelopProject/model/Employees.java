@@ -1,12 +1,7 @@
 package com.mao.cn.learnDevelopProject.model;
 
 import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-import android.databinding.ObservableArrayMap;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-
-import com.mao.cn.learnDevelopProject.BR;
 
 import java.io.Serializable;
 
@@ -18,57 +13,31 @@ public class Employees extends BaseObservable implements Serializable {
 
     private String firstName;
     private String lastName;
-    private boolean isGoodGuy;
     public ObservableBoolean isFired = new ObservableBoolean();
-    public ObservableArrayMap<String, String> user = new ObservableArrayMap<>();
-    public ObservableField<String> name = new ObservableField<>();
 
-    public Employees(String firstName, String lastName) {
+    public Employees(String firstName, String lastName, boolean isfired) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isGoodGuy = true;
-        isFired.set(false);
-        user.put("hello", "world");
-        user.put("blog", "blog");
-        user.put("Jack", "Jack World");
-        name.set("Employee");
+        isFired.set(isfired);
     }
 
     public Employees() {
     }
 
-    @Bindable
     public String getFirstName() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-        notifyPropertyChanged(BR.firstName);
     }
 
-    @Bindable
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-        notifyPropertyChanged(BR.lastName);
-    }
-
-    public boolean isGoodGuy() {
-        return isGoodGuy;
-    }
-
-    public void setGoodGuy(boolean goodGuy) {
-        this.isGoodGuy = goodGuy;
-        //notifyChange();  刷新全部
-
-    }
-
-    public void setFired(boolean fired) {
-        isFired.set(fired);
     }
 
 

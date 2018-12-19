@@ -17,7 +17,13 @@ import android.view.View;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.databinding.AtyDataBindingListBinding;
+import com.mao.cn.learnDevelopProject.model.Employees;
+import com.mao.cn.learnDevelopProject.ui.adapter.EmployeesAdapter;
+import com.mao.cn.learnDevelopProject.utils.tools.ToastUtils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DESC   :
@@ -27,6 +33,8 @@ public class DataBindingListActivity extends RxAppCompatActivity {
 
     AtyDataBindingListBinding binding;
 
+    EmployeesAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +42,20 @@ public class DataBindingListActivity extends RxAppCompatActivity {
         binding.setPresenter(new Presenter());
 
         binding.rvView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new EmployeesAdapter(this);
+        binding.rvView.setAdapter(adapter);
+        adapter.setmListener(new EmployeesAdapter.OnItemClickListener() {
+            @Override
+            public void onEmployeesClick(Employees employees) {
+                ToastUtils.show(employees.getFirstName());
+            }
+        });
+        List<Employees> employeesList = new ArrayList<>();
+        employeesList.add(new Employees("zk", "kun", false));
+        employeesList.add(new Employees("zk1", "kun1", false));
+        employeesList.add(new Employees("zk2", "kun2", true));
+        employeesList.add(new Employees("zk3", "kun3", false));
+        adapter.addAll(employeesList);
     }
 
 
@@ -41,9 +63,13 @@ public class DataBindingListActivity extends RxAppCompatActivity {
 
         public void onClickAddItem(View view) {
 
+            adapter.add(new Employees("zk4", "kun4", false));
+
+
         }
 
         public void onClickRemoveItem(View view) {
+            adapter.remove();
         }
     }
 
