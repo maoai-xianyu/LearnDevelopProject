@@ -44,6 +44,11 @@
             android:layout_toEndOf="@+id/tv_define_down_list"
             android:text="开关" />
 
+        <TextView
+            android:id="@+id/tv_define_property"
+            style="@style/textViewStyle"
+            android:layout_below="@+id/tv_define_old"
+            android:text="自定义属性" />
 
 
     </RelativeLayout>

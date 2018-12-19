@@ -60,6 +60,8 @@ public class SelfDefineViewActivity extends BaseActivity {
     TextView tvDefineDownList;
     @BindView(R.id.tv_define_on_off)
     TextView tvDefineOnOff;
+    @BindView(R.id.tv_define_property)
+    TextView tvDefineProperty;
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -119,6 +121,13 @@ public class SelfDefineViewActivity extends BaseActivity {
         RxView.clicks(tvDefineOnOff).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(DefineViewOnOrOffActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(tvDefineProperty).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(DefineViewPropertyActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
