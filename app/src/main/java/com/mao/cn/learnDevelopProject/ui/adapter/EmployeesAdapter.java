@@ -89,23 +89,37 @@ public class EmployeesAdapter extends RecyclerView.Adapter<BindingViewHolder> {
         }
     }
 
+    /**
+     * 触发点击事件
+     */
     public interface OnItemClickListener {
         void onEmployeesClick(Employees employees);
     }
 
 
+    /**
+     * 添加数据
+     * @param list
+     */
     public void addAll(List<Employees> list) {
         mEmployeesList.clear();
         mEmployeesList.addAll(list);
         notifyDataSetChanged();
     }
 
+    /**
+     * 单独添加一条数据
+     * @param employees
+     */
     public void add(Employees employees) {
         int random = RandomU.getRandom(mEmployeesList.size() + 1);
         mEmployeesList.add(random, employees);
         notifyItemInserted(random);
     }
 
+    /**
+     * 随机删除数据
+     */
     public void remove() {
         if (mEmployeesList.size() == 0) {
             return;
