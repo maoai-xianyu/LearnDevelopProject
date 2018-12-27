@@ -51,6 +51,15 @@ public class DataBindingActivity extends RxAppCompatActivity {
             }
         });
         Objects.requireNonNull(binding.viewStub.getViewStub()).inflate();
+        binding.rlHeader.ibHeaderBack.setVisibility(View.VISIBLE);
+        binding.rlHeader.ibHeaderBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        binding.rlHeader.tvHeaderTitle.setText("DataBinding");
     }
 
 
@@ -62,12 +71,12 @@ public class DataBindingActivity extends RxAppCompatActivity {
             mEmployee.setFired(!mEmployee.isFired.get());
         }
 
-        public void onClick(View view){
+        public void onClick(View view) {
             ToastUtils.show("点击了");
         }
 
-        public void onClickListenerBinding(Employee employee){
-            ToastUtils.show("点击了"+employee.getLastName());
+        public void onClickListenerBinding(Employee employee) {
+            ToastUtils.show("点击了" + employee.getLastName());
         }
     }
 

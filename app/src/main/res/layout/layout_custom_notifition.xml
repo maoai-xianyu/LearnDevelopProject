@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_FFFFFF"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/rlnotification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/d60"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d60"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/notification_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_000000"
+                android:text="通知栏标题"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/notification_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_000000"
+                android:text="通知栏内容" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

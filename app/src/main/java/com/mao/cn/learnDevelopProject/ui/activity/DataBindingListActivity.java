@@ -41,6 +41,17 @@ public class DataBindingListActivity extends RxAppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.aty_data_binding_list);
         binding.setPresenter(new Presenter());
 
+        binding.includeHeader.ibHeaderBack.setVisibility(View.VISIBLE);
+        binding.includeHeader.ibHeaderBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        binding.includeHeader.tvHeaderTitle.setText("DataBindingList");
+
+
         binding.rvView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new EmployeesAdapter(this);
         binding.rvView.setAdapter(adapter);
@@ -56,6 +67,8 @@ public class DataBindingListActivity extends RxAppCompatActivity {
         employeesList.add(new Employees("zk2", "kun2", true));
         employeesList.add(new Employees("zk3", "kun3", false));
         adapter.addAll(employeesList);
+
+
     }
 
 

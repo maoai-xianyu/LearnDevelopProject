@@ -73,6 +73,13 @@
                 android:layout_toEndOf="@+id/tv_databinding"
                 android:text="data binding list" />
 
+            <TextView
+                android:id="@+id/tv_notification"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_easyRy"
+                android:layout_toEndOf="@+id/tv_databinding_list"
+                android:text="通知8.0" />
+
 
         </RelativeLayout>
 
