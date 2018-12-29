@@ -195,7 +195,7 @@ public class NotificationActivity extends BaseActivity implements IMain {
 
     private PendingIntent getPendingIntent(int what) {
         Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, what, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, what, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         return pendingIntent;
     }
 
@@ -242,6 +242,9 @@ public class NotificationActivity extends BaseActivity implements IMain {
 
     public void sendChatMsg() {
 
+        Intent intentp = new Intent();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intentp,0);
+
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder chat = new NotificationCompat.Builder(this, "chat");
@@ -261,6 +264,7 @@ public class NotificationActivity extends BaseActivity implements IMain {
                 .setTicker("您有新短消息")
                 .setContentTitle("收到一条聊天消息")
                 .setContentText("今天中午吃什么？")
+                .setContentIntent(pendingIntent)
                 .setWhen(System.currentTimeMillis()) //设置通知时间
                 .setDefaults(Notification.DEFAULT_SOUND)//设置通知方式，声音，震动，呼吸灯等效果，这里通知方式为声音
                 .setSmallIcon(R.drawable.icon_person)    //设置小图标
@@ -272,6 +276,10 @@ public class NotificationActivity extends BaseActivity implements IMain {
     }
 
     public void sendSubscribeMsg() {
+
+        Intent intent = new Intent();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent,0);
+
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder subscribe;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -284,6 +292,7 @@ public class NotificationActivity extends BaseActivity implements IMain {
                 .setTicker("您有新短消息")
                 .setContentTitle("收到一条订阅消息")
                 .setContentText("地铁沿线30万商铺抢购中！")
+                .setContentIntent(pendingIntent)
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.icon_person)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_person))
