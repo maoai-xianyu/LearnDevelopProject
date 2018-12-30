@@ -48,9 +48,9 @@ import com.mao.cn.learnDevelopProject.ui.commons.GlideApp;
 import com.mao.cn.learnDevelopProject.ui.features.IEasyRecycleViewGlideShowContent;
 import com.mao.cn.learnDevelopProject.ui.presenter.EasyRecycleViewGlideShowContentPresenter;
 import com.mao.cn.learnDevelopProject.utils.download.DLTask;
+import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -97,6 +97,8 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     ProgressBar progressBar;
     @BindView(R.id.rvData)
     EasyRecyclerView rvData;
+    @BindView(R.id.imageView2)
+    ImageView imageView2;
 
     private RecyclerArrayAdapter<Type> adapter;
 
@@ -114,6 +116,28 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     @Override
     public void initView() {
         ibHeaderBack.setVisibility(View.VISIBLE);
+
+        /*GlideApp.with(this)
+                .asBitmap()
+                .load("http://www.guolin.tech/book.png")
+                .listener(new RequestListener<Bitmap>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        //获取原图的宽高
+                        int width = resource.getWidth();
+                        int height = resource.getHeight();
+                        LogU.d("width2 " + width);
+                        LogU.d("height2 " + height);
+
+                        return false;
+                    }
+                })
+                .into(imageView2);*/
 
         LinearLayoutManager linearLayoutCourse = new LinearLayoutManager(context);
         linearLayoutCourse.setOrientation(LinearLayoutManager.VERTICAL);
@@ -306,6 +330,7 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
                     }
                 })
                 .into(imageView);
+
     }
 
     private void glideApp() {
