@@ -46,7 +46,7 @@ public class CustomGlideExtension {
 
     @SuppressLint("CheckResult")
     @GlideOption
-    static void cacheSouceNone(RequestOptions options) {
+    static void cacheSourceNone(RequestOptions options) {
         options.skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
 
