@@ -133,7 +133,11 @@ dependencies {
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     // https://mvnrepository.com/artifact/com.nineoldandroids/library
     implementation files('libs/library-2.4.0.jar')
-    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
+    // navigation
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.1.0'
+    // navigation
+    implementation 'me.majiajie:pager-bottom-tab-strip:2.3.0'
+
     implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
     // 高斯模糊
     implementation 'com.dasu.image:blur:0.0.4'

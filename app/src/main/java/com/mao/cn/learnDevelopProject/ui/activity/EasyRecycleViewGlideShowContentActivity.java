@@ -51,6 +51,7 @@ import com.mao.cn.learnDevelopProject.utils.download.DLTask;
 import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.wedget.GlideRoundedCornersTransform;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -91,6 +92,8 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     Button fImageBtn;
     @BindView(R.id.HImageBtn)
     Button hImageBtn;
+    @BindView(R.id.MImagebtn)
+    Button MImagebtn;
     @BindView(R.id.imageView)
     ImageView imageView;
     @BindView(R.id.progressBar)
@@ -251,6 +254,13 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
             LogU.e(throwable.getMessage());
         });
 
+        RxView.clicks(MImagebtn).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            glideCorner();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
 
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
@@ -384,6 +394,18 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
                         imageView.setImageDrawable(resource);
                     }
                 });*/
+
+    }
+
+    private void glideCorner() {
+        GlideApp.with(this)
+//                .load("http://guolin.tech/book.png")
+                .load(R.drawable.image_dafault)
+                .centerCrop()
+                .optionalTransform(new GlideRoundedCornersTransform(this, 20f, GlideRoundedCornersTransform.CornerType.ALL))
+                .placeholder(R.drawable.demo)
+                .error(R.drawable.check)
+                .into(imageView);
 
     }
 

@@ -59,7 +59,7 @@
             android:id="@+id/DImageBtn"
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:text="Button"
+            android:text="DImage"
             android:textSize="8sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/CImageBtn"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,8 +72,10 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FImageBtn"
+            app:layout_constraintTop_toBottomOf="@+id/MImagebtn"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/demo" />
 
         <Button
@@ -133,6 +135,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/GImageBtn"
             app:layout_constraintTop_toBottomOf="@+id/DImageBtn" />
+
+        <Button
+            android:id="@+id/MImagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Emage corners"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FImageBtn" />
 
         <ProgressBar
             android:id="@+id/progressBar"
