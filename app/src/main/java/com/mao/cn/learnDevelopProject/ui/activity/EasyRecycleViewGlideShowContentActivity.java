@@ -51,7 +51,6 @@ import com.mao.cn.learnDevelopProject.utils.download.DLTask;
 import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
-import com.mao.cn.learnDevelopProject.wedget.GlideRoundedCornersTransform;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -61,6 +60,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * DESC   :
@@ -398,11 +398,34 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     }
 
     private void glideCorner() {
+        /*GlideApp.with(this)
+//                .load("http://guolin.tech/book.png")
+                .load(R.drawable.image_dafault)
+                .centerCrop()
+                //.optionalTransform(new GlideRoundedCornersTransform(this, 20f, GlideRoundedCornersTransform.CornerType.ALL))
+                .placeholder(R.drawable.demo)
+                .error(R.drawable.check)
+                .into(imageView);*/
+
+        /*RequestOptions requestOptions = new RequestOptions();
+        requestOptions.centerCrop();
+        requestOptions.placeholder(R.drawable.demo);
+        requestOptions.error(R.drawable.check);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.NONE); //禁止使用缓存功能
+
+        Glide.with(this)
+                .load(R.drawable.image_dafault)
+                .apply(requestOptions)
+                .apply(bitmapTransform(new RoundedCornersTransformation(45, 0,
+                        RoundedCornersTransformation.CornerType.ALL)))
+                .into(imageView);*/
+
         GlideApp.with(this)
 //                .load("http://guolin.tech/book.png")
                 .load(R.drawable.image_dafault)
                 .centerCrop()
-                .optionalTransform(new GlideRoundedCornersTransform(this, 20f, GlideRoundedCornersTransform.CornerType.ALL))
+                .transform(new RoundedCornersTransformation(45, 0,
+                        RoundedCornersTransformation.CornerType.ALL))
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
                 .into(imageView);

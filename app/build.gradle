@@ -143,9 +143,9 @@ dependencies {
     implementation 'com.dasu.image:blur:0.0.4'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    implementation 'jp.wasabeef:glide-transformations:4.0.1'
     // If you want to use the GPU Filters
-    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    implementation 'jp.co.cyberagent.android:gpuimage:2.0.3'
     implementation 'com.jude:easyrecyclerview:4.4.2'
     // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
