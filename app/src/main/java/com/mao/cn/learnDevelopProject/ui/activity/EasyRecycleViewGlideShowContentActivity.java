@@ -51,6 +51,7 @@ import com.mao.cn.learnDevelopProject.utils.download.DLTask;
 import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
 import com.mao.cn.learnDevelopProject.utils.tools.FileU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.wedget.GlideRoundedCornersTransform;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,7 +61,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * DESC   :
@@ -398,14 +398,16 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     }
 
     private void glideCorner() {
-        /*GlideApp.with(this)
+        GlideApp.with(this)
 //                .load("http://guolin.tech/book.png")
                 .load(R.drawable.image_dafault)
                 .centerCrop()
-                //.optionalTransform(new GlideRoundedCornersTransform(this, 20f, GlideRoundedCornersTransform.CornerType.ALL))
+                .optionalTransform(new GlideRoundedCornersTransform(this, 20f, GlideRoundedCornersTransform.CornerType.ALL))
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
-                .into(imageView);*/
+                .into(imageView);
+
+        // RoundedCornersTransformation  和 centerCrop 谁最后执行，显示谁，没有解决这个冲突的问题
 
         /*RequestOptions requestOptions = new RequestOptions();
         requestOptions.centerCrop();
@@ -420,15 +422,15 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
                         RoundedCornersTransformation.CornerType.ALL)))
                 .into(imageView);*/
 
-        GlideApp.with(this)
+        /*GlideApp.with(this)
 //                .load("http://guolin.tech/book.png")
                 .load(R.drawable.image_dafault)
-                .centerCrop()
                 .transform(new RoundedCornersTransformation(45, 0,
                         RoundedCornersTransformation.CornerType.ALL))
+                .centerCrop()
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
-                .into(imageView);
+                .into(imageView);*/
 
     }
 
