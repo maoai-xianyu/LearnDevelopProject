@@ -21,6 +21,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 读取手机状态 phone group -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
+
 
     <application
         android:name="com.mao.cn.learnDevelopProject.LearnDevelopApplication"
@@ -28,6 +30,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:resizeableActivity="true"
+        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -177,6 +180,10 @@
 
         <activity
             android:name=".ui.activity.HtmlActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.HtmlQbActivity"
             android:screenOrientation="portrait"/>
 
 

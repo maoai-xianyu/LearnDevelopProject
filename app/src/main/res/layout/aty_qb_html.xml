@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_efeff4"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_header" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d2"
+        android:progressDrawable="@drawable/bg_progressbar_video" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.tencent.smtt.sdk.WebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_buy_course"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d46"
+            android:layout_gravity="bottom"
+            android:background="@color/c_ffcc24"
+            android:gravity="center"
+            android:textColor="@color/c_000000"
+            android:textSize="@dimen/text_size_16"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bug_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:id="@+id/ll_call_phone"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d55"
+            android:layout_weight="2"
+            android:background="@color/c_4a4a4a"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/d20"
+                android:layout_height="@dimen/d20"
+                android:src="@drawable/icon_call_phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="咨询客服"
+                android:textColor="@color/c_FFFFFF"
+                android:textSize="@dimen/text_size_10" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_buy_micros"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@color/c_ffd857"
+            android:orientation="vertical"
+            android:text="开始购买"
+            android:textColor="@color/c_000000"
+            android:textSize="@dimen/text_size_14" />
+
+
+    </LinearLayout>
+</LinearLayout>

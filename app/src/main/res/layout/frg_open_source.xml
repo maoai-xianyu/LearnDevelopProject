@@ -87,6 +87,12 @@
                 android:layout_toEndOf="@+id/tv_notification"
                 android:text="html" />
 
+            <TextView
+                android:id="@+id/tv_html_qb"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_databinding"
+                android:text="htmlqb" />
+
 
         </RelativeLayout>
 

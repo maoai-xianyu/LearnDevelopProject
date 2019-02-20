@@ -20,6 +20,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowConten
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.HtmlActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.HtmlQbActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NotificationActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -51,6 +52,8 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvNotification;
     @BindView(R.id.tv_html)
     TextView tvHtml;
+    @BindView(R.id.tv_html_qb)
+    TextView tvHtmlQb;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -146,6 +149,13 @@ public class OpenSourceFragment extends BaseFragment {
             Bundle bundle = new Bundle();
             bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_LESSON_DETAIL);
             startActivity(HtmlActivity.class, bundle);
+        }, throwable -> LogU.e(throwable.getMessage()));
+
+        RxView.clicks(tvHtmlQb).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_LESSON_DETAIL);
+            startActivity(HtmlQbActivity.class, bundle);
         }, throwable -> LogU.e(throwable.getMessage()));
 
     }

@@ -4,19 +4,20 @@ import android.app.Activity;
 
 import com.hwangjr.rxbus.RxBus;
 import com.mao.cn.learnDevelopProject.common.CommApplication;
-import com.mao.cn.learnDevelopProject.di.component.AppComponent;
-import com.mao.cn.learnDevelopProject.di.component.DaggerAppComponent;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.di.component.DaggerAppComponent;
+import com.mao.cn.learnDevelopProject.di.modules.AppModule;
 import com.mao.cn.learnDevelopProject.domain.AnalyticsManager;
 import com.mao.cn.learnDevelopProject.model.ServerInfo;
-import com.mao.cn.learnDevelopProject.di.modules.AppModule;
 import com.mao.cn.learnDevelopProject.utils.config.Config;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mcxiaoke.packer.helper.PackerNg;
+import com.tencent.smtt.sdk.QbSdk;
 import com.youdao.sdk.app.YouDaoApplication;
 
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class LearnDevelopApplication extends CommApplication {
         initServerInfo();
         PathU.getInstance().initDirs();
         YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
+        QbSdk.initX5Environment(this,null);
     }
 
     public static ServerInfo serverInfo() {
