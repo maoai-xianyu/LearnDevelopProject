@@ -90,5 +90,11 @@
     <color name="colorButtonDisable">#DDDDDD</color>
     <!-- 分割线的颜色 -->
     <color name="colorLine">#ECECEC</color>
+    <color name="c_444444">#444444</color>
+    <color name="c_efeff4">#efeff4</color>
+    <color name="c_ffcc24">#ffcc24</color>
+    <color name="c_4a4a4a">#4a4a4a</color>
+    <color name="c_ffd857">#ffd857</color>
+
 
 </resources>

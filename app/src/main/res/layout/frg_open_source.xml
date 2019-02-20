@@ -80,6 +80,13 @@
                 android:layout_toEndOf="@+id/tv_databinding_list"
                 android:text="通知8.0" />
 
+            <TextView
+                android:id="@+id/tv_html"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_easyRy"
+                android:layout_toEndOf="@+id/tv_notification"
+                android:text="html" />
+
 
         </RelativeLayout>
 

@@ -11,6 +11,7 @@ import com.dasu.blur.DBlur;
 import com.dasu.blur.OnBlurListener;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.activity.DataBindingActivity;
@@ -18,6 +19,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.DataBindingListActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.HtmlActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NotificationActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -47,6 +49,8 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvDatabindinglist;
     @BindView(R.id.tv_notification)
     TextView tvNotification;
+    @BindView(R.id.tv_html)
+    TextView tvHtml;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -79,7 +83,8 @@ public class OpenSourceFragment extends BaseFragment {
                     @Override
                     public void onBlurFailed() {
                         //do something
-                    }});
+                    }
+                });
 
 
         // glide
@@ -96,9 +101,9 @@ public class OpenSourceFragment extends BaseFragment {
         RxView.clicks(tvEasyRy).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
 
-                    startActivity(EasyRecycleViewShowContentActivity.class);
+            startActivity(EasyRecycleViewShowContentActivity.class);
 
-                }, throwable -> LogU.e(throwable.getMessage()));
+        }, throwable -> LogU.e(throwable.getMessage()));
 
         RxView.clicks(tvEasyRyGlide).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
@@ -133,6 +138,14 @@ public class OpenSourceFragment extends BaseFragment {
 
             startActivity(NotificationActivity.class);
 
+        }, throwable -> LogU.e(throwable.getMessage()));
+
+
+        RxView.clicks(tvHtml).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_LESSON_DETAIL);
+            startActivity(HtmlActivity.class, bundle);
         }, throwable -> LogU.e(throwable.getMessage()));
 
     }
