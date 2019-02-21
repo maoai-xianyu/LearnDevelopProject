@@ -19,6 +19,7 @@ public class Employee extends BaseObservable implements Serializable {
     private String firstName;
     private String lastName;
     private boolean isGoodGuy;
+    private String mAvatar;
     public ObservableBoolean isFired = new ObservableBoolean();
     public ObservableArrayMap<String, String> user = new ObservableArrayMap<>();
     public ObservableField<String> name = new ObservableField<>();
@@ -78,6 +79,15 @@ public class Employee extends BaseObservable implements Serializable {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Bindable
+    public String getAvatar() {
+        return mAvatar;
+    }
+
+    public void setmAvatar(String mAvatar) {
+        this.mAvatar = mAvatar;
     }
 }
 

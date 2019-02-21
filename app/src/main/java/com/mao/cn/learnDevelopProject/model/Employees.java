@@ -48,5 +48,6 @@ public class Employees extends BaseObservable implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+
 }
 

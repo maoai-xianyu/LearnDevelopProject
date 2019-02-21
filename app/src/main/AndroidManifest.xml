@@ -136,6 +136,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.mao.cn.learnDevelopProject.ui.activity.DataBindingExpressionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
 
         <!--自定义-->
         <activity
