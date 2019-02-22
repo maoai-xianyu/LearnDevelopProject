@@ -28,14 +28,41 @@
             layout="@layout/include_databing_header" />
 
         <ImageView
+            android:id="@+id/avatar"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:visibility="@{employee.isFired ? View.INVISIBLE : View.VISIBLE}"
             app:imageUri="@{employee.avatar}"
             app:placeholder="@{@drawable/image_name_sign}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{employee.firstName}"
+            android:visibility="@{avatar.visibility}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{employee.lastName}"
+            android:visibility="@{avatar.visibility}" />
+
+        <CheckBox
+            android:id="@+id/seeAds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{employee.isFired ? false : true}" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:src="@drawable/image_name_sign"
+            android:visibility="@{seeAds.checked ? View.VISIBLE : View.GONE}" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
             android:background="@color/c_444444" />
 
         <TextView

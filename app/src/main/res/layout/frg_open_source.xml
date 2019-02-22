@@ -81,22 +81,28 @@
                 android:text="data binding list" />
 
             <TextView
-                android:id="@+id/tv_notification"
+                android:id="@+id/tv_databinding_lambda"
                 style="@style/textViewStyle"
                 android:layout_below="@+id/tv_databinding"
+                android:text="data binding lambda" />
+
+            <TextView
+                android:id="@+id/tv_notification"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_databinding_lambda"
                 android:text="通知8.0" />
 
             <TextView
                 android:id="@+id/tv_html"
                 style="@style/textViewStyle"
-                android:layout_below="@+id/tv_databinding"
+                android:layout_below="@+id/tv_databinding_lambda"
                 android:layout_toEndOf="@+id/tv_notification"
                 android:text="html" />
 
             <TextView
                 android:id="@+id/tv_html_qb"
                 style="@style/textViewStyle"
-                android:layout_below="@+id/tv_databinding"
+                android:layout_below="@+id/tv_databinding_lambda"
                 android:layout_toEndOf="@+id/tv_html"
                 android:text="htmlqb" />
 

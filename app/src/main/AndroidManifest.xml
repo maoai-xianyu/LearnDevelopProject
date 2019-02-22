@@ -25,7 +25,7 @@
 
 
     <application
-        android:name="com.mao.cn.learnDevelopProject.LearnDevelopApplication"
+        android:name=".LearnDevelopApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -37,7 +37,7 @@
         tools:targetApi="n">
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.LoadingActivity"
+            android:name=".ui.activity.LoadingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/loading_theme">
             <meta-data
@@ -56,130 +56,134 @@
         </activity>
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.RxjavaShowContentActivity"
+            android:name=".ui.activity.RxjavaShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.OkhttpShowContentActivity"
+            android:name=".ui.activity.OkhttpShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.RetrofitShowContentActivity"
+            android:name=".ui.activity.RetrofitShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity"
+            android:name=".ui.activity.NetWorkRequestActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity"
+            android:name=".ui.activity.RxJavaLearnActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnDetailActivity"
+            android:name=".ui.activity.RxJavaLearnDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.RxjavaLearnRxBingdingActivity"
+            android:name=".ui.activity.RxjavaLearnRxBingdingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.AnimatorActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.FancyCoverFlowActivity"
+            android:name=".ui.activity.AnimatorActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity"
+            android:name=".ui.activity.FancyCoverFlowActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.TranslateWordDetailActivity"
+            android:name=".ui.activity.StringSpannerClickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewGlideShowContentActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DataBindingActivity"
+            android:name=".ui.activity.TranslateWordDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DataBindingListActivity"
+            android:name=".ui.activity.EasyRecycleViewShowContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.EasyRecycleViewGlideShowContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ExpendTextViewContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.DataBindingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DataBindingExpressionActivity"
+            android:name=".ui.activity.DataBindingListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.DataBindingExpressionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" /> 
+        <activity
+            android:name=".ui.activity.DataBindingLambdaActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
 
         <!--自定义-->
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity"
+            android:name=".ui.activity.SelfDefineViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity"
+            android:name=".ui.activity.DefineViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineYoukuViewActivity"
+            android:name=".ui.activity.DefineYoukuViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineGuangGaoViewActivity"
+            android:name=".ui.activity.DefineGuangGaoViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineDownListViewActivity"
+            android:name=".ui.activity.DefineDownListViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineViewOnOrOffActivity"
+            android:name=".ui.activity.DefineViewOnOrOffActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.DefineViewPropertyActivity"
+            android:name=".ui.activity.DefineViewPropertyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.mao.cn.learnDevelopProject.ui.activity.NotificationActivity"
+            android:name=".ui.activity.NotificationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 

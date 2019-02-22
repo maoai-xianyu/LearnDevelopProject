@@ -21,6 +21,8 @@ import com.mao.cn.learnDevelopProject.model.FormModel;
 import com.mao.cn.learnDevelopProject.utils.tools.ToastUtils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
+import java.util.Random;
+
 
 /**
  * DESC   :
@@ -30,12 +32,15 @@ public class DataBindingExpressionActivity extends RxAppCompatActivity {
 
     AtyDataBindingExpressionBinding binding;
 
+    Random random = new Random(System.currentTimeMillis());
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.aty_data_binding_expression);
         Employee employee = new Employee("zhang", "ke");
+        employee.setFired(random.nextBoolean());
         employee.setmAvatar("https://img1.mukewang.com/user/545868ff0001bfbb02200220-40-40.jpg");
         binding.setEmployee(employee);
 
