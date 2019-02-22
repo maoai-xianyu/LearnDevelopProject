@@ -8,12 +8,13 @@
         <import type="android.view.View" />
 
         <variable
+            name="model"
+            type="com.mao.cn.learnDevelopProject.model.FormModel" />
+
+        <variable
             name="employee"
             type="com.mao.cn.learnDevelopProject.model.Employee" />
 
-        <variable
-            name="presenter"
-            type="com.mao.cn.learnDevelopProject.ui.activity.DataBindingExpressionActivity.Presenter" />
 
     </data>
 
@@ -31,6 +32,35 @@
             android:layout_height="150dp"
             app:imageUri="@{employee.avatar}"
             app:placeholder="@{@drawable/image_name_sign}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d5"
+            android:background="@color/c_444444" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:text="双向绑定" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
+            android:text="@={model.formName}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:text="@={model.formPassword}" />
+
+        <TextView
+            style="@style/textViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/welcome(model.formName)}" />
 
 
     </LinearLayout>
