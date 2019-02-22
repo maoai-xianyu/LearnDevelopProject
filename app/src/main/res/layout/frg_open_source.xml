@@ -87,6 +87,14 @@
                 android:text="data binding lambda" />
 
             <TextView
+                android:id="@+id/tv_databinding_anim"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_databinding"
+                android:layout_toEndOf="@+id/tv_databinding_lambda"
+                android:text="data binding anim" />
+
+
+            <TextView
                 android:id="@+id/tv_notification"
                 style="@style/textViewStyle"
                 android:layout_below="@+id/tv_databinding_lambda"
