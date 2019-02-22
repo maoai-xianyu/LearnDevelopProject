@@ -8,8 +8,12 @@
         <import type="android.view.View" />
 
         <variable
+            name="employee"
+            type="com.mao.cn.learnDevelopProject.model.Employee" />
+
+        <variable
             name="presenter"
-            type="com.mao.cn.learnDevelopProject.ui.activity.DataBindingListActivity.Presenter" />
+            type="com.mao.cn.learnDevelopProject.ui.activity.DataBindingLambdaActivity.Presenter" />
 
     </data>
 
@@ -21,6 +25,31 @@
         <include
             android:id="@+id/include_header"
             layout="@layout/include_databing_header" />
+
+        <TextView
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:onClick="@{() -> presenter.onEmployeeClick(employee)}"
+            android:text="点击事件" />
+
+
+        <EditText
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:onFocusChange="@{(v,fcs) -> presenter.onFocusChange(employee)}"
+            android:text="滑动" />
+
+        <TextView
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:onClick="@{(v) -> presenter.onEmployeeLongClick(employee,context)}"
+            android:text="长按点击事件" />
     </LinearLayout>
 
 </layout>
