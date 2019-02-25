@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.ui.activity;
+package com.mao.cn.learnDevelopProject.ui.activity.jetpack;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;

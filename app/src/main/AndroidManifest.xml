@@ -3,26 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mao.cn.learnDevelopProject">
 
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 获取网络信息状态，如当前的网络连接是否有效 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取网络信息状态，如当前的网络连接是否有效 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- 往SDCard读写数据权限   storage group -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 往SDCard读写数据权限   storage group -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <!-- 获取WiFi状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 获取WiFi状态 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- 读取手机状态 phone group -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 读取手机状态 phone group -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SETTINGS" />
-
 
     <application
         android:name=".LearnDevelopApplication"
@@ -54,42 +48,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.RxjavaShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.OkhttpShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.RetrofitShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.NetWorkRequestActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.RxJavaLearnActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.RxJavaLearnDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.RxjavaLearnRxBingdingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -98,22 +84,18 @@
             android:name=".ui.activity.AnimatorActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.FancyCoverFlowActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.StringSpannerClickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.TranslateWordDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.EasyRecycleViewShowContentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -130,88 +112,71 @@
             android:name=".ui.activity.DataBindingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DataBindingListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DataBindingExpressionActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DataBindingLambdaActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DataBindingAnimationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-
-
-        <!--自定义-->
+            android:screenOrientation="portrait" /> <!-- 自定义 -->
         <activity
             android:name=".ui.activity.SelfDefineViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DefineViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DefineYoukuViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DefineGuangGaoViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DefineDownListViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DefineViewOnOrOffActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.DefineViewPropertyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.NotificationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.HtmlActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.HtmlQbActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.jetpack.JetPackActivity" />
 
         <activity
-            android:name=".ui.activity.JetPackActivity"
-            android:screenOrientation="portrait" />
-
+            android:name=".ui.activity.jetpack.JetPackViewModelActivity"
+            android:label="@string/title_activity_jet_pack_view_model"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
             android:name=".utils.x5.PreLoadX5Service"
             android:label="dexopt"
             android:process=":dexopt" />
-
-
     </application>
 
 </manifest>

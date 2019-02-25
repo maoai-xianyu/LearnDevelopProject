@@ -121,6 +121,13 @@
                 android:layout_below="@+id/tv_html"
                 android:text="jetPack" />
 
+            <TextView
+                android:id="@+id/tv_JetPack_v"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_html"
+                android:layout_toEndOf="@id/tv_JetPack"
+                android:text="jetPackViewModel" />
+
 
         </RelativeLayout>
 

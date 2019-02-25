@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.ui.activity;
+package com.mao.cn.learnDevelopProject.ui.activity.jetpack;
 
 /**
  * zkangkun

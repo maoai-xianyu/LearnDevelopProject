@@ -24,8 +24,9 @@ import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActi
 import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.HtmlActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.HtmlQbActivity;
-import com.mao.cn.learnDevelopProject.ui.activity.JetPackActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NotificationActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackViewModelActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -66,6 +67,8 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvHtmlQb;
     @BindView(R.id.tv_JetPack)
     TextView tvJetPack;
+    @BindView(R.id.tv_JetPack_v)
+    TextView tvJetPackV;
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -195,6 +198,11 @@ public class OpenSourceFragment extends BaseFragment {
         RxView.clicks(tvJetPack).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(JetPackActivity.class);
+        }, throwable -> LogU.e(throwable.getMessage()));
+
+        RxView.clicks(tvJetPackV).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(JetPackViewModelActivity.class);
         }, throwable -> LogU.e(throwable.getMessage()));
 
     }
