@@ -167,10 +167,14 @@
             android:name=".ui.activity.HtmlQbActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.jetpack.JetPackActivity" />
-
         <activity
             android:name=".ui.activity.jetpack.JetPackViewModelActivity"
             android:label="@string/title_activity_jet_pack_view_model"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.activity.jetpack.JetPackRoomActivity"
+            android:label="@string/title_activity_jet_pack_room"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
