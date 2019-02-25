@@ -282,7 +282,21 @@ public class HtmlActivity extends BaseActivity {
                 break;
         }
 
-        webView.loadUrl(htmlUrl);
+        LogU.d("htmlurl before"+htmlUrl);
+
+
+        htmlUrl = "https://developer.mujigame.com";
+        //webView.loadUrl(htmlUrl);
+
+
+        webView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl(htmlUrl);
+            }
+        }, 500);
+
+        LogU.d("------htmlurl=" + htmlUrl);
     }
 
     private void setRightTitle(String rightText) {
@@ -376,8 +390,17 @@ public class HtmlActivity extends BaseActivity {
         }
 
         @JavascriptInterface
+        public void skip(String name) {
+            LogU.d("name"+name);
+            //jsHandler.sendEmptyMessage(HANDLER_BUY_MEMBER);
+        }
+
+
+
+        @JavascriptInterface
         public void buyMember() {
             jsHandler.sendEmptyMessage(HANDLER_BUY_MEMBER);
+
         }
 
         @JavascriptInterface

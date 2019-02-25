@@ -202,6 +202,12 @@
             android:screenOrientation="portrait" />
 
 
+        <service
+            android:name=".utils.x5.PreLoadX5Service"
+            android:label="dexopt"
+            android:process=":dexopt" />
+
+
     </application>
 
 </manifest>

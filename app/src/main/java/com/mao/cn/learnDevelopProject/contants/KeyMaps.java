@@ -45,6 +45,7 @@ public class KeyMaps {
 
 
     public static final String HTML_TYPE = "html_type";
+    public static final String HTML_URL = "html_url";
 
     public static final class HtmlType {
         public static final int HTML_TYPE_FOREIGN_COMMENT = 1;

@@ -1,6 +1,7 @@
 package com.mao.cn.learnDevelopProject;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.hwangjr.rxbus.RxBus;
 import com.mao.cn.learnDevelopProject.common.CommApplication;
@@ -16,11 +17,14 @@ import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
+import com.mao.cn.learnDevelopProject.utils.x5.PreLoadX5Service;
 import com.mcxiaoke.packer.helper.PackerNg;
+import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 import com.youdao.sdk.app.YouDaoApplication;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.ListIterator;
 import java.util.Map;
@@ -39,6 +43,10 @@ public class LearnDevelopApplication extends CommApplication {
     public static String appChannel = ValueMaps.AppChannel.UNKNOWN;
     private static int screenWidth = 0;
     private static int screenHeight = 0;
+
+    private HashMap<String, Object> map = new HashMap<String, Object>();
+
+
     @Inject
     AnalyticsManager analyticsManager;
 
@@ -67,7 +75,36 @@ public class LearnDevelopApplication extends CommApplication {
         initServerInfo();
         PathU.getInstance().initDirs();
         YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
-        QbSdk.initX5Environment(this,null);
+        initX5();
+    }
+
+
+    private void initX5() {
+
+       /* //非wifi情况下，主动下载x5内核
+        QbSdk.setDownloadWithoutWifi(true);
+        //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                // TODO Auto-generated method stub
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换系统内核。
+                LogU.d(" onViewInitFinished is " + arg0);
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+                // TODO Auto-generated method stub
+            }
+        };
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(), cb);*/
+
+        map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
+        QbSdk.initTbsSettings(map);
+        Intent intent = new Intent(this, PreLoadX5Service.class);
+        startService(intent);
     }
 
     public static ServerInfo serverInfo() {

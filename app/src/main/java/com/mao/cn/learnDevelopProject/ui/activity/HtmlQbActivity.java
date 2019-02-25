@@ -11,9 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -53,6 +51,7 @@ public class HtmlQbActivity extends BaseActivity {
     @BindView(R.id.ll_content)
     LinearLayout activityCommentCourse;
 
+    @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     @BindView(R.id.fl_content)
     FrameLayout frameLayout;
@@ -70,6 +69,7 @@ public class HtmlQbActivity extends BaseActivity {
     private static final int BUY_NEW_MEMBER = 8;
 
 
+    //X5WebView webView;
     MyHandler jsHandler;
     boolean isOnPageFinished;
 
@@ -77,6 +77,7 @@ public class HtmlQbActivity extends BaseActivity {
     public void getArgs(Bundle bundle) {
         if (bundle != null) {
             htmlType = bundle.getInt(KeyMaps.HTML_TYPE);
+            htmlUrl = bundle.getString(KeyMaps.HTML_URL);
         }
 
     }
@@ -91,219 +92,88 @@ public class HtmlQbActivity extends BaseActivity {
         ibHeaderBack.setVisibility(View.VISIBLE);
         setResult(RESULT_OK);
         jsHandler = new MyHandler(this);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        webView.getSettings().setJavaScriptEnabled(true);//支持js
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//支持js打开新窗口
-        webView.setWebChromeClient(new WebClient());
+
+
+         /* webView = new X5WebView(MainActivity.this, null);
+        frameLayout.addView(webView, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));*/
+
+        WebSettings webSetting = webView.getSettings();
+
         webView.setWebViewClient(new ClassWebView());
-        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webView.addJavascriptInterface(new HtmlApp(), "android");
+        webView.setWebChromeClient(new WebClient());
+        webView.addJavascriptInterface(new HtmlApp(), "androidMujiGame");
+        // boxfish
+        //webView.addJavascriptInterface(new HtmlApp(), "android");
+
+        webSetting.setJavaScriptEnabled(true);
+        webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSetting.setAllowFileAccess(true);
+        webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSetting.setSupportZoom(true);
+        webSetting.setBuiltInZoomControls(true);
+        webSetting.setUseWideViewPort(true);
+        webSetting.setSupportMultipleWindows(true);
+        // webSetting.setLoadWithOverviewMode(true);
+        webSetting.setAppCacheEnabled(true);
+        // webSetting.setDatabaseEnabled(true);
+        webSetting.setDomStorageEnabled(true);
+        webSetting.setGeolocationEnabled(true);
+        webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
+        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
+        webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
+        // webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.requestFocus();
-        switch (htmlType) {
-            case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_COMMENT:
-                tvHeaderTitle.setText("购买");
-                htmlUrl = "https://www.boxfish.cn/FAQ/detail/ForeignComment.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_PUBLIC_CLASS:
-                tvHeaderTitle.setText("购买");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/publicClass/index3.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_INTELLIGENT_CLASS:
-                tvHeaderTitle.setText("购买");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/correct/index.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_TRAINING_CN_CLASS:
-                tvHeaderTitle.setText("购买");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/answer/index2.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_INVITING_FRIENDS:
-                tvHeaderTitle.setText("购买");
-                if (htmlUrl == null) {
-                    htmlUrl = "https://www.boxfish.cn/boxfish-class/recommend/index.html";
-                }
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_BUY_COURSE_REWARD_RULE:
-                ibHeaderBack.setVisibility(View.GONE);
-                tvHeaderTitle.setText("购买");
-                if (htmlUrl == null) {
-                    htmlUrl = "https://www.boxfish.cn/boxfish-class/regulation/index.html";
-                }
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_LEVEL:
-                tvHeaderTitle.setText("购买");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/levelIntroduction/index.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_BOXFISH_MORE_BETTER_THAN_NEWEAST:
-                tvHeaderTitle.setText("购买");
-                if (htmlUrl == null) {
-                    htmlUrl = "https://www.boxfish.cn/amazing/detail/difference/difference1.html?parentShare=1";
-                }
-                htmlUrl = htmlUrl + "&bonus=0";
-                break;
-            //kg学员购买详情
-            case KeyMaps.HtmlType.HTML_TYPE_K_MEMBER_BUY_DETAIL:
-                tvHeaderTitle.setText("购买");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/buy/index.html?shareable=1";
-                break;
-            //kg的外教大讲堂
-            case KeyMaps.HtmlType.HTML_TYPE_K_PUBLIC_CLASS_KINDERGARTEN:
-                tvHeaderTitle.setText("测试");
-                tvHeaderRight.setText("购买");
-                tvHeaderRight.setVisibility(View.VISIBLE);
-                setHeaderRight(tvHeaderRight);
-                if (htmlUrl == null) {
-                    htmlUrl = "https://www.boxfish.cn/boxfish-class/publicClass/index-kindergarten.html";
-                }
-                break;
-            //kg教学理念
-            case KeyMaps.HtmlType.HTML_TYPE_K_PLANNING_GOAL:
-                tvHeaderTitle.setText("测试");
-                tvHeaderRight.setText("购买");
-                tvHeaderRight.setVisibility(View.VISIBLE);
-                setHeaderRight(tvHeaderRight);
-                if (htmlUrl == null) {
-                    htmlUrl = "https://www.boxfish.cn/boxfish-class/bilingual/index.html";
-                }
-                break;
-            //boxfish国际线上学校
-            case KeyMaps.HtmlType.HTML_TYPE_MEMBER_DETAIL:
-                tvHeaderTitle.setText("测试");
-                tvHeaderRight.setText("购买");
-                tvHeaderRight.setVisibility(View.VISIBLE);
-                setHeaderRight(tvHeaderRight);
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/onlineSchool/index.html";
-                break;
-            //外教口语指导
-            case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_FUDAO:
-                tvHeaderTitle.setText("测试");
-                htmlUrl = "https://www.boxfish.cn/activity/membership/index3.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_MEMBER_EVALUATION:
 
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_VIP_ITEM_2:
-                htmlUrl = "https://www.boxfish.cn/activity/medal/index2.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_VIP_ITEM_6:
-                htmlUrl = "https://www.boxfish.cn/activity/ten/ten5.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_VIP_ITEM_9:
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/courses/index.html?from=groupmessage&isappinstalled=0";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_VIP_ITEM_10:
-                htmlUrl = "https://www.boxfish.cn/activity/learn-together/index2.html";
-                break;
+        if (StringU.isNotEmpty(htmlUrl)) {
+            webView.loadUrl(htmlUrl);
+        } else {
+            switch (htmlType) {
+                //购买外教培优课介绍网页181109
+                case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_LESSON_DETAIL:
+                    htmlUrl = "https://www.boxfish.cn/inner_app/v12/intro1.html";
+                    setRightTitle("购买培优课");
+                    break;
+                //购买国际班介绍网页181109
+                case KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL:
+                    htmlUrl = "https://www.boxfish.cn/inner_app/v12/intro2.html";
+                    setRightTitle("购买国际班");
+                    break;
+                case KeyMaps.HtmlType.HTML_TYPE_REVOLUTION:
+                    htmlUrl = "https://www.boxfish.cn/share/market/revolution.html?from=groupmessage&isappinstalled=0";
+                    setRightTitle("购买培优课");
+                    break;
+                default:
+                    tvHeaderTitle.setText("html5");
+                    break;
+            }
 
-            //国际版页面知识点外教强化练习链接
-            case KeyMaps.HtmlType.HTML_TYPE_HTML_MICRO:
-                htmlUrl = "http://www.boxfish.cn/amazing/detail/knowledge?parentShare=1";
-                break;
-            //购买页跳转过来的定制学习规划
-            case KeyMaps.HtmlType.HTML_TYPE_ALL_BUY:
-                tvHeaderTitle.setText("定制学习规划");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/buyChoice/index.html";
-                break;
-            //购买微课
-            case KeyMaps.HtmlType.HTML_TYPE_MICRO_LESSON_BUY:
-                tvHeaderTitle.setText("知识点外教强化练习");
-                findViewById(R.id.ll_bug_group).setVisibility(View.VISIBLE);
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/learnNew/index.html";
-                break;
+            htmlUrl = "https://developer.mujigame.com";
 
-            //购买微课的购买须知
-            case KeyMaps.HtmlType.HTML_TYPE_MICRO_MIANZE:
-                tvHeaderTitle.setText("BOXFiS用户购买条款");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/purchaseTerms/index.html";
-                break;
+            //webView.loadUrl("http://debugtbs.qq.com");
+//        webView.loadUrl("http://soft.imtt.qq.com/browser/tes/feedback.html");
 
-            //购买国际版下线网页
-            case KeyMaps.HtmlType.HTML_TYPE_MEMBER_PRODUCT_OFFLINE:
-                tvHeaderTitle.setText("学习计划");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/learnPlan/learnPlan2.html";
+        /*webView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl(htmlUrl);
+            }
+        }, 500);*/
 
-                break;
-            //购买微课的下线网页
-            case KeyMaps.HtmlType.HTML_TYPE_MICRO_OFFLINE:
-                tvHeaderTitle.setText("学习计划");
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/learnPlan/learnPlan1.html";
-                break;
-            //外教一对一翻转课堂
-            case KeyMaps.HtmlType.HTML_TYPE_ONE_TO_ONE_DETAIL:
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/onlineSchool/index-new.html";
-                break;
-
-            //外交强化详情
-            case KeyMaps.HtmlType.HTML_TYPE_MICRO_LESSON_DETAIL:
-                htmlUrl = "https://www.boxfish.cn/boxfish-class/learnNew/index.html";
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_ORAL_TEST:
-                tvHeaderTitle.setText("测试");
-                htmlUrl = "https://www.boxfish.cn/activity/nine/index.html";
-                htmlUrl = htmlUrl + "?bonus=0";
-                setRightTitle("购买培优课");
-                break;
-            //大师课
-            case KeyMaps.HtmlType.HTML_TYPE_MASTER_CLASS:
-                htmlUrl = "https://www.boxfish.cn/inner_app/masterclassintro";
-                setRightTitle("购买培优课");
-                break;
-            //公益课
-            case KeyMaps.HtmlType.HTML_TYPE_CHINESE_PUBLICE_CLASS:
-                htmlUrl = "https://www.boxfish.cn/inner_app/promotionclassintro";
-//                setRightTitle("成为付费学员");
-                break;
-            //中教名师课
-            case KeyMaps.HtmlType.HTML_TYPE_CHINESE_TEACHER_CLASS:
-                htmlUrl = "https://www.boxfish.cn/inner_app/publicclasscnintro";
-                setRightTitle("购买培优课");
-                break;
-            //外教明师课
-            case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_CLASS:
-                htmlUrl = "https://www.boxfish.cn/inner_app/publicclassfnintro";
-                setRightTitle("购买培优课");
-                break;
-            //购买外教培优课介绍网页181109
-            case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_LESSON_DETAIL:
-                htmlUrl = "https://www.boxfish.cn/inner_app/v12/intro1.html";
-                setRightTitle("购买培优课");
-                break;
-            //购买国际班介绍网页181109
-            case KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL:
-                htmlUrl = "https://www.boxfish.cn/inner_app/v12/intro2.html";
-                setRightTitle("购买国际班");
-                break;
-            case KeyMaps.HtmlType.HTML_TYPE_REVOLUTION:
-                htmlUrl = "https://www.boxfish.cn/share/market/revolution.html?from=groupmessage&isappinstalled=0";
-                setRightTitle("购买培优课");
-                break;
-            default:
-                tvHeaderTitle.setText("html5");
-                break;
+            webView.loadUrl(htmlUrl);
         }
 
-        webView.loadUrl(htmlUrl);
-        //webView.loadUrl("http://debugtbs.qq.com");
-//        webView.loadUrl("http://soft.imtt.qq.com/browser/tes/feedback.html");
+        LogU.d("------htmlurl=" + htmlUrl);
+
+
     }
 
     private void setRightTitle(String rightText) {
         tvHeaderRight.setText(rightText);
         tvHeaderRight.setVisibility(View.VISIBLE);
         tvHeaderRight.setTextColor(getResources().getColor(R.color.c_f5b100));
-    }
-
-    public void setHeaderRight(TextView tvHeaderRight) {
-        tvHeaderRight.setTextColor(getResources().getColor(R.color.c_000000));
-        tvHeaderRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.text_size_12));
-        tvHeaderRight.setBackgroundResource(R.drawable.shape_corner_button);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvHeaderRight.getLayoutParams();
-        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        layoutParams.rightMargin = (int) getResources().getDimension(R.dimen.d5);
-        tvHeaderRight.setLayoutParams(layoutParams);
-        tvHeaderRight.setPadding((int) getResources().getDimension(R.dimen.d10), (int) getResources().getDimension(R.dimen.d5),
-                (int) getResources().getDimension(R.dimen.d10), (int) getResources().getDimension(R.dimen.d5));
     }
 
     @Override
@@ -318,26 +188,12 @@ public class HtmlQbActivity extends BaseActivity {
 
         RxView.clicks(tvHeaderRight).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS).subscribe(aVoid -> {
             switch (htmlType) {
-                case KeyMaps.HtmlType.HTML_TYPE_K_PLANNING_GOAL:
-                    break;
-                case KeyMaps.HtmlType.HTML_TYPE_MEMBER_DETAIL:
-                    break;
-                case KeyMaps.HtmlType.HTML_TYPE_K_PUBLIC_CLASS_KINDERGARTEN:
-                    break;
-                case KeyMaps.HtmlType.HTML_TYPE_MASTER_CLASS:
-                case KeyMaps.HtmlType.HTML_TYPE_CHINESE_TEACHER_CLASS:
-                case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_CLASS:
-                case KeyMaps.HtmlType.HTML_TYPE_ORAL_TEST:
                 case KeyMaps.HtmlType.HTML_TYPE_REVOLUTION:
                     startToBuyActivity(activity, KeyMaps.InternationalMember.HTML_TYPE_FOREIGN_TEACHER_LESSONS);
                     break;
                 case KeyMaps.HtmlType.HTML_TYPE_FOREIGN_TEACHER_LESSON_DETAIL:
                     startToBuyActivity(activity, KeyMaps.InternationalMember.HTML_TYPE_FOREIGN_TEACHER_LESSONS);
                     break;
-                case KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL:
-                    startToBuyActivity(activity, KeyMaps.InternationalMember.HTML_TYPE_INTERNATION_LESSONS);
-                    break;
-
 
             }
 
@@ -350,31 +206,26 @@ public class HtmlQbActivity extends BaseActivity {
     public static void startToBuyActivity(Activity activity, String memberState) {
         Intent intent = null;
         Bundle bundle = new Bundle();
-        switch (memberState) {
-            //购买外教培优课
-            case KeyMaps.InternationalMember.HTML_TYPE_FOREIGN_TEACHER_LESSONS:
-                intent = new Intent(activity, HtmlQbActivity.class);
-                bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL);
-                break;
-            //购买国际班
-            case KeyMaps.InternationalMember.HTML_TYPE_INTERNATION_LESSONS:
-                intent = new Intent(activity, HtmlQbActivity.class);
-                bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL);
-                break;
-
-            //默认跳转到购买培优课
-            default:
-                intent = new Intent(activity, HtmlQbActivity.class);
-                bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL);
-                break;
-        }
-
+        intent = new Intent(activity, HtmlQbActivity.class);
+        bundle.putInt(KeyMaps.HTML_TYPE, KeyMaps.HtmlType.HTML_TYPE_INTERNATION_LESSON_DETAIL);
         intent.putExtras(bundle);
         activity.startActivity(intent);
     }
 
     class HtmlApp {
         public HtmlApp() {
+        }
+
+
+        @JavascriptInterface
+        public void skip(String url) {
+            LogU.d("name " + url);
+            runOnUiThread(() -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt(KeyMaps.HTML_TYPE, 0);
+                bundle.putString(KeyMaps.HTML_URL, url);
+                startActivity(HtmlQbActivity.class, bundle);
+            });
         }
 
         @JavascriptInterface
@@ -550,11 +401,6 @@ public class HtmlQbActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-
-        if (htmlType == KeyMaps.HtmlType.HTML_TYPE_ADDRESS_LIST) {
-            super.onBackPressed();
-            return;
-        }
 
         if (webView != null && isOnPageFinished && webView.canGoBack()) {
             webView.goBack();
