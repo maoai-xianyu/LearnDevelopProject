@@ -201,6 +201,10 @@
             android:name=".ui.activity.HtmlQbActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.activity.JetPackActivity"
+            android:screenOrientation="portrait" />
+
 
         <service
             android:name=".utils.x5.PreLoadX5Service"

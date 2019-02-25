@@ -115,6 +115,13 @@
                 android:text="htmlqb" />
 
 
+            <TextView
+                android:id="@+id/tv_JetPack"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/tv_html"
+                android:text="jetPack" />
+
+
         </RelativeLayout>
 
 

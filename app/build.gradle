@@ -151,4 +151,9 @@ dependencies {
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     //现类似微博内容，@用户，链接高亮，@用户和链接可点击跳转，可展开和收回的TextView
     implementation 'com.github.MZCretin:ExpandableTextView:v1.5.2'
+
+    // lifecycle
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+
 }
