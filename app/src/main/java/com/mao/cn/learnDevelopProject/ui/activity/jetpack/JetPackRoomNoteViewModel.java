@@ -2,10 +2,13 @@ package com.mao.cn.learnDevelopProject.ui.activity.jetpack;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+
+import java.util.List;
 
 /**
  * author:  zhangkun .
@@ -18,16 +21,23 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
 
     private JetPackRoomNoteDao roomNoteDao;
     private JetPackRoomNoteDatabase noteDatabase;
+    private LiveData<List<JetPackRoomNote>> mAllNotes;
 
     public JetPackRoomNoteViewModel(@NonNull Application application) {
         super(application);
         noteDatabase = JetPackRoomNoteDatabase.getDataBase(application);
         roomNoteDao = noteDatabase.roomNoteDao();
+        mAllNotes = roomNoteDao.getAllNotes();
     }
 
     // 包装类插入
     public void insert(JetPackRoomNote roomNote) {
         new InsertAsyncTask(roomNoteDao).execute(roomNote);
+    }
+
+    // 查询
+    LiveData<List<JetPackRoomNote>> getAllNotes() {
+        return mAllNotes;
     }
 
     @Override
