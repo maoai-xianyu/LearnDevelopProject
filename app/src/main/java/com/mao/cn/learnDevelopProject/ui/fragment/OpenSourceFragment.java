@@ -26,7 +26,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.HtmlActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.HtmlQbActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NotificationActivity;
-import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackRoomActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackRoomNoteActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackViewModelActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -209,7 +209,7 @@ public class OpenSourceFragment extends BaseFragment {
         }, throwable -> LogU.e(throwable.getMessage()));
         RxView.clicks(tvJetPackRoom).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            startActivity(JetPackRoomActivity.class);
+            startActivity(JetPackRoomNoteActivity.class);
         }, throwable -> LogU.e(throwable.getMessage()));
 
     }

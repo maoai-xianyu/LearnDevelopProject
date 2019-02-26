@@ -173,7 +173,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.activity.jetpack.JetPackRoomActivity"
+            android:name=".ui.activity.jetpack.JetPackRoomNoteActivity"
             android:label="@string/title_activity_jet_pack_room"
             android:theme="@style/AppTheme.NoActionBar"/>
 

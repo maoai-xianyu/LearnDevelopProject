@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.mao.cn.learnDevelopProject.R;
 
-public class JetPackRoomActivity extends AppCompatActivity {
+public class JetPackRoomNoteActivity extends AppCompatActivity {
 
 
     private String TAG = this.getClass().getSimpleName();

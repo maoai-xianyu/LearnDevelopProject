@@ -23,8 +23,7 @@ public abstract class JetPackRoomNoteDatabase extends RoomDatabase {
         if (roodNoteInstance == null) {
             synchronized (JetPackRoomNoteDatabase.class) {
                 if (roodNoteInstance == null) {
-                    roodNoteInstance = Room.databaseBuilder(
-                            context.getApplicationContext(),
+                    roodNoteInstance = Room.databaseBuilder(context.getApplicationContext(),
                             JetPackRoomNoteDatabase.class, "note_database")
                             .build();
                 }
