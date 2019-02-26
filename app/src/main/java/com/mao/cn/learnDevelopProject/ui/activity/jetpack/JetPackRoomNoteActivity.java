@@ -23,7 +23,8 @@ public class JetPackRoomNoteActivity extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
     private JetPackRoomNoteViewModel roomViewModel;
-    private int NEW_NOTE_ACTIVITY_REQUEST_CODE = 1;
+    private final static int NEW_NOTE_ACTIVITY_REQUEST_CODE = 1;
+    public final static int UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 2;
     private JetPackRoomNoteAdapter jetPackRoomNoteAdapter;
 
     @Override
@@ -62,11 +63,17 @@ public class JetPackRoomNoteActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             // code to insert note
-
             final String note_id = UUID.randomUUID().toString();
             JetPackRoomNote roomNote = new JetPackRoomNote(note_id, data.getStringExtra(JetPackRoomNewNoteActivity.NOTE_ADDED));
             roomViewModel.insert(roomNote);
             ToastUtils.show("保存");
+        } else if (requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            // code to update note
+            String noteID = data.getStringExtra(JetPackRoomNoteEditActivity.NOTE_ID);
+            String updateText = data.getStringExtra(JetPackRoomNoteEditActivity.UPDATE_NOTE);
+            JetPackRoomNote roomNote = new JetPackRoomNote(noteID, updateText);
+            roomViewModel.update(roomNote);
+            ToastUtils.show("更新数据");
         } else {
             ToastUtils.show("不能保存");
         }

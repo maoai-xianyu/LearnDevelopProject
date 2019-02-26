@@ -25,6 +25,7 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
 
     public JetPackRoomNoteViewModel(@NonNull Application application) {
         super(application);
+        LogU.i(TAG + " note viewmodel");
         noteDatabase = JetPackRoomNoteDatabase.getDataBase(application);
         roomNoteDao = noteDatabase.roomNoteDao();
         mAllNotes = roomNoteDao.getAllNotes();
@@ -40,13 +41,18 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
         return mAllNotes;
     }
 
+    // 更新
+    public void update(JetPackRoomNote roomNote) {
+        new UpdateAsyncTask(roomNoteDao).execute(roomNote);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
         LogU.i(TAG + " viewmodel destroyed");
     }
 
-    private class InsertAsyncTask extends AsyncTask<JetPackRoomNote, Void, Void> {
+    private class InsertAsyncTask extends android.os.AsyncTask<JetPackRoomNote, Void, Void> {
         JetPackRoomNoteDao roomNoteDao;
 
         public InsertAsyncTask(JetPackRoomNoteDao roomNoteDao) {
@@ -57,6 +63,23 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
         protected Void doInBackground(JetPackRoomNote... jetPackRoomNotes) {
             // 插入数据
             roomNoteDao.insert(jetPackRoomNotes[0]);
+            return null;
+        }
+
+
+    }
+
+    private class UpdateAsyncTask extends AsyncTask<JetPackRoomNote, Void, Void> {
+        JetPackRoomNoteDao roomNoteDao;
+
+        public UpdateAsyncTask(JetPackRoomNoteDao roomNoteDao) {
+            this.roomNoteDao = roomNoteDao;
+        }
+
+        @Override
+        protected Void doInBackground(JetPackRoomNote... jetPackRoomNotes) {
+            // 更新数据
+            roomNoteDao.update(jetPackRoomNotes[0]);
             return null;
         }
 

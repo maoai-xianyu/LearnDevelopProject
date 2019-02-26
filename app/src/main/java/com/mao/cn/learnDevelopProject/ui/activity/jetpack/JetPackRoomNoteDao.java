@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -23,4 +24,11 @@ public interface JetPackRoomNoteDao {
 
     @Query("SELECT * FROM notes")
     LiveData<List<JetPackRoomNote>> getAllNotes();
+
+
+    @Query("SELECT * FROM notes WHERE id=:noteId")
+    LiveData<JetPackRoomNote> getNote(String noteId);
+
+    @Update
+    void update(JetPackRoomNote roomNote);
 }

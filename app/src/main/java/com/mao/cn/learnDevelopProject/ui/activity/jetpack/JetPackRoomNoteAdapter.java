@@ -1,11 +1,14 @@
 package com.mao.cn.learnDevelopProject.ui.activity.jetpack;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mao.cn.learnDevelopProject.R;
@@ -40,6 +43,7 @@ public class JetPackRoomNoteAdapter extends RecyclerView.Adapter<JetPackRoomNote
         if (mNotes != null) {
             JetPackRoomNote roomNote = mNotes.get(i);
             viewHolder.setData(roomNote.getNote(), i);
+            viewHolder.setListeners();
         } else {
             viewHolder.noteItemView.setText("没有笔记");
         }
@@ -58,18 +62,41 @@ public class JetPackRoomNoteAdapter extends RecyclerView.Adapter<JetPackRoomNote
         notifyDataSetChanged();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private TextView noteItemView;
+        private ImageView ivRowDelete;
+        private ImageView ivRowEdit;
         private int mPosition;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             noteItemView = itemView.findViewById(R.id.tvNote);
+            ivRowDelete = itemView.findViewById(R.id.ivRowDelete);
+            ivRowEdit = itemView.findViewById(R.id.ivRowEdit);
         }
 
         public void setData(String note, int position) {
             noteItemView.setText(note);
             mPosition = position;
+        }
+
+        public void setListeners() {
+            ivRowEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(mContext, JetPackRoomNoteEditActivity.class);
+                    intent.putExtra("note_id", mNotes.get(mPosition).getId());
+                    ((Activity)mContext).startActivityForResult(intent,JetPackRoomNoteActivity.UPDATE_NOTE_ACTIVITY_REQUEST_CODE);
+                }
+            });
+            ivRowDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
         }
     }
 }

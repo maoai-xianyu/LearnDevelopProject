@@ -181,6 +181,11 @@
             android:name=".ui.activity.jetpack.JetPackRoomNewNoteActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ui.activity.jetpack.JetPackRoomNoteEditActivity"
+            android:label="@string/title_activity_jet_pack_edit"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service
             android:name=".utils.x5.PreLoadX5Service"
             android:label="dexopt"

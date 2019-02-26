@@ -17,4 +17,5 @@
     <string name="welcome">hello: %1$s</string>
     <string name="title_activity_jet_pack_view_model">JetPackViewModelActivity</string>
     <string name="title_activity_jet_pack_room">JetPackRoomActivity</string>
+    <string name="title_activity_jet_pack_edit">JetPackRoomNoteEditActivity</string>
 </resources>
