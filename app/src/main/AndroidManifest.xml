@@ -175,7 +175,11 @@
         <activity
             android:name=".ui.activity.jetpack.JetPackRoomNoteActivity"
             android:label="@string/title_activity_jet_pack_room"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.activity.jetpack.JetPackRoomNewNoteActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".utils.x5.PreLoadX5Service"
