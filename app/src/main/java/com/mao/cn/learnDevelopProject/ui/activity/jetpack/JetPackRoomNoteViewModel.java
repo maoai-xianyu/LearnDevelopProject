@@ -46,17 +46,36 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
         new UpdateAsyncTask(roomNoteDao).execute(roomNote);
     }
 
+    // 删除
+    public void delete(JetPackRoomNote roomNote) {
+
+        new DeleteAsyncTask(roomNoteDao).execute(roomNote);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
         LogU.i(TAG + " viewmodel destroyed");
     }
 
-    private class InsertAsyncTask extends android.os.AsyncTask<JetPackRoomNote, Void, Void> {
+    private class OperationAsyncTask extends AsyncTask<JetPackRoomNote, Void, Void> {
         JetPackRoomNoteDao roomNoteDao;
 
-        public InsertAsyncTask(JetPackRoomNoteDao roomNoteDao) {
+        public OperationAsyncTask(JetPackRoomNoteDao roomNoteDao) {
             this.roomNoteDao = roomNoteDao;
+        }
+
+        @Override
+        protected Void doInBackground(JetPackRoomNote... jetPackRoomNotes) {
+            return null;
+        }
+    }
+
+
+    private class InsertAsyncTask extends OperationAsyncTask {
+
+        public InsertAsyncTask(JetPackRoomNoteDao roomNoteDao) {
+            super(roomNoteDao);
         }
 
         @Override
@@ -65,15 +84,12 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
             roomNoteDao.insert(jetPackRoomNotes[0]);
             return null;
         }
-
-
     }
 
-    private class UpdateAsyncTask extends AsyncTask<JetPackRoomNote, Void, Void> {
-        JetPackRoomNoteDao roomNoteDao;
+    private class UpdateAsyncTask extends OperationAsyncTask {
 
         public UpdateAsyncTask(JetPackRoomNoteDao roomNoteDao) {
-            this.roomNoteDao = roomNoteDao;
+            super(roomNoteDao);
         }
 
         @Override
@@ -82,7 +98,19 @@ public class JetPackRoomNoteViewModel extends AndroidViewModel {
             roomNoteDao.update(jetPackRoomNotes[0]);
             return null;
         }
+    }
 
+    private class DeleteAsyncTask extends OperationAsyncTask {
 
+        public DeleteAsyncTask(JetPackRoomNoteDao roomNoteDao) {
+            super(roomNoteDao);
+        }
+
+        @Override
+        protected Void doInBackground(JetPackRoomNote... jetPackRoomNotes) {
+            // 更新数据
+            roomNoteDao.delete(jetPackRoomNotes[0]);
+            return null;
+        }
     }
 }

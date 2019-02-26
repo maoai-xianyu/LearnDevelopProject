@@ -25,10 +25,15 @@ public class JetPackRoomNoteAdapter extends RecyclerView.Adapter<JetPackRoomNote
     private final LayoutInflater layoutInflater;
     private Context mContext;
     private List<JetPackRoomNote> mNotes;
+    private OnDeleteClickListener listener;
 
     public JetPackRoomNoteAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
         this.mContext = context;
+    }
+
+    public void setListener(OnDeleteClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -62,6 +67,10 @@ public class JetPackRoomNoteAdapter extends RecyclerView.Adapter<JetPackRoomNote
         notifyDataSetChanged();
     }
 
+    public interface OnDeleteClickListener {
+        void OnDeleteClickListener(JetPackRoomNote roomNote);
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView noteItemView;
         private ImageView ivRowDelete;
@@ -87,12 +96,15 @@ public class JetPackRoomNoteAdapter extends RecyclerView.Adapter<JetPackRoomNote
 
                     Intent intent = new Intent(mContext, JetPackRoomNoteEditActivity.class);
                     intent.putExtra("note_id", mNotes.get(mPosition).getId());
-                    ((Activity)mContext).startActivityForResult(intent,JetPackRoomNoteActivity.UPDATE_NOTE_ACTIVITY_REQUEST_CODE);
+                    ((Activity) mContext).startActivityForResult(intent, JetPackRoomNoteActivity.UPDATE_NOTE_ACTIVITY_REQUEST_CODE);
                 }
             });
             ivRowDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (listener != null) {
+                        listener.OnDeleteClickListener(mNotes.get(mPosition));
+                    }
 
                 }
             });

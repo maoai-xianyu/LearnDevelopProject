@@ -56,6 +56,14 @@ public class JetPackRoomNoteActivity extends AppCompatActivity {
                 jetPackRoomNoteAdapter.setmNotes(jetPackRoomNotes);
             }
         });
+
+        jetPackRoomNoteAdapter.setListener(new JetPackRoomNoteAdapter.OnDeleteClickListener() {
+            @Override
+            public void OnDeleteClickListener(JetPackRoomNote roomNote) {
+                // code delete item
+                roomViewModel.delete(roomNote);
+            }
+        });
     }
 
     @Override
