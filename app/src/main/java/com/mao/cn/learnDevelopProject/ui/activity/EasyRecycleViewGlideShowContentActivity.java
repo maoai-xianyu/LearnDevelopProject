@@ -468,7 +468,7 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
 
     private void glideAppSD() {
         GlideApp.with(this)
-                .load(ImagePathU.showImages("book"))
+                .load(ImagePathU.showImageIcon("book"))
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
                 .override(Target.SIZE_ORIGINAL)
