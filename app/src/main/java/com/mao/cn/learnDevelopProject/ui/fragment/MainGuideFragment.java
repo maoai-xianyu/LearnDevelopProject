@@ -15,19 +15,19 @@ import android.widget.Button;
 import com.hwangjr.rxbus.RxBus;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.di.component.DaggerMainGuideComponent;
-import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.di.modules.MainGuideModule;
 import com.mao.cn.learnDevelopProject.event.BusAction;
 import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
-import com.mao.cn.learnDevelopProject.di.modules.MainGuideModule;
 import com.mao.cn.learnDevelopProject.ui.activity.AnimatorActivity;
-import com.mao.cn.learnDevelopProject.ui.activity.DefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RetrofitShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.retrofitdemo.RetrofitDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainGuidePresenter;
@@ -65,6 +65,8 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnRefreshBooks;
     @BindView(R.id.btn_refresh_games)
     Button btnRefreshGames;
+    @BindView(R.id.btn_retrofit)
+    Button btnRetrofit;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -138,6 +140,13 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnSpString).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(StringSpannerClickActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnRetrofit).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(RetrofitDemoActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

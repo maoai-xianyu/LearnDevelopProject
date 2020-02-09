@@ -79,6 +79,14 @@
                 android:layout_below="@+id/btn_refresh_books"
                 android:text="刷新底部标签点RxBus" />
 
+            <Button
+                android:id="@+id/btn_retrofit"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_refresh_games"
+                android:text="retrofitdemo" />
+
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
