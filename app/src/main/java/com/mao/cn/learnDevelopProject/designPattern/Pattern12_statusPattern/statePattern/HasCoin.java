@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.designPattern.Pattren12_statusPattern.statePattern;
+package com.mao.cn.learnDevelopProject.designPattern.Pattern12_statusPattern.statePattern;
 
 import java.util.Random;
 

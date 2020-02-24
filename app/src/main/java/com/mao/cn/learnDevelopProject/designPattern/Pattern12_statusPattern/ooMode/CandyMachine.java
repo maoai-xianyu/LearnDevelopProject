@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.designPattern.Pattren12_statusPattern.ooMode;
+package com.mao.cn.learnDevelopProject.designPattern.Pattern12_statusPattern.ooMode;
 
 /**
  * @author zhangkun
