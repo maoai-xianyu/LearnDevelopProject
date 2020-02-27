@@ -191,6 +191,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ui.activity.materialDesign.MaterialDesignActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service
             android:name=".utils.x5.PreLoadX5Service"
             android:label="dexopt"

@@ -1,14 +1,19 @@
 package com.mao.cn.learnDevelopProject.ui.activity.retrofitdemo;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,6 +26,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @time 2020-02-08 15:26
  */
 public class RetrofitDemoActivity extends BaseActivity {
+
+
+    @BindView(R.id.ib_header_back)
+    ImageButton idBack;
+
     @Override
     public void getArgs(Bundle var1) {
 
@@ -40,6 +50,8 @@ public class RetrofitDemoActivity extends BaseActivity {
     @Override
     public void setListener() {
 
+        RxView.clicks(idBack).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> finish(), throwable -> LogU.e(throwable.toString()));
     }
 
     @Override

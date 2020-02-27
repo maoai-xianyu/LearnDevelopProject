@@ -22,7 +22,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/d0.5"
+            android:layout_height="@dimen/d0_5"
             android:layout_alignParentBottom="true"
             android:background="@color/c_595959" />
     </RelativeLayout>
