@@ -26,7 +26,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.GenericTransitionOptions;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
@@ -35,6 +37,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
+import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ImagePathU;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
@@ -506,5 +509,30 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
     public void downloadVideofailure() {
         if (!checkActivityState()) return;
         onTip("下载是吧请重试");
+    }
+
+    private void glideImage() {
+        GlideApp.with(LearnDevelopApplication.context())//指定Context
+                .load("http://www.guolin.tech/book.png")// 指定图片的URL
+                .placeholder(R.drawable.demo)//指定图片为成功加载前显示的图片
+                .error(R.drawable.check)// 指定图片加载失败显示的图片
+                .override(300,300) // 指定图片的尺寸
+                .fitCenter()//指定图片缩放类型为
+                .centerCrop() //指定图片缩放类型为
+                .skipMemoryCache(true) // 跳过内存缓存
+                //.crossFade(100) // 3.7.0版本 设置渐变式显示的时间
+                .diskCacheStrategy(DiskCacheStrategy.NONE) // 表示不缓存任何内容
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // 表示只缓存转换过后的图片
+                .diskCacheStrategy(DiskCacheStrategy.DATA) // 表示只缓存原始图片。
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC) // 表示让Glide根据图片资源智能地选择使用哪一种缓存策略（默认选项）
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // 表示既缓存原始图片，也缓存转换过后的图片
+                .priority(Priority.HIGH) // 指定优先级Glide将会用他们作为一个准则，并尽可能的处理这些请求，但是
+                //.transition(GenericTransitionOptions.with(R.anim.fade_in))
+                //.transition(withCrossFade())
+                //.cacheSouceNone()
+                //.cacheSource()
+
+                .into(imageView);
+
     }
 }
