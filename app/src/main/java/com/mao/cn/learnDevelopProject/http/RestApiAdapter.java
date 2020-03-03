@@ -31,6 +31,7 @@ public class RestApiAdapter {
     private static Retrofit timeoutStringInstance = null;
     private static Retrofit rxHttpsStringInstance;
     private static Retrofit rxGsonInstance;
+    private static Retrofit commomInstance = null;
 
     private static OkHttpClient client;
     private static OkHttpClient timeoutClient;
@@ -164,14 +165,35 @@ public class RestApiAdapter {
         return sharedStringInstance;
     }
 
+    public static Retrofit getGirlImage() {
+        if (client == null) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(interceptor)
+                    .build();
+        }
+
+        if (commomInstance == null) {
+            commomInstance = new Builder()
+                    .baseUrl("http://gank.io/api/")
+                    .client(client)
+                    .addConverterFactory(new StringConverterFactory())
+                    .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+        }
+        return commomInstance;
+    }
+
 
     public static void clean() {
         sharedStringInstance = null;
         rxHttpsStringInstance = null;
         rxGsonInstance = null;
         client = null;
-        sharedStringInstance = null;
         timeoutStringInstance = null;
+        commomInstance = null;
     }
 
 }

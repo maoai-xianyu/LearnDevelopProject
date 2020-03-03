@@ -22,16 +22,15 @@ public abstract class BaseCallback<T> implements Callback<T> {
 
     public void onResponse(Call<T> call, Response<T> response) {
         this.response = response;
-        if(response != null) {
-            if(response.isSuccessful()) {
+        if (response != null) {
+            if (response.isSuccessful()) {
                 this.success(response);
             } else {
                 RetrofitError error = new RetrofitError();
                 error.setCode(response.code());
                 error.setMessage(response.message());
-                error.setRequestUrl(response.raw().request().url().toString());
                 ResponseBody errorBody = response.errorBody();
-                if(errorBody != null) {
+                if (errorBody != null) {
                     String body = "";
 
                     try {
@@ -51,13 +50,8 @@ public abstract class BaseCallback<T> implements Callback<T> {
     }
 
     public void onFailure(Call<T> call, Throwable e) {
-        String requestUrl = "";
-        if(this.response != null) {
-            requestUrl = this.response.raw().request().url().toString();
-        }
-
         HandlerError error = new HandlerError(e);
-        this.failure(error.execute(requestUrl));
+        this.failure(error.execute());
     }
 
     public String getHeader(String key) {

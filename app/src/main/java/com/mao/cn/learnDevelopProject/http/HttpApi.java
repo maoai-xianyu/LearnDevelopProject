@@ -9,6 +9,8 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.http;
 
+import com.mao.cn.learnDevelopProject.model.BaseEntity;
+import com.mao.cn.learnDevelopProject.model.GirlModel;
 import com.mao.cn.learnDevelopProject.model.Movie;
 import com.mao.cn.learnDevelopProject.model.MovieDetail;
 import com.mao.cn.learnDevelopProject.utils.config.Config;
@@ -199,5 +201,15 @@ public interface HttpApi {
     Call<String> getWordTranslateFromJinShan(@Query("w") String w,
                                            @Query("type") String type,
                                            @Query("key") String key);
+
+
+    /**
+     * 测试图片加载
+     * @param nym
+     * @param page
+     * @return
+     */
+    @GET("data/福利/{num}/{page}")
+    Call<BaseEntity<GirlModel>> getGirls(@Path("num")int nym, @Path("page")int page);
 
 }
