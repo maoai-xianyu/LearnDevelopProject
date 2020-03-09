@@ -111,6 +111,14 @@
                 android:layout_below="@+id/btn_memory"
                 android:text="生命周期" />
 
+            <Button
+                android:id="@+id/btn_aidl"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_life"
+                android:text="aidl通信" />
+
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

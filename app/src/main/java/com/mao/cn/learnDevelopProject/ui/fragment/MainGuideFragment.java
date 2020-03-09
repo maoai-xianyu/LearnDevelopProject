@@ -27,6 +27,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.RetrofitShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.aidlTest.AidlDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.materialDesign.MaterialDesignActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryNewActivity;
@@ -76,6 +77,8 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnMemory;
     @BindView(R.id.btn_life)
     Button btnLife;
+    @BindView(R.id.btn_aidl)
+    Button btnAidl;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -198,6 +201,13 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
             RxBus.get().post(event);
 
             RxBus.get().post(BusAction.BUS_ACTION_CHANGE, "40");
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnAidl).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(AidlDemoActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
