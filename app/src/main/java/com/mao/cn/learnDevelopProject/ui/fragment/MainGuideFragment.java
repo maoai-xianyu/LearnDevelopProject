@@ -28,6 +28,8 @@ import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.materialDesign.MaterialDesignActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryNewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.retrofitdemo.RetrofitDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
@@ -70,6 +72,10 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnRetrofit;
     @BindView(R.id.btn_m)
     Button btnM;
+    @BindView(R.id.btn_memory)
+    Button btnMemory;
+    @BindView(R.id.btn_life)
+    Button btnLife;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -157,6 +163,20 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnM).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(MaterialDesignActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnMemory).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(MemoryNewActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnLife).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(MemoryActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

@@ -17,6 +17,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 读取手机状态 phone group -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SETTINGS" />
+    <!-- SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".LearnDevelopApplication"
@@ -29,7 +32,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-
         <activity
             android:name=".ui.activity.LoadingActivity"
             android:screenOrientation="portrait"
@@ -171,30 +173,32 @@
             android:name=".ui.activity.jetpack.JetPackViewModelActivity"
             android:label="@string/title_activity_jet_pack_view_model"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ui.activity.jetpack.JetPackRoomNoteActivity"
             android:label="@string/title_activity_jet_pack_room"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ui.activity.jetpack.JetPackRoomNewNoteActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ui.activity.jetpack.JetPackRoomNoteEditActivity"
             android:label="@string/title_activity_jet_pack_edit"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ui.activity.retrofitdemo.RetrofitDemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ui.activity.materialDesign.MaterialDesignActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.memory.MemoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".ui.activity.memory.MemoryNewActivity"/>
+
 
         <service
             android:name=".utils.x5.PreLoadX5Service"

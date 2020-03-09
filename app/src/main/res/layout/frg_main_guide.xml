@@ -95,6 +95,23 @@
                 android:layout_below="@+id/btn_retrofit"
                 android:text="material" />
 
+            <Button
+                android:id="@+id/btn_memory"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_m"
+                android:text="内存优化" />
+
+            <Button
+                android:id="@+id/btn_life"
+                style="@style/home_main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_memory"
+                android:text="生命周期" />
+
+
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 

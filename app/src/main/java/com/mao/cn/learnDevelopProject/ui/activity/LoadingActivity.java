@@ -47,7 +47,6 @@ public class LoadingActivity extends UIActivity implements ILoading {
     ImageView ivLoadingBackground;
     @BindView(R.id.tv_show)
     TextView tvShow;
-    private Subscription subscribe;
     private CompositeSubscription compositeSubscription;
 
     @Override
@@ -65,7 +64,7 @@ public class LoadingActivity extends UIActivity implements ILoading {
     public void initView() {
         Glide.with(this).load(R.drawable.bg_loading).into(ivLoadingBackground);
         compositeSubscription = new CompositeSubscription();
-        subscribe = Observable.interval(2, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
+        Subscription subscribe = Observable.interval(2, TimeUnit.SECONDS).compose(timer()).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
 

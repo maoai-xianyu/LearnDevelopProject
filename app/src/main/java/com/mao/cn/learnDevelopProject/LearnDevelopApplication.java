@@ -19,6 +19,7 @@ import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mao.cn.learnDevelopProject.utils.x5.PreLoadX5Service;
 import com.mcxiaoke.packer.helper.PackerNg;
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 import com.youdao.sdk.app.YouDaoApplication;
@@ -76,6 +77,14 @@ public class LearnDevelopApplication extends CommApplication {
         PathU.getInstance().initDirs();
         YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
         initX5();
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+        // Normal app init code...
     }
 
 
