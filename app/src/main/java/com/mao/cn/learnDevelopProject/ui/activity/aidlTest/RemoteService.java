@@ -2,9 +2,12 @@ package com.mao.cn.learnDevelopProject.ui.activity.aidlTest;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Messenger;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 
 import com.mao.cn.learnDevelopProject.IConnectionService;
@@ -15,7 +18,6 @@ import com.mao.cn.learnDevelopProject.model.Message;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -29,15 +31,40 @@ public class RemoteService extends Service {
     private boolean isConnect = false;
 
     // 定义主线程的handler
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            data.setClassLoader(Message.class.getClassLoader());
+            Message message = data.getParcelable("message");
+            ToastUtils.show("服务器接收到客户端消息" + message.getContent());
+
+            try {
+                // 获得客户端的 Messenger 对象
+                Messenger clientMessenger = msg.replyTo;
+                Message reply = new Message();
+                reply.setContent("this is msg from server remote");
+                android.os.Message msgRemote = new android.os.Message();
+                msgRemote.replyTo = clientMessenger;
+                data = new Bundle();
+                data.putParcelable("message", reply);
+                msgRemote.setData(data);
+                clientMessenger.send(msgRemote);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     // 存储消息的监听
-    private ArrayList<MessageReceiveListener> mMessageReceiveListeners = new ArrayList<>();
+    private RemoteCallbackList<MessageReceiveListener> mMessageReceiveListeners = new RemoteCallbackList<>();
 
     private ScheduledThreadPoolExecutor mScheduledThreadPoolExecutor;
 
-
     private ScheduledFuture mScheduledFuture;
+
+    private Messenger mMessenger = new Messenger(mHandler);
     // 子进程
     private IConnectionService mIConnectionService = new IConnectionService.Stub() {
         @Override
@@ -77,19 +104,17 @@ public class RemoteService extends Service {
                     @Override
                     public void run() {
 
-                        if (mMessageReceiveListeners != null && mMessageReceiveListeners.size() > 0) {
-                            for (MessageReceiveListener messageReceiveListener : mMessageReceiveListeners) {
-
-                                Message message = new Message();
-                                message.setContent("this message for remote");
-                                try {
-                                    messageReceiveListener.onReceiveMessage(message);
-                                } catch (RemoteException e) {
-                                    e.printStackTrace();
-                                }
+                        int registeredCallbackCount = mMessageReceiveListeners.beginBroadcast();
+                        for (int i = 0; i < registeredCallbackCount; i++) {
+                            Message message = new Message();
+                            message.setContent("this message for remote");
+                            try {
+                                mMessageReceiveListeners.getBroadcastItem(i).onReceiveMessage(message);
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
                             }
                         }
-
+                        mMessageReceiveListeners.finishBroadcast();
                     }
                 }, 5000, 5000, TimeUnit.MILLISECONDS);
 
@@ -151,14 +176,14 @@ public class RemoteService extends Service {
         @Override
         public void registerMessageReceiveListener(MessageReceiveListener messageReceiveListener) throws RemoteException {
             if (messageReceiveListener != null) {
-                mMessageReceiveListeners.add(messageReceiveListener);
+                mMessageReceiveListeners.register(messageReceiveListener);
             }
         }
 
         @Override
         public void unRegisterMessageReceiveListener(MessageReceiveListener messageReceiveListener) throws RemoteException {
             if (messageReceiveListener != null) {
-                mMessageReceiveListeners.remove(messageReceiveListener);
+                mMessageReceiveListeners.unregister(messageReceiveListener);
             }
         }
     };
@@ -171,6 +196,8 @@ public class RemoteService extends Service {
                 return mIConnectionService.asBinder();
             } else if (IMessageService.class.getSimpleName().equals(serviceName)) {
                 return mIMessageService.asBinder();
+            } else if (Messenger.class.getSimpleName().equals(serviceName)) {
+                return mMessenger.getBinder();
             }
             return null;
         }

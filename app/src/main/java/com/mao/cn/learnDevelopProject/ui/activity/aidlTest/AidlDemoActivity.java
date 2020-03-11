@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Messenger;
 import android.os.RemoteException;
 import android.view.View;
 import android.widget.ImageButton;
@@ -51,10 +52,33 @@ public class AidlDemoActivity extends BaseActivity {
     TextView tvMsgR;
     @BindView(R.id.tvMsgUR)
     TextView tvMsgUR;
+    @BindView(R.id.tvMsgMessenger)
+    TextView tvMsgMessenger;
+
 
     private IConnectionService mIConnectionServiceProxy;
     private IMessageService mIMessageServiceProxy;
     private IServiceManager mIServiceManager;
+    private Messenger mMessengerProxy;
+
+    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            // 接收服务端发来的消息
+            Bundle data = msg.getData();
+            data.setClassLoader(Message.class.getClassLoader());
+            Message message = data.getParcelable("message");
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtils.show("客户端收到服务器的消息" + message.getContent());
+                }
+            }, 3000);
+        }
+    };
+
+    private Messenger clientMessenger = new Messenger(mHandler);
 
     private MessageReceiveListener mMessageReceiveListener = new MessageReceiveListener.Stub() {
         @Override
@@ -85,28 +109,32 @@ public class AidlDemoActivity extends BaseActivity {
     public void initView() {
         idBack.setVisibility(View.VISIBLE);
 
-        Intent intent = new Intent(this, RemoteService.class);
+        Intent mIntent = new Intent(this, RemoteService.class);
 
-        bindService(intent, new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-
-                try {
-                    mIServiceManager = IServiceManager.Stub.asInterface(service);
-                    mIConnectionServiceProxy = IConnectionService.Stub.asInterface(mIServiceManager.getService(IConnectionService.class.getSimpleName()));
-                    mIMessageServiceProxy = IMessageService.Stub.asInterface(mIServiceManager.getService(IMessageService.class.getSimpleName()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-
-            }
-        }, Context.BIND_AUTO_CREATE);
+        bindService(mIntent, conn, Context.BIND_AUTO_CREATE);
     }
+
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            try {
+                mIServiceManager = IServiceManager.Stub.asInterface(service);
+                mIConnectionServiceProxy = IConnectionService.Stub.asInterface(mIServiceManager.getService(IConnectionService.class.getSimpleName()));
+                mIMessageServiceProxy = IMessageService.Stub.asInterface(mIServiceManager.getService(IMessageService.class.getSimpleName()));
+                mMessengerProxy = new Messenger(mIServiceManager.getService(Messenger.class.getSimpleName()));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+
+    };
 
     @Override
     public void setListener() {
@@ -157,6 +185,7 @@ public class AidlDemoActivity extends BaseActivity {
                     try {
                         mIMessageServiceProxy.sendMessage(message);
                         LogU.d(" message send " + message);
+                        LogU.d(" message send success " + message.isSendSuccess());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -187,10 +216,33 @@ public class AidlDemoActivity extends BaseActivity {
                     LogU.d(" message ur listener ");
 
                 }, throwable -> LogU.e(throwable.toString()));
+
+        RxView.clicks(tvMsgMessenger).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    try {
+                        Message message = new Message();
+                        message.setContent("this msg is from messenger client");
+                        android.os.Message msg = new android.os.Message();
+                        msg.replyTo = clientMessenger;
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("message", message);
+                        msg.setData(bundle);
+                        mMessengerProxy.send(msg);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+
+                }, throwable -> LogU.e(throwable.toString()));
     }
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(conn);
     }
 }

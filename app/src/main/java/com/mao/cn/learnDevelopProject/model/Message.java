@@ -27,9 +27,9 @@ public class Message implements Parcelable {
     public Message() {
     }
 
-    protected Message(Parcel in) {
-        this.content = in.readString();
-        this.isSendSuccess = in.readByte() != 0;
+    protected Message(Parcel parcel) {
+        this.content = parcel.readString();
+        this.isSendSuccess = parcel.readByte() != 0;
     }
 
     public static final Parcelable.Creator<Message> CREATOR = new Parcelable.Creator<Message>() {
@@ -58,5 +58,19 @@ public class Message implements Parcelable {
 
     public void setSendSuccess(boolean sendSuccess) {
         isSendSuccess = sendSuccess;
+    }
+
+    public void readFromParcel(Parcel in) {
+        this.content = in.readString();
+        this.isSendSuccess = in.readByte() == 1;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "content='" + content + '\'' +
+                ", isSendSuccess=" + isSendSuccess +
+                '}';
     }
 }
