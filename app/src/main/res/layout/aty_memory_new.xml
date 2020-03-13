@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.memory.MemoryNewActivity">
 
+    <com.mao.cn.learnDevelopProject.wedget.view.DroidCardsView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </android.support.constraint.ConstraintLayout>
