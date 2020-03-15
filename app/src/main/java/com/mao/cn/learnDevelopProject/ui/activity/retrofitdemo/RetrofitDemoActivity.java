@@ -43,6 +43,7 @@ public class RetrofitDemoActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
         retrofitC();
 
     }

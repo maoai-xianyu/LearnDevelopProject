@@ -22,7 +22,6 @@ import com.mcxiaoke.packer.helper.PackerNg;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
-import com.youdao.sdk.app.YouDaoApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,7 +74,7 @@ public class LearnDevelopApplication extends CommApplication {
         analyticsManager.registerAppEnter();
         initServerInfo();
         PathU.getInstance().initDirs();
-        YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
+        //YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
         initX5();
 
         if (LeakCanary.isInAnalyzerProcess(this)) {

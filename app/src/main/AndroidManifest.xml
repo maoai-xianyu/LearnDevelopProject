@@ -191,6 +191,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.activity.handler.HandlerDemoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.activity.materialDesign.MaterialDesignActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
