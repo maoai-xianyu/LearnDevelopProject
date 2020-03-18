@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.designPattern.Pattern22_oralPattern.protomode;
+package com.mao.cn.learnDevelopProject.designPattern.Pattern22_oralPattern;
 
 public class EventTemplate {
 	private String eventSubject, eventContent;

@@ -1,6 +1,6 @@
-package com.mao.cn.learnDevelopProject.designPattern.Pattern22_oralPattern.protomode.proto;
+package com.mao.cn.learnDevelopProject.designPattern.Pattern22_oralPattern.proto;
 
-import com.mao.cn.learnDevelopProject.designPattern.Pattern22_oralPattern.protomode.EventTemplate;
+import com.mao.cn.learnDevelopProject.designPattern.Pattern22_oralPattern.EventTemplate;
 
 import java.util.Random;
 
