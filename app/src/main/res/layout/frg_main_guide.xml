@@ -7,128 +7,153 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/rl_content"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/d10">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_desc_net"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rl_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="网络请求" />
+                android:layout_weight="1"
+                android:paddingBottom="@dimen/d10">
 
-            <Button
-                android:id="@+id/btn_desc_rxjava"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_net"
-                android:text="rxjava学习" />
+                <Button
+                    android:id="@+id/btn_desc_net"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="网络请求" />
 
-
-            <Button
-                android:id="@+id/btn_desc_image"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_rxjava"
-                android:text="image图片" />
-
-            <Button
-                android:id="@+id/btn_animator"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_desc_image"
-                android:text="动画" />
-
-            <Button
-                android:id="@+id/btn_define_view"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_animator"
-                android:text="自定义View" />
-
-            <Button
-                android:id="@+id/btn_sp_string"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_define_view"
-                android:text="spannableString" />
+                <Button
+                    android:id="@+id/btn_desc_rxjava"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_desc_net"
+                    android:text="rxjava学习" />
 
 
-            <Button
-                android:id="@+id/btn_refresh_books"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_sp_string"
-                android:text="刷新底部标签数据RxBus" />
+                <Button
+                    android:id="@+id/btn_desc_image"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_desc_rxjava"
+                    android:text="image图片" />
+
+                <Button
+                    android:id="@+id/btn_animator"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_desc_image"
+                    android:text="动画" />
+
+                <Button
+                    android:id="@+id/btn_define_view"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_animator"
+                    android:text="自定义View" />
+
+                <Button
+                    android:id="@+id/btn_sp_string"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_define_view"
+                    android:text="spannableString" />
 
 
-            <Button
-                android:id="@+id/btn_refresh_games"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_refresh_books"
-                android:text="刷新底部标签点RxBus" />
-
-            <Button
-                android:id="@+id/btn_retrofit"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_refresh_games"
-                android:text="retrofitdemo" />
-
-            <Button
-                android:id="@+id/btn_m"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_retrofit"
-                android:text="material" />
-
-            <Button
-                android:id="@+id/btn_memory"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_m"
-                android:text="内存优化" />
-
-            <Button
-                android:id="@+id/btn_life"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_memory"
-                android:text="生命周期" />
-
-            <Button
-                android:id="@+id/btn_aidl"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_life"
-                android:text="aidl通信" />
-
-            <Button
-                android:id="@+id/btn_handler"
-                style="@style/home_main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_aidl"
-                android:text="handler" />
+                <Button
+                    android:id="@+id/btn_refresh_books"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_sp_string"
+                    android:text="刷新底部标签数据RxBus" />
 
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_refresh_games"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_refresh_books"
+                    android:text="刷新底部标签点RxBus" />
+
+                <Button
+                    android:id="@+id/btn_retrofit"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_refresh_games"
+                    android:text="retrofitdemo" />
+
+                <Button
+                    android:id="@+id/btn_m"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_retrofit"
+                    android:text="material" />
+
+                <Button
+                    android:id="@+id/btn_memory"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_m"
+                    android:text="内存优化" />
+
+                <Button
+                    android:id="@+id/btn_life"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_memory"
+                    android:text="生命周期" />
+
+                <Button
+                    android:id="@+id/btn_aidl"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_life"
+                    android:text="aidl通信" />
+
+                <Button
+                    android:id="@+id/btn_handler"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_aidl"
+                    android:text="handler" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_aspectj"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="aspectj" />
+            </LinearLayout>
+        </LinearLayout>
+
+
     </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>
