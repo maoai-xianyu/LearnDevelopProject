@@ -32,8 +32,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-
-
         <activity
             android:name=".ui.activity.LoadingActivity"
             android:screenOrientation="portrait"
@@ -198,7 +196,6 @@
             android:name=".ui.activity.aspectJ.AspectJDemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ui.activity.materialDesign.MaterialDesignActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -213,10 +210,13 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity android:name=".ui.activity.annotation.AnnotationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <service
             android:name=".ui.activity.aidlTest.RemoteService"
             android:process=":remote" />
-
         <service
             android:name=".utils.x5.PreLoadX5Service"
             android:label="dexopt"
