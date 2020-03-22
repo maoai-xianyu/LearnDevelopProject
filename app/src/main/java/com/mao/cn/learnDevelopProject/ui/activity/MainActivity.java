@@ -10,6 +10,7 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -25,19 +26,19 @@ import com.ashokvarma.bottomnavigation.TextBadgeItem;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.di.component.DaggerMainComponent;
-import com.mao.cn.learnDevelopProject.contants.KeyMaps;
+import com.mao.cn.learnDevelopProject.di.modules.MainModule;
 import com.mao.cn.learnDevelopProject.event.BusAction;
 import com.mao.cn.learnDevelopProject.event.RefreshMainEvent;
 import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
-import com.mao.cn.learnDevelopProject.di.modules.MainModule;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;
-import com.mao.cn.learnDevelopProject.ui.fragment.NewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.MainGuideFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.MoviesFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.NewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.OpenSourceFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.OthersHomeFragment;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainPresenter;
@@ -79,6 +80,7 @@ public class MainActivity extends BaseActivity implements IMain {
     private int currentIndex;
     private MoviesFragment moviesFragment;
 
+    final RxPermissions rxPermissions = new RxPermissions(this); // where this is an Activity or Fragment instance
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -244,14 +246,15 @@ public class MainActivity extends BaseActivity implements IMain {
     /**
      * 获取需要操作日历的权限
      */
+    @SuppressLint("CheckResult")
     private void requestPermission() {
 
-        new RxPermissions(MainActivity.this)
-                .requestEach(Manifest.permission.WRITE_CALENDAR,
-                        Manifest.permission.READ_CALENDAR,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.CALL_PHONE)
+        rxPermissions.requestEach(Manifest.permission.WRITE_CALENDAR,
+                Manifest.permission.READ_CALENDAR,
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.CALL_PHONE)
                 .subscribe(permission -> {
+
                     if (permission.granted) {
 
                     } else {
