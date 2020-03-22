@@ -3,7 +3,7 @@ package com.mao.cn.learnDevelopProject.ui.activity.memory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.utils.CommUtils;

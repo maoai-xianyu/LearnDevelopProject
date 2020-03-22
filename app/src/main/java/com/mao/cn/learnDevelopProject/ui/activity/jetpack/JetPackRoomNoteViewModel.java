@@ -1,10 +1,10 @@
 package com.mao.cn.learnDevelopProject.ui.activity.jetpack;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 

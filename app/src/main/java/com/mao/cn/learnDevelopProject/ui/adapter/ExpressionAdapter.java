@@ -1,6 +1,6 @@
 package com.mao.cn.learnDevelopProject.ui.adapter;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 

@@ -10,7 +10,7 @@
         android:id="@+id/rl_header"
         layout="@layout/include_header" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
             app:srcCompat="@drawable/icon_youku_2" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/rvData"

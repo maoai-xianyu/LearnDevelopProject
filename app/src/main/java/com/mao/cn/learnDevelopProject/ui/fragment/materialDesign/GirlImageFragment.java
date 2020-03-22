@@ -1,8 +1,8 @@
 package com.mao.cn.learnDevelopProject.ui.fragment.materialDesign;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;

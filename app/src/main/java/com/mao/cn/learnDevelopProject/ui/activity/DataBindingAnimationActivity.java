@@ -9,11 +9,11 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.OnRebindCallback;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.OnRebindCallback;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;

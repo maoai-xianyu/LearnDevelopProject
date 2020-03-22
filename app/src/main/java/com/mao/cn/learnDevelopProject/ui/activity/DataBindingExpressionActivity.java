@@ -9,10 +9,10 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.Observable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.Observable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.databinding.AtyDataBindingExpressionBinding;

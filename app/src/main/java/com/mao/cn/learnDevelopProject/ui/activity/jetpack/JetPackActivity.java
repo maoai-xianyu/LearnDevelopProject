@@ -5,8 +5,8 @@ package com.mao.cn.learnDevelopProject.ui.activity.jetpack;
  */
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;

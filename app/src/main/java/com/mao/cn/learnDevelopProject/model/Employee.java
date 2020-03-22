@@ -1,10 +1,10 @@
 package com.mao.cn.learnDevelopProject.model;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-import android.databinding.ObservableArrayMap;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.ObservableArrayMap;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
 
 import com.mao.cn.learnDevelopProject.BR;
 

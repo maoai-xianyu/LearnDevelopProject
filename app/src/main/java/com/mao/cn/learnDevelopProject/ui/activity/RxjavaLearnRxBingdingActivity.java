@@ -10,8 +10,6 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -21,14 +19,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.jakewharton.rxbinding.support.v7.widget.RxRecyclerView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxAdapterView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.di.component.DaggerRxjavaLearnRxBingdingComponent;
-import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.modules.RxjavaLearnRxBingdingModule;
 import com.mao.cn.learnDevelopProject.ui.adapter.RxJavaRcStringAdapter;
 import com.mao.cn.learnDevelopProject.ui.adapter.RxListStringAdapter;

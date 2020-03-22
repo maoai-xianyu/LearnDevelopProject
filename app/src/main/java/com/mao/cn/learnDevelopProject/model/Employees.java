@@ -1,7 +1,7 @@
 package com.mao.cn.learnDevelopProject.model;
 
-import android.databinding.BaseObservable;
-import android.databinding.ObservableBoolean;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableBoolean;
 
 import java.io.Serializable;
 

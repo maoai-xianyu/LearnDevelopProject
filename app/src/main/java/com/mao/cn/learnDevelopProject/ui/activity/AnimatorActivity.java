@@ -14,18 +14,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
-import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.adapter.CommonPagerTabAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IMain;

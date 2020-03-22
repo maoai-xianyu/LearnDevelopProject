@@ -1,7 +1,7 @@
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;

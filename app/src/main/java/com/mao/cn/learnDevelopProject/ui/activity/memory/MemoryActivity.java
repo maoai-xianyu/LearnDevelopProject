@@ -1,7 +1,7 @@
 package com.mao.cn.learnDevelopProject.ui.activity.memory;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.LifeMeFragment;

@@ -13,11 +13,12 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentTransaction;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;

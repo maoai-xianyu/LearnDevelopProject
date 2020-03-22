@@ -20,7 +20,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 
-import static android.support.v4.app.NotificationCompat.PRIORITY_DEFAULT;
+import static androidx.core.app.NotificationCompat.PRIORITY_DEFAULT;
 
 /**
  * DESC   :

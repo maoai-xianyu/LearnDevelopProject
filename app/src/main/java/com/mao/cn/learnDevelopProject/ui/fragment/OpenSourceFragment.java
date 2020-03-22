@@ -1,14 +1,11 @@
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dasu.blur.BlurConfig;
 import com.dasu.blur.DBlur;
-import com.dasu.blur.OnBlurListener;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
@@ -24,8 +21,8 @@ import com.mao.cn.learnDevelopProject.ui.activity.EasyRecycleViewShowContentActi
 import com.mao.cn.learnDevelopProject.ui.activity.ExpendTextViewContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.HtmlActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.HtmlQbActivity;
-import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NotificationActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackRoomNoteActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.jetpack.JetPackViewModelActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
@@ -93,8 +90,10 @@ public class OpenSourceFragment extends BaseFragment {
     public void initView() {
 
         //第三方高斯模糊
+
+        DBlur.source(context, R.drawable.image_dafault).intoTarget(ivFirst).animAlpha().build().doBlurSync();
         //异步模糊，将drawable资源文件中的图片以 NATIVE 方式进行模糊，注册回调
-        DBlur.source(activity, R.drawable.image_dafault).mode(BlurConfig.MODE_NATIVE).build()
+        /*DBlur.source(activity, R.drawable.image_dafault).mode(BlurConfig.MODE_NATIVE).build()
                 .doBlur(new OnBlurListener() {
                     @Override
                     public void onBlurSuccess(Bitmap bitmap) {
@@ -105,7 +104,7 @@ public class OpenSourceFragment extends BaseFragment {
                     public void onBlurFailed() {
                         //do something
                     }
-                });
+                });*/
 
 
         // glide

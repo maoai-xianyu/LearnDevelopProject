@@ -10,16 +10,10 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import androidx.annotation.NonNull;
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -27,16 +21,11 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
-import com.mao.cn.learnDevelopProject.utils.tools.DensityUtil;
-import com.mao.cn.learnDevelopProject.utils.tools.ListU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * DESC   :

@@ -9,10 +9,10 @@
 // +----------------------------------------------------------------------
 package com.mao.cn.learnDevelopProject.ui.activity;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.mao.cn.learnDevelopProject.R;

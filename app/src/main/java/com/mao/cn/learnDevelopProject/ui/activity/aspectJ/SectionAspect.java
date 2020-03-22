@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
