@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 public class ViewUtils {
 
     public static void inject(Activity activity) {
-        // 1. 获取所有属性
+        // 1. 获取所有属性  通过反射获取
         Field[] declaredFields = activity.getClass().getDeclaredFields();
         // 2. 过滤关于 ViewById 属性
         for (Field field : declaredFields) {

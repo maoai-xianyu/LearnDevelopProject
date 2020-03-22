@@ -3,7 +3,9 @@ package com.mao.cn.learnDevelopProject;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.github.moduth.blockcanary.BlockCanary;
 import com.hwangjr.rxbus.RxBus;
+import com.mao.cn.learnDevelopProject.blockCanary.AppBlockCanaryContext;
 import com.mao.cn.learnDevelopProject.common.CommApplication;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
@@ -84,6 +86,8 @@ public class LearnDevelopApplication extends CommApplication {
         }
         LeakCanary.install(this);
         // Normal app init code...
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+
     }
 
 
