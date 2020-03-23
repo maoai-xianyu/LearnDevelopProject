@@ -8,10 +8,11 @@ import java.lang.annotation.Target;
 /**
  * @author zhangkun
  * @time 2020-03-22 18:59
- *
+ * <p>
  * 用来注入View
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.CLASS) // 编译时注解
-public @interface BindView {
+public @interface DefineBindView {
+    int value();
 }

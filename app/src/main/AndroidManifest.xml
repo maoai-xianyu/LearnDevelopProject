@@ -214,6 +214,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".ui.activity.annotation.DefineButterKnifeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <service
             android:name=".ui.activity.aidlTest.RemoteService"
             android:process=":remote" />

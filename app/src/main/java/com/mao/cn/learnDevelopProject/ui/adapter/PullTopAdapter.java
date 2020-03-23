@@ -69,7 +69,7 @@ public class PullTopAdapter extends RecyclerView.Adapter<PullTopAdapter.ViewHold
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        //@BindView(android.R.id.text1)
+        //@DefineBindView(android.R.id.text1)
         @BindView(R.id.text1)
         TextView tvMovieTitle;
 

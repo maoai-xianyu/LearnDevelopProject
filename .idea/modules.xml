@@ -4,8 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LearnMyDevelopProject.iml" filepath="$PROJECT_DIR$/LearnMyDevelopProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/butterknife-annontations/butterknife-annontations.iml" filepath="$PROJECT_DIR$/butterknife-annontations/butterknife-annontations.iml" />
-      <module fileurl="file://$PROJECT_DIR$/butterknife-compiler/butterknife-compiler.iml" filepath="$PROJECT_DIR$/butterknife-compiler/butterknife-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/define-butterknife/define-butterknife.iml" filepath="$PROJECT_DIR$/define-butterknife/define-butterknife.iml" />
+      <module fileurl="file://$PROJECT_DIR$/define-butterknife-annontations/define-butterknife-annontations.iml" filepath="$PROJECT_DIR$/define-butterknife-annontations/define-butterknife-annontations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/define-butterknife-compiler/define-butterknife-compiler.iml" filepath="$PROJECT_DIR$/define-butterknife-compiler/define-butterknife-compiler.iml" />
     </modules>
   </component>
 </project>

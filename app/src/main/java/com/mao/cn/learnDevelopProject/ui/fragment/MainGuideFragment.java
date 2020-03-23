@@ -29,6 +29,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.aidlTest.AidlDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.annotation.AnnotationActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.annotation.DefineButterKnifeActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.aspectJ.AspectJDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.handler.HandlerDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.materialDesign.MaterialDesignActivity;
@@ -88,6 +89,8 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnAspectj;
     @BindView(R.id.btn_annotation)
     Button btnAnnotation;
+    @BindView(R.id.btn_butterknife)
+    Button btnButterknife;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -238,6 +241,12 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnAnnotation).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(AnnotationActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+        RxView.clicks(btnButterknife).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(DefineButterKnifeActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
