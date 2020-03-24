@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_header" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/mDT1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:layout_marginEnd="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="自定义TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mDT2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d10"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="动画和Decoration"
+            app:layout_constraintBaseline_toBaselineOf="@+id/mDT1"
+            app:layout_constraintStart_toEndOf="@+id/mDT1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="图片加载"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+
+        <TextView
+            android:id="@+id/mDT4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Linnar"
+            app:layout_constraintCircle="@+id/mDT1"
+            app:layout_constraintCircleAngle="120"
+            app:layout_constraintCircleRadius="70dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+        <TextView
+            android:id="@+id/mDT5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d100"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Linnar"
+            app:layout_constraintEnd_toStartOf="@+id/mDT6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <TextView
+            android:id="@+id/mDT6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d100"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Linnar"
+            app:layout_constraintEnd_toStartOf="@+id/mDT7"
+            app:layout_constraintStart_toEndOf="@+id/mDT5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d100"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Linnar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mDT6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/rlContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+</LinearLayout>

@@ -20,4 +20,29 @@
         <!-- 定义名字叫 my_bg 并且类型是reference|color的属性-->
         <attr name="my_bg" format="reference|color" />
     </declare-styleable>
+
+
+    <!--name 自定义View的名字 DefineTextView-->
+    <declare-styleable name="DefineTextView">
+        <!-- name 属性名称
+
+        format 格式: string 文字  color 颜色
+                    dimension 宽高 字体大小  integer 数字
+                    reference 资源（drawable）
+       -->
+        <attr name="defineText" format="string" />
+        <attr name="defineTextColor" format="color" />
+        <attr name="defineTextSize" format="dimension" />
+        <attr name="defineMaxLength" format="integer" />
+        <!--   Background 自定义View都是继承与View，是系统的属性     -->
+        <!--<attr name="defineBackground" format="reference|color" />-->
+
+        <!-- 枚举 -->
+        <attr name="defineInputType">
+            <enum name="number" value="1" />
+            <enum name="text" value="2" />
+            <enum name="password" value="3" />
+        </attr>
+
+    </declare-styleable>
 </resources>

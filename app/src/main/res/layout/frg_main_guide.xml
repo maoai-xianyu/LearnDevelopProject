@@ -163,6 +163,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="自定义butterknife" />
+
+                <Button
+                    android:id="@+id/btn_define"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="自定义view,重新来" />
             </LinearLayout>
         </LinearLayout>
 
