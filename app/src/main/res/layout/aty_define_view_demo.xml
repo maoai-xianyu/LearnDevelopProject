@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/d5"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
-            android:text="动画和Decoration"
+            android:text="仿QQ运动步数"
             app:layout_constraintBaseline_toBaselineOf="@+id/mDT1"
             app:layout_constraintStart_toEndOf="@+id/mDT1"
             app:layout_constraintTop_toTopOf="parent" />

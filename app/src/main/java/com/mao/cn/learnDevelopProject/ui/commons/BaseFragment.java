@@ -1,20 +1,17 @@
 package com.mao.cn.learnDevelopProject.ui.commons;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.widget.Toast;
 
 import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
 import com.mao.cn.learnDevelopProject.common.CommFragment;
-import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.converter.RetrofitError;
+import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.utils.tools.JsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mao.cn.learnDevelopProject.wedget.dialog.LoadingDialog;
-
-import java.lang.reflect.Field;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
@@ -40,7 +37,7 @@ public abstract class BaseFragment extends CommFragment implements BaseViewInfer
     protected abstract void setupComponent(AppComponent appComponent);
 
     //用于修改 java.lang.IllegalStateException: No host 异常
-    @Override
+   /* @Override
     public void onDetach() {
         super.onDetach();
         try {
@@ -52,7 +49,7 @@ public abstract class BaseFragment extends CommFragment implements BaseViewInfer
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
 
     @Override
