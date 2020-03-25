@@ -57,10 +57,32 @@
 
     <!--ColorTrackTextView-->
     <declare-styleable name="ColorTrackTextView">
+        <attr name="originColor" format="color" />
+        <attr name="changeColor" format="color" />
+    </declare-styleable>
 
-        <attr name="originColor" format="color"/>
-        <attr name="changeColor" format="color"/>
+    <!--CircleProgressBar-->
+    <declare-styleable name="CircleProgressBar">
+        <attr name="circleOuterColor" format="color" />
+        <attr name="circleInnerColor" format="color" />
+        <attr name="circleBorderWidth" format="dimension" />
+        <attr name="circleTextSize" format="dimension" />
+        <attr name="circleTextColor" format="color" />
+    </declare-styleable>
 
+    <!--ProgressBar-->
+    <declare-styleable name="ProgressBar">
+        <attr name="outerBackground" format="color" />
+        <attr name="innerBackground" format="color" />
+        <attr name="roundWidth" format="dimension" />
+        <attr name="progressTextSize" format="dimension" />
+        <attr name="progressTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="DefineShapeView">
+        <attr name="circleBackground" format="color" />
+        <attr name="squareBackground" format="color" />
+        <attr name="triangleBackground" format="color" />
     </declare-styleable>
 
 
