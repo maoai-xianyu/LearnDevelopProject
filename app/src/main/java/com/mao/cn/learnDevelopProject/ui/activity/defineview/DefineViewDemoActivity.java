@@ -13,6 +13,7 @@ import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineCircleProgressFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTextViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineQQStepViewFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTextViewFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -47,6 +48,14 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT6;
     @BindView(R.id.mDT7)
     TextView mDT7;
+
+
+    @BindView(R.id.mDT30)
+    TextView mDT30;
+    @BindView(R.id.mDT31)
+    TextView mDT31;
+    @BindView(R.id.mDT32)
+    TextView mDT32;
 
     @Override
     public void getArgs(Bundle var1) {
@@ -107,6 +116,16 @@ public class DefineViewDemoActivity extends BaseActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.rlContent, DefineCircleProgressFragment.newInstance())
+                    .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT5).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent, DefineRatingBarFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());

@@ -85,5 +85,12 @@
         <attr name="triangleBackground" format="color" />
     </declare-styleable>
 
+    <!--RatingBar-->
+    <declare-styleable name="RatingBar">
+        <attr name="starNormal" format="reference" />
+        <attr name="starFocus" format="reference" />
+        <attr name="gradeNumber" format="integer" />
+    </declare-styleable>
+
 
 </resources>
