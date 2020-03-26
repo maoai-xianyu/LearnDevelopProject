@@ -60,7 +60,7 @@ public class RatingBar extends View {
         // 计算高度 一张图片的高度   还需要实现 padding  + 加上间隔
 
         int height = mStarFocusBitmap.getHeight();
-        int width = mStarFocusBitmap.getWidth() * mGradeNumber; // + 加上间隔
+        int width = mStarFocusBitmap.getWidth() * mGradeNumber + (mGradeNumber - 1) * getPaddingEnd(); // + 加上间隔
         setMeasuredDimension(width, height);
     }
 
@@ -69,7 +69,13 @@ public class RatingBar extends View {
         super.onDraw(canvas);
 
         for (int i = 0; i < mGradeNumber; i++) {
-            int x = i * mStarFocusBitmap.getWidth();
+            int x;
+            if (i == 0) {
+                x = i * mStarFocusBitmap.getWidth();
+            } else {
+                x = i * mStarFocusBitmap.getWidth() + i * getPaddingEnd();
+            }
+
             // 结合第二个步骤 触摸的是  mCurrentGrade 是不断变化的
             if (mCurrentGrade > i) {
                 canvas.drawBitmap(mStarFocusBitmap, x, 0, null);
