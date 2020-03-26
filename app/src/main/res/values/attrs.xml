@@ -92,5 +92,11 @@
         <attr name="gradeNumber" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="LetterSideBar">
+        <attr name="letterDefaultColor" format="color" />
+        <attr name="letterLightColor" format="color" />
+        <attr name="letterDefaultTextSize" format="dimension" />
+    </declare-styleable>
+
 
 </resources>
