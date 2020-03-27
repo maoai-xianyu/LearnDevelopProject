@@ -96,7 +96,7 @@
             android:layout_marginTop="@dimen/d5"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
-            android:text="其它"
+            android:text="流式布局"
             app:layout_constraintStart_toEndOf="@+id/mDT6"
             app:layout_constraintTop_toBottomOf="@+id/mDT1" />
 

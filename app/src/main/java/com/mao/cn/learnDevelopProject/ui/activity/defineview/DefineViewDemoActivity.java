@@ -15,6 +15,7 @@ import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTex
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLetterSideBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineQQStepViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTagLayoutViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTextViewFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -137,6 +138,17 @@ public class DefineViewDemoActivity extends BaseActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.rlContent, DefineLetterSideBarFragment.newInstance())
+                    .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+
+        RxView.clicks(mDT7).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent, DefineTagLayoutViewFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());
