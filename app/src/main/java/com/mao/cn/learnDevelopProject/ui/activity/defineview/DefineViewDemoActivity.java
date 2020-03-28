@@ -1,6 +1,7 @@
 package com.mao.cn.learnDevelopProject.ui.activity.defineview;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineQQStepViewFra
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTagLayoutViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTextViewFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTouchViewFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
@@ -50,6 +52,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT6;
     @BindView(R.id.mDT7)
     TextView mDT7;
+    @BindView(R.id.mDT8)
+    TextView mDT8;
 
 
     @BindView(R.id.mDT30)
@@ -154,11 +158,27 @@ public class DefineViewDemoActivity extends BaseActivity {
             LogU.e(throwable.getMessage());
         });
 
+        RxView.clicks(mDT8).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent, DefineTouchViewFragment.newInstance())
+                    .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
 
     }
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        LogU.d("DefineViewDemoActivity ----onTouchEvent ");
+        return super.onTouchEvent(event);
     }
 }
