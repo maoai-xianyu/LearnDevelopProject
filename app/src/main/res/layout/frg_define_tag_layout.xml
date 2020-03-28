@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <com.mao.cn.learnDevelopProject.widgets.TagLayout
+    <!--<com.mao.cn.learnDevelopProject.widgets.TagLayout
         android:id="@+id/QQStepView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -115,6 +116,12 @@
             android:textSize="@dimen/text_size_14" />
 
 
-    </com.mao.cn.learnDevelopProject.widgets.TagLayout>
+    </com.mao.cn.learnDevelopProject.widgets.TagLayout>-->
+
+
+    <com.mao.cn.learnDevelopProject.widgets.TagLayout
+        android:id="@+id/tl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mao.cn.learnDevelopProject.ui.adapter.define.DataSetObserver;
+import com.mao.cn.learnDevelopProject.ui.adapter.define.TagBaseAdapter;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class TagLayout extends ViewGroup {
 
     private List<List<View>> mChildViews = new ArrayList<>();
     private List<Integer> mHeights = new ArrayList<>();
+
+    private TagBaseAdapter mTagBaseAdapter;
+    private DataSetObserver mDataSetObserver;
 
     public TagLayout(Context context) {
         super(context);
@@ -148,7 +153,7 @@ public class TagLayout extends ViewGroup {
                 int topC = top;
                 int rightC = leftC + childView.getMeasuredWidth();
                 int bottomC = topC + childView.getMeasuredHeight();
-                LogU.d(" 布局子View  leftC " + leftC +" topC "+ topC+"  rightC "+rightC+"  bottomC "+bottomC);
+                LogU.d(" 布局子View  leftC " + leftC + " topC " + topC + "  rightC " + rightC + "  bottomC " + bottomC);
                 childView.layout(leftC, topC, rightC, bottomC);
                 left += childView.getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
             }
@@ -158,4 +163,33 @@ public class TagLayout extends ViewGroup {
             LogU.d(" 换行  top " + top);
         }
     }
+
+    public void setAdapter(TagBaseAdapter tagBaseAdapter) {
+        if (mTagBaseAdapter != null && mDataSetObserver != null) {
+            mTagBaseAdapter.unregisterDataSetObserver(mDataSetObserver);
+            mTagBaseAdapter = null;
+        }
+
+        if (tagBaseAdapter == null) {
+            throw new NullPointerException("适配器为空...");
+        }
+
+        this.mTagBaseAdapter = tagBaseAdapter;
+        mDataSetObserver = this::resetLayout;
+
+        mTagBaseAdapter.registerDataSetObserver(mDataSetObserver);
+        resetLayout();
+    }
+
+    protected final void resetLayout() {
+        this.removeAllViews();
+        int counts = mTagBaseAdapter.getCounts();
+        mTagBaseAdapter.addViewToList(this);
+
+        ArrayList<View> views = mTagBaseAdapter.getViewList();
+        for (int i = 0; i < counts; i++) {
+            this.addView(views.get(i));
+        }
+    }
+
 }
