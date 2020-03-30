@@ -34,7 +34,7 @@ public class TouchViewInner extends View {
     public boolean onTouchEvent(MotionEvent event) {
         LogU.d("------> TouchViewInner onTouchEvent " + event.getAction());
         //super.onTouchEvent(event);
-        return super.onTouchEvent(event);
+        return true;
     }
 
     @Override

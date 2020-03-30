@@ -54,6 +54,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT7;
     @BindView(R.id.mDT8)
     TextView mDT8;
+    @BindView(R.id.mDT9)
+    TextView mDT9;
 
 
     @BindView(R.id.mDT30)
@@ -164,6 +166,13 @@ public class DefineViewDemoActivity extends BaseActivity {
                     .beginTransaction()
                     .replace(R.id.rlContent, DefineTouchViewAndViewGroupFragment.newInstance())
                     .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT9).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(KuGouDemoActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
