@@ -7,6 +7,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
+import com.mao.cn.learnDevelopProject.widgets.CircleImageView;
 import com.mao.cn.learnDevelopProject.widgets.QQSlidingMenu;
 
 import java.util.concurrent.TimeUnit;
@@ -20,6 +21,9 @@ import rx.functions.Action1;
  */
 public class QQDemoActivity extends BaseActivity {
 
+
+    @BindView(R.id.user_head)
+    CircleImageView userHead;
 
     @BindView(R.id.qqSlidingMenu)
     QQSlidingMenu mQQSlidingMenu;
@@ -43,9 +47,10 @@ public class QQDemoActivity extends BaseActivity {
     @Override
     public void setListener() {
 
-        RxView.clicks(mQQSlidingMenu).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+        RxView.clicks(userHead).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
+                mQQSlidingMenu.toggleMenu();
 
             }
         }, throwable -> LogU.e(throwable.getMessage()));

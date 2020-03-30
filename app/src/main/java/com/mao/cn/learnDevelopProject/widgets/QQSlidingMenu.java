@@ -182,6 +182,14 @@ public class QQSlidingMenu extends HorizontalScrollView {
     }
 
 
+    public void toggleMenu() {
+        if(mMenuIsOpen){
+            closeMenu();
+        }else{
+            openMenu();
+        }
+    }
+
     /**
      * 关闭菜单
      */
