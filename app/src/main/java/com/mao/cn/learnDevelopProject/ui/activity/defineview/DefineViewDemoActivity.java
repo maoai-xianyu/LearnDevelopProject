@@ -18,7 +18,7 @@ import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineQQStepViewFra
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTagLayoutViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTextViewFragment;
-import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTouchViewFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTouchViewAndViewGroupFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
@@ -162,7 +162,7 @@ public class DefineViewDemoActivity extends BaseActivity {
                 .MILLISECONDS).subscribe(aVoid -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.rlContent, DefineTouchViewFragment.newInstance())
+                    .replace(R.id.rlContent, DefineTouchViewAndViewGroupFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());

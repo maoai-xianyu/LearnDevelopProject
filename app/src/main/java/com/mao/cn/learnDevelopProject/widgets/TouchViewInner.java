@@ -12,33 +12,34 @@ import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 /**
  * @author zhangkun
  * @time 2020-03-28 17:52
- *
+ * <p>
  * 用于学习View的 onTouch 事件
  */
-public class TouchView extends View {
+public class TouchViewInner extends View {
 
-    public TouchView(Context context) {
+    public TouchViewInner(Context context) {
         super(context);
     }
 
-    public TouchView(Context context, @Nullable AttributeSet attrs) {
+    public TouchViewInner(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public TouchView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TouchViewInner(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        LogU.d("------> TouchView onTouchEvent "+event.getAction());
+        LogU.d("------> TouchViewInner onTouchEvent " + event.getAction());
+        //super.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        LogU.d("------> TouchView dispatchTouchEvent "+event.getAction());
-        return  super.dispatchTouchEvent(event);
+        LogU.d("------> TouchViewInner dispatchTouchEvent " + event.getAction());
+        return super.dispatchTouchEvent(event);
     }
 }
