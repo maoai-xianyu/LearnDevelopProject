@@ -135,44 +135,52 @@
             app:layout_constraintStart_toEndOf="@+id/mDT9"
             app:layout_constraintTop_toBottomOf="@+id/mDT4" />
 
+
+        <TextView
+            android:id="@+id/mDT11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="ViewDrag拖动"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT8" />
+
         <TextView
             android:id="@+id/mDT30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/d120"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
             android:text="Linnar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/mDT31"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <TextView
             android:id="@+id/mDT31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/d120"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
             android:text="Linnar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/mDT32"
-            app:layout_constraintStart_toEndOf="@+id/mDT30"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/mDT30" />
 
 
         <TextView
             android:id="@+id/mDT32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/d120"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
             android:text="Linnar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mDT31"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/mDT31" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

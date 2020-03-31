@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_header" />
+
+    <com.mao.cn.learnDevelopProject.widgets.VerticalDragListView
+        android:id="@+id/dragListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d200"
+            android:background="@color/c_69C614"
+            android:gravity="center"
+            android:text="后面"
+            android:textColor="@color/c_ff4532" />
+
+
+        <ListView
+            android:id="@+id/lv1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/c_ff4532" />
+
+
+    </com.mao.cn.learnDevelopProject.widgets.VerticalDragListView>
+
+
+</LinearLayout>
