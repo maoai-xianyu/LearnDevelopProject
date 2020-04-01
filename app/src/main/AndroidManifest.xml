@@ -230,13 +230,23 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.activity.annotation.AnnotationActivity"
+        <activity
+            android:name=".ui.activity.annotation.AnnotationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.activity.annotation.DefineButterKnifeActivity"
+        <activity
+            android:name=".ui.activity.annotation.DefineButterKnifeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.defineview.MDDemoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.activity.defineview.MDDemoFruitActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppThemeNew" />
 
         <service
             android:name=".ui.activity.aidlTest.RemoteService"

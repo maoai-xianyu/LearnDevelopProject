@@ -5,11 +5,12 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
 
 /**
  * @author zhangkun
@@ -21,6 +22,7 @@ public class DividerItemDecorationDefine extends RecyclerView.ItemDecoration {
     private Drawable mDiverder;
     // 获取系统的divider
     private int[] attrs = new int[]{
+            // listView的默认分割线
             android.R.attr.listDivider
     };
 
@@ -60,6 +62,7 @@ public class DividerItemDecorationDefine extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();
+            // Math.round(ViewCompat.getTranslationY(child)) 垂直方法的位移
             int top = child.getBottom() + layoutParams.bottomMargin + Math.round(ViewCompat.getTranslationY(child));
             int bottom = top + mDiverder.getIntrinsicHeight();
             mDiverder.setBounds(left, top, right, bottom);
@@ -89,7 +92,7 @@ public class DividerItemDecorationDefine extends RecyclerView.ItemDecoration {
         // 1. 调用此方法 (首先会去获取条目之间的间隙宽度---Rect矩形区域，左上右下)
         // 获得条目的偏移量
         if (mOrientation == LinearLayoutManager.VERTICAL) {
-            // 垂直
+            // 垂直 获取 mDiverder 图片的原始高度
             outRect.set(0, 0, 0, mDiverder.getIntrinsicHeight());
         } else {
             // 水平
