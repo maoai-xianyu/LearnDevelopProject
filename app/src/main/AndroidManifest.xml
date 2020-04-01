@@ -248,6 +248,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppThemeNew" />
 
+        <activity
+            android:name=".ui.activity.defineview.MDStatusBarActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppThemeNew" />
+
         <service
             android:name=".ui.activity.aidlTest.RemoteService"
             android:process=":remote" />
