@@ -74,30 +74,30 @@ class LockPatternView : View {
 
                 if (point!!.statusIsNormal()) {
                     mNormalPaint!!.color = mOuterNormalColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(), mDotRadius.toFloat(), mNormalPaint)
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(), mDotRadius.toFloat(), mNormalPaint!!)
 
                     // 后绘制
                     mNormalPaint!!.color = mInnerNormalColor
-                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(), mDotRadius / 6.toFloat(), mNormalPaint)
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(), mDotRadius / 6.toFloat(), mNormalPaint!!)
                 }
 
                 if (point!!.statusIsPressed()) {
                     mPressedPaint!!.color = mOuterPressedColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(), mDotRadius.toFloat(), mPressedPaint)
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(), mDotRadius.toFloat(), mPressedPaint!!)
 
                     // 后绘制
                     mPressedPaint!!.color = mInnerPressedColor
-                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(), mDotRadius / 6.toFloat(), mPressedPaint)
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(), mDotRadius / 6.toFloat(), mPressedPaint!!)
                 }
 
 
                 if (point!!.statusIsError()) {
                     mErrorPaint!!.color = mOuterErrorColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(), mDotRadius.toFloat(), mErrorPaint)
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(), mDotRadius.toFloat(), mErrorPaint!!)
 
                     // 后绘制
                     mErrorPaint!!.color = mInnerErrorColor
-                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(), mDotRadius / 6.toFloat(), mErrorPaint)
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(), mDotRadius / 6.toFloat(), mErrorPaint!!)
                 }
 
 
