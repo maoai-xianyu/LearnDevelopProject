@@ -73,7 +73,7 @@ public class StatusBarUtil {
      *
      * @param activity
      */
-    public static void setActivityTranslucent(Activity activity) {
+    public static void setStatusBarTranslucent(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // 直接调用系统的方法
             View decorView = activity.getWindow().getDecorView();

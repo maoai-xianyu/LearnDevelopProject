@@ -1,6 +1,7 @@
 package com.mao.cn.learnDevelopProject.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * author:  zhangkun .
@@ -52,4 +53,19 @@ public class Casts implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Casts casts = (Casts) o;
+        return Objects.equals(alt, casts.alt) &&
+                Objects.equals(avatars, casts.avatars) &&
+                Objects.equals(name, casts.name) &&
+                Objects.equals(id, casts.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(alt, avatars, name, id);
+    }
 }
