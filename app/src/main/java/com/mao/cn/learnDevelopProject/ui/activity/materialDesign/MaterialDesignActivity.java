@@ -9,6 +9,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.AddHeaderFooterFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.GirlImageFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.ItemDecorationFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.PullFragment;
@@ -42,6 +43,8 @@ public class MaterialDesignActivity extends BaseActivity {
     TextView mT6;
     @BindView(R.id.mT7)
     TextView mT7;
+    @BindView(R.id.mT8)
+    TextView mT8;
 
     @Override
     public void getArgs(Bundle var1) {
@@ -90,6 +93,14 @@ public class MaterialDesignActivity extends BaseActivity {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.rlContent, GirlImageFragment.newInstance())
+                            .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+        RxView.clicks(mT4).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.rlContent, AddHeaderFooterFragment.newInstance())
                             .commitAllowingStateLoss();
                 }, throwable -> LogU.e(throwable.toString()));
 

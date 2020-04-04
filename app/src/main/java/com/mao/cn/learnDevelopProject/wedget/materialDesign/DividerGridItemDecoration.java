@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @author zhangkun
  * @time 2020-02-26 23:10
  */
-public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration {
+public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 
     private Drawable mDiverder;
     // 获取系统的divider
@@ -23,7 +23,7 @@ public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration
             android.R.attr.listDivider
     };
 
-    public DividerItemGridDecorationDefine(Context context) {
+    public DividerGridItemDecoration(Context context) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs);
         mDiverder = typedArray.getDrawable(0);
         typedArray.recycle();
@@ -51,7 +51,7 @@ public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration
             int left = child.getRight() + layoutParams.rightMargin;
             int right = left + mDiverder.getIntrinsicWidth();
             int top = child.getTop() - layoutParams.topMargin;
-            int bottom = top + layoutParams.bottomMargin;
+            int bottom = child.getBottom() + layoutParams.bottomMargin;
             mDiverder.setBounds(left, top, right, bottom);
             mDiverder.draw(c);
         }
@@ -65,7 +65,7 @@ public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();
             //  第一个child为主child的右边是一个矩形
             int left = child.getLeft() - layoutParams.leftMargin;
-            int right = child.getRight() + layoutParams.rightMargin;
+            int right = child.getRight() + layoutParams.rightMargin + mDiverder.getIntrinsicWidth();
             int top = child.getBottom() + layoutParams.bottomMargin;
             int bottom = top + mDiverder.getIntrinsicHeight();
             mDiverder.setBounds(left, top, right, bottom);
@@ -122,6 +122,7 @@ public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration
             return true;
         }
 
+
         return false;
     }
 
@@ -139,4 +140,6 @@ public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration
         }
         return 1;
     }
+
+
 }
