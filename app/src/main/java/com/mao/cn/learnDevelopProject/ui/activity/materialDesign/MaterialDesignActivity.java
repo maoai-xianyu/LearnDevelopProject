@@ -13,6 +13,7 @@ import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.AddHeaderFooter
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.GirlImageFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.ItemDecorationFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.PullFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.drag.AnimatorRYVFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
@@ -101,6 +102,16 @@ public class MaterialDesignActivity extends BaseActivity {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.rlContent, AddHeaderFooterFragment.newInstance())
+                            .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+
+
+        RxView.clicks(mT8).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.rlContent, AnimatorRYVFragment.newInstance())
                             .commitAllowingStateLoss();
                 }, throwable -> LogU.e(throwable.toString()));
 

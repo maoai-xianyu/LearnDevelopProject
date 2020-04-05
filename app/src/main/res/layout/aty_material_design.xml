@@ -71,9 +71,9 @@
             android:layout_marginTop="@dimen/d5"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
-            android:text="Linnar"
+            android:text="RecyclerView动画"
             app:layout_constraintCircle="@+id/mT1"
-            app:layout_constraintCircleAngle="120"
+            app:layout_constraintCircleAngle="130"
             app:layout_constraintCircleRadius="65dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mT1" />
