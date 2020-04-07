@@ -14,6 +14,7 @@ import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineCircleProgressFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTextViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLetterSideBarFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLoadingViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineQQStepViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineTagLayoutViewFragment;
@@ -68,6 +69,10 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT14;
     @BindView(R.id.mDT15)
     TextView mDT15;
+    @BindView(R.id.mDT16)
+    TextView mDT16;
+    @BindView(R.id.mDT17)
+    TextView mDT17;
 
 
     @BindView(R.id.mDT30)
@@ -227,6 +232,23 @@ public class DefineViewDemoActivity extends BaseActivity {
         RxView.clicks(mDT15).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(MDBehaviorActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT16).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(MDRecyclerViewActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT17).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent, DefineLoadingViewFragment.newInstance())
+                    .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

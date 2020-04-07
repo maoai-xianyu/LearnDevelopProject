@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.mao.cn.learnDevelopProject.widgets.DefineShapeView
+        android:id="@+id/dfView"
+        android:layout_width="@dimen/d26"
+        android:layout_height="@dimen/d26"
+        app:squareBackground="@color/c_ff4532"
+        app:circleBackground="@color/c_ffcc24"
+        app:triangleBackground="@color/c_69C614"
+        android:layout_marginBottom="@dimen/d80" />
+
+    <View
+        android:id="@+id/v"
+        android:background="@drawable/shape_loading"
+        android:layout_width="@dimen/d8"
+        android:layout_height="@dimen/d3" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="数据加载中..."
+        android:textColor="@color/c_404040"
+        android:textSize="@dimen/text_size_14" />
+
+</LinearLayout>

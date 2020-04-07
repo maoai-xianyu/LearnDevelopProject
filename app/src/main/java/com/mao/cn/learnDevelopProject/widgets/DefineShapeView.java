@@ -81,19 +81,34 @@ public class DefineShapeView extends View {
                     // 画路径
                     mPath = new Path();
                     int a = getWidth() / 2;
-                    // 等腰三角形
+                    /*// 等腰三角形
                     mPath.moveTo(a, 0);// 此点为多边形的起点
                     mPath.lineTo(getWidth(), getHeight());
                     mPath.lineTo(0, getHeight());
-                    mPath.close(); // 使这些点构成封闭的多边形
+                    mPath.close(); // 使这些点构成封闭的多边形*/
+
+
+                    // 等边三角形
+                   /* mPath.moveTo(a, 0);// 此点为多边形的起点
+                    mPath.lineTo(getWidth(), (float) ((getWidth() / 2)*Math.sqrt(3)));
+                    mPath.lineTo(0,(float) ((getWidth() / 2)*Math.sqrt(3)));
+                    mPath.close(); // 使这些点构成封闭的多边形*/
+
+
+                    mPath.moveTo(a, 0);// 此点为多边形的起点
+                    mPath.lineTo(getWidth(), (float) (getWidth() * Math.sin(Math.PI / 3)));
+                    mPath.lineTo(0, (float) (getWidth() * Math.sin(Math.PI / 3)));
+                    mPath.close(); // 使这些点构成封闭的多边
                 }
+
+
                 canvas.drawPath(mPath, mPaint);
                 break;
         }
     }
 
-    public void changeShape(){
-        switch (currentShape){
+    public void changeShape() {
+        switch (currentShape) {
             case Circle:
                 currentShape = Shape.Square;
                 break;
@@ -109,6 +124,11 @@ public class DefineShapeView extends View {
 
     public enum Shape {
         Circle, Square, Triangle
+    }
+
+    // 获取当前的形状
+    public Shape getCurrentShape() {
+        return currentShape;
     }
 
 }

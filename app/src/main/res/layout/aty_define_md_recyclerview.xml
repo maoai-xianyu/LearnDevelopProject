@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_header" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/mDT1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:layout_marginEnd="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="分割线"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mDT2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d10"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="万能的adapter"
+            app:layout_constraintBaseline_toBaselineOf="@+id/mDT1"
+            app:layout_constraintStart_toEndOf="@+id/mDT1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d10"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="添加头部和底部"
+            app:layout_constraintStart_toEndOf="@+id/mDT2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="下拉刷新上拉加载"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+
+        <TextView
+            android:id="@+id/mDT5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="侧滑删除"
+            app:layout_constraintStart_toEndOf="@+id/mDT4"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+        <TextView
+            android:id="@+id/mDT6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="字母索引列表"
+            app:layout_constraintStart_toEndOf="@+id/mDT5"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/rlContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+
+</LinearLayout>
