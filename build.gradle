@@ -12,6 +12,7 @@ buildscript {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://github.com/500px/500px-android-blur/raw/master/releases/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
@@ -32,6 +33,8 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://github.com/500px/500px-android-blur/raw/master/releases/' }
+
     }
 }
 

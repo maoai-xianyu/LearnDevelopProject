@@ -33,6 +33,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import io.alterac.blurkit.BlurKit;
+
 /**
  * Created by zhangkun on 2017/6/8.
  */
@@ -87,6 +89,8 @@ public class LearnDevelopApplication extends CommApplication {
         LeakCanary.install(this);
         // Normal app init code...
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
+
+        BlurKit.init(this);
 
     }
 

@@ -1,11 +1,14 @@
 package com.mao.cn.learnDevelopProject.ui.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dasu.blur.DBlur;
+import com.fivehundredpx.android.blur.BlurringView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
@@ -31,6 +34,8 @@ import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.alterac.blurkit.BlurLayout;
+import jp.wasabeef.blurry.Blurry;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
@@ -69,6 +74,16 @@ public class OpenSourceFragment extends BaseFragment {
     TextView tvJetPackV;
     @BindView(R.id.tv_JetPack_R)
     TextView tvJetPackRoom;
+
+    @BindView(R.id.vShape)
+    RelativeLayout vShape;
+    @BindView(R.id.vShapeV)
+    View vShapeV;
+    @BindView(R.id.blurLayout)
+    BlurLayout blurLayout;
+    @BindView(R.id.blurring_view)
+    BlurringView blurring_view;
+
 
     public static OpenSourceFragment newInstance() {
         OpenSourceFragment fragment = new OpenSourceFragment();
@@ -113,7 +128,49 @@ public class OpenSourceFragment extends BaseFragment {
                 .into(ivGlide);
 
 
+        Blurry.with(context)
+                .radius(8)
+                .sampling(10)
+                //.color(Color.argb(66, 255, 255, 0))
+                //.color(R.color.black50)
+                .async()
+                .animate(500)
+                .onto(vShape);
+
+
+       /* vShapeV.post(new Runnable() {
+            @Override
+            public void run() {
+                BlurKit.getInstance().blur(vShapeV, 30);
+            }
+        });*/
+
+        blurring_view.setBlurredView(ivFirst);
+
+       /* blurring_view.post(new Runnable() {
+
+            @Override
+            public void run() {
+                blurring_view.invalidate();
+            }
+        });
+*/
+
     }
+
+
+   /* @Override
+    public void onResume() {
+        super.onResume();
+        blurLayout.startBlur();
+        blurLayout.lockView();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        blurLayout.pauseBlur();
+    }*/
 
     @Override
     public void setListener() {
