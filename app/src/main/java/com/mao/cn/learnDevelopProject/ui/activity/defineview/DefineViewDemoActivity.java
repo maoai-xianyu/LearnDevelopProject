@@ -15,6 +15,7 @@ import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineCircleProgres
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTextViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLetterSideBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineListDataScreenViewFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLoadingCircleViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLoadingViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineQQStepViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
@@ -76,6 +77,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT17;
     @BindView(R.id.mDT18)
     TextView mDT18;
+    @BindView(R.id.mDT19)
+    TextView mDT19;
 
 
     @BindView(R.id.mDT30)
@@ -261,6 +264,16 @@ public class DefineViewDemoActivity extends BaseActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.rlContent,  DefineListDataScreenViewFragment.newInstance())
+                    .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT19).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent,  DefineLoadingCircleViewFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());
