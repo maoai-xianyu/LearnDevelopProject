@@ -17,6 +17,7 @@ public class DefineListDataScreenViewFragment extends BaseFragment {
 
 
     private ListScreenMenuAdapter mListScreenMenuAdapter;
+
     public static DefineListDataScreenViewFragment newInstance() {
         DefineListDataScreenViewFragment fragment = new DefineListDataScreenViewFragment();
         return fragment;
@@ -36,6 +37,7 @@ public class DefineListDataScreenViewFragment extends BaseFragment {
     @Override
     public void initView() {
         mListScreenMenuAdapter = new ListScreenMenuAdapter(context);
+        //mListScreenMenuAdapter = new ListScreenMenuAdapter(context,listDataScreenView);
         listDataScreenView.setAdapter(mListScreenMenuAdapter);
     }
 
@@ -51,6 +53,12 @@ public class DefineListDataScreenViewFragment extends BaseFragment {
         });*/
 
 
+        /*mListScreenMenuAdapter.setClickCloseListener(new ListScreenMenuAdapter.ClickCloseListener() {
+            @Override
+            public void closeMenu() {
+                listDataScreenView.closeMenu();
+            }
+        });*/
     }
 
     @Override

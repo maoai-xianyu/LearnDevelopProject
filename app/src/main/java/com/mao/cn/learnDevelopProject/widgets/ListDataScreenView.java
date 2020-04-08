@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 import com.mao.cn.learnDevelopProject.ui.adapter.define.BaseMenuAdapter;
+import com.mao.cn.learnDevelopProject.ui.adapter.define.ListScreenMenuObserver;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 /**
@@ -115,15 +116,39 @@ public class ListDataScreenView extends LinearLayout {
     }
 
     /**
+     * 具体的观察者类对象
+     */
+    private class ListScreenMenuAdapterObserver extends ListScreenMenuObserver {
+        @Override
+        public void closeScreenMenu() {
+            // 如果有注册就会有通知
+            closeMenu();
+        }
+    }
+
+    private ListScreenMenuAdapterObserver mListScreenMenuAdapterObserver;
+
+    /**
      * 设置adapter
      *
      * @param baseMenuAdapter
      */
     public void setAdapter(BaseMenuAdapter baseMenuAdapter) {
+
+        // 观察者 微信公众号用户
         if (baseMenuAdapter == null) {
             throw new NullPointerException("不能为空");
         }
+        if (mAdapter != null && mListScreenMenuAdapterObserver != null) {
+            // 取消监听
+            mAdapter.unregisterDataSetObserver(mListScreenMenuAdapterObserver);
+        }
+
         this.mAdapter = baseMenuAdapter;
+
+        mListScreenMenuAdapterObserver = new ListScreenMenuAdapterObserver();
+        // 注册观察者 具体的观察者实例对象 订阅
+        this.mAdapter.registerDataSetObserver(mListScreenMenuAdapterObserver);
 
         // 获取有多少条数据
         int count = mAdapter.getCount();
@@ -218,7 +243,7 @@ public class ListDataScreenView extends LinearLayout {
 
     }
 
-    private void closeMenu() {
+    public void closeMenu() {
         if (mAnimatorExecute) return;
         // 关闭
         ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", 0, -mMenuContainerHeight);
