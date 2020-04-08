@@ -13,6 +13,7 @@ import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineCircleProgressFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTextViewFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineDragBubbleViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLetterSideBarFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineListDataScreenViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLoadingCircleViewFragment;
@@ -79,6 +80,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT18;
     @BindView(R.id.mDT19)
     TextView mDT19;
+    @BindView(R.id.mDT20)
+    TextView mDT20;
 
 
     @BindView(R.id.mDT30)
@@ -274,6 +277,16 @@ public class DefineViewDemoActivity extends BaseActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.rlContent,  DefineLoadingCircleViewFragment.newInstance())
+                    .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT20).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent,  DefineDragBubbleViewFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());

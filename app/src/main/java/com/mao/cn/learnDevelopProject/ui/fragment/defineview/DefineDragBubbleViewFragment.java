@@ -5,18 +5,18 @@ import android.os.Bundle;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
-import com.mao.cn.learnDevelopProject.widgets.laodCircle.LoadingRunCircleView;
+import com.mao.cn.learnDevelopProject.widgets.MessageBubbleView;
 
 import butterknife.BindView;
 
-public class DefineLoadingCircleViewFragment extends BaseFragment {
+public class DefineDragBubbleViewFragment extends BaseFragment {
 
-    @BindView(R.id.loadingRunCircleView)
-    LoadingRunCircleView loadView;
+    @BindView(R.id.bubbleView)
+    MessageBubbleView loadView;
 
 
-    public static DefineLoadingCircleViewFragment newInstance() {
-        DefineLoadingCircleViewFragment fragment = new DefineLoadingCircleViewFragment();
+    public static DefineDragBubbleViewFragment newInstance() {
+        DefineDragBubbleViewFragment fragment = new DefineDragBubbleViewFragment();
         return fragment;
     }
 
@@ -28,14 +28,12 @@ public class DefineLoadingCircleViewFragment extends BaseFragment {
 
     @Override
     protected int setView() {
-        return R.layout.frg_define_loading_circle_view;
+        return R.layout.frg_define_drag_bubble_view;
     }
 
     @Override
     public void initView() {
 
-        // 获取数据 之后 不显示 loadView
-        // loadView.setVisibility(View.GONE);
     }
 
 
