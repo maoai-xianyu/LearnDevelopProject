@@ -82,6 +82,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT19;
     @BindView(R.id.mDT20)
     TextView mDT20;
+    @BindView(R.id.mDT21)
+    TextView mDT21;
 
 
     @BindView(R.id.mDT30)
@@ -266,7 +268,7 @@ public class DefineViewDemoActivity extends BaseActivity {
                 .MILLISECONDS).subscribe(aVoid -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.rlContent,  DefineListDataScreenViewFragment.newInstance())
+                    .replace(R.id.rlContent, DefineListDataScreenViewFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());
@@ -276,7 +278,7 @@ public class DefineViewDemoActivity extends BaseActivity {
                 .MILLISECONDS).subscribe(aVoid -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.rlContent,  DefineLoadingCircleViewFragment.newInstance())
+                    .replace(R.id.rlContent, DefineLoadingCircleViewFragment.newInstance())
                     .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());
@@ -286,8 +288,15 @@ public class DefineViewDemoActivity extends BaseActivity {
                 .MILLISECONDS).subscribe(aVoid -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.rlContent,  DefineDragBubbleViewFragment.newInstance())
+                    .replace(R.id.rlContent, DefineDragBubbleViewFragment.newInstance())
                     .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT21).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(QQDragBubbleActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

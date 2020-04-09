@@ -259,6 +259,18 @@
             app:layout_constraintTop_toBottomOf="@+id/mDT16" />
 
         <TextView
+            android:id="@+id/mDT21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="QQ气泡"
+            app:layout_constraintStart_toEndOf="@+id/mDT20"
+            app:layout_constraintTop_toBottomOf="@+id/mDT16" />
+
+        <TextView
             android:id="@+id/mDT30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

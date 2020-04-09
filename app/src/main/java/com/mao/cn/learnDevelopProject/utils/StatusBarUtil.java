@@ -1,6 +1,7 @@
 package com.mao.cn.learnDevelopProject.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
@@ -55,7 +56,7 @@ public class StatusBarUtil {
     }
 
     // 获取状态栏的高度
-    private static int getStatusBarHeight(Activity activity) {
+    public static int getStatusBarHeight(Context activity) {
         // 插件式换肤 如何获取资源的，先获取资源id,根据id获取资源 源码
         int result = 0;
         //获取状态栏高度的资源id
