@@ -12,6 +12,7 @@ import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineCircleProgressFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineClickLoveFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTextViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineDragBubbleViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineLetterSideBarFragment;
@@ -84,6 +85,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT20;
     @BindView(R.id.mDT21)
     TextView mDT21;
+    @BindView(R.id.mDT22)
+    TextView mDT22;
 
 
     @BindView(R.id.mDT30)
@@ -297,6 +300,16 @@ public class DefineViewDemoActivity extends BaseActivity {
         RxView.clicks(mDT21).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(QQDragBubbleActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT22).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rlContent, DefineClickLoveFragment.newInstance())
+                    .commitAllowingStateLoss();
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
