@@ -87,6 +87,8 @@ public class DefineViewDemoActivity extends BaseActivity {
     TextView mDT21;
     @BindView(R.id.mDT22)
     TextView mDT22;
+    @BindView(R.id.mDT23)
+    TextView mDT23;
 
 
     @BindView(R.id.mDT30)
@@ -310,6 +312,13 @@ public class DefineViewDemoActivity extends BaseActivity {
                     .beginTransaction()
                     .replace(R.id.rlContent, DefineClickLoveFragment.newInstance())
                     .commitAllowingStateLoss();
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(mDT23).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(ParallaxViewActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
