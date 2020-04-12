@@ -60,7 +60,7 @@ public class PullFragment extends BaseFragment {
             strings.add("item" + i);
         }
         rv.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL));
-        rv.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+        //rv.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
         mPullTopAdapter = new PullTopAdapter(context);
         mPullTopAdapter.addMovieList(strings);
         rv.setAdapter(mPullTopAdapter);
