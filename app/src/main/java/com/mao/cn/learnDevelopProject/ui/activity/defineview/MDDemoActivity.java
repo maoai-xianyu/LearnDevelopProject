@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,6 +23,7 @@ import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.model.Fruit;
 import com.mao.cn.learnDevelopProject.ui.adapter.define.FruitAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +80,37 @@ public class MDDemoActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
+
+
+       /* ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.openDraw,R.string.closeDraw);
+
+        actionBarDrawerToggle.syncState();
+
+        mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
+
+        mDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+            }
+        });*/
+
+
         navView.setCheckedItem(R.id.nav_call);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -103,11 +136,28 @@ public class MDDemoActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (view instanceof FloatingActionButton){
+                    LogU.d("父是 FloatingActionButton");
+                }
+                if (view instanceof CoordinatorLayout){
+                    LogU.d("父是 CoordinatorLayout");
+                }
                 Snackbar.make(view, "Data deleted", Snackbar.LENGTH_SHORT)
                         .setAction("Undo", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(MDDemoActivity.this, "Data restored", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addCallback(new Snackbar.Callback(){
+                            @Override
+                            public void onShown(Snackbar sb) {
+                                super.onShown(sb);
+                            }
+
+                            @Override
+                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                super.onDismissed(transientBottomBar, event);
                             }
                         })
                         .show();

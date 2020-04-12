@@ -61,6 +61,7 @@ public class PullTopAdapter extends RecyclerView.Adapter<PullTopAdapter.ViewHold
         //View view = View.inflate(context, R.layout.item_pull, null);
 
         // 可以，RecyclerView/ListView会自动将child添加到它里面去
+        LogU.d(" parent "+parent);
         View view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
         return new ViewHolder(view);
     }
