@@ -50,6 +50,9 @@ public class MaterialDesignActivity extends BaseActivity {
     @BindView(R.id.mT9)
     TextView mT9;
 
+    @BindView(R.id.mT10)
+    TextView mT10;
+
     @Override
     public void getArgs(Bundle var1) {
 
@@ -124,6 +127,11 @@ public class MaterialDesignActivity extends BaseActivity {
                             .beginTransaction()
                             .replace(R.id.rlContent, TextInputLayoutFragment.newInstance())
                             .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+        RxView.clicks(mT10).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                   startActivity(MDToolbarSearchActivity.class);
                 }, throwable -> LogU.e(throwable.toString()));
 
     }
