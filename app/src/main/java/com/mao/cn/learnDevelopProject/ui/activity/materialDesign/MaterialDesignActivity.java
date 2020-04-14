@@ -52,6 +52,8 @@ public class MaterialDesignActivity extends BaseActivity {
 
     @BindView(R.id.mT10)
     TextView mT10;
+    @BindView(R.id.mT11)
+    TextView mT11;
 
     @Override
     public void getArgs(Bundle var1) {
@@ -132,6 +134,12 @@ public class MaterialDesignActivity extends BaseActivity {
         RxView.clicks(mT10).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                    startActivity(MDToolbarSearchActivity.class);
+                }, throwable -> LogU.e(throwable.toString()));
+
+
+        RxView.clicks(mT11).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                   startActivity(MDToolbarTransparentActivity.class);
                 }, throwable -> LogU.e(throwable.toString()));
 
     }

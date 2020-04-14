@@ -255,6 +255,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppThemeNew" />
         <activity
+            android:name=".ui.activity.materialDesign.MDToolbarTransparentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppThemeNew" />
+        <activity
             android:name=".ui.activity.defineview.MDDemoFruitActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppThemeNew" />
