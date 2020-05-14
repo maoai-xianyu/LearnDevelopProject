@@ -300,7 +300,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
-            android:text="Linnar"
+            android:text="LoadingViewFix"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/mDT31"
             app:layout_constraintStart_toStartOf="parent" />

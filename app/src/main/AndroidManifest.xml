@@ -208,6 +208,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.activity.defineview.LoadingViewFixActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.activity.defineview.QQDemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -232,6 +236,17 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.memory.MemoryNewActivity" />
+        <activity android:name=".ui.activity.memory.MemoryLifeOneStandardActivity" />
+        <activity android:name=".ui.activity.memory.MemoryLifeTwoSingleTopActivity"
+            android:launchMode="singleTop"
+            />
+        <activity android:name=".ui.activity.memory.MemoryLifeThreeSingleTaskActivity"
+            android:launchMode="singleTask"
+            />
+
+        <activity android:name=".ui.activity.memory.MemoryLifeFourSingleInstanceActivity"
+            android:launchMode="singleInstance"
+            />
         <activity
             android:name=".ui.activity.aidlTest.AidlDemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

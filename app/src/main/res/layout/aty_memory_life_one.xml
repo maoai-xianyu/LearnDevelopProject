@@ -6,17 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.memory.MemoryNewActivity">
 
-    <com.mao.cn.learnDevelopProject.wedget.view.DroidCardsView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-
-    <Button
+    <TextView
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="lifeClick"
-        android:text="测试基本standard的生命周期"
+        android:text="基本standard的生命周期"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,30 +22,20 @@
         android:id="@+id/test1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="lifeClickSingleTop"
+        android:onClick="lifeClickSingleTops"
         android:text="测试基本singleTop的生命周期"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test" />
 
 
     <Button
-        android:id="@+id/test2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="lifeClickSingleTask"
-        android:text="测试基本singleTask的生命周期"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="lifeClickSingleTaskOne"
+        android:text="测试基本SingleTask 之上的所有的activity不在了"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test1" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="lifeClickSingleInstance"
-        android:text="测试基本singleInstance的生命周期"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

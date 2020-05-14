@@ -1,8 +1,11 @@
 package com.mao.cn.learnDevelopProject.ui.activity.memory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mao.cn.learnDevelopProject.R;
@@ -22,6 +25,7 @@ public class MemoryNewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_memory_new);
+        LogU.e("MemoryActivity onCreate");
 
         CommUtils commUtils = CommUtils.getInstance(this);
 
@@ -63,6 +67,27 @@ public class MemoryNewActivity extends AppCompatActivity {
             }
         }, 20000);
 
+    }
+
+    public void lifeClick(View view) {
+        Intent intent = new Intent(this, MemoryLifeOneStandardActivity.class);
+        startActivity(intent);
+    }
+
+    public void lifeClickSingleTop(View view) {
+        Intent intent = new Intent(this, MemoryLifeTwoSingleTopActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void lifeClickSingleTask(View view) {
+        Intent intent = new Intent(this, MemoryLifeThreeSingleTaskActivity.class);
+        startActivity(intent);
+    }
+
+    public void lifeClickSingleInstance(View view) {
+        Intent intent = new Intent(this, MemoryLifeFourSingleInstanceActivity.class);
+        startActivity(intent);
     }
 
 
@@ -157,6 +182,6 @@ public class MemoryNewActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogU.e("MemoryActivity onPause");
+        LogU.e("MemoryActivity onDestroy");
     }
 }

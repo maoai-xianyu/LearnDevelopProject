@@ -323,7 +323,19 @@ public class DefineViewDemoActivity extends BaseActivity {
             LogU.e(throwable.getMessage());
         });
 
+        RxView.clicks(mDT9).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(KuGouDemoActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
 
+        RxView.clicks(mDT30).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(LoadingViewFixActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
     }
 
     @Override
