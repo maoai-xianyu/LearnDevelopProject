@@ -43,28 +43,78 @@
             android:id="@+id/mT3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
             android:layout_marginTop="@dimen/d5"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
             android:text="图片加载"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mT1" />
-
+            app:layout_constraintStart_toEndOf="@+id/mT2"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mT4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
             android:layout_marginTop="@dimen/d5"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
-            android:text="Linnar"
+            android:text="RecyclerView头部"
+            app:layout_constraintStart_toEndOf="@+id/mT3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mT8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="RecyclerView动画"
             app:layout_constraintCircle="@+id/mT1"
-            app:layout_constraintCircleAngle="120"
+            app:layout_constraintCircleAngle="130"
             app:layout_constraintCircleRadius="65dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mT1" />
 
+
+        <TextView
+            android:id="@+id/mT9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="md inputLayout"
+            app:layout_constraintStart_toEndOf="@+id/mT8"
+            app:layout_constraintTop_toBottomOf="@+id/mT1" />
+
+        <TextView
+            android:id="@+id/mT10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="toolbar"
+            app:layout_constraintStart_toEndOf="@+id/mT9"
+            app:layout_constraintTop_toBottomOf="@+id/mT1" />
+
+
+        <TextView
+            android:id="@+id/mT11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="透明效果"
+            app:layout_constraintStart_toEndOf="@+id/mT10"
+            app:layout_constraintTop_toBottomOf="@+id/mT1" />
         <TextView
             android:id="@+id/mT5"
             android:layout_width="wrap_content"

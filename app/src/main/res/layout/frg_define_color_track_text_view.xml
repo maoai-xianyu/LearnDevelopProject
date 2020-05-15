@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d150">
+
+        <com.mao.cn.learnDevelopProject.widgets.ColorTrackTextView
+            android:id="@+id/colorTrackTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试文字变化"
+            android:textSize="@dimen/text_size_18"
+            app:changeColor="@color/c_ff4D30" />
+
+
+        <Button
+            android:id="@+id/btnLeft"
+            style="@style/home_main_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/colorTrackTextView"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/d30"
+            android:layout_marginTop="@dimen/d20"
+            android:text="从左向右" />
+
+
+        <Button
+            android:id="@+id/btnRight"
+            style="@style/home_main_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/colorTrackTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/d20"
+            android:layout_marginEnd="@dimen/d20"
+            android:text="从右向左" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40"
+            android:orientation="horizontal" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vP"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

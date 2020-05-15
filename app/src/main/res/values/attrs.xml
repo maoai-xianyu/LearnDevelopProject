@@ -20,4 +20,104 @@
         <!-- 定义名字叫 my_bg 并且类型是reference|color的属性-->
         <attr name="my_bg" format="reference|color" />
     </declare-styleable>
+
+
+    <!--name 自定义View的名字 DefineTextView-->
+    <declare-styleable name="DefineTextView">
+        <!-- name 属性名称
+
+        format 格式: string 文字  color 颜色
+                    dimension 宽高 字体大小  integer 数字
+                    reference 资源（drawable）
+       -->
+        <attr name="defineText" format="string" />
+        <attr name="defineTextColor" format="color" />
+        <attr name="defineTextSize" format="dimension" />
+        <attr name="defineMaxLength" format="integer" />
+        <!--   Background 自定义View都是继承与View，是系统的属性     -->
+        <!--<attr name="defineBackground" format="reference|color" />-->
+
+        <!-- 枚举 -->
+        <attr name="defineInputType">
+            <enum name="number" value="1" />
+            <enum name="text" value="2" />
+            <enum name="password" value="3" />
+        </attr>
+
+    </declare-styleable>
+
+    <!-- 仿QQ步数-->
+    <declare-styleable name="QQStepView">
+        <attr name="outerColor" format="color" />
+        <attr name="innerColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="stepTextSize" format="dimension" />
+        <attr name="stepTextColor" format="color" />
+    </declare-styleable>
+
+    <!--ColorTrackTextView-->
+    <declare-styleable name="ColorTrackTextView">
+        <attr name="originColor" format="color" />
+        <attr name="changeColor" format="color" />
+    </declare-styleable>
+
+    <!--CircleProgressBar-->
+    <declare-styleable name="CircleProgressBar">
+        <attr name="circleOuterColor" format="color" />
+        <attr name="circleInnerColor" format="color" />
+        <attr name="circleBorderWidth" format="dimension" />
+        <attr name="circleTextSize" format="dimension" />
+        <attr name="circleTextColor" format="color" />
+    </declare-styleable>
+
+    <!--ProgressBar-->
+    <declare-styleable name="ProgressBar">
+        <attr name="outerBackground" format="color" />
+        <attr name="innerBackground" format="color" />
+        <attr name="roundWidth" format="dimension" />
+        <attr name="progressTextSize" format="dimension" />
+        <attr name="progressTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="DefineShapeView">
+        <attr name="circleBackground" format="color" />
+        <attr name="squareBackground" format="color" />
+        <attr name="triangleBackground" format="color" />
+    </declare-styleable>
+
+    <!--RatingBar-->
+    <declare-styleable name="RatingBar">
+        <attr name="starNormal" format="reference" />
+        <attr name="starFocus" format="reference" />
+        <attr name="gradeNumber" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="LetterSideBar">
+        <attr name="letterDefaultColor" format="color" />
+        <attr name="letterLightColor" format="color" />
+        <attr name="letterDefaultTextSize" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="KGSlidingMenu">
+        <attr name="kgMenuRightMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SlidingMenu">
+        <attr name="menuRightMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="QQSlidingMenu">
+        <attr name="qqmenuRightMargin" format="dimension" />
+    </declare-styleable>
+
+
+
+    <!-- X方向上的位移 -->
+    <attr name="translationXIn" format="float" />
+    <attr name="translationXOut" format="float" />
+    <!-- Y方向上的位移 -->
+    <attr name="translationYIn" format="float" />
+    <attr name="translationYOut" format="float" />
+
 </resources>

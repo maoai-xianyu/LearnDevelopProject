@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'packer'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
@@ -10,7 +13,7 @@ final def variants = project.android.applicationVariants
 variants.all { variant ->
     if (!variant.buildType.isDebuggable()) {
         log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-        return;
+        return
     }
 
     JavaCompile javaCompile = variant.javaCompile
@@ -53,7 +56,7 @@ android {
         enabled = true
     }
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.3'
 
     // jks打包签名用的
     signingConfigs {
@@ -126,6 +129,7 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -133,6 +137,18 @@ android {
 
     packagingOptions {
         exclude 'META-INF/gradle/incremental.annotation.processors'
+        pickFirst 'lib/armeabi-v7a/libRSSupport.so'
+        pickFirst 'lib/arm64-v8a/libRSSupport.so'
+        pickFirst 'lib/x86_64/libRSSupport.so'
+        pickFirst 'lib/x86/libRSSupport.so'
+        pickFirst 'lib/arm64-v8a/librsjni.so'
+        pickFirst 'lib/x86/librsjni.so'
+        pickFirst 'lib/x86_64/librsjni.so'
+        pickFirst 'lib/armeabi-v7a/librsjni.so'
+        pickFirst 'lib/x86_64/librsjni_androidx.so'
+        pickFirst 'lib/armeabi-v7a/librsjni_androidx.so'
+        pickFirst 'lib/x86/librsjni_androidx.so'
+        pickFirst 'lib/arm64-v8a/librsjni_androidx.so'
     }
 }
 
@@ -227,11 +243,17 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
     implementation 'org.aspectj:aspectjrt:1.9.5'
     implementation 'com.github.markzhai:blockcanary-android:1.5.0'
     annotationProcessor project(path: ':define-butterknife-compiler')
     implementation project(path: ':define-butterknife-annontations')
     implementation project(path: ':define-butterknife')
+
+    implementation 'io.alterac.blurkit:blurkit:1.1.1'
+    implementation 'jp.wasabeef:blurry:3.0.0'
+    implementation 'com.fivehundredpx:blurringview:1.0.0'
+    implementation 'com.android.support:percent:28.0.0'
 
 
 }

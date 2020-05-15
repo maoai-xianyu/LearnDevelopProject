@@ -9,9 +9,12 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.AddHeaderFooterFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.GirlImageFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.ItemDecorationFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.PullFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.drag.AnimatorRYVFragment;
+import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.drag.TextInputLayoutFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
@@ -42,6 +45,15 @@ public class MaterialDesignActivity extends BaseActivity {
     TextView mT6;
     @BindView(R.id.mT7)
     TextView mT7;
+    @BindView(R.id.mT8)
+    TextView mT8;
+    @BindView(R.id.mT9)
+    TextView mT9;
+
+    @BindView(R.id.mT10)
+    TextView mT10;
+    @BindView(R.id.mT11)
+    TextView mT11;
 
     @Override
     public void getArgs(Bundle var1) {
@@ -91,6 +103,43 @@ public class MaterialDesignActivity extends BaseActivity {
                             .beginTransaction()
                             .replace(R.id.rlContent, GirlImageFragment.newInstance())
                             .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+        RxView.clicks(mT4).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.rlContent, AddHeaderFooterFragment.newInstance())
+                            .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+
+
+        RxView.clicks(mT8).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.rlContent, AnimatorRYVFragment.newInstance())
+                            .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+        RxView.clicks(mT9).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.rlContent, TextInputLayoutFragment.newInstance())
+                            .commitAllowingStateLoss();
+                }, throwable -> LogU.e(throwable.toString()));
+
+        RxView.clicks(mT10).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                   startActivity(MDToolbarSearchActivity.class);
+                }, throwable -> LogU.e(throwable.toString()));
+
+
+        RxView.clicks(mT11).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                   startActivity(MDToolbarTransparentActivity.class);
                 }, throwable -> LogU.e(throwable.toString()));
 
     }

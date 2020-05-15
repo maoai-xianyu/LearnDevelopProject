@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
+
 import com.hwangjr.rxbus.RxBus;
+import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.utils.StatusBarUtil;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 /**
@@ -24,6 +28,7 @@ public abstract class CommActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getArgs(this.getIntent().getExtras());
         this.setContentView(this.setView());
+        StatusBarUtil.setStatusBarColor(this, ContextCompat.getColor(this, R.color.windowBackground));
         init();
     }
 

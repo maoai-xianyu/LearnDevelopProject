@@ -5,9 +5,11 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author zhangkun
@@ -80,6 +82,61 @@ public class DividerItemGridDecorationDefine extends RecyclerView.ItemDecoration
         // 垂直
         int right = mDiverder.getIntrinsicWidth();
         int bottom = mDiverder.getIntrinsicHeight();
+
+        int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
+
+        if (isLastColumn(position, parent)) {// 是否是最后一列
+            right = 0;
+        }
+        if (isLastRow(position, parent)) {// 是否是最后一行
+            bottom = 0;
+        }
         outRect.set(0, 0, right, bottom);
+    }
+
+
+    /**
+     * 是否是最后一列
+     */
+    public boolean isLastColumn(int itemPosition, RecyclerView parent) {
+        int spanCount = getSpanCount(parent);
+        if ((itemPosition + 1) % spanCount == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 是否是最后一行
+     */
+    public boolean isLastRow(int itemPosition, RecyclerView parent) {
+
+        int spanCount = getSpanCount(parent);
+
+        int childCount = parent.getAdapter().getItemCount();
+
+        int rowNumber = childCount % spanCount == 0 ? childCount / spanCount : (childCount / spanCount) + 1;
+
+        if (itemPosition > ((rowNumber - 1) * spanCount - 1)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 获取一行有多少列
+     */
+    public int getSpanCount(RecyclerView parent) {
+        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
+
+        if (layoutManager instanceof GridLayoutManager) {
+            // 获取一行的spanCount
+            GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            int spanCount = gridLayoutManager.getSpanCount();
+            return spanCount;
+        }
+        return 1;
     }
 }

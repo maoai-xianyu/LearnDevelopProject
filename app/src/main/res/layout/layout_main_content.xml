@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@drawable/home_content_bg" />
+
+    <com.mao.cn.learnDevelopProject.widgets.CircleImageView
+        android:id="@+id/user_head"
+        android:layout_width="@dimen/d52"
+        android:layout_height="@dimen/d52"
+        android:layout_marginStart="@dimen/d10"
+        android:layout_marginTop="@dimen/d20"
+        android:src="@drawable/user_head" />
+</RelativeLayout>

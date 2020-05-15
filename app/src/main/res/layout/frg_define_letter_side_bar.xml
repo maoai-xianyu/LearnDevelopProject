@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tvShow"
+        android:layout_width="@dimen/d100"
+        android:layout_height="@dimen/d100"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_circle"
+        android:gravity="center"
+        android:padding="@dimen/d10"
+        android:textColor="@color/c_ff4D30"
+        android:textSize="@dimen/text_size_28"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="A"
+        tools:visibility="visible" />
+
+
+    <com.mao.cn.learnDevelopProject.widgets.LetterSideBar
+        android:id="@+id/letterSideBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/d10"
+        app:letterDefaultColor="@color/black100"
+        app:letterDefaultTextSize="@dimen/text_size_14"
+        app:letterLightColor="@color/c_4F99F0" />
+
+</RelativeLayout>

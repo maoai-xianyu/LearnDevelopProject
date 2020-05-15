@@ -1,6 +1,8 @@
 package com.mao.cn.learnDevelopProject.ui.activity.memory;
 
 import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 
 import com.mao.cn.learnDevelopProject.R;
@@ -16,6 +18,8 @@ import butterknife.ButterKnife;
  */
 public class MemoryActivity extends RxAppCompatActivity {
 
+    private TextView mTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,22 @@ public class MemoryActivity extends RxAppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.rlContent, LifeMeFragment.newInstance())
                 .commitAllowingStateLoss();
+
+        mTextView = findViewById(R.id.tv);
+
+        LogU.d(" mTextView  = "+ mTextView.getMeasuredHeight()); // mTextView = 0
+
+        mTextView.post(new Runnable() {
+            // 保存到 HandlerActionQueue 中，什么都没有干
+            // 会在 dispatchAttachedToWindow 中执行 executeActions()
+            // dispatchAttachedToWindow() 会在测量完毕之后调用
+            @Override
+            public void run() {
+                LogU.d(" mTextView post = "+ mTextView.getMeasuredHeight()); // mTextView = 110
+
+            }
+        });
+
     }
 
 
@@ -49,6 +69,7 @@ public class MemoryActivity extends RxAppCompatActivity {
     protected void onResume() {
         super.onResume();
         LogU.e("MemoryActivity onResume");
+        LogU.d(" mTextView onResume = "+ mTextView.getMeasuredHeight()); // mTextView = 0
     }
 
     @Override

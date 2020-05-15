@@ -2,16 +2,21 @@ package com.mao.cn.learnDevelopProject.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mao.cn.learnDevelopProject.R;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.jakewharton.rxbinding.view.RxView;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.utils.tools.ListU;
+import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +31,11 @@ public class PullTopAdapter extends RecyclerView.Adapter<PullTopAdapter.ViewHold
     private Context context;
     private List<String> mStrings;
     private List<Integer> heights;
+    private OnClickListener mOnClickListener;
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        mOnClickListener = onClickListener;
+    }
 
     public PullTopAdapter(Context context) {
         this.context = context;
@@ -38,12 +48,21 @@ public class PullTopAdapter extends RecyclerView.Adapter<PullTopAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // 都会报错 simple_list_item_1 textview 没有上层父控件
+        // 这个不可以，直接报错，因为给 ViewGroup 又添加了一次子控件
+        //ViewHolder views must not be attached when created. Ensure that you are not passing 'true' to the attachToRoot parameter of LayoutInflater.inflate(..., boolean attachToRoot)
         //View view = View.inflate(context,android.R.layout.simple_list_item_1, parent);
-        //View view = View.inflate(context,android.R.layout.simple_list_item_1, null);
-        View view = View.inflate(context, R.layout.item_pull, null);
 
-        //View view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
+        // 这个不可可以的，因为在 onBindViewHolder 获取 getLayoutParams() 会报错 不能获取父容器，因为没有上层控件,
+        // java.lang.NullPointerException: Attempt to write to field 'int android.view.ViewGroup$LayoutParams.height' on a null object reference
+        // 如果用于显示，不获取父容器的属性，是可以用的
+        //View view = View.inflate(context,android.R.layout.simple_list_item_1, null);
+
+        //这个是可以的，可以 获取 getLayoutParams()
+        //View view = View.inflate(context, R.layout.item_pull, null);
+
+        // 可以，RecyclerView/ListView会自动将child添加到它里面去
+        LogU.d(" parent "+parent);
+        View view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,6 +73,15 @@ public class PullTopAdapter extends RecyclerView.Adapter<PullTopAdapter.ViewHold
         holder.tvMovieTitle.setLayoutParams(layoutParams);
         holder.tvMovieTitle.setBackgroundColor(Color.rgb(100, (int) (Math.random() * 255), (int) (Math.random() * 255)));
         holder.tvMovieTitle.setText(mStrings.get(position));
+
+        RxView.clicks(holder.tvMovieTitle).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+                    if (mOnClickListener != null){
+                        mOnClickListener.showOnClickItem(mStrings.get(position),position);
+                    }
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
     }
 
     @Override
@@ -67,15 +95,34 @@ public class PullTopAdapter extends RecyclerView.Adapter<PullTopAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+
+    // 添加数据
+    public void addItem(int position){
+        mStrings.add(position,"addItem "+position);
+        heights.add(position,(int) (200 * Math.random()));
+        notifyItemChanged(position);
+    }
+
+    // 移除数据
+    public void removeItem(int position){
+        mStrings.remove(position);
+        heights.remove(position);
+        notifyItemRemoved(position);
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        //@DefineBindView(android.R.id.text1)
-        @BindView(R.id.text1)
+        @BindView(android.R.id.text1)
+        //@BindView(R.id.text1)
         TextView tvMovieTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnClickListener{
+        void showOnClickItem(String str,int position);
     }
 }

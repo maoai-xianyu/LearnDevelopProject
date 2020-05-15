@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mao.cn.learnDevelopProject.widgets.CircleProgressBar
+        android:id="@+id/circleProgressBar"
+        android:layout_width="@dimen/d100"
+        android:layout_height="@dimen/d100"
+        android:layout_marginStart="@dimen/d10"
+        app:circleBorderWidth="@dimen/d5"
+        app:circleInnerColor="@color/c_ff4532"
+        app:circleOuterColor="@color/c_4F99F0"
+        app:circleTextColor="@color/c_69C614"
+        app:circleTextSize="@dimen/text_size_16" />
+
+
+    <com.mao.cn.learnDevelopProject.widgets.ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/d100"
+        android:layout_height="@dimen/d100"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/d10"
+        app:innerBackground="@color/c_4F99F0"
+        app:outerBackground="@color/c_ff4532"
+        app:progressTextColor="@color/c_69C614"
+        app:progressTextSize="@dimen/text_size_16"
+        app:roundWidth="@dimen/d5" />
+
+    <com.mao.cn.learnDevelopProject.widgets.DefineShapeView
+        android:id="@+id/defineShapeView"
+        android:layout_width="@dimen/d100"
+        android:layout_height="@dimen/d100"
+        android:layout_below="@+id/circleProgressBar"
+        android:layout_centerHorizontal="true"
+        app:circleBackground="@color/c_69C614"
+        app:squareBackground="@color/c_E4AF0A"
+        app:triangleBackground="@color/c_ff4532" />
+
+
+    <com.mao.cn.learnDevelopProject.widgets.ShapeView
+        android:id="@+id/shapeView"
+        android:layout_width="@dimen/d100"
+        android:layout_height="@dimen/d100"
+        android:layout_marginTop="@dimen/d10"
+        android:layout_below="@+id/defineShapeView"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

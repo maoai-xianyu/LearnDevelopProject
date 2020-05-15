@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_header" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/mDT1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="自定义TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mDT2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d10"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="仿QQ运动步数"
+            app:layout_constraintBaseline_toBaselineOf="@+id/mDT1"
+            app:layout_constraintStart_toEndOf="@+id/mDT1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d10"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="可以变色的TextView"
+            app:layout_constraintStart_toEndOf="@+id/mDT2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="圆圈进度条"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+
+        <TextView
+            android:id="@+id/mDT5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Rating bar"
+            app:layout_constraintStart_toEndOf="@+id/mDT4"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+        <TextView
+            android:id="@+id/mDT6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="字母索引列表"
+            app:layout_constraintStart_toEndOf="@+id/mDT5"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+        <TextView
+            android:id="@+id/mDT7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="流式布局"
+            app:layout_constraintStart_toEndOf="@+id/mDT6"
+            app:layout_constraintTop_toBottomOf="@+id/mDT1" />
+
+        <TextView
+            android:id="@+id/mDT8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="View touch 事件分发"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT4" />
+
+        <TextView
+            android:id="@+id/mDT9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="touch 酷狗侧滑"
+            app:layout_constraintStart_toEndOf="@+id/mDT8"
+            app:layout_constraintTop_toBottomOf="@+id/mDT4" />
+
+        <TextView
+            android:id="@+id/mDT10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="touch QQ侧滑"
+            app:layout_constraintStart_toEndOf="@+id/mDT9"
+            app:layout_constraintTop_toBottomOf="@+id/mDT4" />
+
+
+        <TextView
+            android:id="@+id/mDT11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="ViewDrag拖动"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT8" />
+
+
+        <TextView
+            android:id="@+id/mDT12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="九宫格"
+            app:layout_constraintStart_toEndOf="@+id/mDT11"
+            app:layout_constraintTop_toBottomOf="@+id/mDT8" />
+
+        <TextView
+            android:id="@+id/mDT13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="MD设计"
+            app:layout_constraintStart_toEndOf="@+id/mDT12"
+            app:layout_constraintTop_toBottomOf="@+id/mDT8" />
+
+        <TextView
+            android:id="@+id/mDT14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="MD状态栏"
+            app:layout_constraintStart_toEndOf="@+id/mDT13"
+            app:layout_constraintTop_toBottomOf="@+id/mDT8" />
+
+        <TextView
+            android:id="@+id/mDT15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="MDBehavior"
+            app:layout_constraintStart_toEndOf="@+id/mDT14"
+            app:layout_constraintTop_toBottomOf="@+id/mDT8" />
+
+
+        <TextView
+            android:id="@+id/mDT16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="RecyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT11" />
+
+
+        <TextView
+            android:id="@+id/mDT17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="58loading动画"
+            app:layout_constraintStart_toEndOf="@+id/mDT16"
+            app:layout_constraintTop_toBottomOf="@+id/mDT11" />
+
+
+        <TextView
+            android:id="@+id/mDT18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="58选择遮罩"
+            app:layout_constraintStart_toEndOf="@+id/mDT17"
+            app:layout_constraintTop_toBottomOf="@+id/mDT11" />
+
+        <TextView
+            android:id="@+id/mDT19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="圆形loading"
+            app:layout_constraintStart_toEndOf="@+id/mDT18"
+            app:layout_constraintTop_toBottomOf="@+id/mDT11" />
+
+
+        <TextView
+            android:id="@+id/mDT20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="QQ气泡"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDT16" />
+
+        <TextView
+            android:id="@+id/mDT21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="QQ气泡"
+            app:layout_constraintStart_toEndOf="@+id/mDT20"
+            app:layout_constraintTop_toBottomOf="@+id/mDT16" />
+
+
+        <TextView
+            android:id="@+id/mDT22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="点赞"
+            app:layout_constraintStart_toEndOf="@+id/mDT21"
+            app:layout_constraintTop_toBottomOf="@+id/mDT16" />
+
+
+        <TextView
+            android:id="@+id/mDT23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="视差动画"
+            app:layout_constraintStart_toEndOf="@+id/mDT22"
+            app:layout_constraintTop_toBottomOf="@+id/mDT16" />
+
+
+        <TextView
+            android:id="@+id/mDT30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="LoadingViewFix"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/mDT31"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/mDT31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Linnar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/mDT32"
+            app:layout_constraintStart_toEndOf="@+id/mDT30" />
+
+
+        <TextView
+            android:id="@+id/mDT32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner_button"
+            android:padding="@dimen/d5"
+            android:text="Linnar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mDT31" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/rlContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+</LinearLayout>

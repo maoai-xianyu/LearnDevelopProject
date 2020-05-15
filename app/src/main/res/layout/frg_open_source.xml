@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,19 +14,96 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/ivFirst"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/image_dafault" />
 
-        <ImageView
-            android:id="@+id/ivGlide"
+            android:layout_weight="1"
+            android:background="@color/black100">
+
+            <ImageView
+                android:id="@+id/ivFirst"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/image_dafault" />
+
+            <RelativeLayout
+                android:id="@+id/vShape"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/d20"
+                android:layout_marginEnd="@dimen/d20"
+                android:background="@color/white30" />
+
+
+            <com.fivehundredpx.android.blur.BlurringView
+                android:id="@+id/blurring_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40"
+                android:layout_centerInParent="true"
+                app:blurRadius="11"
+                app:downsampleFactor="6"
+                app:overlayColor="@color/white20" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/image_dafault" />
+            android:background="@color/black100">
+
+            <ImageView
+                android:id="@+id/ivGlide"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/image_dafault" />
+
+
+            <View
+                android:id="@+id/vShapeV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white30" />
+
+
+            <io.alterac.blurkit.BlurLayout
+                android:id="@+id/blurLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                app:blk_blurRadius="12"
+                app:blk_downscaleFactor="0.12"
+                app:blk_fps="30">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="显示模糊"
+                    android:textColor="@color/c_FFFFFF"
+                    android:textSize="@dimen/text_size_14" />
+            </io.alterac.blurkit.BlurLayout>
+
+
+            <io.alterac.blurkit.BlurLayout
+                android:id="@+id/blurLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                app:blk_blurRadius="12"
+                app:blk_downscaleFactor="0.12"
+                app:blk_fps="30" />
+
+
+        </RelativeLayout>
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView

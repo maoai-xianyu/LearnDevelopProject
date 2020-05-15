@@ -18,4 +18,10 @@
     <string name="title_activity_jet_pack_view_model">JetPackViewModelActivity</string>
     <string name="title_activity_jet_pack_room">JetPackRoomActivity</string>
     <string name="title_activity_jet_pack_edit">JetPackRoomNoteEditActivity</string>
+
+    <string name="text_web_ceo">WEB ANALYTICS</string>
+    <string name="text_web_dev">WEB DEVELOPER</string>
+    <string name="text_e_commerce">e-Commerce</string>
+    <string name="openDraw">open</string>
+    <string name="closeDraw">close</string>
 </resources>
