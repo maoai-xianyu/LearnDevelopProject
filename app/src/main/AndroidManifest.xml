@@ -300,6 +300,22 @@
             android:name=".utils.x5.PreLoadX5Service"
             android:label="dexopt"
             android:process=":dexopt" />
+
+        <activity
+            android:name=".ui.activity.designPattern.DesignPatternDemoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.activity.designPattern.SingletonManagerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.activity.designPattern.NavigationBarActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

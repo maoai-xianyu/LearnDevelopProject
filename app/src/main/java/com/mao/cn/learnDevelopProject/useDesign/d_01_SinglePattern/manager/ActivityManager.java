@@ -106,22 +106,40 @@ public class ActivityManager {
     /**
      * 退出整个应用
      */
-    public void exitApplication() {
+    public void exitApplication(Class cls) {
+
         try {
-            int size = mActivities.size();
-            for (int i = 0; i < size; i++) {
-                Activity activity = mActivities.get(i);
-                mActivities.remove(i);
-                activity.finish();
-                i--;
-                size--;
+            while (true) {
+                Activity activity = currentActivity();
+                if (activity == null) {
+                    break;
+                }
+                if (activity.getClass().equals(cls)) {
+                    break;
+                }
+                popActivity(activity);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             System.exit(0);
         }
 
+    }
+
+    public void exitApplication() {
+        android.os.Process.killProcess(android.os.Process.myPid());   //获取PID
+        System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
+    }
+
+
+    //退出栈顶Activity
+    public void popActivity(Activity activity) {
+        if (activity != null) {
+            activity.finish();
+            mActivities.remove(activity);
+        }
     }
 
 
