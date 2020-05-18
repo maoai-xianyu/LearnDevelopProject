@@ -11,7 +11,6 @@ import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineCircleProgressFragment;
-import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineColorTrackTextViewFragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
@@ -85,10 +84,7 @@ public class DesignPatternDemoActivity extends BaseActivity {
 
         RxView.clicks(mDT3).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.rlContent, DefineColorTrackTextViewFragment.newInstance())
-                    .commitAllowingStateLoss();
+            startActivity(PatternFactoryActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

@@ -11,6 +11,10 @@ import com.mao.cn.learnDevelopProject.useDesign.d_01_SinglePattern.manager.Activ
 import com.mao.cn.learnDevelopProject.useDesign.d_02_navigationbar.navigationBar.DefaultNavigationBar;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
+
+/**
+ * 单例设计模式，activity 管理
+ */
 public class SingletonManagerActivity extends AppCompatActivity {
 
 

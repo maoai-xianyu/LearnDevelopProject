@@ -10,6 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.useDesign.d_02_navigationbar.navigationBar.NavigationBar;
 
+/**
+ * 构建者模式 - 万能的NavigationBar
+ */
 public class NavigationBarActivity extends AppCompatActivity {
 
 
