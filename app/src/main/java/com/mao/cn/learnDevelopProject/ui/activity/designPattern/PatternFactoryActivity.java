@@ -12,7 +12,9 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.useDesign.d_02_navigationbar.navigationBar.DefaultNavigationBar;
 import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory.IOHandler;
 import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory.IOHandlerFactory;
-import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory.PreferenceUtils;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUtils;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryAbs.IOHandlerAbs;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryAbs.IOHandlerFactoryAbs;
 import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryMethod.IOHandlerFactoryM;
 import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryMethod.IOHandlerM;
 import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryMethod.IOHandlerMemoryFactory;
@@ -61,6 +63,8 @@ public class PatternFactoryActivity extends AppCompatActivity {
         TextView tvDesc2 = findViewById(R.id.tvDesc2);
         TextView tvDesc3 = findViewById(R.id.tvDesc3);
         TextView tvDesc4 = findViewById(R.id.tvDesc4);
+        TextView tvDesc5 = findViewById(R.id.tvDesc5);
+        TextView tvDesc6 = findViewById(R.id.tvDesc6);
 
 
         // xml存储
@@ -82,6 +86,12 @@ public class PatternFactoryActivity extends AppCompatActivity {
         IOHandlerM ioHandlerMP = ioHandlerPreferencesFactory.createIOHandlerM();
         ioHandlerMP.save("hh_test_1","ioHandlerMP");
 
+        // 抽象工厂模式
+        IOHandlerAbs ioHandlerMemoryAbs = IOHandlerFactoryAbs.getMemoryIOHandler();
+        ioHandlerMemoryAbs.save("abs_test","ioHandlerMemoryAbs");
+
+        IOHandlerAbs ioHandlerPAbs = IOHandlerFactoryAbs.getPreferencesIOHandler();
+        ioHandlerPAbs.save("abs_test_1","ioHandlerPAbs");
 
 
         btGet.setOnClickListener(new View.OnClickListener() {
@@ -90,8 +100,11 @@ public class PatternFactoryActivity extends AppCompatActivity {
                 tvDesc.setText("单纯的 PreferenceUtils " + PreferenceUtils.getInstance().getString("username"));
                 tvDesc1.setText("简单工厂类 Memory " + ioHandlerM.getString("age", "北京"));
                 tvDesc2.setText("简单工厂类 PREFERENCES " + ioHandlerP.getString("city"));
-                tvDesc3.setText("工厂方法 Memory " + ioHandlerMF.getString("age", "北京"));
-                tvDesc4.setText("工厂方法 PREFERENCES " + ioHandlerMP.getString("city"));
+                tvDesc3.setText("工厂方法 Memory " + ioHandlerMF.getString("hh_test", "北京"));
+                tvDesc4.setText("工厂方法 PREFERENCES " + ioHandlerMP.getString("hh_test_1"));
+
+                tvDesc5.setText("抽象工厂 Memory " + ioHandlerMemoryAbs.getString("abs_test", "北京"));
+                tvDesc6.setText("抽象工厂 PREFERENCES " + ioHandlerPAbs.getString("abs_test_1"));
 
 
             }

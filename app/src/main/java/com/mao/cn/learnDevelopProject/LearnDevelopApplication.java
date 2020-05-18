@@ -18,7 +18,7 @@ import com.mao.cn.learnDevelopProject.utils.config.Config;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
-import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory.PreferenceUtils;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUtils;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mao.cn.learnDevelopProject.utils.x5.PreLoadX5Service;
 import com.mcxiaoke.packer.helper.PackerNg;

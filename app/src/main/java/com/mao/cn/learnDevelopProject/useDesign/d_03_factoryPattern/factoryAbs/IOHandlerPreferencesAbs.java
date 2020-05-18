@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory;
+package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryAbs;
 
 import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUtils;
 
@@ -7,7 +7,7 @@ import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUt
  * @time 2020-05-18 15:09
  * @Description 磁盘缓存
  */
-public class IOHandlerPreferences implements IOHandler {
+public class IOHandlerPreferencesAbs implements IOHandlerAbs {
 
     @Override
     public void save(String key, String value) {

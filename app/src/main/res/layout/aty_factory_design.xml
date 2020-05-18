@@ -34,7 +34,7 @@
         android:id="@+id/tvDesc1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="回去缓存数据"
+        android:text="简单工厂1"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:id="@+id/tvDesc2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="回去缓存数据"
+        android:text="简单工厂2"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         android:id="@+id/tvDesc3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="回去缓存数据"
+        android:text="工厂方法1"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,12 +65,33 @@
         android:id="@+id/tvDesc4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="回去缓存数据"
+        android:text="工厂方法2"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
+
+    <TextView
+        android:id="@+id/tvDesc5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="抽象工厂1"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+
+    <TextView
+        android:id="@+id/tvDesc6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="抽象工厂2"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 

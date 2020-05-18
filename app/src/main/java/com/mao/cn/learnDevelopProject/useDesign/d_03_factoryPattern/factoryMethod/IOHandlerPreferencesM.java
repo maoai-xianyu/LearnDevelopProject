@@ -1,6 +1,6 @@
 package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryMethod;
 
-import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory.PreferenceUtils;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUtils;
 
 /**
  * @author zhangkun
