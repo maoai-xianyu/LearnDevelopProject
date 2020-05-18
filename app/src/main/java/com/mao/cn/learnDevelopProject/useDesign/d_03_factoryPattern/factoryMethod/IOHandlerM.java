@@ -1,11 +1,11 @@
-package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern;
+package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryMethod;
 
 /**
  * @author zhangkun
  * @time 2020-05-18 15:04
  * @Description 数据存储的一些规范
  */
-public interface IOHandler {
+public interface IOHandlerM {
 
 
     // 存数据

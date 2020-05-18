@@ -1,20 +1,17 @@
-package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern;
+package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factoryMethod;
 
-import android.util.LruCache;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory.PreferenceUtils;
 
 /**
  * @author zhangkun
  * @time 2020-05-18 15:09
  * @Description 磁盘缓存
  */
-public class IOHandlerMemory implements IOHandler {
-
-    // 存在运行内存里面 原理是什么？其实就是 Map 集合
-    private static LruCache<String, Object> mCache = new LruCache<>(10 * 1024 * 1024);// 1/8
+public class IOHandlerPreferencesM implements IOHandlerM {
 
     @Override
     public void save(String key, String value) {
-        mCache.put(key, value);
+        PreferenceUtils.getInstance().saveString(key, value);
     }
 
     @Override
@@ -49,16 +46,13 @@ public class IOHandlerMemory implements IOHandler {
 
     @Override
     public String getString(String key, String defaultValue) {
-        Object cache = mCache.get(key);
-        if (cache == null){
-            return defaultValue;
-        }
-        return (String) mCache.get(key);
+
+        return PreferenceUtils.getInstance().getString(key, defaultValue);
     }
 
     @Override
     public String getString(String key) {
-        return (String) mCache.get(key);
+        return PreferenceUtils.getInstance().getString(key);
     }
 
     @Override

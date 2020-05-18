@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern;
+package com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.factory;
 
 import android.content.Context;
 import android.content.SharedPreferences;
