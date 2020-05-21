@@ -1,19 +1,25 @@
-package com.mao.cn.learnDevelopProject.useDesign.day_07_adapterPattern;
+package com.mao.cn.learnDevelopProject.useDesign.d_07_adapterPattern.ooTest;
 
 /**
  * @author zhangkun
  * @time 2020-05-21 10:45
- * @Description 对象适配
+ * @Description
  */
 public class Client {
 
     public static void main(String[] args) {
 
+        // 第一个版本人民币
         RMBAdapter rmbAdapter = new RMBAdapter(650);
-        Adapter adapter = new Adapter(rmbAdapter);
+
         float rmb = rmbAdapter.getRMB();
+
         System.out.println("人民币  " + rmb);
-        float usd = adapter.getUSD();
-        System.out.println("美元 " + usd);
+
+        // 第二个版本兼容美元
+
+        float sud = rmbAdapter.getUSD();
+
+        System.out.println("美元 " + sud);
     }
 }

@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.useDesign.day_07_adapterPattern;
+package com.mao.cn.learnDevelopProject.useDesign.d_07_adapterPattern.classAdapter;
 
 /**
  * @author zhangkun

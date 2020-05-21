@@ -1,4 +1,4 @@
-package com.mao.cn.learnDevelopProject.useDesign.day_07_adapterPattern.classAdapter;
+package com.mao.cn.learnDevelopProject.useDesign.d_07_adapterPattern.ooTest;
 
 /**
  * @author zhangkun
@@ -15,6 +15,11 @@ public class RMBAdapter {
 
     public float getRMB() {
         return mRMB;
+    }
+
+
+    public float getUSD() {
+        return mRMB / 5.6f;
     }
 }
 
