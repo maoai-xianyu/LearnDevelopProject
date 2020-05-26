@@ -163,8 +163,8 @@ public class ParallaxViewFragment extends BaseFragment implements LayoutInflater
         final boolean inheritContext = isPre21 && true && shouldInheritContext((ViewParent) parent);
 
         return mCompatViewInflater.createView(parent, name, context, attrs, inheritContext,
-                isPre21, /* Only read android:theme pre-L (L+ handles this anyway) */
-                true /* Read read app:theme as a fallback at all times for legacy reasons */
+                isPre21, /* Only push android:theme pre-L (L+ handles this anyway) */
+                true /* Read push app:theme as a fallback at all times for legacy reasons */
         );
     }
 

@@ -112,7 +112,7 @@ public class FileUtils {
             if (file.isDirectory()) {
                 throw new IOException("File \'" + file + "\' exists but is a directory");
             } else if (!file.canRead()) {
-                throw new IOException("File \'" + file + "\' cannot be read");
+                throw new IOException("File \'" + file + "\' cannot be push");
             } else {
                 return new FileInputStream(file);
             }
@@ -404,7 +404,7 @@ public class FileUtils {
             if (parentFile != null && !parentFile.mkdirs() && !parentFile.isDirectory()) {
                 throw new IOException("Destination \'" + parentFile + "\' directory cannot be created");
             } else if (destFile.exists() && !destFile.canWrite()) {
-                throw new IOException("Destination \'" + destFile + "\' exists but is read-only");
+                throw new IOException("Destination \'" + destFile + "\' exists but is push-only");
             } else {
                 doCopyFile(srcFile, destFile, preserveFileDate);
             }
