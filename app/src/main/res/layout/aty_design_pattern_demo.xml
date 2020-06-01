@@ -69,7 +69,7 @@
             android:layout_marginTop="@dimen/d5"
             android:background="@drawable/shape_corner_button"
             android:padding="@dimen/d5"
-            android:text="字母索引列表"
+            android:text="迭代器模式"
             app:layout_constraintStart_toEndOf="@+id/mDT4"
             app:layout_constraintTop_toBottomOf="@+id/mDT1" />
 

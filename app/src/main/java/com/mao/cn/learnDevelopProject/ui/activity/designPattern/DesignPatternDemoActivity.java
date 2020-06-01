@@ -9,8 +9,8 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
+import com.mao.cn.learnDevelopProject.ui.activity.designPattern.tabBottomNavigation.TabBottomActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
-import com.mao.cn.learnDevelopProject.ui.fragment.defineview.DefineRatingBarFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
@@ -59,6 +59,8 @@ public class DesignPatternDemoActivity extends BaseActivity {
         mDTextView.setText("设计模式");
 
 
+
+
     }
 
     @Override
@@ -97,10 +99,7 @@ public class DesignPatternDemoActivity extends BaseActivity {
 
         RxView.clicks(mDT5).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.rlContent, DefineRatingBarFragment.newInstance())
-                    .commitAllowingStateLoss();
+            startActivity(TabBottomActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
