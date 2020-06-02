@@ -5,7 +5,7 @@ import com.mao.cn.learnDevelopProject.useDesign.d_12_dutychainPattern.handler.Us
 /**
  * @author zhangkun
  * @time 2020-05-28 15:47
- * @Description
+ * @Description  责任链模式
  */
 public class Client {
 
