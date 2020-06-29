@@ -797,7 +797,7 @@ public class IOUtils {
     public static void readFully(Reader input, char[] buffer, int offset, int length) throws IOException {
         int actual = read(input, buffer, offset, length);
         if(actual != length) {
-            throw new EOFException("Length to read: " + length + " actual: " + actual);
+            throw new EOFException("Length to push: " + length + " actual: " + actual);
         }
     }
 
@@ -808,7 +808,7 @@ public class IOUtils {
     public static void readFully(InputStream input, byte[] buffer, int offset, int length) throws IOException {
         int actual = read(input, buffer, offset, length);
         if(actual != length) {
-            throw new EOFException("Length to read: " + length + " actual: " + actual);
+            throw new EOFException("Length to push: " + length + " actual: " + actual);
         }
     }
 

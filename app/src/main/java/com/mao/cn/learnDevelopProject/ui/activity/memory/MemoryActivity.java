@@ -1,11 +1,16 @@
 package com.mao.cn.learnDevelopProject.ui.activity.memory;
 
 import android.os.Bundle;
+import android.util.ArrayMap;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.LifeMe2Fragment;
 import com.mao.cn.learnDevelopProject.ui.fragment.materialDesign.LifeMeFragment;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
@@ -19,6 +24,7 @@ import butterknife.ButterKnife;
 public class MemoryActivity extends RxAppCompatActivity {
 
     private TextView mTextView;
+    private FragmentManager mSupportFragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,12 +36,14 @@ public class MemoryActivity extends RxAppCompatActivity {
 
         LogU.e("MemoryActivity onCreate");
 
-        getSupportFragmentManager()
+        // 替换
+        /*getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.rlContent, LifeMeFragment.newInstance())
-                .commitAllowingStateLoss();
+                .commitAllowingStateLoss();*/
 
         mTextView = findViewById(R.id.tv);
+
 
         LogU.d(" mTextView  = "+ mTextView.getMeasuredHeight()); // mTextView = 0
 
@@ -49,6 +57,52 @@ public class MemoryActivity extends RxAppCompatActivity {
 
             }
         });
+
+
+        ArrayMap<String,String> map = new ArrayMap<>();
+        map.put("sss","ss");
+
+
+        TextView mTextView2 = findViewById(R.id.tv2);
+
+
+        mTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.rlContent, LifeMe2Fragment.newInstance())
+                        .commitAllowingStateLoss();
+            }
+        });
+
+
+
+        // show hide
+        mSupportFragmentManager = getSupportFragmentManager();
+        FragmentTransaction mFragmentTransaction = mSupportFragmentManager.beginTransaction();
+
+        LifeMeFragment fragment = LifeMeFragment.newInstance();
+        LifeMe2Fragment fragment1 = LifeMe2Fragment.newInstance();
+        mFragmentTransaction.add(R.id.rlContent, fragment);
+        mFragmentTransaction.add(R.id.rlContent, fragment1);
+        mFragmentTransaction.show(fragment).hide(fragment1);
+        mFragmentTransaction.commit();
+
+
+        TextView mTextView1 = findViewById(R.id.tv1);
+
+
+        mTextView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction  f = mSupportFragmentManager.beginTransaction();
+                f.show(fragment1).hide(fragment);
+                f.commit();
+            }
+        });
+
+
 
     }
 

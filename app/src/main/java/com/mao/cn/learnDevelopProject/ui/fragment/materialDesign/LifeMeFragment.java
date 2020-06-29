@@ -2,10 +2,11 @@ package com.mao.cn.learnDevelopProject.ui.fragment.materialDesign;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
 
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
@@ -95,4 +96,9 @@ public class LifeMeFragment extends RxFragment {
         LogU.d("fragment onDetach");
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        LogU.d("fragment onHiddenChanged");
+    }
 }
