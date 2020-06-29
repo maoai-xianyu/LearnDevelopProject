@@ -336,6 +336,13 @@ public class DefineViewDemoActivity extends BaseActivity {
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
+
+        RxView.clicks(mDT31).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(DefineTouchEventDemoActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
     }
 
     @Override

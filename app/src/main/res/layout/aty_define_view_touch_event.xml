@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.fragment.MoviesFragment">
+
+
+        <com.mao.cn.learnDevelopProject.widgets.TouchView
+            android:id="@+id/touchView"
+            android:layout_width="@dimen/d200"
+            android:layout_height="@dimen/d200"
+            android:background="@color/c_69C614" />
+
+
+        <com.mao.cn.learnDevelopProject.widgets.TouchViewGroup
+            android:id="@+id/touchViewGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/d10"
+            android:background="@color/c_ff4D30">
+
+
+            <com.mao.cn.learnDevelopProject.widgets.TouchViewInner
+                android:id="@+id/touchViewInner"
+                android:layout_width="@dimen/d200"
+                android:layout_height="@dimen/d200"
+                android:background="@color/c_69C614" />
+
+
+        </com.mao.cn.learnDevelopProject.widgets.TouchViewGroup>
+    </LinearLayout>
+
+</LinearLayout>

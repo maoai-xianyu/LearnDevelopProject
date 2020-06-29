@@ -13,7 +13,7 @@ public class Singleton5 {
     }
 
     private static class Singleton5Inner {
-        public static volatile Singleton5 mInstance = new Singleton5();
+        private static final Singleton5 mInstance = new Singleton5();
     }
 
     public static Singleton5 getInstance() {
