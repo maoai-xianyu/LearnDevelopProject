@@ -82,18 +82,20 @@ public class LearnDevelopApplication extends CommApplication {
         //YouDaoApplication.init(this,"17e966b0d8bc1e05");//创建应用，每个应用都会有一个Appid，绑定对应的翻译服务实例，即可使用
         initX5();
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
+
         // Normal app init code...
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
         BlurKit.init(this);
 
         PreferenceUtils.init(this);
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
 
