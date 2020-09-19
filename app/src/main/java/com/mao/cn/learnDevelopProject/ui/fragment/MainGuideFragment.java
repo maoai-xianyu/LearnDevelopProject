@@ -22,6 +22,7 @@ import com.mao.cn.learnDevelopProject.di.modules.MainGuideModule;
 import com.mao.cn.learnDevelopProject.event.BusAction;
 import com.mao.cn.learnDevelopProject.event.RefreshMsgEvent;
 import com.mao.cn.learnDevelopProject.ui.activity.AnimatorActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.LottieActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.NetWorkRequestActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RetrofitShowContentActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.RxJavaLearnActivity;
@@ -97,6 +98,8 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnDefineViewMore;
     @BindView(R.id.btnDesignPattern)
     Button btnDesignPattern;
+    @BindView(R.id.btnLottie)
+    Button btnLottie;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -267,6 +270,13 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnDesignPattern).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(DesignPatternDemoActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnLottie).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(LottieActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

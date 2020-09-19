@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="parallax_tag" type="id"/>
+    <item name="parallax_tag_1" type="id"/>
+    <item name="parallax_tag_2" type="id"/>
 </resources>

@@ -179,6 +179,13 @@
                     android:layout_height="wrap_content"
                     android:text="设计模式" />
 
+                <Button
+                    android:id="@+id/btnLottie"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="lottie" />
+
 
             </LinearLayout>
         </LinearLayout>
