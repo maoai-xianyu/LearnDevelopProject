@@ -22,6 +22,7 @@ import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
+import com.mao.cn.learnDevelopProject.utils.DateTimeUtils;
 import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 import java.util.concurrent.TimeUnit;
@@ -96,23 +97,27 @@ public class LinearLayoutActivity extends BaseActivity {
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                LogU.d("seekbar   滑动");
+                LogU.d("seekbar   滑动 " + progress);
+
+                String minuteSecondFormatDate = DateTimeUtils.getMinuteSecondFormatDate(progress * 1000);
+                LogU.d("seekbar   minuteSecondFormatDate" + minuteSecondFormatDate);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 LogU.d("seekbar   触摸开始");
                 seekbar.setThumb(ContextCompat.getDrawable(LinearLayoutActivity.this, R.drawable.shape_seekbar_circle));
+                seekbar.setProgressDrawable(ContextCompat.getDrawable(LinearLayoutActivity.this, R.drawable.seekbar_layer_new_big));
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 LogU.d("seekbar   触摸离开");
-                Observable.timer(3000,TimeUnit.MILLISECONDS).compose(timer()).subscribe(new Action1<Long>() {
+                Observable.timer(3000, TimeUnit.MILLISECONDS).compose(timer()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
                         seekbar.setThumb(ContextCompat.getDrawable(LinearLayoutActivity.this, R.color.transparent));
-
+                        seekbar.setProgressDrawable(ContextCompat.getDrawable(LinearLayoutActivity.this, R.drawable.seekbar_layer_new));
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -122,6 +127,10 @@ public class LinearLayoutActivity extends BaseActivity {
                 });
             }
         });
+
+        String minuteSecondFormatDate = DateTimeUtils.getMinuteSecondFormatDate(100 * 1000);
+        LogU.d("minuteSecondFormatDate  " + minuteSecondFormatDate);
+
     }
 
     @Override
