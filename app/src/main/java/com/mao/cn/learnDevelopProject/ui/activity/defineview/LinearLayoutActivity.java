@@ -10,10 +10,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
@@ -25,6 +27,8 @@ import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * @author zhangkun
@@ -44,6 +48,8 @@ public class LinearLayoutActivity extends BaseActivity {
     LinearLayout tabsContainer1;
     @BindView(R.id.llAdd2)
     LinearLayout tabsContainer2;
+    @BindView(R.id.seekbar)
+    SeekBar seekbar;
     private LinearLayout.LayoutParams expandedTabLayoutParams;
     private LinearLayout.LayoutParams expandedTabLayoutParams1;
     private LinearLayout.LayoutParams expandedTabLayoutParams2;
@@ -86,6 +92,36 @@ public class LinearLayoutActivity extends BaseActivity {
 
         RxView.clicks(idBack).throttleFirst(ValueMaps.Time.BREAK_TIME_MILLISECOND, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> finish(), throwable -> LogU.e(throwable.toString()));
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                LogU.d("seekbar   滑动");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                LogU.d("seekbar   触摸开始");
+                seekbar.setThumb(ContextCompat.getDrawable(LinearLayoutActivity.this, R.drawable.shape_seekbar_circle));
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                LogU.d("seekbar   触摸离开");
+                Observable.timer(3000,TimeUnit.MILLISECONDS).compose(timer()).subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        seekbar.setThumb(ContextCompat.getDrawable(LinearLayoutActivity.this, R.color.transparent));
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        LogU.e(throwable.getMessage());
+                    }
+                });
+            }
+        });
     }
 
     @Override

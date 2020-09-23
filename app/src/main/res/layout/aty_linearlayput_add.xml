@@ -215,39 +215,32 @@
     </LinearLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <SeekBar
+        android:id="@+id/progress"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/c_E4AF0A">
+        android:layout_marginTop="@dimen/d10"
+        android:layout_height="@dimen/d15" />
 
-
-        <TextView
-            android:id="@+id/t3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="第一个"
-            android:textSize="@dimen/text_size_18"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/t33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="20"
-            android:textColor="@color/c_69C614"
-            android:textSize="@dimen/text_size_12"
-            app:layout_constraintStart_toEndOf="@+id/t3"
-            app:layout_constraintTop_toTopOf="@+id/t3" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
+    <SeekBar
+        android:id="@+id/seekbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d20" />
+        android:layout_height="@dimen/d20"
+        android:layout_marginTop="10dp"
+        android:progress="40"
+        android:max="100"
+        android:progressDrawable="@drawable/seekbar_layer_new"
+        android:duplicateParentState="true"
+        android:secondaryProgress="20"
+        android:thumb="@color/transparent" />
 
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:progress="40"
+        android:max="100"
+        android:progressDrawable="@drawable/seekbar_layer"
+        android:secondaryProgress="20"
+        android:thumb="@drawable/scrubber_selector" />
 </LinearLayout>
