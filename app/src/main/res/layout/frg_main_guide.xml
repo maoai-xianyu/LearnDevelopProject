@@ -186,6 +186,20 @@
                     android:layout_height="wrap_content"
                     android:text="lottie" />
 
+                <Button
+                    android:id="@+id/btnFragment"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="fragmentTabhost" />
+
+                <Button
+                    android:id="@+id/btnFragmentM"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="猫眼Tabhost" />
+
 
             </LinearLayout>
         </LinearLayout>

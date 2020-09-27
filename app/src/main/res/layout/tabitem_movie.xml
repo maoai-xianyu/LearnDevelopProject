@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bottom_tab_rl">
+
+    <ImageView
+        android:id="@+id/tab_iv_movie"
+        style="@style/bottom_tab_image"
+        android:layout_above="@+id/tab_tv_movie"
+        android:src="@drawable/tab_movie_icon"/>
+
+    <TextView
+        android:id="@+id/tab_tv_movie"
+        style="@style/bottom_tab_text"
+        android:text="电影"/>
+</RelativeLayout>

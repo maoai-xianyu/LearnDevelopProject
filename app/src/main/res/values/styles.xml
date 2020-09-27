@@ -168,4 +168,28 @@
         <item name="colorAccent">@color/colorAccentNew</item>
     </style>
 
+
+    <style name="bottom_tab_image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="bottom_tab_rl">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/d80</item>
+    </style>
+
+    <style name="bottom_tab_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/color_dark1_selected_red</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">@dimen/d20</item>
+    </style>
+
 </resources>

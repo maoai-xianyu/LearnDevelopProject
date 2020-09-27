@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/bottom_tab_rl">
+
+    <ImageView
+        android:id="@+id/tab_iv_mine"
+        style="@style/bottom_tab_image"
+        android:layout_above="@+id/tab_tv_mine"
+        android:src="@drawable/tab_mine_icon"/>
+
+    <TextView
+        android:id="@+id/tab_tv_mine"
+        style="@style/bottom_tab_text"
+        android:text="我的"/>
+
+    <View
+        android:id="@+id/notice_new"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="@dimen/d20"
+        android:layout_toRightOf="@id/tab_iv_mine"
+        android:background="@drawable/ic_notice_red"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/notice_message"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@id/tab_iv_mine"
+        android:layout_marginLeft="-10dp"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="4.5dp"
+        android:paddingRight="4.5dp"
+        android:gravity="center"
+        android:background="@drawable/bg_tab_video"
+        android:maxLines="1"
+        android:text="23"
+        android:textColor="@color/c_FFFFFF"
+        android:textSize="@dimen/text_size_9"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+</RelativeLayout>

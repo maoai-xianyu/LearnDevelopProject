@@ -14,15 +14,14 @@ import com.mao.cn.learnDevelopProject.di.component.DaggerAppComponent;
 import com.mao.cn.learnDevelopProject.di.modules.AppModule;
 import com.mao.cn.learnDevelopProject.domain.AnalyticsManager;
 import com.mao.cn.learnDevelopProject.model.ServerInfo;
+import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUtils;
 import com.mao.cn.learnDevelopProject.utils.config.Config;
 import com.mao.cn.learnDevelopProject.utils.tools.GsonU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
-import com.mao.cn.learnDevelopProject.useDesign.d_03_factoryPattern.PreferenceUtils;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
 import com.mao.cn.learnDevelopProject.utils.x5.PreLoadX5Service;
 import com.mcxiaoke.packer.helper.PackerNg;
-import com.squareup.leakcanary.LeakCanary;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -90,12 +89,12 @@ public class LearnDevelopApplication extends CommApplication {
 
         PreferenceUtils.init(this);
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
+        /*if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
             return;
         }
-        LeakCanary.install(this);
+        LeakCanary.install(this);*/
     }
 
 

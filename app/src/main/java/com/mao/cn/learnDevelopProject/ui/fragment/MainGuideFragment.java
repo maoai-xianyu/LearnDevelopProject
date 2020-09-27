@@ -39,6 +39,8 @@ import com.mao.cn.learnDevelopProject.ui.activity.materialDesign.MaterialDesignA
 import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryNewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.retrofitdemo.RetrofitDemoActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.tabhost.TabHostActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.tabhost.TabHostMaoyanActivity;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseFragment;
 import com.mao.cn.learnDevelopProject.ui.features.IMainGuide;
 import com.mao.cn.learnDevelopProject.ui.presenter.MainGuidePresenter;
@@ -100,6 +102,10 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnDesignPattern;
     @BindView(R.id.btnLottie)
     Button btnLottie;
+    @BindView(R.id.btnFragment)
+    Button btnFragment;
+    @BindView(R.id.btnFragmentM)
+    Button btnFragmentM;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -277,6 +283,20 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnLottie).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(LottieActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnFragment).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(TabHostActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnFragmentM).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(TabHostMaoyanActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });

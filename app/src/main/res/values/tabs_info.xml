@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--app首页FragmentTabHost TabHost Tag-->
+    <string name="movie_tab_0">main</string>
+    <string name="movie_tab_1">movie</string>
+    <string name="movie_tab_2">video</string>
+    <string name="movie_tab_3">concert</string>
+    <string name="movie_tab_4">mine</string>
+
+    <string-array name="movie_tab_tags">
+        <item>@string/movie_tab_0</item>
+        <item>@string/movie_tab_1</item>
+        <item>@string/movie_tab_2</item>
+        <item>@string/movie_tab_3</item>
+        <item>@string/movie_tab_4</item>
+    </string-array>
+</resources>

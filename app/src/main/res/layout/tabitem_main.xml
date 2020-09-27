@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bottom_tab_rl">
+
+    <ImageView
+        android:id="@+id/tab_iv_main"
+        style="@style/bottom_tab_image"
+        android:layout_above="@+id/tab_tv_main"
+        android:src="@drawable/tab_main_icon"/>
+
+    <TextView
+        android:id="@+id/tab_tv_main"
+        style="@style/bottom_tab_text"
+        android:text="首页"/>
+</RelativeLayout>

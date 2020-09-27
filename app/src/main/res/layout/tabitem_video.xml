@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bottom_tab_rl">
+
+    <FrameLayout
+        android:id="@+id/tab_iv_video_ll"
+        style="@style/bottom_tab_image"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tab_tv_video">
+        <ImageView
+            android:id="@+id/tab_iv_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:src="@drawable/tab_video_icon"/>
+
+        <TextView
+            android:id="@+id/arrorw_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:background="@drawable/bg_tab_video"
+            android:textColor="@color/c_FFFFFF"
+            android:gravity="center"
+            android:paddingLeft="4.5dp"
+            android:paddingRight="4.5dp"
+            android:layout_marginLeft="28dp"
+            android:lines="1"
+            android:layout_marginTop="17dp"
+            android:textSize="9sp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:id="@+id/arrorw_img"
+            android:layout_width="22dp"
+            android:layout_height="14dp"
+            android:visibility="gone"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="14dp"
+            />
+    </FrameLayout>
+    <TextView
+        android:id="@+id/tab_tv_video"
+        style="@style/bottom_tab_text"
+        android:lines="1"
+        android:text="小视频"/>
+</RelativeLayout>
