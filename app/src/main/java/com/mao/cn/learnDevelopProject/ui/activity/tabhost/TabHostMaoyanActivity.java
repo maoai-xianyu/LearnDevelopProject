@@ -8,12 +8,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
 import com.mao.cn.learnDevelopProject.contants.ValueMaps;
@@ -44,6 +47,8 @@ public class TabHostMaoyanActivity extends BaseActivity {
     TextView mDTextView;
     @BindView(android.R.id.tabhost)
     FragmentTabHost fragmentTabHost;
+    @BindView(android.R.id.tabs)
+    TabWidget mTabWidget;
 
     @Override
     public void getArgs(Bundle var1) {
@@ -65,7 +70,7 @@ public class TabHostMaoyanActivity extends BaseActivity {
 
         addView();
         // 设置默认tab
-        fragmentTabHost.setCurrentTab(2);
+        fragmentTabHost.setCurrentTab(0);
 
     }
 
@@ -107,6 +112,7 @@ public class TabHostMaoyanActivity extends BaseActivity {
                     mFragmentClasses[i], null);
         }
 
+
         int tabWidgetChildCount = tabWidget.getChildCount();
         for (int i = 0; i < tabWidgetChildCount; i++) {
             View view = tabWidget.getChildAt(i);
@@ -116,6 +122,20 @@ public class TabHostMaoyanActivity extends BaseActivity {
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
+
+                LogU.d("-----" + tabId);
+                if ("video".equals(tabId)) {
+                    ImageView imageView = fragmentTabHost.findViewById(R.id.tab_iv_video);
+                    imageView.setVisibility(View.VISIBLE);
+                    LottieAnimationView lottieAnimationView = fragmentTabHost.findViewById(R.id.lottieAnimationView);
+                    lottieAnimationView.setVisibility(View.GONE);
+                    lottieAnimationView.cancelAnimation();
+                    mTabWidget.setBackgroundColor(ContextCompat.getColor(TabHostMaoyanActivity.this, R.color.c_B5000000));
+                } else {
+
+                    mTabWidget.setBackgroundColor(ContextCompat.getColor(TabHostMaoyanActivity.this, R.color.c_FFFFFF));
+
+                }
 
             }
         });
@@ -135,6 +155,7 @@ public class TabHostMaoyanActivity extends BaseActivity {
 
         @Override
         public void onClick(View v) {
+            LogU.d(" v  " + v.getTag());
             String tag = (String) v.getTag(R.id.movie_tab_item_id);
             FragmentTabHost fragmentTabHost = reference.get();
             if (!TextUtils.isEmpty(tag) && fragmentTabHost != null && ViewCompat

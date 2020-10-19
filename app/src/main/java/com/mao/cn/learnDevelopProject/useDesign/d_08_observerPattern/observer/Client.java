@@ -3,7 +3,7 @@ package com.mao.cn.learnDevelopProject.useDesign.d_08_observerPattern.observer;
 /**
  * @author zhangkun
  * @time 2020-05-21 14:31
- * @Description
+ * @Description  被观察者绑定观察者，被观察者发生改变，通知观察者更新
  */
 public class Client {
 

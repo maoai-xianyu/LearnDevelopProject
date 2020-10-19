@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/bottom_tab_rl">
 
     <FrameLayout
@@ -7,40 +8,61 @@
         style="@style/bottom_tab_image"
         android:layout_height="match_parent"
         android:layout_above="@+id/tab_tv_video">
+
         <ImageView
             android:id="@+id/tab_iv_video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_gravity="bottom|center"
-            android:src="@drawable/tab_video_icon"/>
+            android:src="@drawable/tab_video_icon" />
+
+        <!--<com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="@dimen/d24"
+            android:layout_height="@dimen/d24"
+            android:layout_gravity="bottom|center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/video_data" />-->
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="@dimen/d24"
+            android:layout_height="@dimen/d24"
+            android:layout_gravity="bottom|center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="video/video_data.json"
+            app:lottie_loop="true"  />
+
 
         <TextView
             android:id="@+id/arrorw_tex"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="17dp"
             android:background="@drawable/bg_tab_video"
-            android:textColor="@color/c_FFFFFF"
             android:gravity="center"
+            android:lines="1"
             android:paddingLeft="4.5dp"
             android:paddingRight="4.5dp"
-            android:layout_marginLeft="28dp"
-            android:lines="1"
-            android:layout_marginTop="17dp"
+            android:textColor="@color/c_FFFFFF"
             android:textSize="9sp"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/arrorw_img"
             android:layout_width="22dp"
             android:layout_height="14dp"
-            android:visibility="gone"
             android:layout_marginLeft="28dp"
             android:layout_marginTop="14dp"
-            />
+            android:visibility="gone" />
     </FrameLayout>
+
     <TextView
         android:id="@+id/tab_tv_video"
         style="@style/bottom_tab_text"
         android:lines="1"
-        android:text="小视频"/>
+        android:text="小视频" />
 </RelativeLayout>

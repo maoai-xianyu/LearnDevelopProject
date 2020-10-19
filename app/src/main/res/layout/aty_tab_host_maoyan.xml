@@ -57,6 +57,17 @@
 
         </com.mao.cn.learnDevelopProject.ui.activity.tabhost.FragmentTabHost>
 
+
+      <!--  <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="@dimen/d24"
+            android:layout_height="@dimen/d24"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/video_data" />-->
+
     </RelativeLayout>
 
 
