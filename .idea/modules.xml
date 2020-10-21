@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LearnMyDevelopProject.iml" filepath="$PROJECT_DIR$/LearnMyDevelopProject.iml" group="LearnMyDevelopProject" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="LearnMyDevelopProject/app" />
-      <module fileurl="file://$PROJECT_DIR$/define-butterknife/define-butterknife.iml" filepath="$PROJECT_DIR$/define-butterknife/define-butterknife.iml" group="LearnMyDevelopProject/define-butterknife" />
-      <module fileurl="file://$PROJECT_DIR$/define-butterknife-annontations/define-butterknife-annontations.iml" filepath="$PROJECT_DIR$/define-butterknife-annontations/define-butterknife-annontations.iml" group="LearnMyDevelopProject/define-butterknife-annontations" />
-      <module fileurl="file://$PROJECT_DIR$/define-butterknife-compiler/define-butterknife-compiler.iml" filepath="$PROJECT_DIR$/define-butterknife-compiler/define-butterknife-compiler.iml" group="LearnMyDevelopProject/define-butterknife-compiler" />
+      <module fileurl="file://$PROJECT_DIR$/LearnMyDevelopProject.iml" filepath="$PROJECT_DIR$/LearnMyDevelopProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LearnMyDevelopProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LearnMyDevelopProject.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/define-butterknife/LearnMyDevelopProject.define-butterknife.iml" filepath="$PROJECT_DIR$/.idea/modules/define-butterknife/LearnMyDevelopProject.define-butterknife.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/define-butterknife-annontations/LearnMyDevelopProject.define-butterknife-annontations.iml" filepath="$PROJECT_DIR$/.idea/modules/define-butterknife-annontations/LearnMyDevelopProject.define-butterknife-annontations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/define-butterknife-compiler/LearnMyDevelopProject.define-butterknife-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/define-butterknife-compiler/LearnMyDevelopProject.define-butterknife-compiler.iml" />
     </modules>
   </component>
 </project>

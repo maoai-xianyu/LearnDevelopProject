@@ -11,29 +11,37 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.mao.cn.learnDevelopProject.LearnDevelopApplication;
-import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 
 public class RadiusBackgroundSpan extends ReplacementSpan {
-    private int fontSize = -1;
-    private boolean isSp = true;
+    private int fontSize;
     private int margin;
-    private int padding;
     private int radius;
     private int textColor;
     private int bgColor;
+    private int mSize;
+
+    public static final int STYLE_FILL = 0;//填充
+    public static final int STYLE_STROCK = 1;//扫边。扫边颜色默认和字体颜色一致
+    private int mStyle;
 
     public RadiusBackgroundSpan(int fontSize, int margin, int radius, int textColor, int bgColor) {
+        this(fontSize, margin, radius, textColor, bgColor, STYLE_FILL);
+    }
+
+    public RadiusBackgroundSpan(int fontSize, int margin, int radius, int textColor, int bgColor, int style) {
         this.fontSize = fontSize;
         this.margin = margin;
         this.radius = radius;
         this.textColor = textColor;
         this.bgColor = bgColor;
+        this.mStyle = style;
     }
 
     @Override
     public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, @Nullable Paint.FontMetricsInt fm) {
         Paint newPaint = getCustomTextPaint(paint);
-        return (int) newPaint.measureText(text, start, end) + margin * 2;
+        mSize = (int) newPaint.measureText(text, start, end) + margin * 2;
+        return mSize;
     }
 
     @Override
@@ -41,31 +49,31 @@ public class RadiusBackgroundSpan extends ReplacementSpan {
             bottom, @NonNull Paint paint) {
         Paint newPaint = getCustomTextPaint(paint);
 
-        int textWidth = (int) newPaint.measureText(text, start, end);
+        RectF rect = new RectF(x, y + paint.ascent(), x + mSize, y + paint.descent());
 
-        RectF rect = new RectF();
-        rect.top = top + margin;
-        rect.bottom = bottom - margin;
-        rect.left = (int) (x + margin);
-        rect.right = rect.left + textWidth + margin;
 
-        paint.setColor(bgColor);
+        if (mStyle == STYLE_STROCK) {
+            paint.setColor(textColor);
+            paint.setStyle(Paint.Style.STROKE);
+        } else {
+            paint.setColor(bgColor);
+            paint.setStyle(Paint.Style.FILL);
+        }
         canvas.drawRoundRect(rect, radius, radius, paint);
-        LogU.d("ssssssss");
 
+        newPaint.setAntiAlias(true);
         newPaint.setColor(textColor);
-        Paint.FontMetrics fontMetrics = newPaint.getFontMetrics();
-        int offsetX = (int) ((rect.right - rect.left - textWidth) / 2) + margin;
-        int offsetY = (int) ((y + fontMetrics.ascent + y + fontMetrics.descent) / 2 - (top + bottom) / 2);
-        canvas.drawText(text, start, end, x + offsetX, y - offsetY, newPaint);
+        //int offsetX = (int) ((rect.right - rect.left - textWidth) / 2) + margin;
+        //int offsetX = (int) (mSize - paint.measureText(text.subSequence(start, end).toString()));
+        //int offsetX = (int) (mSize - paint.measureText(text, start, end));
+        int textWidth = (int) newPaint.measureText(text, start, end);
+        int offsetX = (int) ((rect.right - rect.left - textWidth) / 2);
+        canvas.drawText(text, start, end, x + offsetX, y, newPaint);
 
     }
 
     private TextPaint getCustomTextPaint(Paint srcPaint) {
         TextPaint textPaint = new TextPaint(srcPaint);
-        /*if (fontSize != -1) {
-            textPaint.setTextSize(isSp ? fontSize * textPaint.density : fontSize);
-        }*/
         textPaint.setTextSize(sp2px(fontSize));
         return textPaint;
     }

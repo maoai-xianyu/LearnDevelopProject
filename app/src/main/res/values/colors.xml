@@ -110,6 +110,8 @@
     <color name="green">#00E099</color>
     <color name="pink">#FF3891</color>
     <color name="sss">#B010</color>
+    <color name="hex_f03d37">#f03d37</color>
+    <color name="hex_1Af03d37">#1Af03d37</color>
 
     <array name="splash_circle_colors">
         <item>@color/blue</item>

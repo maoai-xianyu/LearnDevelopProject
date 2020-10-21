@@ -25,5 +25,7 @@
     <string name="openDraw">open</string>
     <string name="closeDraw">close</string>
     <string name="content">If someone loves a flower, of which just one single blossom grows in all the millions and millions of stars, it is enough to make him happy just to look at the stars. He can say to himself, "Somewhere, my flower is there ..." But if the sheep eats the flower, in one moment all his stars will be darkened ... And you think that is not important!</string>
-    <string name="content1">您的账号在其他设备上登录或者以其他身份登录了本APP，逆变是与泛型实参的继承关系反过来</string>
+    <string name="content1">您的账号在其他设备上登录或者以其他身份登&#160;录了本&#160;APP，逆变是与泛型实参的继承关系反过来</string>
+    <string name="movie_search_correction_first">已为您智能拼音搜索&#160;</string>
+    <string name="movie_search_correction">%1$s，仍搜索&#160;%2$s&#160;</string>
 </resources>
