@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.InflateException;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
@@ -39,7 +40,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import io.reactivex.annotations.NonNull;
 
 /**
  * This class is responsible for manually inflating our tinted widgets which are used on devices

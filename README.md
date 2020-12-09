@@ -18,6 +18,10 @@ mvp模式项目,用于学习，同时累积自己的知识和能力
 ### 自定义View学习
 - `-` works too
     * http://www.jianshu.com/p/ba6db48fd2b9 简书 英勇青铜5
+
+
+### 打出包的依赖  ./gradlew :app:dependencies
+
         
 
   

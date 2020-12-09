@@ -48,7 +48,7 @@ import com.mao.cn.learnDevelopProject.utils.tools.LogU;
 import com.mao.cn.learnDevelopProject.utils.tools.PathU;
 import com.mao.cn.learnDevelopProject.utils.tools.PreferenceU;
 import com.mao.cn.learnDevelopProject.utils.tools.StringU;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,8 +80,6 @@ public class MainActivity extends BaseActivity implements IMain {
     private List<BaseFragment> mFragmentList;
     private int currentIndex;
     private MoviesFragment moviesFragment;
-
-    final RxPermissions rxPermissions = new RxPermissions(this); // where this is an Activity or Fragment instance
 
     @Override
     public void getArgs(Bundle bundle) {
@@ -168,7 +166,7 @@ public class MainActivity extends BaseActivity implements IMain {
         mFragmentList.add(MainGuideFragment.newInstance());
         mFragmentList.add(NewFragment.newInstance());
         mFragmentList.add(OpenSourceFragment.newInstance());
-        if (moviesFragment ==null){
+        if (moviesFragment == null) {
             moviesFragment = MoviesFragment.newInstance();
         }
         mFragmentList.add(moviesFragment);
@@ -250,12 +248,12 @@ public class MainActivity extends BaseActivity implements IMain {
     @SuppressLint("CheckResult")
     private void requestPermission() {
 
-        rxPermissions.requestEach(Manifest.permission.WRITE_CALENDAR,
-                Manifest.permission.READ_CALENDAR,
-                Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.CALL_PHONE)
+        RxPermissions.getInstance(this)
+                .requestEach(Manifest.permission.WRITE_CALENDAR,
+                        Manifest.permission.READ_CALENDAR,
+                        Manifest.permission.RECORD_AUDIO,
+                        Manifest.permission.CALL_PHONE)
                 .subscribe(permission -> {
-
                     if (permission.granted) {
 
                     } else {
@@ -265,6 +263,7 @@ public class MainActivity extends BaseActivity implements IMain {
                     }
 
                 }, throwable -> LogU.e("异常"));
+
     }
 
     @Subscribe
@@ -281,10 +280,10 @@ public class MainActivity extends BaseActivity implements IMain {
                 .setFirstSelectedPosition(0)
                 .initialise();*/
 
-        if (event.isShow()){
+        if (event.isShow()) {
             numberBadgeItem.setText(event.getNumMsg());
             numberBadgeItem.show();
-        }else {
+        } else {
             numberBadgeItem.hide();
         }
 
