@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/c_FFFFFF"
+    tools:context="com.mao.cn.learnDevelopProject.ui.activity.MainActivity">
+
+    <include
+        android:id="@+id/rl_header"
+        layout="@layout/include_header" />
+
+    <TextView
+        android:id="@+id/tvFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击跳转旧的方式"
+        android:textColor="@color/black100"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="点击跳转新的方式"
+        android:textColor="@color/black100"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

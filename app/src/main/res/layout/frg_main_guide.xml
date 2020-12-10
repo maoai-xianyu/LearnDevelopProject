@@ -207,6 +207,13 @@
                     android:layout_height="wrap_content"
                     android:text="ax懒加载" />
 
+                <Button
+                    android:id="@+id/btnAndroidResult"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="activity result" />
+
 
 
             </LinearLayout>
