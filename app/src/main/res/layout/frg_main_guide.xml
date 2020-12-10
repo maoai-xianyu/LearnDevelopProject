@@ -200,6 +200,14 @@
                     android:layout_height="wrap_content"
                     android:text="猫眼Tabhost" />
 
+                <Button
+                    android:id="@+id/btnAndroidX"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ax懒加载" />
+
+
 
             </LinearLayout>
         </LinearLayout>
