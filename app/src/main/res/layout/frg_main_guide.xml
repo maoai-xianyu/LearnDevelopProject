@@ -213,6 +213,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="activity result" />
+                <Button
+                    android:id="@+id/btnAndroidUtils"
+                    style="@style/home_main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="activity utils" />
 
 
 

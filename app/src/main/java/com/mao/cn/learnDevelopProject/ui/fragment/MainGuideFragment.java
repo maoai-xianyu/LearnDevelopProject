@@ -30,6 +30,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.SelfDefineViewActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.StringSpannerClickActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.aidlTest.AidlDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.androidxf.ActivityResultApi;
+import com.mao.cn.learnDevelopProject.ui.activity.androidxf.AndroidxDiffUtilActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.androidxf.AndroidxFragmentVpActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.annotation.AnnotationActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.annotation.DefineButterKnifeActivity;
@@ -112,6 +113,8 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnAndroidX;
     @BindView(R.id.btnAndroidResult)
     Button btnAndroidResult;
+    @BindView(R.id.btnAndroidUtils)
+    Button btnAndroidUtils;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -317,6 +320,12 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnAndroidResult).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(ActivityResultApi.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+        RxView.clicks(btnAndroidUtils).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(AndroidxDiffUtilActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
