@@ -20,15 +20,12 @@ import com.mao.cn.learnDevelopProject.R
 import com.mao.cn.learnDevelopProject.contants.ValueMaps
 import com.mao.cn.learnDevelopProject.di.component.AppComponent
 import com.mao.cn.learnDevelopProject.model.TestBean
-import com.mao.cn.learnDevelopProject.ui.adapter.DiffAdapter
+import com.mao.cn.learnDevelopProject.ui.adapter.DiffAdapterNew
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity
-import com.mao.cn.learnDevelopProject.ui.fragment.*
-import com.mao.cn.learnDevelopProject.ui.fragment.androidxf.*
 import com.mao.cn.learnDevelopProject.utils.tools.LogU
 import kotlinx.android.synthetic.main.aty_androidx_diffuitl_rv.*
-import kotlinx.android.synthetic.main.aty_androidx_fragment_vp.*
 import kotlinx.android.synthetic.main.include_header.*
-import java.util.*
+import java.io.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -41,8 +38,8 @@ class AndroidxDiffUtilActivity : BaseActivity() {
     private var mDatas: MutableList<TestBean> = mutableListOf()
     private var mNewDatas: MutableList<TestBean> = mutableListOf()
     private val H_CODE_UPDATE = 1
-    private val mAdapter: DiffAdapter by lazy {
-        DiffAdapter(this, mDatas)
+    private val mAdapterNew: DiffAdapterNew by lazy {
+        DiffAdapterNew(this, mDatas)
     }
 
     override fun getArgs(bundle: Bundle?) {}
@@ -58,7 +55,7 @@ class AndroidxDiffUtilActivity : BaseActivity() {
 
         initData()
         rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = mAdapter
+        rv.adapter = mAdapterNew
 
 
         btnRefresh.setOnClickListener {
@@ -88,6 +85,24 @@ class AndroidxDiffUtilActivity : BaseActivity() {
         mDatas.add(TestBean("张旭童5", "手撕测试", R.drawable.pic5))
     }
 
+
+    fun <T> deepCopy(t: List<T>?): List<T>? {
+        return try {
+            // 写入字节流
+            val byteOut = ByteArrayOutputStream()
+            val out = ObjectOutputStream(byteOut)
+            out.writeObject(t)
+            val byteIn = ByteArrayInputStream(byteOut.toByteArray())
+            val `in` = ObjectInputStream(byteIn)
+            `in`.readObject() as List<T>
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        } catch (e: ClassNotFoundException) {
+            e.printStackTrace()
+            null
+        }
+    }
     fun onRefresh() {
         try {
 
@@ -102,8 +117,8 @@ class AndroidxDiffUtilActivity : BaseActivity() {
 
             //别忘了将新数据给Adapter
             mDatas = mNewDatas
-            mAdapter.setDatas(mDatas)
-            mAdapter.notifyDataSetChanged()
+            mAdapterNew.setDatas(mDatas)
+            mAdapterNew.notifyDataSetChanged()
         } catch (e: Exception) {
             LogU.e("e" + e.toString())
         }
@@ -113,7 +128,7 @@ class AndroidxDiffUtilActivity : BaseActivity() {
 
     fun onRefreshDiffUtil() {
         try {
-            for (bean in mDatas) {
+            /*for (bean in mDatas) {
                 mNewDatas.add(bean) //clone一遍旧数据 ，模拟刷新操作
             }
             mNewDatas.add(TestBean("赵子龙", "帅", R.drawable.pic6)) //模拟新增数据
@@ -121,14 +136,19 @@ class AndroidxDiffUtilActivity : BaseActivity() {
             mNewDatas[0].pic = R.drawable.pic7 //模拟修改数据
             val testBean: TestBean = mNewDatas[1] //模拟数据位移
             mNewDatas.remove(testBean)
-            mNewDatas.add(testBean)
+            mNewDatas.add(testBean)*/
+
+            mNewDatas = deepCopy(mDatas) as MutableList<TestBean>
+            mNewDatas[0].desc = "Android+"
+            mNewDatas[0].pic = R.drawable.pic7 //模拟修改数据
+
 
             val diffCallBack = DiffCallBack(mDatas, mNewDatas)
             val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffCallBack, true)
-            diffResult.dispatchUpdatesTo(mAdapter)
+            diffResult.dispatchUpdatesTo(mAdapterNew)
 
             mDatas = mNewDatas
-            mAdapter.setDatas(mDatas)
+            mAdapterNew.setDatas(mDatas)
 
 
 
@@ -153,7 +173,7 @@ class AndroidxDiffUtilActivity : BaseActivity() {
                     //取出Result
                     val diffResult: DiffUtil.DiffResult = msg.obj as DiffUtil.DiffResult
                     //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter，轻松成为文艺青年
-                    diffResult.dispatchUpdatesTo(mAdapter)
+                    diffResult.dispatchUpdatesTo(mAdapterNew)
 
                     //这种方法可以fix add 0 不滑动
                     /*diffResult.dispatchUpdatesTo(new ListUpdateCallback() {
@@ -183,7 +203,7 @@ class AndroidxDiffUtilActivity : BaseActivity() {
 
                     //别忘了将新数据给Adapter
                     mDatas = mNewDatas
-                    mAdapter.setDatas(mDatas)
+                    mAdapterNew.setDatas(mDatas)
                 }
             }
         }

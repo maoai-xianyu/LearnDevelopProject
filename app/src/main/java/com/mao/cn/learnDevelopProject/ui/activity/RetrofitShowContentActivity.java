@@ -10,19 +10,20 @@
 package com.mao.cn.learnDevelopProject.ui.activity;
 
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.jakewharton.rxbinding.view.RxView;
 import com.mao.cn.learnDevelopProject.R;
+import com.mao.cn.learnDevelopProject.contants.ValueMaps;
 import com.mao.cn.learnDevelopProject.di.component.AppComponent;
 import com.mao.cn.learnDevelopProject.di.component.DaggerRetrofitShowContentComponent;
-import com.mao.cn.learnDevelopProject.contants.ValueMaps;
-import com.mao.cn.learnDevelopProject.model.MovieDetail;
 import com.mao.cn.learnDevelopProject.di.modules.RetrofitShowContentModule;
+import com.mao.cn.learnDevelopProject.model.MovieDetail;
 import com.mao.cn.learnDevelopProject.ui.adapter.MovieTopAdapter;
 import com.mao.cn.learnDevelopProject.ui.commons.BaseActivity;
 import com.mao.cn.learnDevelopProject.ui.features.IRetrofitShowContent;
@@ -66,7 +67,7 @@ public class RetrofitShowContentActivity extends BaseActivity implements IRetrof
     @Override
     public void initView() {
         ibHeaderBack.setVisibility(View.VISIBLE);
-        presenter.getMovieTop(0, 10);
+        //presenter.getMovieTop(0, 10);
 
     }
 

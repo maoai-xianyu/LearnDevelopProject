@@ -31,6 +31,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -380,14 +381,71 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
 
 
     private void glideAppGif() {
+
+
         GlideApp.with(this)
                 .asGIF()
-                .load("http://www.guolin.tech/test.gif")
+                //.load("http://www.guolin.tech/test.gif")
+                .load("https://p1.meituan.net/movie/72d4b6e75586d5bf09dde2fa242e69a8197250.gif")
                 .placeholder(R.drawable.demo)
                 .error(R.drawable.check)
                 .override(Target.SIZE_ORIGINAL)
                 .circleCrop()
+                .listener(new RequestListener<GifDrawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                        LogU.e(" e 失败 " + e.toString());
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                        LogU.e(" e 成功 ");
+                        return false;
+                    }
+                })
                 .into(imageView);
+
+
+        /*Glide.with(this)
+                .asGif()
+                .load("https://n.sinaimg.cn/tech/transform/696/w446h250/20201127/56f4-kentcvx9839551.gif")
+                .addListener(new RequestListener<GifDrawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                        LogU.e(" e 失败 " + e.toString());
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                        LogU.e(" e 成功 " );
+                        return false;
+                    }
+                })
+                .into(imageView);*/
+
+
+        /*GlideApp.with(this)
+                .asGIF()
+                .load("https://n.sinaimg.cn/tech/transform/696/w446h250/20201127/56f4-kentcvx9839551.gif")
+                .placeholder(R.drawable.demo)
+                .error(R.drawable.check)
+                .override(Target.SIZE_ORIGINAL)
+                .circleCrop()
+                .listener(new RequestListener<GifDrawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                        LogU.e(" e 失败 " + e.toString());
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                        LogU.e(" e 成功 ");
+                        return false;
+                    }
+                }).into(imageView);*/
 
 
         /*Glide.with(this)
@@ -517,7 +575,7 @@ public class EasyRecycleViewGlideShowContentActivity extends BaseActivity implem
                 .load("http://www.guolin.tech/book.png")// 指定图片的URL
                 .placeholder(R.drawable.demo)//指定图片为成功加载前显示的图片
                 .error(R.drawable.check)// 指定图片加载失败显示的图片
-                .override(300,300) // 指定图片的尺寸
+                .override(300, 300) // 指定图片的尺寸
                 .fitCenter()//指定图片缩放类型为
                 .centerCrop() //指定图片缩放类型为
                 .skipMemoryCache(true) // 跳过内存缓存

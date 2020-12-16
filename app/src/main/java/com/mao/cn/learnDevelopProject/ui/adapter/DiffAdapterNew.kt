@@ -16,7 +16,7 @@ import com.mao.cn.learnDevelopProject.model.TestBean
  * @time 2020/12/11 3:21 PM
  * @Description
  */
-class DiffAdapter(val context: Context, val list: MutableList<TestBean>) : RecyclerView.Adapter<DiffAdapter.DiffVH>() {
+class DiffAdapterNew(val context: Context, val list: MutableList<TestBean>) : RecyclerView.Adapter<DiffAdapterNew.DiffVH>() {
 
     private var mDatas: MutableList<TestBean> = list
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
