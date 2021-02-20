@@ -22,7 +22,7 @@ public class JetPackActivity extends AppCompatActivity {
         setContentView(R.layout.aty_jet_pack);
 
         LogU.i(TAG + "Owner onCreate");
-        getLifecycle().addObserver(new JetPackActivityObserver());
+
     }
 
 
@@ -36,6 +36,7 @@ public class JetPackActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LogU.i(TAG + "Owner onResume");
+        getLifecycle().addObserver(new JetPackActivityObserver(getLifecycle()));
     }
 
     @Override
