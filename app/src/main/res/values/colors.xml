@@ -122,4 +122,15 @@
         <item>@color/yellow</item>
     </array>
 
+
+    <color name="banner_bottom_bar_bg_day">#65000000</color>
+    <color name="banner_bottom_bar_bg_night">#6508090a</color>
+    <color name="banner_layout_bg_day">#ffffffff</color>
+    <color name="banner_layout_bg_night">#ff171a1e</color>
+    <color name="banner_tip_day">#ffffffff</color>
+    <color name="banner_tip_night">#ff5c6266</color>
+
+    <color name="dot_select_color">#ffffffff</color>
+    <color name="dot_unselect_color">#50ffffff</color>
+
 </resources>

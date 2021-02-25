@@ -38,6 +38,7 @@ import com.mao.cn.learnDevelopProject.ui.activity.aspectJ.AspectJDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.defineview.DefineViewDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.designPattern.DesignPatternDemoActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.handler.HandlerDemoActivity;
+import com.mao.cn.learnDevelopProject.ui.activity.kotlin.BannerActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.materialDesign.MaterialDesignActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryActivity;
 import com.mao.cn.learnDevelopProject.ui.activity.memory.MemoryNewActivity;
@@ -115,6 +116,8 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
     Button btnAndroidResult;
     @BindView(R.id.btnAndroidUtils)
     Button btnAndroidUtils;
+    @BindView(R.id.btnBanner)
+    Button btnBanner;
 
     public static MainGuideFragment newInstance() {
         MainGuideFragment mainGuideFragment = new MainGuideFragment();
@@ -326,6 +329,13 @@ public class MainGuideFragment extends BaseFragment implements IMainGuide {
         RxView.clicks(btnAndroidUtils).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
                 .MILLISECONDS).subscribe(aVoid -> {
             startActivity(AndroidxDiffUtilActivity.class);
+        }, throwable -> {
+            LogU.e(throwable.getMessage());
+        });
+
+        RxView.clicks(btnBanner).throttleFirst(ValueMaps.ClickTime.BREAK_TIME_MILLISECOND, TimeUnit
+                .MILLISECONDS).subscribe(aVoid -> {
+            startActivity(BannerActivity.class);
         }, throwable -> {
             LogU.e(throwable.getMessage());
         });
