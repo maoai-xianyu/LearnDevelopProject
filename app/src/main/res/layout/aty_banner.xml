@@ -26,6 +26,36 @@
             app:layout_constraintTop_toTopOf="parent"
             app:withProportion="8" />
 
+        <com.mao.cn.learnDevelopProject.widgets.flow.XFlowLayout
+            android:id="@+id/flow_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/banner_view"
+            app:max_line="3" />
+
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:text="刷新数据"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/flow_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <com.mao.cn.learnDevelopProject.widgets.flow.flowlayout.LineFlowLayout
+            android:id="@+id/lineFlow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn"
+            app:flow_line_count="1"/>
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -144,5 +144,24 @@
         <attr name="heightProportion" format="float" />
     </declare-styleable>
 
+    <declare-styleable name="XFlowLayout">
+        <attr name="max_line" format="integer" />
+        <attr name="center_horizontal" format="boolean" />
+    </declare-styleable>
+
+
+
+    <declare-styleable name="FlowLayout">
+        <attr name="is_line_center" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="LineFlowLayout">
+        <attr name="flow_line_count" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="ScrollFlowLayout">
+        <attr name="effect_top_color" format="color" />
+        <attr name="effect_bottom_color" format="color" />
+        <attr name="need_effect" format="boolean" />
+    </declare-styleable>
 
 </resources>
