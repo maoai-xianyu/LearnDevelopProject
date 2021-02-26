@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.mao.cn.learnDevelopProject.R
 import com.mao.cn.learnDevelopProject.databinding.AtyBannerBinding
+import com.mao.cn.learnDevelopProject.utils.tools.LogU
 import com.mao.cn.learnDevelopProject.widgets.banner.BannerAdapter
 import com.mao.cn.learnDevelopProject.widgets.flow.XFlowLayout
 import com.mao.cn.learnDevelopProject.widgets.flow.flowlayout.FlowAdapter
@@ -53,7 +54,11 @@ class BannerActivity : AppCompatActivity() {
         viewModel.tabLists.observe(this) {
             val bannerAdapter = TagAdapter(this)
             bannerAdapter.setContent(it)
-            viewBinding.flowLayout.setAdapter(bannerAdapter)
+
+            val itemCount = bannerAdapter.itemCount
+
+            LogU.e("itemCount $itemCount")
+            viewBinding.flowLayout.adapter = bannerAdapter
         }
 
         viewModel.loadTabList()
@@ -71,9 +76,12 @@ class BannerActivity : AppCompatActivity() {
 
         viewModel.tabTabs.observe(this) {
             val adapter = FlowAdapterShow(it as MutableList<String>, this)
+
+            val count = adapter.count
+
+            LogU.e(" count  $count")
             viewBinding.lineFlow.setAdapter(adapter)
         }
-
 
         viewModel.loadTabTabs()
 
