@@ -3,6 +3,8 @@ package com.mao.cn.learnDevelopProject;
 import android.app.Activity;
 import android.content.Intent;
 
+import androidx.lifecycle.ProcessLifecycleOwner;
+
 import com.hwangjr.rxbus.RxBus;
 import com.mao.cn.learnDevelopProject.common.CommApplication;
 import com.mao.cn.learnDevelopProject.contants.KeyMaps;
@@ -54,9 +56,10 @@ public class LearnDevelopApplication extends CommApplication {
 
     private static ServerInfo serverInfo;
 
+
     @Override
     protected void initApplication() {
-
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new ApplicationLifeCycle());
     }
 
     @Override

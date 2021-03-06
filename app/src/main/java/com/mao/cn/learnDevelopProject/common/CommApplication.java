@@ -11,10 +11,9 @@ public abstract class CommApplication extends Application {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        instance = this;
         this.beforeCreate();
         super.onCreate();
+        instance = this;
         this.initApplication();
         this.afterOnCreate();
     }
