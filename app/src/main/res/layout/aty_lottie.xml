@@ -25,4 +25,15 @@
         app:lottie_imageAssetsFolder="images/"
         app:lottie_loop="true" />-->
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ltTicket"
+        android:layout_width="@dimen/d230"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/d130"
+        android:layout_marginTop="10dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="data/data.json"
+        app:lottie_loop="true" />
+
 </LinearLayout>
